@@ -97,7 +97,7 @@ const Experience = () => {
               <b>Web Developer →</b>
               <b className="text-sm md:text-xl font-MOD20 block">
                 Self-Initiated Projects • February 2022 - February 2023 •{" "}
-                <span className="text-red-800">12 mos</span>
+                <span className="text-red-800">1 year</span>
               </b>
             </p>
           </div>

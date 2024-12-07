@@ -17,7 +17,8 @@ const Hero = () => {
             <div className="flex flex-col md:flex-row max-w-7xl mx-auto">
               <div className="flex-1 text-left p-4">
                 <span className="text-md sm:text-lg lg:text-xl font-Mitr">
-                  PRAISE THE GOD →
+                  {/* PRAISE THE GOD → */}
+                  Hi 👋 →
                 </span>
                 <h6 className="mb-4 font-Mitr flex items-center text-justify text-sm sm:text-base lg:text-xl">
                   <span className="mr-2">
