@@ -105,7 +105,7 @@ const NavBar = () => {
                   >
                     Education <CgArrowTopRight className="ml-1" />
                   </Link>
-                  <div className="flex justify-center">
+                  {/* <div className="flex justify-center">
                     <a
                       href="/resume.pdf"
                       download
@@ -126,22 +126,22 @@ const NavBar = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                    </a>
+                    </a> */}
 
-                    <Link
-                      href="/#contact"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document
-                          .getElementById("contact")
-                          .scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
-                    >
-                      Contact Us <IoMdMail className="h-5 w-5" />
-                    </Link>
-                  </div>
+                  <Link
+                    href="/#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById("contact")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
+                  >
+                    Contact Us <IoMdMail className="h-5 w-5" />
+                  </Link>
                 </div>
+                {/* </div> */}
               </div>
 
               {/* Mobile Menu Button */}
@@ -291,7 +291,7 @@ const NavBar = () => {
                       </div>
                       <CgArrowTopRight className="mr-2" />
                     </Link>
-                    <div className="flex justify-center items-center">
+                    {/* <div className="flex justify-center items-center">
                       <a
                         href="/resume.pdf"
                         download
@@ -313,23 +313,23 @@ const NavBar = () => {
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                           />
                         </svg>
-                      </a>
-                      <Link
-                        href="/#contact"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setIsOpen(false);
-                          document
-                            .getElementById("contact")
-                            .scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4"
-                      >
-                        Contact Us <IoMdMail className="h-5 w-5" />
-                      </Link>
-                    </div>
+                      </a> */}
+                    <Link
+                      href="/#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsOpen(false);
+                        document
+                          .getElementById("contact")
+                          .scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4"
+                    >
+                      Contact Us <IoMdMail className="h-5 w-5" />
+                    </Link>
                   </div>
                 </div>
+                // </div>
               )}
             </div>
           </div>

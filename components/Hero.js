@@ -2,9 +2,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CgArrowTopRight } from "react-icons/cg";
-import { FaCheckSquare } from "react-icons/fa";
+import { FaCheckSquare, FaGithub } from "react-icons/fa";
 import { useState } from "react";
 import gsap from "gsap";
+import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
+import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 
 const tl = gsap.timeline({ease: "slow", duration: 1})
 document.addEventListener("mousemove", e => {
@@ -81,6 +83,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <FaGithub className="mr-2"/>
                       <span>GitHub</span>
                     </Link>
                     <Link
@@ -89,6 +92,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <IoLogoLinkedin className="mr-2"/>
                       <span>LinkedIn</span>
                     </Link>
                     <Link
@@ -96,7 +100,7 @@ const Hero = () => {
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
-                    >
+                    ><FaXTwitter className="mr-2"/>
                       <span>X</span>
                     </Link>
                     <Link
@@ -105,6 +109,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <FaSquareInstagram className="mr-2"/>
                       <span>Instagram</span>
                     </Link>
                     <Link
@@ -113,6 +118,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
+                      <IoLogoYoutube className="mr-2"/>
                       <span>YouTube</span>
                     </Link>
                   </div>

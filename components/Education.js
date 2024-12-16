@@ -82,6 +82,13 @@ const Education = () => {
                   target="_blank"
                   className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
                 >
+                  <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2 sm:hidden"
+                  />
                   Master Diploma in Computer Engineering - Indian Institute of
                   Computer Sciences
                   <Image
@@ -89,7 +96,7 @@ const Education = () => {
                     alt="link"
                     width={30}
                     height={30}
-                    className="mr-2"
+                    className="mr-2 hidden sm:block"
                   />
                 </a>
               </b>
@@ -121,14 +128,20 @@ const Education = () => {
                   href="https://www.udemy.com/certificate/UC-4e91caf7-c484-4e33-b412-db5185f9bfc1/"
                   target="_blank"
                   className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                >
+                ><Image
+                src="/link.gif"
+                alt="link"
+                width={30}
+                height={30}
+                className="mr-2 sm:hidden"
+              />
                 React JS- Complete Guide for Frontend Web Development - Udemy
                 <Image
                     src="/link.gif"
                     alt="link"
                     width={30}
                     height={30}
-                    className="mr-2"
+                    className="mr-2 hidden sm:block"
                   />
                 </a>
               </b>
@@ -151,14 +164,20 @@ const Education = () => {
                   href="https://www.udemy.com/certificate/UC-546b187e-c260-4d7a-8e07-3c5306f583cc/"
                   target="_blank"
                   className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                >
+                ><Image
+                src="/link.gif"
+                alt="link"
+                width={30}
+                height={30}
+                className="mr-2 sm:hidden"
+              />
                 MySQL Database Development Mastery - Udemy
                 <Image
                     src="/link.gif"
                     alt="link"
                     width={30}
                     height={30}
-                    className="mr-2"
+                    className="mr-2 hidden sm:block"
                   />
                 </a>
               </b>
@@ -184,13 +203,20 @@ const Education = () => {
                   target="_blank"
                   className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
                 >
+                  <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2 sm:hidden"
+                  />
                 Developer Program - Accenture by Forage
                 <Image
                     src="/link.gif"
                     alt="link"
                     width={30}
                     height={30}
-                    className="mr-2"
+                    className="mr-2 hidden sm:block"
                   />
                 </a>
               </b>
@@ -212,14 +238,20 @@ const Education = () => {
                   href="https://drive.google.com/file/d/1JwCmlhpVbKettWO4t0oIvG9hy0dEZ5F4/view"
                   target="_blank"
                   className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                >
+                ><Image
+                src="/link.gif"
+                alt="link"
+                width={30}
+                height={30}
+                className="mr-2 sm:hidden"
+              />
                 TCS iON Career Edge - Tata Consultancy Services
                 <Image
                     src="/link.gif"
                     alt="link"
                     width={30}
                     height={30}
-                    className="mr-2"
+                    className="mr-2 hidden sm:block"
                   />
                 </a>
               </b>

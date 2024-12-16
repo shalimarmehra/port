@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
+import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
+import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { MdInfoOutline } from "react-icons/md";
 
 const About = () => {
@@ -200,6 +203,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaGithub className="mr-2"/>
                 <span>GitHub</span>
               </Link>
               <Link
@@ -208,6 +212,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <IoLogoLinkedin className="mr-2"/>
                 <span>LinkedIn</span>
               </Link>
               <Link
@@ -216,6 +221,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaXTwitter className="mr-2"/>
                 <span>X</span>
               </Link>
               <Link
@@ -224,6 +230,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaSquareInstagram className="mr-2"/>
                 <span>Instagram</span>
               </Link>
               <Link
@@ -232,10 +239,11 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <IoLogoYoutube className="mr-2"/>
                 <span>YouTube</span>
               </Link>
             </div>
-            <a
+            {/* <a
               href="/resume.pdf"
               download
               className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2 my-5"
@@ -255,7 +263,7 @@ const About = () => {
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 />
               </svg>
-            </a>
+            </a> */}
           </div>
         </section>
       </div>

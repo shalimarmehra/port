@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { MdOutlineContacts } from "react-icons/md";
 import { PiCopyright } from "react-icons/pi";
+import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 
 const Contact = () => {
   return (
@@ -34,6 +36,7 @@ const Contact = () => {
               </div>
               <p className="text-gray-700 mb-4 text-justify text-xl sm:text-2xl md:text-3xl font-ost ml-7">
                 <b className="text-sm md:text-lg lg:text-xl font-MOD20 flex items-center">
+                  <Image src="/whatsapp.gif" alt="Whatsapp Chat" width={50} height={50}/>
                   Whatsapp-chat :{"  "}
                   <a
                     href="https://wa.me/919560362339"
@@ -44,6 +47,7 @@ const Contact = () => {
                   </a>
                 </b>
                 <b className="text-sm md:text-lg lg:text-xl font-MOD20 flex items-center">
+                <Image src="/gmail.gif" alt="Whatsapp Chat" width={20} height={20} className="ml-4 mr-4"/>
                   Email-me :{"  "}
                   <a
                     href="mailto:shalimarmehra3@gmail.com"
@@ -80,6 +84,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaGithub className="mr-2"/>
                 <span>GitHub</span>
               </Link>
               <Link
@@ -88,6 +93,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <IoLogoLinkedin className="mr-2"/>
                 <span>LinkedIn</span>
               </Link>
               <Link
@@ -96,6 +102,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaXTwitter className="mr-2"/>
                 <span>X</span>
               </Link>
               <Link
@@ -104,6 +111,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FaSquareInstagram className="mr-2"/>
                 <span>Instagram</span>
               </Link>
               <Link
@@ -112,6 +120,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <IoLogoYoutube className="mr-2"/>
                 <span>YouTube</span>
               </Link>
             </div>
