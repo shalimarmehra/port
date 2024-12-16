@@ -1,19 +1,59 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const Experience = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-slideUp');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <div className="bg-[url('/experience-bg.png')] bg-cover bg-center">
-        <section id="experience" className="py-5">
+        <section 
+          ref={sectionRef}
+          id="experience" 
+          className="py-5 opacity-0"
+        >
+          <style jsx>{`
+            @keyframes slideUp {
+              from {
+                transform: translateY(100px);
+                opacity: 0;
+              }
+              to {
+                transform: translateY(0);
+                opacity: 1;
+              }
+            }
+            .animate-slideUp {
+              animation: slideUp 1s ease-in-out forwards;
+            }
+          `}</style>
           <span className="ml-5 xl:ml-24 font-Mitr">
             .../Experience - Professional Timeline ...
           </span>
-          {/* <div className="flex items-center md:py-5 xl:py-0 sm:pl-[7rem] xl:pl-[25rem] justify-end sm:justify-start">
-          <h2 className="text-3xl sm:text-4xl lg:text-8xl font-bold mr-20 font-italianno opacity-25  sm:w-auto">
-            <i>Professional Timeline</i>
-          </h2>
-        </div> */}
           <div className="container mx-auto px-4 my-5">
             <div className="flex flex-row items-baseline p-2">
               <Image

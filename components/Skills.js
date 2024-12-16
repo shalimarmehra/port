@@ -1,19 +1,58 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Skills = () => {
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("slide-up");
+        }
+      });
+    });
+
+    const section = document.querySelector("#skills");
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      if (section) {
+        observer.unobserve(section);
+      }
+    };
+  }, []);
+
   return (
     <>
+      <style jsx global>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(100px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .slide-up {
+          animation: slideUp 1s ease-out forwards;
+        }
+
+        #skills {
+          opacity: 0;
+          transform: translateY(100px);
+        }
+      `}</style>
+
       <div className="bg-[url('/skills-bg.png')] bg-cover bg-center">
         <section id="skills" className="py-5">
           <span className="ml-5 font-Mitr xl:ml-24">
             .../Skills - Skills & Proficiencies ...
           </span>
-          {/* <div className="flex items-center md:py-5 xl:py-0 sm:pl-[7rem] xl:pl-[25rem] justify-end sm:justify-start">
-        <h2 className="text-3xl sm:text-4xl lg:text-8xl font-bold mr-20 font-italianno opacity-25  sm:w-auto">
-          <i>Skills & Proficiencies</i>
-        </h2>
-      </div> */}
           <div className="container mx-auto px-4 my-5">
             <div className="flex flex-row items-start p-2">
               <Image

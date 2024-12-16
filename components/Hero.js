@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CgArrowTopRight } from "react-icons/cg";
 import { FaCheckSquare, FaGithub } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
@@ -28,15 +28,33 @@ document.addEventListener("mousemove", (e) => {
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    gsap.fromTo(
+      "#hero-section",
+      { 
+        x: "-100%",
+        opacity: 0,
+        smoothOrientation: true 
+      },
+      {
+        x: "0%", 
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.inOut",
+        smoothOrientation: true
+      }
+    );
+  }, []);
+
   return (
     <>
       <div className="bg-[url('/hero-left.png')] bg-cover bg-center">
         <section id="home">
-          <div className="mt-3 px-4 sm:px-6 lg:px-8">
+          <div id="hero-section" className="mt-3 px-4 sm:px-6 lg:px-8">
             <span className=" font-Mitr xl:ml-24">.../Home ...</span>
 
             <div className="flex flex-col md:flex-row max-w-7xl mx-auto">
-              <div className="flex-1 text-left p-4">
+            <div className="flex-1 text-left p-4">
                 <span className="text-md sm:text-lg lg:text-xl font-Mitr">
                   {/* PRAISE THE GOD → */}
                   Hi 👋 →

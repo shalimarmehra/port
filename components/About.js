@@ -5,22 +5,34 @@ import { FaGithub } from "react-icons/fa";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { MdInfoOutline } from "react-icons/md";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
 
 const About = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
     <>
       <div className="bg-[url('/about-bg.png')] bg-cover bg-center">
-        <section id="about" className="py-5">
+        <section
+          id="about"
+          className="py-5"
+          ref={ref}
+          style={{
+            transform: inView ? "translateY(0)" : "translateY(100px)",
+            opacity: inView ? 1 : 0,
+            transition: "transform 0.6s ease-out, opacity 0.6s ease-out",
+          }}
+        >
           <span className="ml-5 font-Mitr xl:ml-24">
             .../About me - Who am i ...
           </span>
 
+          {/* Rest of the code remains unchanged */}
           <div className="container mx-auto px-4 my-5">
-            {/* <div className="flex items-center md:py-5 xl:py-0 sm:pl-[7rem] xl:pl-[25rem] justify-end sm:justify-start">
-            <h2 className="text-3xl sm:text-4xl lg:text-8xl font-bold mr-20 font-italianno opacity-25  sm:w-auto">
-              <i>WHO AM I</i>
-            </h2>
-          </div> */}
             <div className="flex flex-row items-start p-2">
               <Image
                 src="/bullet-point.png"
@@ -46,6 +58,7 @@ const About = () => {
                 technical proficiency and creative innovation.
               </p>
             </div>
+
             <br />
             <div className="mt-[-15px] md:mt-[-38px]">
               <div className="flex flex-row items-start p-2">
@@ -195,6 +208,7 @@ const About = () => {
               </div>
             </div>
           </div>
+
           <div className="flex flex-col items-center justify-center w-full mt-6 px-10">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 items-center gap-3 w-full max-w-screen-lg mx-auto">
               <Link
@@ -203,7 +217,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaGithub className="mr-2"/>
+                <FaGithub className="mr-2" />
                 <span>GitHub</span>
               </Link>
               <Link
@@ -212,7 +226,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <IoLogoLinkedin className="mr-2"/>
+                <IoLogoLinkedin className="mr-2" />
                 <span>LinkedIn</span>
               </Link>
               <Link
@@ -221,7 +235,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaXTwitter className="mr-2"/>
+                <FaXTwitter className="mr-2" />
                 <span>X</span>
               </Link>
               <Link
@@ -230,7 +244,7 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaSquareInstagram className="mr-2"/>
+                <FaSquareInstagram className="mr-2" />
                 <span>Instagram</span>
               </Link>
               <Link
@@ -239,31 +253,10 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <IoLogoYoutube className="mr-2"/>
+                <IoLogoYoutube className="mr-2" />
                 <span>YouTube</span>
               </Link>
             </div>
-            {/* <a
-              href="/resume.pdf"
-              download
-              className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2 my-5"
-            >
-              Resume
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                />
-              </svg>
-            </a> */}
           </div>
         </section>
       </div>
