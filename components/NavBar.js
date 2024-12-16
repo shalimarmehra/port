@@ -185,7 +185,10 @@ const NavBar = () => {
 
               {/* Mobile Menu */}
               {isOpen && (
-                <div className="absolute top-16 left-0 w-full xl:hidden bg-[#d9d9d9] shadow-lg">
+                <div
+                  className="absolute top-16 left-0 w-full xl:hidden bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] shadow-lg"
+                  onClick={(e) => setIsOpen(false)}
+                >
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     <Link
                       href="/#home"

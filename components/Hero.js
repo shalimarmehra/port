@@ -10,10 +10,11 @@ const Hero = () => {
 
   return (
     <>
-      <section id="home">
-        <div className="mt-3 px-4 sm:px-6 lg:px-8">
-          <span className="text-sm sm:text-base font-Mitr">.../Home ...</span>
-          <div className="bg-[url('/hero-left3.png')] bg-cover bg-center">
+      <div className="bg-[url('/hero-left.png')] bg-cover bg-center">
+        <section id="home">
+          <div className="mt-3 px-4 sm:px-6 lg:px-8">
+            <span className=" font-Mitr xl:ml-24">.../Home ...</span>
+
             <div className="flex flex-col md:flex-row max-w-7xl mx-auto">
               <div className="flex-1 text-left p-4">
                 <span className="text-md sm:text-lg lg:text-xl font-Mitr">
@@ -25,19 +26,23 @@ const Hero = () => {
                     <FaCheckSquare className="inline-block text-gray-800 rounded-lg" />
                   </span>
                   Shalimar Mehra&nbsp;• Web Developer
-                </h6><i>
-                <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify mb-4">
-                  Hi, I&apos;m Shalimar Mehra. I have a Bachelor&apos;s in
-                  Computer Applications and am pursuing an MCA in Computing and
-                  Software Systems from IGNOU. I&apos;ve enhanced my skills
-                  through various courses and certifications in technology and
-                  design. I&apos;m passionate about software engineering, web
-                  development, and UI/UX design.
-                </p></i>
-                <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify"><i>
-                  I&apos;ve started my own web development business and also
-                  explore new trends, freelance, and entrepreneurial ventures. I
-                  share my insights on my YouTube channel.............</i>
+                </h6>
+                <i>
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify mb-4">
+                    Hi, I&apos;m Shalimar Mehra. I have a Bachelor&apos;s in
+                    Computer Applications and am pursuing an MCA in Computing
+                    and Software Systems from IGNOU. I&apos;ve enhanced my
+                    skills through various courses and certifications in
+                    technology and design. I&apos;m passionate about software
+                    engineering, web development, and UI/UX design.
+                  </p>
+                </i>
+                <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify">
+                  <i>
+                    I&apos;ve started my own web development business and also
+                    explore new trends, freelance, and entrepreneurial ventures.
+                    I share my insights on my YouTube channel.............
+                  </i>
                   <span className="text-center sm:text-right mt-4 block">
                     <Link
                       href="/#about"
@@ -56,7 +61,7 @@ const Hero = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between w-full mt-6">
                   <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 w-full">
                     <Link
-                      href="https://github.com/yourusername"
+                      href="https://github.com/shalimarmehra"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -64,7 +69,7 @@ const Hero = () => {
                       <span>GitHub</span>
                     </Link>
                     <Link
-                      href="https://linkedin.com/in/yourusername"
+                      href="https://www.linkedin.com/in/shalimarmehra/"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -72,7 +77,7 @@ const Hero = () => {
                       <span>LinkedIn</span>
                     </Link>
                     <Link
-                      href="https://twitter.com/yourusername"
+                      href="https://x.com/shalimarmehra"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -80,7 +85,7 @@ const Hero = () => {
                       <span>X</span>
                     </Link>
                     <Link
-                      href="https://instagram.com/yourusername"
+                      href="https://www.instagram.com/shalimarmehra/"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -88,7 +93,7 @@ const Hero = () => {
                       <span>Instagram</span>
                     </Link>
                     <Link
-                      href="https://youtube.com/@yourusername"
+                      href="https://youtube.com/@shalimarmehra"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -141,8 +146,8 @@ const Hero = () => {
               `}</style>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 };

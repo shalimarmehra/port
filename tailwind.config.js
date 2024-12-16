@@ -14,7 +14,6 @@ module.exports = {
       fontFamily: {
         ost: ["OLD_STANDARD_TT", "serif"],
         italianno: ["Italianno", "cursive"],
-        MSD: ["MSD", "cursive"],
         Pixelify: ["Pixelify Sans", "sans-serif"],
         MOD20: ["MOD20", "serif"],
         Mitr: ["Mitr", "sans-serif"],
