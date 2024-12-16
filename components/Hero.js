@@ -4,6 +4,21 @@ import Link from "next/link";
 import { CgArrowTopRight } from "react-icons/cg";
 import { FaCheckSquare } from "react-icons/fa";
 import { useState } from "react";
+import gsap from "gsap";
+
+const tl = gsap.timeline({ease: "slow", duration: 1})
+document.addEventListener("mousemove", e => {
+  gsap.utils.toArray(".circle").forEach(layer => {
+    const depth = layer.dataset.depth;
+    const moveX = ((e.pageX)-(window.innerWidth/2));
+    const moveY = ((e.pageY)-(window.innerHeight/2));
+    tl.to(layer, {
+      x: moveX/depth,
+      y: moveY/depth
+    }, 0);
+  });
+}
+);
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +77,7 @@ const Hero = () => {
                   <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 w-full">
                     <Link
                       href="https://github.com/shalimarmehra"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -70,7 +85,7 @@ const Hero = () => {
                     </Link>
                     <Link
                       href="https://www.linkedin.com/in/shalimarmehra/"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -78,7 +93,7 @@ const Hero = () => {
                     </Link>
                     <Link
                       href="https://x.com/shalimarmehra"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -86,7 +101,7 @@ const Hero = () => {
                     </Link>
                     <Link
                       href="https://www.instagram.com/shalimarmehra/"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -94,7 +109,7 @@ const Hero = () => {
                     </Link>
                     <Link
                       href="https://youtube.com/@shalimarmehra"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -110,7 +125,8 @@ const Hero = () => {
                   width={400}
                   height={400}
                   alt="Hero"
-                  className="w-full max-w-[300px] sm:max-w-[400px] h-auto rounded-full shadow-lg mx-auto
+                  data-depth="15"
+                  className="circle w-full max-w-[300px] sm:max-w-[400px] h-auto rounded-full shadow-lg mx-auto
                   hover:scale-110 hover:rotate-6 hover:shadow-3xl
                   animate-float
                   transform transition-all duration-700 ease-in-out

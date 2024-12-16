@@ -76,10 +76,22 @@ const Education = () => {
               <b className="text-sm md:text-xl font-MOD20 block">
                 – Feb 2019 - Feb 2022
               </b>
-              <b className="text-md md:text-2xl flex">
-                Master Diploma in Computer Engineering - Indian Institute of
-                Computer Sciences
-                <FaExternalLinkAlt className="ml-2" />
+              <b className="flex text-md md:text-2xl items-center">
+                <a
+                  href="https://drive.google.com/file/d/1gGsIUvuMkPGVkzxDRAnze4EzM4UyzGC6/view"
+                  target="_blank"
+                  className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
+                >
+                  Master Diploma in Computer Engineering - Indian Institute of
+                  Computer Sciences
+                  <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2"
+                  />
+                </a>
               </b>
               <br />
               IT Tools & Network Basics • Web Designing & Publishing • C++
@@ -104,9 +116,21 @@ const Education = () => {
 
             <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
               <b className="text-sm md:text-xl font-MOD20 block">– Oct 2023</b>
-              <b className="text-md md:text-2xl flex">
+              <b className="text-md md:text-2xl flex items-center">
+              <a
+                  href="https://www.udemy.com/certificate/UC-4e91caf7-c484-4e33-b412-db5185f9bfc1/"
+                  target="_blank"
+                  className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
+                >
                 React JS- Complete Guide for Frontend Web Development - Udemy
-                <FaExternalLinkAlt className="ml-2" />
+                <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2"
+                  />
+                </a>
               </b>
               <br />
               Crede.. ID : UC-4e91caf7-c484-4e33-b412-db5185f9bfc1
@@ -122,9 +146,21 @@ const Education = () => {
             </p>
             <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
               <b className="text-sm md:text-xl font-MOD20 block">– Feb 2023</b>
-              <b className="text-md md:text-2xl flex">
+              <b className="text-md md:text-2xl flex items-center">
+              <a
+                  href="https://www.udemy.com/certificate/UC-546b187e-c260-4d7a-8e07-3c5306f583cc/"
+                  target="_blank"
+                  className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
+                >
                 MySQL Database Development Mastery - Udemy
-                <FaExternalLinkAlt className="ml-2" />
+                <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2"
+                  />
+                </a>
               </b>
               <br />
               Crede.. ID : UC-546b187e-c260-4d7a-8e07-3c5306f583cc
@@ -142,9 +178,21 @@ const Education = () => {
             </p>
             <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
               <b className="text-sm md:text-xl font-MOD20 block">– Feb 2022</b>
-              <b className="text-md md:text-2xl flex">
+              <b className="text-md md:text-2xl flex items-center">
+              <a
+                  href="https://drive.google.com/file/d/1yzrxQuVdv5Znb_Fp5R65fRlqBn2BLAdq/view"
+                  target="_blank"
+                  className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
+                >
                 Developer Program - Accenture by Forage
-                <FaExternalLinkAlt className="ml-2" />
+                <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2"
+                  />
+                </a>
               </b>
               <br />
               Credential ID : XspMgC4Fw5zfHkvgy
@@ -159,9 +207,21 @@ const Education = () => {
             </p>
             <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
               <b className="text-sm md:text-xl font-MOD20 block">– Feb 2021</b>
-              <b className="text-md md:text-2xl flex">
+              <b className="text-md md:text-2xl flex items-center">
+              <a
+                  href="https://drive.google.com/file/d/1JwCmlhpVbKettWO4t0oIvG9hy0dEZ5F4/view"
+                  target="_blank"
+                  className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
+                >
                 TCS iON Career Edge - Tata Consultancy Services
-                <FaExternalLinkAlt className="ml-2" />
+                <Image
+                    src="/link.gif"
+                    alt="link"
+                    width={30}
+                    height={30}
+                    className="mr-2"
+                  />
+                </a>
               </b>
               <br />
               Credential ID : 119854-20189486-1016

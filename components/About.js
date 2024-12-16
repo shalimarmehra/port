@@ -196,7 +196,7 @@ const About = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 items-center gap-3 w-full max-w-screen-lg mx-auto">
               <Link
                 href="https://github.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -204,7 +204,7 @@ const About = () => {
               </Link>
               <Link
                 href="https://www.linkedin.com/in/shalimarmehra/"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -212,7 +212,7 @@ const About = () => {
               </Link>
               <Link
                 href="https://x.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -220,7 +220,7 @@ const About = () => {
               </Link>
               <Link
                 href="https://instagram.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -228,7 +228,7 @@ const About = () => {
               </Link>
               <Link
                 href="https://youtube.com/@shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-100 transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1 w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1 w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >
