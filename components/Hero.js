@@ -8,19 +8,22 @@ import gsap from "gsap";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 
-const tl = gsap.timeline({ease: "slow", duration: 1})
-document.addEventListener("mousemove", e => {
-  gsap.utils.toArray(".circle").forEach(layer => {
+const tl = gsap.timeline({ ease: "slow", duration: 1 });
+document.addEventListener("mousemove", (e) => {
+  gsap.utils.toArray(".circle").forEach((layer) => {
     const depth = layer.dataset.depth;
-    const moveX = ((e.pageX)-(window.innerWidth/2));
-    const moveY = ((e.pageY)-(window.innerHeight/2));
-    tl.to(layer, {
-      x: moveX/depth,
-      y: moveY/depth
-    }, 0);
+    const moveX = e.pageX - window.innerWidth / 2;
+    const moveY = e.pageY - window.innerHeight / 2;
+    tl.to(
+      layer,
+      {
+        x: moveX / depth,
+        y: moveY / depth,
+      },
+      0
+    );
   });
-}
-);
+});
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,19 +49,19 @@ const Hero = () => {
                 </h6>
                 <i>
                   <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify mb-4">
-                    Hi, I&apos;m Shalimar Mehra. I have a Bachelor&apos;s in
-                    Computer Applications and am pursuing an MCA in Computing
-                    and Software Systems from IGNOU. I&apos;ve enhanced my
-                    skills through various courses and certifications in
-                    technology and design. I&apos;m passionate about software
-                    engineering, web development, and UI/UX design.
+                    Hi, I&apos;m <b>Shalimar Mehra</b>. I have a <b>Bachelor&apos;s
+                    in Computer Applications</b> and am pursuing an MCA in Computing
+                    and Software Systems from <b>IGNOU</b>. I&apos;ve enhanced my
+                    skills through various <b>courses and certifications</b> in
+                    technology and design. I&apos;m passionate about <b>software
+                    engineering, web development, and UI/UX design</b>.
                   </p>
                 </i>
                 <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify">
                   <i>
-                    I&apos;ve started my own web development business and also
-                    explore new trends, freelance, and entrepreneurial ventures.
-                    I share my insights on my YouTube channel.............
+                    I&apos;ve started my own <b>web development business</b> and also
+                    explore new <b>trends, freelance, and entrepreneurial ventures</b>.
+                    I share my insights on my <b>YouTube channel</b>.............
                   </i>
                   <span className="text-center sm:text-right mt-4 block">
                     <Link
@@ -83,7 +86,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaGithub className="mr-2"/>
+                      <FaGithub className="mr-2" />
                       <span>GitHub</span>
                     </Link>
                     <Link
@@ -92,7 +95,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <IoLogoLinkedin className="mr-2"/>
+                      <IoLogoLinkedin className="mr-2" />
                       <span>LinkedIn</span>
                     </Link>
                     <Link
@@ -100,7 +103,8 @@ const Hero = () => {
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
-                    ><FaXTwitter className="mr-2"/>
+                    >
+                      <FaXTwitter className="mr-2" />
                       <span>X</span>
                     </Link>
                     <Link
@@ -109,7 +113,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <FaSquareInstagram className="mr-2"/>
+                      <FaSquareInstagram className="mr-2" />
                       <span>Instagram</span>
                     </Link>
                     <Link
@@ -118,7 +122,7 @@ const Hero = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <IoLogoYoutube className="mr-2"/>
+                      <IoLogoYoutube className="mr-2" />
                       <span>YouTube</span>
                     </Link>
                   </div>

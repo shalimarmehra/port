@@ -1,153 +1,190 @@
 "use client";
-import React from "react";
-import { useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { FaChevronLeft, FaChevronRight, FaGithub, FaHandPointLeft, FaHandPointRight } from "react-icons/fa";
+import { PiProjectorScreenFill } from "react-icons/pi";
 
 const Projects = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const projects = [
     {
-      title: "Business Website",
+      id: 1,
+      title: "Business Website - Using Next JS and Tailwind CSS Framework",
       description:
-        "Dev Dossier is a dynamic web development service provider dedicated to crafting innovative and user-friendly websites. We specialize in creating custom solutions tailored to meet the unique needs of our clients, ensuring seamless functionality and engaging user experiences. Our services include front-end and back-end development, responsive design, e-commerce solutions, content management systems, and ongoing maintenance and support. At Dev Dossier, we combine cutting-edge technologies with creative design to bring your digital visions to life.",
-      languages: [
-        "Next.js",
-        "Tailwind css",
-        "Rest API",
-        "MongoDB",
-        "Node.js",
-        "Express.js",
-        "Firebase",
-      ],
-      category:
-        "Web Development Project using Next.js & Tailwind CSS & MongoDB & Node.js & Express.js & Firebase & Rest API",
-      link: "https://example.com/project2",
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, conseconsequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus fe ipsum et, consequat niquat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus fe ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+      image: "/project1b.jpg",
+      viewprojectworklink: "https://247deliveryexperts.com",
+      githubcodelink: "https://247deliveryexperts.com",
     },
     {
-      title: "Logistic Website",
+      id: 2,
+      title: "Portfolio Website - Using Next JS and Tailwind CSS Framework",
       description:
-        "Overview: A comprehensive courier and logistics service provider offering same-day and last-mile deliveries. Role: Lead Developer Technologies Used: Wordpress Challenges: Theme Modification & Mobile-Friendly.",
-      languages: ["Wordpress"],
-      category: "CMS Project with wordpress",
-      link: "https://247deliveryexperts.com",
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nuam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+      image: "/project2.jpg",
+      viewprojectworklink: "https://247deliveryexperts.com",
+      githubcodelink: "https://247deliveryexperts.com",
     },
     {
-      title: "My Portfolio Shalimar Mehra",
-      description: "This is the third project",
-      languages: ["Java", "Android", "Kotlin"],
-      category: "Mobile Development",
-      link: "https://example.com/project3",
+      id: 3,
+      title:
+        "Logistic Website - Using CMS with WordPress and Elementor Page Builder Plugin",
+      description:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purt dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+      image: "/project3.jpg",
+      viewprojectworklink: "https://247deliveryexperts.com",
+      githubcodelink: "https://247deliveryexperts.com",
     },
     {
-      title: "News Website Akul",
-      description: "This is the fourth project",
-      languages: ["C++", "OpenGL", "GLSL"],
-      category: "Game Development",
-      link: "https://example.com/project4",
+      id: 4,
+      title:
+        "News Website - Using CMS with WordPress and Elementor Page Builder Plugin",
+      description:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit duidipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, moleolestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+      image: "/project4.jpg",
+      viewprojectworklink: "https://247deliveryexperts.com",
+      githubcodelink: "https://247deliveryexperts.com",
     },
     {
-      title: "Social Netwroking Site",
-      description: "This is the fifth project",
-      languages: ["Ruby", "Rails", "PostgreSQL"],
-      category: "Web Development",
-      link: "https://example.com/project5",
-    },
-    {
-      title: "3D Portfolio",
-      description: "This is the fifth project",
-      languages: ["Ruby", "Rails", "PostgreSQL"],
-      category: "Web Development",
-      link: "https://example.com/project5",
-    },
-    {
-      title: "Project with html css js",
-      description: "This is the fifth project",
-      languages: ["Ruby", "Rails", "PostgreSQL"],
-      category: "Web Development",
-      link: "https://example.com/project5",
-    },
-    {
-      title: "Blog Site by Flowbite host on Netlify",
-      description: "This is the fifth project",
-      languages: ["Ruby", "Rails", "PostgreSQL"],
-      category: "Web Development",
-      link: "https://example.com/project5",
-    },
-    {
-      title: "Atul Portfolio",
-      description: "This is the fifth project",
-      languages: ["Ruby", "Rails", "PostgreSQL"],
-      category: "Web Development",
-      link: "https://example.com/project5",
+      id: 5,
+      title: "3D Animation Website - Using Three.js and WebGL Technology",
+      description:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie iponsequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie  feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie iponsequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+      image: "/project6.jpg",
+      viewprojectworklink: "https://247deliveryexperts.com",
+      githubcodelink: "https://247deliveryexperts.com",
     },
   ];
 
-  const nextSlide = () => {
-    setCurrentSlide((currentSlide + 1) % slides.length);
+  const minSwipeDistance = 50;
+
+  const handlePrev = () => {
+    setIsTransitioning(true);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + projects.length) % projects.length
+    );
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((currentSlide - 1 + slides.length) % slides.length);
+  const handleNext = () => {
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
   };
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    if (isRightSwipe) {
+      handlePrev();
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
 
   return (
     <>
-      <section id="projects">
-        <span className="ml-5 xl:ml-24 font-Mitr">
+      <section id="projects" className="py-5">
+        <span className="ml-5 font-Mitr xl:ml-24">
           .../Projects - Highlighted Projects ...
         </span>
-        <div className="flex flex-col items-center my-5 xl:my-10">
-          <div className="container relative w-full">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {slides.map((slide, index) => (
-                  <div
-                    key={index}
-                    className="w-full flex-shrink-0 flex flex-col items-center justify-center bg-transparent"
-                  >
-                    <div className="border-b border-gray-800 my-4 w-25">
-                      <h3 className="text-2xl font-bold mb-2">{slide.title}</h3>
-                    </div>
-                    <p className="mx-10 text-justify">{slide.description}</p>
-
-                    {/* <div className="flex space-x-2 mb-2"> */}
-                    {/* {slide.languages.map((language, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-gray-200 rounded-md"
-                    >
-                      {language}<div className="bg-image-blur bg-[url('/hero-image.jpg')] bg-cover bg-center bg-no-repeat bg-opacity-50 blur-lg"></div>
-                    </span>
-                  ))} */}
-                    {/* </div> */}
-                    <div className="border-t border-gray-800 my-4">
-
-                    <p className="mb-2 mx-10 text-center">{slide.category}</p></div>
-                    <a
-                      href={slide.link}
-                      className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 flex items-center"
-                    >
-                      View Project Work &nbsp; <FaArrowRight />
-                    </a>
-                  </div>
-                ))}
+        <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+          <div className="bg-white bg-opacity-20 backdrop-blur-3xl shadow-xl rounded-lg p-6">
+            <div className="flex items-center justify-center md:hidden mb-2">
+              <FaHandPointLeft className="animate-pulse mr-2" />
+              <span>Swipe to navigate</span>
+              <FaHandPointRight className="animate-pulse ml-2" />
+            </div>
+            <div
+              className={`project ${
+                isTransitioning
+                  ? currentIndex > 0
+                    ? "animate-slide-left"
+                    : "animate-slide-right"
+                  : ""
+              } transition-transform duration-500 ease-in-out`}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              <img
+                src={projects[currentIndex].image}
+                alt={projects[currentIndex].title}
+                className="w-auto h-full md:h-96 rounded-lg shadow-2xl object-fit transition-transform duration-500 ease-in-out transform hover:scale-105 mx-auto"
+              />
+              <h3 className="mt-4 text-lg font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2">
+                {projects[currentIndex].title}
+              </h3>
+              <p className="mt-2 text-gray-600 transition-transform duration-500 ease-in-out text-justify">
+                {projects[currentIndex].description}
+              </p>
+              <br />
+              <div className="flex flex-wrap gap-2 items-center justify-center">
+                <a
+                  href={projects[currentIndex].viewprojectworklink}
+                  className="bg-black text-white hover:bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] hover:text-black transition-colors duration-300 ease-in-out border-2 border-black px-4 py-2 rounded-md text-center flex items-center"
+                >
+                  <PiProjectorScreenFill className="mr-2" /> View project work
+                </a>
+                <a
+                  href={projects[currentIndex].githubcodelink}
+                  className="bg-black text-white hover:bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] hover:text-black transition-colors duration-300 ease-in-out border-2 border-black px-4 py-2 rounded-md text-center flex items-center"
+                >
+                  <FaGithub className="mr-2" />
+                  GitHub Code
+                </a>
               </div>
             </div>
-            <button
-              onClick={prevSlide}
-              className="absolute top-1/2 left-0 transform-translate-y-1/2 py-2 pl-2 rounded-3xl text-black"
-            >
-              <FaArrowLeft />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute top-1/2 right-0 transform-translate-y-1/2 py-2 pr-2 rounded-3xl text-black"
-            >
-              <FaArrowRight />
-            </button>
+            <div className="flex justify-center md:justify-between items-center mt-4 flex-wrap">
+              <button
+                onClick={handlePrev}
+                className="bg-black bg-opacity-80 backdrop-blur-sm shadow-lg rounded-full p-2 hover:bg-gray-800 transition-colors duration-300 ease-in-out mb-2 sm:mb-0 hidden md:block"
+              >
+                <FaChevronLeft className="text-white transition-transform duration-300 ease-in-out transform hover:-translate-x-1" />
+              </button>
+              <div className="project-pagination flex space-x-2">
+                {projects.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`w-3 h-3 rounded-full transition-colors duration-300 ease-in-out ${
+                      index === currentIndex
+                        ? "bg-black scale-125"
+                        : "bg-gray-400"
+                    }`}
+                    onClick={() => setCurrentIndex(index)}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={handleNext}
+                className="bg-black bg-opacity-80 backdrop-blur-sm shadow-lg rounded-full p-2 hover:bg-gray-800 transition-colors duration-300 ease-in-out mb-2 sm:mb-0 hidden md:block"
+              >
+                <FaChevronRight className="text-white transition-transform duration-300 ease-in-out transform hover:translate-x-1" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
