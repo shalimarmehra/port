@@ -33,19 +33,6 @@ const NavBar = () => {
               <div className="hidden xl:block">
                 <div className=" flex items-baseline">
                   <Link
-                    href="/#home"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("home")
-                        .scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                  >
-                    Home <CgArrowTopRight className="ml-1" />
-                  </Link>
-
-                  <Link
                     href="/#projects"
                     onClick={(e) => {
                       e.preventDefault();
@@ -190,22 +177,6 @@ const NavBar = () => {
                   onClick={(e) => setIsOpen(false)}
                 >
                   <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <Link
-                      href="/#home"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsOpen(false);
-                        document
-                          .getElementById("home")
-                          .scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                    >
-                      <div className="flex items-center px-2">
-                        <AiFillHome className="mr-1" /> Home
-                      </div>
-                      <CgArrowTopRight className="mr-2" />
-                    </Link>
 
                     <Link
                       href="/#projects"

@@ -51,7 +51,7 @@ const Hero = () => {
       <div className="bg-[url('/hero-left.png')] bg-cover bg-center">
         <section id="home">
           <div id="hero-section" className="mt-3 px-4 sm:px-6 lg:px-8">
-            <span className=" font-Mitr xl:ml-24">.../Home ...</span>
+            <span className=" font-Mitr xl:ml-24">.../Quick Bio ...</span>
 
             <div className="flex flex-col md:flex-row max-w-7xl mx-auto">
             <div className="flex-1 text-left p-4">
