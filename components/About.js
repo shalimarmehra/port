@@ -33,11 +33,11 @@ const About = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-0.5 mr-2"
+                className="sm:mt-1 mr-2"
               />
               <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                 Hi, I&apos;m <b>Shalimar Mehra</b>. I hold a Bachelor&apos;s
-                degree in Computer Applications and am currently pursuing a 
+                degree in Computer Applications and am currently pursuing a
                 <b>Master of Computer Applications (MCA)</b> with a
                 specialization in Computing and Software Systems from{" "}
                 <b>IGNOU (Indira Gandhi National Open University)</b>.
@@ -65,7 +65,7 @@ const About = () => {
                   width={16}
                   height={16}
                   alt="bullet point icon"
-                  className="mt-0 mr-2"
+                  className="sm:mt-1 mr-2"
                 />
                 <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                   <b>Professional Experience →</b>
@@ -91,7 +91,7 @@ const About = () => {
                   width={16}
                   height={16}
                   alt="bullet point icon"
-                  className="mt-0 mr-2"
+                  className="sm:mt-1 mr-2"
                 />
                 <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                   <b>Passion for Innovation →</b>
@@ -115,7 +115,7 @@ const About = () => {
                   width={16}
                   height={16}
                   alt="bullet point icon"
-                  className="mt-0 mr-2"
+                  className="sm:mt-1 mr-2"
                 />
                 <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                   <b>Freelancing and Collaborations →</b>
@@ -143,7 +143,7 @@ const About = () => {
                   width={16}
                   height={16}
                   alt="bullet point icon"
-                  className="mt-0 mr-2"
+                  className="sm:mt-1 mr-2"
                 />
                 <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                   <b>Sharing Knowledge →</b>
@@ -201,7 +201,7 @@ const About = () => {
                     width={16}
                     height={16}
                     alt="bullet point icon"
-                    className="mt-1 mr-2"
+                    className="mr-2"
                   />
                   <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
                     <b className="font-bold">Academic Achievements →</b>
@@ -245,7 +245,7 @@ const About = () => {
                     width={16}
                     height={16}
                     alt="bullet point icon"
-                    className="mt-1 mr-2"
+                    className="mr-2"
                   />
                   <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
                     <b>Courses Achievements →</b>
@@ -294,7 +294,7 @@ const About = () => {
                     width={16}
                     height={16}
                     alt="bullet point icon"
-                    className="mt-1 mr-2"
+                    className="mr-2"
                   />
                   <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
                     <b>Certifications Achievements →</b>
@@ -330,7 +330,7 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Crede.. ID : <span className="underline font-bold">UC-4e91caf7-c484-4e33-b412-db5185f9bfc1</span>
+                  Crede.. ID : <span className="font-bold">UC-4e91caf7-c484-4e33-b412-db5185f9bfc1</span>
                   <br />
                   Elevate your front-end development skills with this
                   comprehensive course. Master the creation of basic web pages
@@ -370,7 +370,7 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Crede.. ID : <span className="underline font-bold">UC-546b187e-c260-4d7a-8e07-3c5306f583cc</span>
+                  Crede.. ID : <span className="font-bold">UC-546b187e-c260-4d7a-8e07-3c5306f583cc</span>
                   <br />
                   Master the essentials of MySQL with hands-on experience. Learn
                   to install MySQL Server and MySQL Workbench, establish
@@ -411,7 +411,7 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Credential ID : <span className="underline font-bold">XspMgC4Fw5zfHkvgy</span>
+                  Credential ID : <span className="font-bold">XspMgC4Fw5zfHkvgy</span>
                   <br />
                   Define technical requirements • Design changes to existing
                   architecture • Scale on-premise systems to the cloud • Read
@@ -449,7 +449,7 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Credential ID : <span className="underline font-bold">119854-20189486-1016</span>
+                  Credential ID : <span className="font-bold">119854-20189486-1016</span>
                   <br />
                   Master Communication Skills • Excel in Presentation Skills •
                   Enhance Soft Skills • Follow a Career Guidance Framework •

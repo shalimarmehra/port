@@ -64,7 +64,7 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-0 mr-2"
+                className="sm:mt-1 mr-2"
               />
               <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                 <i>
@@ -92,7 +92,7 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-0 mr-2"
+                className="sm:mt-2 mr-2"
               />
               <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Frontend Development →</b>
@@ -129,7 +129,7 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-0 mr-2"
+                className="sm:mt-2 mr-2"
               />
               <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Backend Development →</b>
@@ -159,7 +159,7 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-0 mr-2"
+                className="sm:mt-2 mr-2"
               />
               <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Other Tools & Technologies →</b>
