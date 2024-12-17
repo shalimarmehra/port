@@ -68,12 +68,14 @@ const Skills = () => {
               />
               <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                 <i>
-                  Showcasing a comprehensive blend of <b>front-end and back-end
-                  development expertise</b>, my <b>skill set</b> is designed to create
+                  Showcasing a comprehensive blend of{" "}
+                  <b>front-end and back-end development expertise</b>, my{" "}
+                  <b>skill set</b> is designed to create
                   <b>dynamic, robust, and user-friendly web solutions</b>. With
-                  proficiency in <b>modern technologies and frameworks</b>, I excel in
-                  building responsive, high-performance applications that meet
-                  diverse needs. I am deeply committed to <b>continuous learning</b>
+                  proficiency in <b>modern technologies and frameworks</b>, I
+                  excel in building responsive, high-performance applications
+                  that meet diverse needs. I am deeply committed to{" "}
+                  <b>continuous learning</b>
                   and staying abreast of the latest industry trends, ensuring
                   that my work is always cutting-edge. By combining technical
                   acumen with creative problem-solving, I bring innovative ideas
@@ -266,9 +268,9 @@ const Skills = () => {
                 <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
                   4+
                 </h3>
-                <p className="text-sm md:text-xl font-ost">
-                  COMPLETED <br />
-                  <b>WORKS</b>
+                <p className="text-xs md:text-xl font-ost">
+                  COMPLETED WORKS<br />
+                  <b className="uppercase text-sm"> professionally</b>
                 </p>
               </div>
             </div>
