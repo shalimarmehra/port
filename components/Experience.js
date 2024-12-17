@@ -23,6 +23,7 @@ const Experience = () => {
 
     return () => {
       if (sectionRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(sectionRef.current);
       }
     };
@@ -74,19 +75,19 @@ const Experience = () => {
             <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
               <ul className="italic font-ost list-disc ml-3 ">
                 <li>
-                  Founded and operate Dev Dossier, a successful web development
-                  business delivering comprehensive services including web
+                  Founded and operate <b>Dev Dossier</b>, a successful web development
+                  business <b>delivering comprehensive services</b> including web
                   design, development, and maintenance.
                 </li>
                 <li>
-                  Lead a team of skilled developers and designers, ensuring the
-                  delivery of high-quality web solutions for clients across
+                  Lead a team of <b>skilled developers and designers</b>, ensuring the
+                  delivery of <b>high-quality</b> web solutions for clients across
                   various industries.
                 </li>
                 <li>
-                  Implement best practices in project management, client
+                  Implement best practices in <b>project management, client
                   communication, and technical development, driving customer
-                  satisfaction and business growth.
+                  satisfaction and business growth</b>.
                 </li>
               </ul>
             </div>
@@ -111,13 +112,13 @@ const Experience = () => {
             <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
               <ul className="italic font-ost list-disc ml-3">
                 <li>
-                  Designed and developed custom websites for diverse clients,
-                  utilizing both WordPress and custom coding (HTML, CSS,
-                  JavaScript).
+                  Designed and developed <b>custom websites</b> for diverse clients,
+                  utilizing both <b>WordPress and custom coding (HTML, CSS,
+                  JavaScript)</b>.
                 </li>
                 <li>
-                  Provided continuous maintenance and updates, ensuring optimal
-                  performance and security of client websites.
+                  Provided continuous <b>maintenance and updates</b>, ensuring <b>optimal
+                  performance and security</b> of client websites.
                 </li>
                 <li>
                   Collaborated closely with clients to understand their needs
@@ -146,18 +147,18 @@ const Experience = () => {
             </div>
             <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
               <ul className="italic font-ost list-disc ml-3">
-                <li>
+                <li className="font-bold">
                   Launched and managed several websites, including blog
                   websites, affiliate websites, and product comparison websites,
                   gaining hands-on experience in web development and digital
                   marketing.
                 </li>
-                <li>
+                <li className="font-bold">
                   Developed strong skills in project management, user experience
                   design, and troubleshooting, despite the eventual shutdown of
                   these projects.
                 </li>
-                <li>
+                <li className="font-bold">
                   Leveraged lessons learned from these initiatives to improve
                   future projects and client work, demonstrating resilience and
                   a commitment to continuous improvement.

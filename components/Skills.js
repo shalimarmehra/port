@@ -1,6 +1,10 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect } from "react";
+import { FaGithub } from "react-icons/fa";
+import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
+import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 
 const Skills = () => {
   useEffect(() => {
@@ -48,7 +52,7 @@ const Skills = () => {
         }
       `}</style>
 
-      <div className="bg-[url('/skills-bg.png')] bg-cover bg-center">
+      <div className="bg-[url('/skillsbg.png')] bg-cover bg-center">
         <section id="skills" className="py-5">
           <span className="ml-5 font-Mitr xl:ml-24">
             .../Skills - Skills & Proficiencies ...
@@ -64,12 +68,12 @@ const Skills = () => {
               />
               <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                 <i>
-                  Showcasing a comprehensive blend of front-end and back-end
-                  development expertise, my skill set is designed to create
-                  dynamic, robust, and user-friendly web solutions. With
-                  proficiency in modern technologies and frameworks, I excel in
+                  Showcasing a comprehensive blend of <b>front-end and back-end
+                  development expertise</b>, my <b>skill set</b> is designed to create
+                  <b>dynamic, robust, and user-friendly web solutions</b>. With
+                  proficiency in <b>modern technologies and frameworks</b>, I excel in
                   building responsive, high-performance applications that meet
-                  diverse needs. I am deeply committed to continuous learning
+                  diverse needs. I am deeply committed to <b>continuous learning</b>
                   and staying abreast of the latest industry trends, ensuring
                   that my work is always cutting-edge. By combining technical
                   acumen with creative problem-solving, I bring innovative ideas
@@ -86,13 +90,13 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-1 mr-2"
+                className="mt-3 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Frontend Development →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm ">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
                   <li>Core Technologies: HTML, CSS, JavaScript (ES6+).</li>
                   <li>Frameworks & Libraries: React.js & Next.js.</li>
                   <li>
@@ -123,13 +127,13 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-1 mr-2"
+                className="mt-3 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Backend Development →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm ">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
                   <li>Programming Languages: Node.js.</li>
                   <li>Frameworks: Express.js server-side logic.</li>
                   <li>API Development: Expertise in building RESTful APIs.</li>
@@ -153,13 +157,13 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-1 mr-2"
+                className="mt-3 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Other Tools & Technologies →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm ">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
                   <li>
                     Version Control: Mastery of Git and GitHub for version
                     control and collaborative development.
@@ -210,13 +214,13 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-1 mr-2"
+                className="mt-3 sm:mt-1 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Soft Skills →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm ">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
                   <li>
                     Problem Solving: Analyze challenges and implement effective,
                     innovative solutions.
@@ -243,6 +247,80 @@ const Skills = () => {
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+          <div className="flex flex-row justify-center items-center text-center p-4 ml-6">
+            <div className="stats-block w-full sm:w-2/6 flex flex-col justify-center items-center">
+              <div className="flex items-center text-left">
+                <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
+                  03+
+                </h3>
+                <p className="text-sm md:text-xl font-ost">
+                  YEARS OF <br />
+                  <b>EXPERIENCE</b>
+                </p>
+              </div>
+            </div>
+            <div className="stats-block w-full sm:w-1/3 flex flex-col justify-center items-center">
+              <div className="flex items-center text-left">
+                <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
+                  4+
+                </h3>
+                <p className="text-sm md:text-xl font-ost">
+                  COMPLETED <br />
+                  <b>WORKS</b>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center w-full mt-6 px-10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 items-center gap-3 w-full max-w-screen-lg mx-auto">
+              <Link
+                href="https://github.com/shalimarmehra"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className="mr-2" />
+                <span>GitHub</span>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/shalimarmehra/"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoLinkedin className="mr-2" />
+                <span>LinkedIn</span>
+              </Link>
+              <Link
+                href="https://x.com/shalimarmehra"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaXTwitter className="mr-2" />
+                <span>X</span>
+              </Link>
+              <Link
+                href="https://instagram.com/shalimarmehra"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaSquareInstagram className="mr-2" />
+                <span>Instagram</span>
+              </Link>
+              <Link
+                href="https://youtube.com/@shalimarmehra"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1 w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoYoutube className="mr-2" />
+                <span>YouTube</span>
+              </Link>
             </div>
           </div>
         </section>

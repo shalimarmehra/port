@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import {
   FaChevronLeft,
@@ -21,48 +22,35 @@ const Projects = () => {
       id: 1,
       title: "Business Website - Using Next JS and Tailwind CSS Framework",
       description:
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, conseconsequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus fe ipsum et, consequat niquat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus fe ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+"A dynamic business website built with Next.js and Tailwind CSS. This modern web application takes advantage of Next.js's powerful features including server-side rendering, static site generation, and optimized routing for exceptional performance and SEO. The UI is crafted using Tailwind CSS's utility-first framework, enabling rapid development of responsive. Key features include smooth animations, interactive components, and a fully responsive layout that adapts seamlessly across all devices.",
       image: "/project1b.jpg",
       viewprojectworklink: "https://247deliveryexperts.com",
-      githubcodelink: "https://247deliveryexperts.com",
     },
     {
       id: 2,
       title: "Portfolio Website - Using Next JS and Tailwind CSS Framework",
       description:
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nuam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+"A modern and responsive portfolio website built using Next.js and Tailwind CSS. Next.js provides server-side rendering, automatic code splitting, and optimized performance, while Tailwind CSS enables rapid UI development with utility-first classes. The site features a clean, minimalist design with smooth animations, responsive layouts that work across all devices, and dynamic content loading. Key features include a projects showcase, skills section, contact form.",
       image: "/project2.jpg",
       viewprojectworklink: "https://247deliveryexperts.com",
-      githubcodelink: "https://247deliveryexperts.com",
     },
     {
       id: 3,
       title:
         "Logistic Website - Using CMS with WordPress and Elementor Page Builder Plugin",
       description:
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purt dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+"A modern logistics website built using WordPress CMS and enhanced with the powerful Elementor page builder plugin. This dynamic platform offers seamless management of logistics content and services through WordPress's intuitive backend system. The Elementor page builder integration enables drag-and-drop customization of layouts, making it easy to create and update professional-looking pages without coding knowledge. Features include responsive design, service showcases, and contact forms. The combination of WordPress CMS and Elementor provides flexibility in content management while maintaining a visually appealing and user-friendly interface optimized for logistics business needs.",
       image: "/project3.jpg",
       viewprojectworklink: "https://247deliveryexperts.com",
-      githubcodelink: "https://247deliveryexperts.com",
     },
     {
       id: 4,
       title:
         "News Website - Using CMS with WordPress and Elementor Page Builder Plugin",
       description:
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit duidipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, moleolestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
+"A dynamic news website built using WordPress, the world's leading Content Management System (CMS), enhanced with the powerful Elementor Page Builder plugin. This combination allows for flexible content management and intuitive drag-and-drop design capabilities. Elementor's advanced widgets and design elements are utilized to create engaging news layouts, interactive elements, and seamless content updates. Built with SEO best practices in mind, the website ensures optimal visibility for news content while maintaining fast loading speeds and mobile responsiveness. The CMS architecture allows for easy content organization, tagging, and archiving, making it an efficient solution for managing and delivering news content across multiple channels.",
       image: "/project4.jpg",
       viewprojectworklink: "https://247deliveryexperts.com",
-      githubcodelink: "https://247deliveryexperts.com",
-    },
-    {
-      id: 5,
-      title: "3D Animation Website - Using Three.js and WebGL Technology",
-      description:
-        "lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie iponsequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie  feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie iponsequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus",
-      image: "/project6.jpg",
-      viewprojectworklink: "https://247deliveryexperts.com",
-      githubcodelink: "https://247deliveryexperts.com",
     },
   ];
 
@@ -149,15 +137,17 @@ const Projects = () => {
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
-              <img
+              <Image
                 src={projects[currentIndex].image}
                 alt={projects[currentIndex].title}
+                width={500}
+                height={300}
                 className="w-auto h-full md:h-96 rounded-lg shadow-2xl object-fit transition-transform duration-500 ease-in-out transform hover:scale-105 mx-auto"
               />
-              <h3 className="mt-4 text-lg font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2">
+              <h3 className="mt-4 text-lg text-center font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2">
                 {projects[currentIndex].title}
               </h3>
-              <p className="mt-2 text-gray-600 transition-transform duration-500 ease-in-out text-justify">
+              <p className="mt-2 text-gray-600 transition-transform duration-500 ease-in-out text-center">
                 {projects[currentIndex].description}
               </p>
               <br />
@@ -167,13 +157,6 @@ const Projects = () => {
                   className="bg-black text-white hover:bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] hover:text-black transition-colors duration-300 ease-in-out border-2 border-black px-4 py-2 rounded-md text-center flex items-center"
                 >
                   <PiProjectorScreenFill className="mr-2" /> View project work
-                </a>
-                <a
-                  href={projects[currentIndex].githubcodelink}
-                  className="bg-black text-white hover:bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] hover:text-black transition-colors duration-300 ease-in-out border-2 border-black px-4 py-2 rounded-md text-center flex items-center"
-                >
-                  <FaGithub className="mr-2" />
-                  GitHub Code
                 </a>
               </div>
             </div>

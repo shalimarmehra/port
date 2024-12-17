@@ -16,7 +16,7 @@ const NavBar = () => {
   return (
     <>
       <div className="">
-        <nav className="sticky top-0 w-full z-10 shadow-md backdrop-blur h-[64px] bg-[url('/hero-left3.png')]">
+        <nav className="sticky top-0 w-11/12 mx-auto z-10 shadow-xl backdrop-blur h-[64px] bg-[url('/hero-left3.png')]">
           <div className="mx-auto px-5 xl:px-10">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
@@ -79,18 +79,6 @@ const NavBar = () => {
                     className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
                   >
                     About <CgArrowTopRight className="ml-1" />
-                  </Link>
-                  <Link
-                    href="/#education"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("education")
-                        .scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                  >
-                    Education <CgArrowTopRight className="ml-1" />
                   </Link>
                   {/* <div className="flex justify-center">
                     <a
@@ -243,22 +231,6 @@ const NavBar = () => {
                     >
                       <div className="flex items-center px-2">
                         <BsFillPersonFill className="mr-1" /> About
-                      </div>
-                      <CgArrowTopRight className="mr-2" />
-                    </Link>
-                    <Link
-                      href="/#education"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsOpen(false);
-                        document
-                          .getElementById("education")
-                          .scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                    >
-                      <div className="flex items-center px-2">
-                        <FaGraduationCap className="mr-1" /> Education
                       </div>
                       <CgArrowTopRight className="mr-2" />
                     </Link>
