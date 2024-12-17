@@ -1,4 +1,3 @@
-// components/CustomCursor.js
 import { useEffect, useState } from 'react';
 
 const CustomCursor = () => {
