@@ -8,6 +8,12 @@ const About = () => {
     threshold: 0.1,
   });
 
+  const slideUpAnimation = {
+    transform: inView ? "translateY(0)" : "translateY(100px)", 
+    opacity: inView ? 1 : 0,
+    transition: "all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+  };
+
   return (
     <>
       <div className="bg-[url('/about-bg.png')] bg-cover bg-center">
@@ -15,11 +21,7 @@ const About = () => {
           id="about"
           className="py-5"
           ref={ref}
-          style={{
-            transform: inView ? "translateY(0)" : "translateY(100px)",
-            opacity: inView ? 1 : 0,
-            transition: "transform 0.6s ease-out, opacity 0.6s ease-out",
-          }}
+          style={slideUpAnimation}
         >
           <span className="ml-5 font-Mitr xl:ml-24">
             .../About me - Who am i ...
@@ -37,7 +39,7 @@ const About = () => {
               />
               <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
                 Hi, I&apos;m <b>Shalimar Mehra</b>. I hold a Bachelor&apos;s
-                degree in Computer Applications and am currently pursuing a
+                degree in Computer Applications and am currently pursuing a&nbsp;
                 <b>Master of Computer Applications (MCA)</b> with a
                 specialization in Computing and Software Systems from{" "}
                 <b>IGNOU (Indira Gandhi National Open University)</b>.

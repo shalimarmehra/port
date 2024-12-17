@@ -70,7 +70,7 @@ const Skills = () => {
                 <i>
                   Showcasing a comprehensive blend of{" "}
                   <b>front-end and back-end development expertise</b>, my{" "}
-                  <b>skill set</b> is designed to create
+                  <b>skill set</b> is designed to create&nbsp;
                   <b>dynamic, robust, and user-friendly web solutions</b>. With
                   proficiency in <b>modern technologies and frameworks</b>, I
                   excel in building responsive, high-performance applications
@@ -216,7 +216,7 @@ const Skills = () => {
                 width={16}
                 height={16}
                 alt="bullet point icon"
-                className="mt-0 mr-2"
+                className="sm:mt-2 mr-2"
               />
               <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
                 <b>Soft Skills →</b>

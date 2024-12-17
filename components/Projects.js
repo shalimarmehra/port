@@ -144,10 +144,10 @@ const Projects = () => {
                 height={300}
                 className="w-auto h-full md:h-96 rounded-lg shadow-2xl object-fit transition-transform duration-500 ease-in-out transform hover:scale-105 mx-auto"
               />
-              <h3 className="mt-4 text-lg text-center font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2">
+              <h3 className="mt-4 text-xl text-center font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2 font-ost">
                 {projects[currentIndex].title}
               </h3>
-              <p className="mt-2 text-gray-600 transition-transform duration-500 ease-in-out text-center">
+              <p className="mt-2 text-gray-600 transition-transform duration-500 ease-in-out text-center font-ost">
                 {projects[currentIndex].description}
               </p>
               <br />
