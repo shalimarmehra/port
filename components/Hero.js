@@ -53,7 +53,7 @@ gsap.registerPlugin(ScrollTrigger);
   return (
     <>
       <div className="bg-[url('/hero-left.png')] bg-cover bg-center">
-        <section id="home">
+        <section id="quick-bio">
           <div id="hero-section" className="mt-3 px-4 sm:px-6 lg:px-8">
             <span className=" font-Mitr xl:ml-24">.../Quick Bio ...</span>
 

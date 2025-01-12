@@ -4,10 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { CgArrowTopRight } from "react-icons/cg";
 import { IoMdMail } from "react-icons/io";
-import { AiFillProject } from "react-icons/ai";
+import { AiFillHome, AiFillProject } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiSkills } from "react-icons/gi";
 import { MdWork } from "react-icons/md";
+import { FaBiohazard } from "react-icons/fa";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +31,18 @@ const NavBar = () => {
               {/* Desktop Menu */}
               <div className="hidden xl:block">
                 <div className=" flex items-baseline">
+                  <Link
+                    href="/#quick-bio"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById("quick-bio")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
+                  >
+                    Quick Bio <CgArrowTopRight className="ml-1" />
+                  </Link>
                   <Link
                     href="/#projects"
                     onClick={(e) => {
@@ -166,6 +179,23 @@ const NavBar = () => {
                 onClick={(e) => setIsOpen(false)}
               >
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                  
+                  <Link
+                    href="/#quick-bio"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      document
+                        .getElementById("quick-bio")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
+                  >
+                    <div className="flex items-center px-2">
+                      <FaBiohazard className="mr-1" /> Quick Bio
+                    </div>
+                    <CgArrowTopRight className="mr-2" />
+                  </Link>
                   <Link
                     href="/#projects"
                     onClick={(e) => {
