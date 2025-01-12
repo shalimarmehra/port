@@ -160,7 +160,7 @@ gsap.registerPlugin(ScrollTrigger);
                   transform transition-all duration-700 ease-in-out
                   motion-safe:animate-pulse 
                   border-6 border-black hover:border-gray-900
-                  filter hover:brightness-125 hover:contrast-110
+                  filter brightness-125 hover:contrast-110
                   cursor-pointer"
                   priority
                   style={{
