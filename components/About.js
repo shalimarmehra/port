@@ -211,9 +211,9 @@ const About = () => {
                 </div>
 
                 <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
-                  <span className="text-sm md:text-xl font-MOD20 block">
+                  <b className="text-sm md:text-xl font-MOD20 block">
                     – June 2019 - June 2022
-                  </span>
+                  </b>
                   <b className="text-md md:text-2xl">
                     BCA (Bachelor of Computer Application) - Indira Gandhi
                     National Open University.

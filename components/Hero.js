@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const tl = gsap.timeline({ ease: "slow", duration: 1 });
 document.addEventListener("mousemove", (e) => {
@@ -27,21 +28,24 @@ document.addEventListener("mousemove", (e) => {
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
     gsap.fromTo(
       "#hero-section",
       { 
         x: "-100%",
         opacity: 0,
-        smoothOrientation: true 
       },
       {
         x: "0%", 
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut",
-        smoothOrientation: true
+        scrollTrigger: {
+          trigger:"#hero-section",
+          start:"top bottom",
+          toggleActions: "play none none reverse"
+        }
       }
     );
   }, []);
@@ -65,8 +69,7 @@ const Hero = () => {
                   </span>
                   Shalimar Mehra&nbsp;• Web Developer
                 </h6>
-                <i>
-                  <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify mb-4">
+                  <p className="text-sm sm:text-base text-gray-600 font-serif text-justify mb-4">
                     Hi, I&apos;m <b>Shalimar Mehra</b>. I have a <b>Bachelor&apos;s
                     in Computer Applications</b> and am pursuing an MCA in Computing
                     and Software Systems from <b>IGNOU</b>. I&apos;ve enhanced my
@@ -74,13 +77,10 @@ const Hero = () => {
                     technology and design. I&apos;m passionate about <b>software
                     engineering, web development, and UI/UX design</b>.
                   </p>
-                </i>
-                <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-ost text-justify">
-                  <i>
+                <p className="text-sm sm:text-base text-gray-600 font-serif text-justify">
                     I&apos;ve started my own <b>web development business</b> and also
                     explore new <b>trends, freelance, and entrepreneurial ventures</b>.
                     I share my insights on my <b>YouTube channel</b>.............
-                  </i>
                   <span className="text-center sm:text-right mt-4 block">
                     <Link
                       href="/#about"

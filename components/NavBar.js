@@ -15,8 +15,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="">
-        <nav className="sticky top-0 w-11/12 mx-auto z-10 shadow-2xl mb-5 rounded-full backdrop-blur h-[64px] bg-[url('/hero-left3.png')]">
+        <nav className="sticky top-5 w-11/12 bg-gradient-to-r from-[#c9d6ff] to-[#e2e2e2] px-2 xl:px-0 mx-auto z-10 shadow-2xl mb-8 rounded-lg backdrop-blur h-[64px] mt-2">
           <div className="mx-auto px-5 xl:px-10">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
@@ -24,7 +23,7 @@ const NavBar = () => {
                   href="/"
                   className="text-black text-sm xl:text-xl font-bold hover:text-gray-700 flex items-center"
                 >
-                  <Image src="/logo.png" width={40} height={40} alt="Logo" />
+                  <Image src="/logo.png" width={40} height={40} alt="Logo" style={{ width: "auto", height: "auto" }}/>
                   <span className="ml-2">• Shalimar&apos;s Portfolio</span>
                 </Link>
               </div>
@@ -254,7 +253,6 @@ const NavBar = () => {
             </div>
           </div>
         </nav>
-      </div>
     </>
   );
 };

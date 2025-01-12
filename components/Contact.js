@@ -47,17 +47,18 @@ const Contact = () => {
               <p className="text-gray-700 mb-4 text-justify text-xl sm:text-2xl md:text-3xl font-ost ml-7 fade-in">
                 <b className="text-sm md:text-lg lg:text-xl font-MOD20 flex items-center">
                   <Image
-                    src="/whatsapp.gif"
-                    alt="Whatsapp Chat"
-                    width={50}
-                    height={50}
+                    src="/linkedin.gif"
+                    alt="LinkedIn Message"
+                    width={30}
+                    height={30}
+                    className="ml-2.5 mr-3"
                   />
-                  Whatsapp-chat :&nbsp;
+                  LinkedIn-Message :&nbsp;
                   <a
-                    href="https://wa.me/919560362339"
+                    href="https://www.linkedin.com/in/shalimarmehra/"
                     className="underline flex items-center"
                   >
-                    +91 9560362339
+                    Message me
                     <FaExternalLinkAlt className="ml-2" />
                   </a>
                 </b>

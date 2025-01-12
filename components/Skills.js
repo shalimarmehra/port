@@ -67,7 +67,7 @@ const Skills = () => {
                 className="sm:mt-1 mr-2"
               />
               <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
-                <i>
+    
                   Showcasing a comprehensive blend of{" "}
                   <b>front-end and back-end development expertise</b>, my{" "}
                   <b>skill set</b> is designed to create&nbsp;
@@ -80,7 +80,7 @@ const Skills = () => {
                   that my work is always cutting-edge. By combining technical
                   acumen with creative problem-solving, I bring innovative ideas
                   to life, delivering impactful and scalable solutions.
-                </i>
+          
               </p>
             </div>
           </div>

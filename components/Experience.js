@@ -8,9 +8,9 @@ const Experience = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-slideUp');
+            entry.target.classList.add("animate-slideUp");
           }
         });
       },
@@ -32,11 +32,7 @@ const Experience = () => {
   return (
     <>
       <div className="bg-[url('/experience-bg.png')] bg-cover bg-center">
-        <section 
-          ref={sectionRef}
-          id="experience" 
-          className="py-5 opacity-0"
-        >
+        <section ref={sectionRef} id="experience" className="py-5 opacity-0">
           <style jsx>{`
             @keyframes slideUp {
               from {
@@ -73,22 +69,18 @@ const Experience = () => {
               </p>
             </div>
             <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
-              <ul className="italic font-ost list-disc ml-3 ">
-                <li>
-                  Founded and operate <b>Dev Dossier</b>, a successful web development
-                  business <b>delivering comprehensive services</b> including web
-                  design, development, and maintenance.
-                </li>
-                <li>
-                  Lead a team of <b>skilled developers and designers</b>, ensuring the
-                  delivery of <b>high-quality</b> web solutions for clients across
-                  various industries.
-                </li>
-                <li>
-                  Implement best practices in <b>project management, client
-                  communication, and technical development, driving customer
-                  satisfaction and business growth</b>.
-                </li>
+              <ul className="font-ost list-disc ml-3 ">
+                Founded and operate <b>Dev Dossier</b>, a successful web
+                development business <b>delivering comprehensive services</b>{" "}
+                including web design, development, and maintenance. Lead a team
+                of <b>skilled developers and designers</b>, ensuring the
+                delivery of <b>high-quality</b> web solutions for clients across
+                various industries. Implement best practices in{" "}
+                <b>
+                  project management, client communication, and technical
+                  development, driving customer satisfaction and business growth
+                </b>
+                .
               </ul>
             </div>
           </div>
@@ -110,21 +102,15 @@ const Experience = () => {
               </p>
             </div>
             <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
-              <ul className="italic font-ost list-disc ml-3">
-                <li>
-                  Designed and developed <b>custom websites</b> for diverse clients,
-                  utilizing both <b>WordPress and custom coding (HTML, CSS,
-                  JavaScript)</b>.
-                </li>
-                <li>
-                  Provided continuous <b>maintenance and updates</b>, ensuring <b>optimal
-                  performance and security</b> of client websites.
-                </li>
-                <li>
-                  Collaborated closely with clients to understand their needs
-                  and deliver tailored web solutions that enhanced their online
-                  presence.
-                </li>
+              <ul className="font-ost list-disc ml-3">
+                Designed and developed <b>custom websites</b> for diverse
+                clients, utilizing both{" "}
+                <b>WordPress and custom coding (HTML, CSS, JavaScript)</b>.
+                Provided continuous <b>maintenance and updates</b>, ensuring{" "}
+                <b>optimal performance and security</b> of client websites.
+                Collaborated closely with clients to understand their needs and
+                deliver tailored web solutions that enhanced their online
+                presence.
               </ul>
             </div>
           </div>
@@ -146,23 +132,15 @@ const Experience = () => {
               </p>
             </div>
             <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
-              <ul className="italic font-ost list-disc ml-3">
-                <li className="font-bold">
-                  Launched and managed several websites, including blog
-                  websites, affiliate websites, and product comparison websites,
-                  gaining hands-on experience in web development and digital
-                  marketing.
-                </li>
-                <li className="font-bold">
-                  Developed strong skills in project management, user experience
-                  design, and troubleshooting, despite the eventual shutdown of
-                  these projects.
-                </li>
-                <li className="font-bold">
-                  Leveraged lessons learned from these initiatives to improve
-                  future projects and client work, demonstrating resilience and
-                  a commitment to continuous improvement.
-                </li>
+              <ul className="font-ost list-disc ml-3">
+                Launched and managed several websites, including blog websites,
+                affiliate websites, and product comparison websites, gaining
+                hands-on experience in web development and digital marketing.
+                Developed strong skills in project management, user experience
+                design, and troubleshooting, despite the eventual shutdown of
+                these projects. Leveraged lessons learned from these initiatives
+                to improve future projects and client work, demonstrating
+                resilience and a commitment to continuous improvement.
               </ul>
             </div>
           </div>
