@@ -104,6 +104,17 @@ const Projects = () => {
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
+  // Start auto swipe logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex]);
+  // End auto swipe logic
+
   return (
     <>
       <section
@@ -119,7 +130,7 @@ const Projects = () => {
           .../Projects - Highlighted Projects ...
         </span>
         <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <div className="bg-white bg-opacity-10 backdrop-blur-3xl shadow-xl rounded-lg p-6">
+          <div className="backdrop-blur-3xl rounded-lg p-6">
             <div className="flex items-center justify-center md:hidden mb-2">
               <FaHandPointLeft className="animate-pulse mr-2" />
               <span>Swipe to navigate</span>
@@ -137,6 +148,10 @@ const Projects = () => {
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
+              {" "}
+              <h3 className="py-4 text-xl md:text-3xl text-center font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2 font-ost">
+                {projects[currentIndex].title}
+              </h3>
               <Image
                 src={projects[currentIndex].image}
                 alt={projects[currentIndex].title}
@@ -144,10 +159,7 @@ const Projects = () => {
                 height={300}
                 className="w-auto h-full md:h-96 rounded-lg shadow-2xl object-fit transition-transform duration-500 ease-in-out transform hover:scale-105 mx-auto"
               />
-              <h3 className="mt-4 text-xl text-center font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2 font-ost">
-                {projects[currentIndex].title}
-              </h3>
-              <p className="mt-2 text-gray-600 transition-transform duration-500 ease-in-out text-center font-ost">
+              <p className="mt-4 text-gray-600 transition-transform duration-500 ease-in-out text-center font-ost">
                 {projects[currentIndex].description}
               </p>
               <br />
