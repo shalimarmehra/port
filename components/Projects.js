@@ -24,7 +24,7 @@ const Projects = () => {
       description:
         "A dynamic business website built with Next.js and Tailwind CSS. This modern web application takes advantage of Next.js's powerful features including server-side rendering, static site generation, and optimized routing for exceptional performance and SEO. The UI is crafted using Tailwind CSS's utility-first framework, enabling rapid development of responsive. Key features include smooth animations, interactive components, and a fully responsive layout that adapts seamlessly across all devices.",
       image: "/project1b.jpg",
-      viewprojectworklink: "https://dd-teal-gamma.vercel.app/",
+      viewprojectworklink: "https://devdossier.in/",
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ const Projects = () => {
       description:
         "A modern and responsive portfolio website built using Next.js and Tailwind CSS. Next.js provides server-side rendering, automatic code splitting, and optimized performance, while Tailwind CSS enables rapid UI development with utility-first classes. The site features a clean, minimalist design with smooth animations, responsive layouts that work across all devices, and dynamic content loading. Key features include a projects showcase, skills section, contact form.",
       image: "/project2.jpg",
-      viewprojectworklink: "https://portfolio-woad-tau-79.vercel.app/",
+      viewprojectworklink: "https://shalimarmehra.vercel.app/",
     },
     {
       id: 3,
