@@ -52,6 +52,7 @@ const Contact = () => {
                     width={30}
                     height={30}
                     className="ml-2.5 mr-3"
+                    unoptimized
                   />
                   LinkedIn-Message :&nbsp;
                   <a
@@ -69,6 +70,7 @@ const Contact = () => {
                     width={20}
                     height={20}
                     className="ml-4 mr-4"
+                    unoptimized
                   />
                   Email-me :&nbsp;
                   <a
