@@ -10,14 +10,14 @@ import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 const Contact = () => {
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-slide-up');
+          entry.target.classList.add("animate-slide-up");
         }
       });
     });
 
-    const elements = document.querySelectorAll('.fade-in');
+    const elements = document.querySelectorAll(".fade-in");
     elements.forEach((el) => observer.observe(el));
 
     return () => elements.forEach((el) => observer.unobserve(el));
@@ -138,7 +138,8 @@ const Contact = () => {
           </h3>
           <div className="flex justify-center items-center font-serif text-center p-4 text-sm sm:text-lg fade-in">
             <span>
-              Copyright © 2024 - 2025 Shalimar Mehra. All rights reserved.️
+              Copyright © {new Date().getFullYear()} Shalimar Mehra. All rights
+              reserved.️
             </span>
           </div>
         </section>
@@ -150,7 +151,7 @@ const Contact = () => {
           transform: translateY(20px);
           visibility: hidden;
         }
-        
+
         .animate-slide-up {
           animation: slideUp 0.6s ease forwards;
           visibility: visible;

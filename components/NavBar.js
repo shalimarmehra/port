@@ -4,18 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { CgArrowTopRight } from "react-icons/cg";
 import { IoMdMail } from "react-icons/io";
-import { AiFillHome, AiFillProject } from "react-icons/ai";
+import { AiFillProject } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiSkills } from "react-icons/gi";
 import { MdWork } from "react-icons/md";
-import { FaGraduationCap } from "react-icons/fa";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-        <nav className="sticky top-5 w-11/12 bg-gradient-to-r from-[#c9d6ff] to-[#e2e2e2] px-2 xl:px-0 mx-auto z-10 shadow-2xl mb-8 rounded-lg backdrop-blur h-[64px] mt-2">
+        <nav className="sticky top-4 w-11/12 bg-gradient-to-r from-[#c9d6ff] to-[#e2e2e2] px-2 xl:px-0 mx-auto z-10 shadow-2xl mb-8 rounded-lg backdrop-blur h-[64px] mt-2">
           <div className="mx-auto px-5 xl:px-10">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
