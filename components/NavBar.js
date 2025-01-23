@@ -7,7 +7,7 @@ import { IoMdDocument, IoMdMail } from "react-icons/io";
 import { AiFillHome, AiFillProject } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiSkills } from "react-icons/gi";
-import { MdWork } from "react-icons/md";
+import { MdContacts, MdWork } from "react-icons/md";
 import { FaBiohazard } from "react-icons/fa";
 
 const NavBar = () => {
@@ -273,16 +273,31 @@ const NavBar = () => {
                         .getElementById("contact")
                         .scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4"
+                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4 justify-between"
                   >
                     Contact Us <IoMdMail className="h-5 w-5" />
                   </Link>
                   <Link
                     href="/resume.pdf" // Update with the actual path to your resume
                     download="Shalimar-mehra.pdf" // Update with your desired resume file name
-                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4"
+                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4 justify-between"
                   >
-                    Download Resume <IoMdDocument className="h-5 w-5" /> 
+
+                    Resume 
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                        />
+                      </svg>
                   </Link>
                 </div>
               </div>
