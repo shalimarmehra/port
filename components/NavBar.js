@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CgArrowTopRight } from "react-icons/cg";
-import { IoMdMail } from "react-icons/io";
+import { IoMdDocument, IoMdMail } from "react-icons/io";
 import { AiFillHome, AiFillProject } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiSkills } from "react-icons/gi";
@@ -91,10 +91,22 @@ const NavBar = () => {
                   >
                     About <CgArrowTopRight className="ml-1" />
                   </Link>
-                  {/* <div className="flex justify-center">
+                  <Link
+                    href="/#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById("contact")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
+                  >
+                    Contact Us <IoMdMail className="h-5 w-5" />
+                  </Link>
+                  <div className="flex justify-center">
                     <a
                       href="/resume.pdf"
-                      download
+                      download="Shalimar-mehra.pdf"
                       className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
                     >
                       Resume
@@ -112,20 +124,8 @@ const NavBar = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                    </a> */}
-
-                  <Link
-                    href="/#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document
-                        .getElementById("contact")
-                        .scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
-                  >
-                    Contact Us <IoMdMail className="h-5 w-5" />
-                  </Link>
+                    </a>
+                    </div>
                 </div>
                 {/* </div> */}
               </div>
@@ -276,6 +276,13 @@ const NavBar = () => {
                     className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4"
                   >
                     Contact Us <IoMdMail className="h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="/resume.pdf" // Update with the actual path to your resume
+                    download="Shalimar-mehra.pdf" // Update with your desired resume file name
+                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4"
+                  >
+                    Download Resume <IoMdDocument className="h-5 w-5" /> 
                   </Link>
                 </div>
               </div>

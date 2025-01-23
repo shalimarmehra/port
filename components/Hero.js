@@ -149,7 +149,7 @@ gsap.registerPlugin(ScrollTrigger);
 
               <div className="flex-1 md:ml-8 px-4 mt-8">
                 <Image
-                  src="/hero-image.png"
+                  src="/hero-img.jpeg"
                   width={400}
                   height={400}
                   alt="Hero"
@@ -160,7 +160,7 @@ gsap.registerPlugin(ScrollTrigger);
                   transform transition-all duration-700 ease-in-out
                   motion-safe:animate-pulse 
                   border-6 border-black hover:border-gray-900
-                  filter brightness-125 hover:contrast-110
+                  filter hover:brightness-125 hover:contrast-110
                   cursor-pointer"
                   priority
                   style={{
