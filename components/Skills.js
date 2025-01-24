@@ -98,7 +98,7 @@ const Skills = () => {
                 <b>Frontend Development →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
                   <li>Core Technologies: HTML, CSS, JavaScript (ES6+).</li>
                   <li>Frameworks & Libraries: React.js & Next.js.</li>
                   <li>
@@ -135,7 +135,7 @@ const Skills = () => {
                 <b>Backend Development →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
                   <li>Programming Languages: Node.js.</li>
                   <li>Frameworks: Express.js server-side logic.</li>
                   <li>API Development: Expertise in building RESTful APIs.</li>
@@ -165,7 +165,7 @@ const Skills = () => {
                 <b>Other Tools & Technologies →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
                   <li>
                     Version Control: Mastery of Git and GitHub for version
                     control and collaborative development.
@@ -222,7 +222,7 @@ const Skills = () => {
                 <b>Soft Skills →</b>
                 <br />
                 <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold italic">
+                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
                   <li>
                     Problem Solving: Analyze challenges and implement effective,
                     innovative solutions.
