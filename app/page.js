@@ -14,7 +14,10 @@ import { GiSkills } from "react-icons/gi";
 export default function Home() {
   return (
     <>
+    <div className="sticky z-50">
       <NavBar />
+    </div>
+    <div className="z-0">
       <Hero />
       <h3 className="flex items-center w-full">
         <span className="flex-grow bg-black rounded h-1 ml-[20px] md-ml-[72px]"></span>
@@ -46,6 +49,7 @@ export default function Home() {
         <span className="flex-grow bg-black rounded h-1 mr-[20px] md-mr-[72px]"></span>
       </h3>
       <Contact />
+      </div>
     </>
   );
 }
