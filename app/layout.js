@@ -1,10 +1,6 @@
-"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import BottomToUpButton from "@/components/BottomToUpButton";
-import { useState, useEffect } from "react";
-import PreLoader from "@/components/PreLoader";
-import CustomCursor from "@/components/CustomCursor";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,35 +13,30 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// export const metadata = {
-//   title: "Shalimar Mehra",
-//   description: "SM's Portfolio",
-// };
+export const metadata = {
+  title: "Shalimar Mehra • Web Developer",
+  description: "SM's Portfolio Website  •  Web Developer  •  Designer •  Shalimar Mehra •  Portfolio",
+  image: "/hero-img.jpeg",
+  url: "https://www.shalimarmehra.tech",
+  type: "website",
+  siteName: "Shalimar Mehra",
+  creator: "Shalimar Mehra",
+  keywords: "Shalimar Mehra, Portfolio, Web Developer, Designer",
+  twitter: {
+    card: "summary_large_image",
+    site: "@shalimarmehra",
+    creator: "@shalimarmehra",
+  }
+};
 
 export default function RootLayout({ children }) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading data
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CustomCursor/>
-        {loading ? (
-          <PreLoader />
-        ) : (
-          <>
-            <main>{children}</main>
-            <BottomToUpButton />
-          </>
-        )}
+        <main>{children}</main>
+        <BottomToUpButton />
       </body>
     </html>
   );

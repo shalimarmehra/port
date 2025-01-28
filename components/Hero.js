@@ -9,23 +9,6 @@ import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-const tl = gsap.timeline({ ease: "slow", duration: 1 });
-document.addEventListener("mousemove", (e) => {
-  gsap.utils.toArray(".circle").forEach((layer) => {
-    const depth = layer.dataset.depth;
-    const moveX = e.pageX - window.innerWidth / 2;
-    const moveY = e.pageY - window.innerHeight / 2;
-    tl.to(
-      layer,
-      {
-        x: moveX / depth,
-        y: moveY / depth,
-      },
-      0
-    );
-  });
-});
-
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
 gsap.registerPlugin(ScrollTrigger);
@@ -48,6 +31,24 @@ gsap.registerPlugin(ScrollTrigger);
         }
       }
     );
+
+    const tl = gsap.timeline({ ease: "slow", duration: 1 });
+    window.addEventListener("mousemove", (e) => {
+      gsap.utils.toArray(".circle").forEach((layer) => {
+        const depth = layer.dataset.depth;
+        const moveX = e.pageX - window.innerWidth / 2;
+        const moveY = e.pageY - window.innerHeight / 2;
+        tl.to(
+          layer,
+          {
+            x: moveX / depth,
+            y: moveY / depth,
+          },
+          0
+        );
+      });
+    });
+
   }, []);
 
   return (
@@ -71,8 +72,7 @@ gsap.registerPlugin(ScrollTrigger);
                 </h6>
                   <p className="text-sm sm:text-base text-gray-600 font-serif text-justify mb-4">
                     Hi, I&apos;m <b>Shalimar Mehra</b>. I have a <b>Bachelor&apos;s
-                    in Computer Applications</b> and am pursuing an MCA in Computing
-                    and Software Systems from <b>IGNOU</b>. I&apos;ve enhanced my
+                    in Computer Applications</b>. I&apos;ve enhanced my
                     skills through various <b>courses and certifications</b> in
                     technology and design. I&apos;m passionate about <b>software
                     engineering, web development, and UI/UX design</b>.
