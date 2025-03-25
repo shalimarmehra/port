@@ -109,7 +109,7 @@ const NavBar = () => {
                 >
                   Contact Us <IoMdMail className="h-5 w-5" />
                 </Link>
-                <div className="flex justify-center">
+                {/* <div className="flex justify-center">
                     <a
                       href="/resume.pdf"
                       download="Shalimar-mehra.pdf"
@@ -131,7 +131,7 @@ const NavBar = () => {
                         />
                       </svg>
                     </a>
-                    </div>
+                    </div> */}
               </div>
             </div>
 
@@ -281,7 +281,7 @@ const NavBar = () => {
                 >
                   Contact Us <IoMdMail className="h-5 w-5" />
                 </Link>
-                <Link
+                {/* <Link
                     href="/resume.pdf" // Update with the actual path to your resume
                     download="Shalimar-mehra.pdf" // Update with your desired resume file name
                     className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4 justify-between"
@@ -302,7 +302,7 @@ const NavBar = () => {
                           d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                         />
                       </svg>
-                  </Link>
+                  </Link> */}
               </div>
             </div>
           </div>
