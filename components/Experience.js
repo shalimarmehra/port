@@ -60,7 +60,7 @@ const Experience = () => {
                 alt="bullet point icon"
                 className="mt-1 mr-2"
               />
-              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                 <b>Founder & Lead Developer →</b>
                 <b className="text-sm md:text-xl font-MOD20 block">
                   Dev Dossier • July 2024 -{" "}
@@ -68,8 +68,8 @@ const Experience = () => {
                 </b>
               </p>
             </div>
-            <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
-              <ul className="font-ost list-disc ml-3 ">
+            <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans pl-5">
+              <ul className="font-sans list-disc ml-3 ">
                 Founded and operate <b>Dev Dossier</b>, a successful web
                 development business <b>delivering comprehensive services</b>{" "}
                 including web design, development, and maintenance. Lead a team
@@ -93,7 +93,7 @@ const Experience = () => {
                 alt="bullet point icon"
                 className="mt-1 mr-2"
               />
-              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                 <b>Freelance Web Developer →</b>
                 <b className="text-sm md:text-xl font-MOD20 block">
                   Self-Employed • July 2023 - May 2024 •{" "}
@@ -101,8 +101,8 @@ const Experience = () => {
                 </b>
               </p>
             </div>
-            <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
-              <ul className="font-ost list-disc ml-3">
+            <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans pl-5">
+              <ul className="font-sans list-disc ml-3">
                 Designed and developed <b>custom websites</b> for diverse
                 clients, utilizing both{" "}
                 <b>WordPress and custom coding (HTML, CSS, JavaScript)</b>.
@@ -123,7 +123,7 @@ const Experience = () => {
                 alt="bullet point icon"
                 className="mt-1 mr-2"
               />
-              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                 <b>Web Developer →</b>
                 <b className="text-sm md:text-xl font-MOD20 block">
                   Self-Initiated Projects • February 2022 - February 2023 •{" "}
@@ -131,8 +131,8 @@ const Experience = () => {
                 </b>
               </p>
             </div>
-            <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost pl-5">
-              <ul className="font-ost list-disc ml-3">
+            <div className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans pl-5">
+              <ul className="font-sans list-disc ml-3">
                 Launched and managed several websites, including blog websites,
                 affiliate websites, and product comparison websites, gaining
                 hands-on experience in web development and digital marketing.

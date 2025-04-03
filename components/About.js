@@ -9,20 +9,15 @@ const About = () => {
   });
 
   const slideUpAnimation = {
-    transform: inView ? "translateY(0)" : "translateY(100px)", 
+    transform: inView ? "translateY(0)" : "translateY(100px)",
     opacity: inView ? 1 : 0,
-    transition: "all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+    transition: "all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
   };
 
   return (
     <>
       <div className="bg-[url('/about-bg.png')] bg-cover bg-center">
-        <section
-          id="about"
-          className="py-5"
-          ref={ref}
-          style={slideUpAnimation}
-        >
+        <section id="about" className="py-5" ref={ref} style={slideUpAnimation}>
           <span className="ml-5 font-Mitr xl:ml-24">
             .../About me - Who am i ...
           </span>
@@ -37,16 +32,13 @@ const About = () => {
                 alt="bullet point icon"
                 className="sm:mt-1 mr-2"
               />
-              <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+              <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
                 Hi, I&apos;m <b>Shalimar Mehra</b>. I hold a Bachelor&apos;s
-                degree in Computer Applications and am currently pursuing a&nbsp;
-                <b>Master of Computer Applications (MCA)</b> with a
-                specialization in Computing and Software Systems from{" "}
+                degree in Computer Applications with a specialization in
+                Computing and Software Systems from{" "}
                 <b>IGNOU (Indira Gandhi National Open University)</b>.
-                <br />
-                <br />
                 Throughout my educational journey, I have undertaken various
-                <b>courses and certifications</b> to continually enhance my
+                <b> courses and certifications</b> to continually enhance my
                 skills in the{" "}
                 <b>ever-evolving fields of technology and design</b>. My
                 academic background has provided me with a strong foundation in{" "}
@@ -69,7 +61,7 @@ const About = () => {
                   alt="bullet point icon"
                   className="sm:mt-1 mr-2"
                 />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
                   <b>Professional Experience →</b>
                   <br />
                   <br />
@@ -95,7 +87,7 @@ const About = () => {
                   alt="bullet point icon"
                   className="sm:mt-1 mr-2"
                 />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
                   <b>Passion for Innovation →</b>
                   <br />
                   <br />I am deeply passionate about exploring{" "}
@@ -119,7 +111,7 @@ const About = () => {
                   alt="bullet point icon"
                   className="sm:mt-1 mr-2"
                 />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
                   <b>Freelancing and Collaborations →</b>
                   <br />
                   <br />
@@ -147,7 +139,7 @@ const About = () => {
                   alt="bullet point icon"
                   className="sm:mt-1 mr-2"
                 />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
                   <b>Sharing Knowledge →</b>
                   <br />
                   <br />
@@ -205,12 +197,12 @@ const About = () => {
                     alt="bullet point icon"
                     className="mr-2"
                   />
-                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                     <b className="font-bold">Academic Achievements →</b>
                   </p>
                 </div>
 
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – June 2019 - June 2022
                   </b>
@@ -227,7 +219,7 @@ const About = () => {
                   Additional Skills: Business Communication, Software
                   Engineering, Project Work.
                 </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – April 2018 - March 2019
                   </b>
@@ -249,12 +241,12 @@ const About = () => {
                     alt="bullet point icon"
                     className="mr-2"
                   />
-                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                     <b>Courses Achievements →</b>
                   </p>
                 </div>
 
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – Feb 2019 - Feb 2022
                   </b>
@@ -298,12 +290,12 @@ const About = () => {
                     alt="bullet point icon"
                     className="mr-2"
                   />
-                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                     <b>Certifications Achievements →</b>
                   </p>
                 </div>
 
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – Oct 2023
                   </b>
@@ -332,7 +324,10 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Crede.. ID : <span className="font-bold">UC-4e91caf7-c484-4e33-b412-db5185f9bfc1</span>
+                  Crede.. ID :{" "}
+                  <span className="font-bold">
+                    UC-4e91caf7-c484-4e33-b412-db5185f9bfc1
+                  </span>
                   <br />
                   Elevate your front-end development skills with this
                   comprehensive course. Master the creation of basic web pages
@@ -344,7 +339,7 @@ const About = () => {
                   with React JS. Transform into an expert front-end developer
                   equipped with cutting-edge skills.
                 </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – Feb 2023
                   </b>
@@ -372,7 +367,10 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Crede.. ID : <span className="font-bold">UC-546b187e-c260-4d7a-8e07-3c5306f583cc</span>
+                  Crede.. ID :{" "}
+                  <span className="font-bold">
+                    UC-546b187e-c260-4d7a-8e07-3c5306f583cc
+                  </span>
                   <br />
                   Master the essentials of MySQL with hands-on experience. Learn
                   to install MySQL Server and MySQL Workbench, establish
@@ -385,7 +383,7 @@ const About = () => {
                   seamlessly export data to Excel. Gain practical insights and
                   apply SQL effectively to solve real-world problems.
                 </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – Feb 2022
                   </b>
@@ -413,7 +411,8 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Credential ID : <span className="font-bold">XspMgC4Fw5zfHkvgy</span>
+                  Credential ID :{" "}
+                  <span className="font-bold">XspMgC4Fw5zfHkvgy</span>
                   <br />
                   Define technical requirements • Design changes to existing
                   architecture • Scale on-premise systems to the cloud • Read
@@ -423,7 +422,7 @@ const About = () => {
                   Secure the Software Development Lifecycle (SDLC) • Shape the
                   problem • Data and privacy
                 </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost ml-7">
+                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
                   <b className="text-sm md:text-xl font-MOD20 block">
                     – Feb 2021
                   </b>
@@ -451,7 +450,8 @@ const About = () => {
                     </a>
                   </b>
                   <br />
-                  Credential ID : <span className="font-bold">119854-20189486-1016</span>
+                  Credential ID :{" "}
+                  <span className="font-bold">119854-20189486-1016</span>
                   <br />
                   Master Communication Skills • Excel in Presentation Skills •
                   Enhance Soft Skills • Follow a Career Guidance Framework •

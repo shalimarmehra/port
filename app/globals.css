@@ -4,34 +4,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&display=swap");
 
-/* styles/globals.css */
 @font-face {
   font-family: "Italianno";
   src: url("/fonts/Italianno-Regular.ttf") format("ttf");
   font-weight: normal;
   font-style: normal;
 }
-
-/* @font-face {
-  font-family: "MS";
-  src: url("/fonts/MontserratSubrayada-Regular.ttf") format("trueType");
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* @font-face {
-  font-family: "OLD_STANDARD_TT";
-  src: url("/fonts/OldStandardTT-Italic.ttf") format("truetype"),
-    url("/fonts/OldStandardTT-Bold.ttf") format("truetype"),
-    url("/fonts/OldStandardTT-Regular.ttf") format("truetype");
-} */
-
-/* @font-face {
-  font-family: "Mitr";
-  src: url("/fonts/Mitr-Regular.ttf") format("trueType");
-  font-weight: normal;
-  font-style: normal;
-} */
 
 @font-face {
   font-family: "Pixelify";
@@ -40,14 +18,6 @@
   font-style: normal;
 }
 
-/* @font-face {
-  font-family: "MOD20";
-  src: url("/fonts/MOD20.ttf") format("trueType");
-  font-weight: normal;
-  font-style: normal;
-} */
-
-/* Ensure Tailwind CSS is installed and configured correctly */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,15 +27,6 @@
   background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
   background: linear-gradient(to right, #e2e2e2, #c9d6ff);
   --foreground: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    background: #c9d6ff;
-    background: -webkit-linear-gradient(to right, #e2e2e2, #c9d6ff);
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-    --foreground: #000000;
-  }
 }
 
 body {

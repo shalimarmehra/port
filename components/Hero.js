@@ -11,24 +11,24 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
-gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
     gsap.fromTo(
       "#hero-section",
-      { 
+      {
         x: "-100%",
         opacity: 0,
       },
       {
-        x: "0%", 
+        x: "0%",
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut",
         scrollTrigger: {
-          trigger:"#hero-section",
-          start:"top bottom",
-          toggleActions: "play none none reverse"
-        }
+          trigger: "#hero-section",
+          start: "top bottom",
+          toggleActions: "play none none reverse",
+        },
       }
     );
 
@@ -48,7 +48,6 @@ gsap.registerPlugin(ScrollTrigger);
         );
       });
     });
-
   }, []);
 
   return (
@@ -59,7 +58,7 @@ gsap.registerPlugin(ScrollTrigger);
             <span className=" font-Mitr xl:ml-24">.../Quick Bio ...</span>
 
             <div className="flex flex-col md:flex-row max-w-7xl mx-auto">
-            <div className="flex-1 text-left p-4">
+              <div className="flex-1 text-left p-4">
                 <span className="text-md sm:text-lg lg:text-xl font-Mitr">
                   {/* PRAISE THE GOD → */}
                   Hi 👋 →
@@ -68,19 +67,24 @@ gsap.registerPlugin(ScrollTrigger);
                   <span className="mr-2">
                     <FaCheckSquare className="inline-block text-gray-800 rounded-lg" />
                   </span>
-                  Shalimar Mehra&nbsp;• Web Developer
+                  Shalimar Mehra&nbsp;• Full-Stack Developer
                 </h6>
-                  <p className="text-sm sm:text-base text-gray-600 font-serif text-justify mb-4">
-                    Hi, I&apos;m <b>Shalimar Mehra</b>. I have a <b>Bachelor&apos;s
-                    in Computer Applications</b>. I&apos;ve enhanced my
-                    skills through various <b>courses and certifications</b> in
-                    technology and design. I&apos;m passionate about <b>software
-                    engineering, web development, and UI/UX design</b>.
-                  </p>
+                <p className="text-sm sm:text-base text-gray-600 font-serif text-justify mb-4">
+                  Hi, I&apos;m <b>Shalimar Mehra</b>. I have a{" "}
+                  <b>Bachelor&apos;s in Computer Applications</b>. I&apos;ve
+                  enhanced my skills through various{" "}
+                  <b>courses and certifications</b> in technology and design.
+                  I&apos;m passionate about{" "}
+                  <b>
+                    Web development, UI/UX design & explore new technologies
+                  </b>
+                  . I love to learn and grow in this field.
+                </p>
                 <p className="text-sm sm:text-base text-gray-600 font-serif text-justify">
-                    I&apos;ve started my own <b>web development business</b> and also
-                    explore new <b>trends, freelance, and entrepreneurial ventures</b>.
-                    I share my insights on my <b>YouTube channel</b>.............
+                  I&apos;ve started my own <b>web development business</b> and
+                  also explore new{" "}
+                  <b>trends, freelance, and entrepreneurial ventures</b>. I
+                  share my insights on my <b>YouTube channel</b>.............
                   <span className="text-center sm:text-right mt-4 block">
                     <Link
                       href="/#about"
@@ -97,7 +101,7 @@ gsap.registerPlugin(ScrollTrigger);
                   </span>
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-between w-full mt-6">
-                  <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3 w-full">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 items-center gap-3 w-full">
                     <Link
                       href="https://github.com/shalimarmehra"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
@@ -117,15 +121,6 @@ gsap.registerPlugin(ScrollTrigger);
                       <span>LinkedIn</span>
                     </Link>
                     <Link
-                      href="https://x.com/shalimarmehra"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaXTwitter className="mr-2" />
-                      <span>X</span>
-                    </Link>
-                    <Link
                       href="https://www.instagram.com/shalimarmehra/"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
@@ -136,7 +131,7 @@ gsap.registerPlugin(ScrollTrigger);
                     </Link>
                     <Link
                       href="https://youtube.com/@shalimarmehra"
-                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

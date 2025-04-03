@@ -66,7 +66,7 @@ const Skills = () => {
                 alt="bullet point icon"
                 className="sm:mt-1 mr-2"
               />
-              <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-ost">
+              <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
     
                   Showcasing a comprehensive blend of{" "}
                   <b>front-end and back-end development expertise</b>, my{" "}
@@ -94,7 +94,7 @@ const Skills = () => {
                 alt="bullet point icon"
                 className="sm:mt-2 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
                 <b>Frontend Development →</b>
                 <br />
                 <br />
@@ -131,7 +131,7 @@ const Skills = () => {
                 alt="bullet point icon"
                 className="sm:mt-2 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
                 <b>Backend Development →</b>
                 <br />
                 <br />
@@ -161,7 +161,7 @@ const Skills = () => {
                 alt="bullet point icon"
                 className="sm:mt-2 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
                 <b>Other Tools & Technologies →</b>
                 <br />
                 <br />
@@ -218,7 +218,7 @@ const Skills = () => {
                 alt="bullet point icon"
                 className="sm:mt-2 mr-2"
               />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-ost">
+              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
                 <b>Soft Skills →</b>
                 <br />
                 <br />
@@ -257,7 +257,7 @@ const Skills = () => {
                 <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
                   03+
                 </h3>
-                <p className="text-sm md:text-xl font-ost">
+                <p className="text-sm md:text-xl font-sans">
                   YEARS OF <br />
                   <b>EXPERIENCE</b>
                 </p>
@@ -268,7 +268,7 @@ const Skills = () => {
                 <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
                   4+
                 </h3>
-                <p className="text-xs md:text-xl font-ost">
+                <p className="text-xs md:text-xl font-sans">
                   COMPLETED WORKS<br />
                   <b className="uppercase text-sm"> professionally</b>
                 </p>
@@ -277,7 +277,7 @@ const Skills = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center w-full mt-6 px-10">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 items-center gap-3 w-full max-w-screen-lg mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-3 w-full max-w-screen-lg mx-auto">
               <Link
                 href="https://github.com/shalimarmehra"
                 className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
@@ -297,15 +297,6 @@ const Skills = () => {
                 <span>LinkedIn</span>
               </Link>
               <Link
-                href="https://x.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaXTwitter className="mr-2" />
-                <span>X</span>
-              </Link>
-              <Link
                 href="https://instagram.com/shalimarmehra"
                 className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
@@ -316,7 +307,7 @@ const Skills = () => {
               </Link>
               <Link
                 href="https://youtube.com/@shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1 w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -40,11 +40,11 @@ const Contact = () => {
                   alt="bullet point icon"
                   className="mt-1 mr-2"
                 />
-                <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-ost">
+                <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
                   <b className="font-bold">Contact Details →</b>
                 </p>
               </div>
-              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-2xl md:text-3xl font-ost ml-7 fade-in">
+              <p className="text-gray-700 mb-4 text-justify text-xl sm:text-2xl md:text-3xl font-sans ml-7 fade-in">
                 <b className="text-sm md:text-lg lg:text-xl font-MOD20 flex items-center">
                   <Image
                     src="/linkedin.gif"
@@ -74,10 +74,10 @@ const Contact = () => {
                   />
                   Email-me :&nbsp;
                   <a
-                    href="mailto:shalimarmehra892@gmail.com"
+                    href="mailto:shalimarmehra01@gmail.com"
                     className="underline flex items-center"
                   >
-                    shalimarmehra892@gmail.com
+                    shalimarmehra01@gmail.com
                     <FaExternalLinkAlt className="ml-2" />
                   </a>
                 </b>
@@ -85,7 +85,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full mt-6 px-10 mb-5 fade-in">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 items-center gap-3 w-full max-w-screen-lg mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-3 w-full max-w-screen-lg mx-auto">
               <Link
                 href="https://github.com/shalimarmehra"
                 className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
@@ -105,15 +105,6 @@ const Contact = () => {
                 <span>LinkedIn</span>
               </Link>
               <Link
-                href="https://x.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaXTwitter className="mr-2" />
-                <span>X</span>
-              </Link>
-              <Link
                 href="https://www.instagram.com/shalimarmehra/"
                 className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
@@ -124,7 +115,7 @@ const Contact = () => {
               </Link>
               <Link
                 href="https://youtube.com/@shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center col-span-2 sm:col-span-1 w-full"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
                 target="_blank"
                 rel="noopener noreferrer"
               >
