@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import BottomToUpButton from "@/components/BottomToUpButton";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main>{children}</main>
+        <Analytics />
         <GoogleAnalytics gaId="G-59ZWKHYBGY" />
         <BottomToUpButton />
       </body>
