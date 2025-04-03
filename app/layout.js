@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Shalimar Mehra • Web Developer",
-  description: "SM's Portfolio Website  •  Web Developer  •  Designer •  Shalimar Mehra •  Portfolio",
+  title: "Shalimar Mehra • Full-Stack Developer • Content Creator • Entrepreneur",
+  description: "Shalimar Mehra is a full-stack developer, content creator, and entrepreneur. He specializes in building web applications and creating engaging content.",
   image: "/hero-img.jpeg",
   url: "https://www.shalimarmehra.tech",
   type: "website",
