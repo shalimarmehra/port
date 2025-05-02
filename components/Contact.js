@@ -74,10 +74,10 @@ const Contact = () => {
                   />
                   Email-me :&nbsp;
                   <a
-                    href="mailto:shalimarmehra01@gmail.com"
+                    href="mailto:shalimarmehra9213@gmail.com"
                     className="underline flex items-center"
                   >
-                    shalimarmehra01@gmail.com
+                    shalimarmehra9213@gmail.com
                     <FaExternalLinkAlt className="ml-2" />
                   </a>
                 </b>
