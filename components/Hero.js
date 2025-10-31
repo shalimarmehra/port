@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { BsThreads, BsTwitterX } from "react-icons/bs";
 
 const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,7 +102,7 @@ const Hero = () => {
                   </span>
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-between w-full mt-6">
-                  <div className="grid grid-cols-2 sm:grid-cols-4 items-center gap-3 w-full">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 items-center gap-3 w-full">
                     <Link
                       href="https://github.com/shalimarmehra"
                       className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center"
@@ -137,6 +138,24 @@ const Hero = () => {
                     >
                       <IoLogoYoutube className="mr-2" />
                       <span>YouTube</span>
+                    </Link>
+                    <Link
+                      href="https://x.com/@shalimarmehra"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <BsTwitterX className="mr-2" />
+                      <span>X</span>
+                    </Link>
+                    <Link
+                      href="https://threads.com/@shalimarmehra"
+                      className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <BsThreads className="mr-2" />
+                      <span>Threads</span>
                     </Link>
                   </div>
                 </div>

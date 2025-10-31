@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import { BsThreads, BsTwitterX } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
@@ -277,7 +278,7 @@ const Skills = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center w-full mt-6 px-10">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 items-center gap-3 w-full max-w-screen-lg mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 w-full max-w-screen-lg mx-auto">
               <Link
                 href="https://github.com/shalimarmehra"
                 className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
@@ -313,6 +314,24 @@ const Skills = () => {
               >
                 <IoLogoYoutube className="mr-2" />
                 <span>YouTube</span>
+              </Link>
+              <Link
+                href="https://x.com/@shalimarmehra"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BsTwitterX className="mr-2" />
+                <span>X</span>
+              </Link>
+              <Link
+                href="https://threads.com/@shalimarmehra"
+                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <BsThreads className="mr-2" />
+                <span>Threads</span>
               </Link>
             </div>
           </div>
