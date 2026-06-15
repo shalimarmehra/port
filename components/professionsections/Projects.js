@@ -1,65 +1,67 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaGithub,
-  FaHandPointLeft,
-  FaHandPointRight,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaGithub, FaExternalLinkAlt, FaGlobe } from "react-icons/fa";
 import { PiProjectorScreenFill } from "react-icons/pi";
 
 const Projects = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const projects = [
     {
       id: 1,
-      title: "Business Website - Using Next JS and Tailwind CSS Framework",
+      title: "Dev Dossier Business Website",
+      category: "Full-Stack Web App",
       description:
-        "A dynamic business website meticulously crafted with Next.js and styled with Tailwind CSS. This modern web application leverages Next.js's capabilities for server-side rendering, static site generation, and optimized routing, ensuring exceptional performance and SEO. The UI is built using Tailwind CSS's utility-first framework, enabling rapid development of responsive designs.  Key Features: Smooth animations, interactive components, and a fully responsive layout across all devices.",
+        "A premium business website crafted with Next.js and Tailwind CSS. Built with server-side rendering (SSR), optimized routing, and smooth page transitions for excellent speed and SEO. Features interactive landing pages and responsive contact features.",
       image: "/project1b.jpg",
-      viewprojectworklink: "https://devdossier.in/",
+      tags: ["Next.js", "React", "Tailwind CSS", "GSAP", "Vercel"],
+      link: "https://devdossier.in/",
+      github: "https://github.com/shalimarmehra",
     },
     {
       id: 2,
-      title: "Portfolio Website - Using Next JS and Tailwind CSS Framework",
+      title: "Personal Developer Portfolio",
+      category: "Frontend Web App",
       description:
-        "A sleek and responsive portfolio website built using Next.js for enhanced performance and Tailwind CSS for rapid UI development. Next.js provides server-side rendering, automatic code splitting, and optimizations. Tailwind CSS, with its utility-first approach, enables quick styling. The site boasts a clean, minimalist design with smooth animations and responsive layouts, ensuring a seamless experience across devices.  Key Features: Project showcase, skills section, contact form, dynamic content loading.",
+        "A sleek and highly responsive developer portfolio showcasing projects, credentials, and business insights. Optimized for smooth animations, custom loading transitions, and full responsive layout parameters.",
       image: "/project2.jpg",
-      viewprojectworklink: "https://shalimarmehra.vercel.app/",
+      tags: ["Next.js", "React", "Tailwind CSS", "GSAP", "Analytics"],
+      link: "https://shalimarmehra.vercel.app/",
+      github: "https://github.com/shalimarmehra/port",
     },
     {
       id: 3,
-      title:
-        "Logistic Website - Using CMS with WordPress and Elementor Page Builder Plugin",
+      title: "24/7 Delivery Experts Logistics",
+      category: "CMS Platform",
       description:
-        "A robust logistics website powered by WordPress CMS and enhanced with the versatile Elementor Page Builder plugin. This platform ensures seamless management of logistics content and services through WordPress's intuitive backend. Elementor empowers users to customize layouts using drag-and-drop functionality, eliminating the need for coding.   Key Features: Responsive design, service showcases, contact forms, easy content management, visually appealing interface.",
+        "A robust logistics corporate platform built on WordPress and customized with Elementor Pro. Implements responsive landing sections, customized quote request forms, and detailed service timelines.",
       image: "/project3.jpg",
-      viewprojectworklink: "https://247deliveryexperts.com",
+      tags: ["WordPress", "Elementor Pro", "SEO", "Responsive UI"],
+      link: "https://247deliveryexperts.com",
+      github: "",
     },
     {
       id: 4,
-      title:
-        "News Website - Using CMS with WordPress and Elementor Page Builder Plugin",
+      title: "The Lamen - News & Media Portal",
+      category: "Publishing Platform",
       description:
-        "A dynamic news website built on WordPress, the leading Content Management System (CMS), and enhanced with the powerful Elementor Page Builder. This combination offers flexibility in content management and intuitive design capabilities.  Elementor's advanced widgets and design elements are used to create engaging news layouts, interactive features, and seamless content updates. The website is built with SEO in mind, ensuring optimal visibility while maintaining fast loading speeds and responsiveness. Key Features: Easy content organization, SEO optimization, mobile responsiveness, engaging layouts.",
+        "A dynamic news platform utilizing advanced SEO optimization and custom content categories. Styled for rapid loading, responsive readability on mobile devices, and easy editorial management.",
       image: "/project4.jpg",
-      viewprojectworklink: "https://thelamen.com/",
+      tags: ["WordPress", "Elementor", "On-Page SEO", "Speed Optimization"],
+      link: "https://thelamen.com/",
+      github: "",
     },
     {
       id: 5,
-      title:
-        "Social Networking Site - HTML, CSS, JavaScript & PHP (My First Project)",
+      title: "VibeSync Social Networking Site",
+      category: "PHP & Web Dev",
       description:
-        "A social networking platform designed to facilitate online interactions. Users can create and manage accounts, connect with friends, and engage in conversations. Developed using PHP, HTML, CSS, JSON, and JavaScript, the project features core functionalities such as account creation, friend requests, and messaging. External resources like websites and tutorials aided in learning and implementing these features. Key Features: User account management, friend connections, messaging functionality.",
+        "My first major web project. A custom social web application featuring user accounts, friend request pipelines, feed messaging, and basic backend integrations. Built to learn fundamental web pipelines.",
       image: "/project5.png",
-      viewprojectworklink: "https://github.com/shalimarmehra/social-networking-site",
+      tags: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+      link: "https://github.com/shalimarmehra/social-networking-site",
+      github: "https://github.com/shalimarmehra/social-networking-site",
     },
   ];
 
@@ -67,141 +69,106 @@ const Projects = () => {
     setIsLoaded(true);
   }, []);
 
-  const minSwipeDistance = 50;
-
-  const handlePrev = () => {
-    setIsTransitioning(true);
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + projects.length) % projects.length
-    );
-  };
-
-  const handleNext = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  };
-
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      handleNext();
-    }
-    if (isRightSwipe) {
-      handlePrev();
-    }
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [currentIndex]);
-
-  
   return (
-    <>
-      <section
-        id="projects"
-        className="py-5"
-        style={{
-          transform: isLoaded ? "translateX(0)" : "translateX(100%)",
-          opacity: isLoaded ? 1 : 0,
-          transition: "transform 0.8s ease-out, opacity 0.8s ease-out",
-        }}
-      >
-        <span className="ml-5 font-Mitr xl:ml-24">
-          .../Projects - Highlighted Projects ...
-        </span>
-        <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <div className="backdrop-blur-3xl rounded-lg p-6">
-            <div className="flex items-center justify-center md:hidden mb-2">
-              <FaHandPointLeft className="animate-pulse mr-2" />
-              <span>Swipe to navigate</span>
-              <FaHandPointRight className="animate-pulse ml-2" />
-            </div>
-            <div
-              className={`project ${
-                isTransitioning
-                  ? currentIndex > 0
-                    ? "translate-x-[-100%] transition-transform duration-500 ease-in-out"
-                    : "translate-x-[100%] transition-transform duration-500 ease-in-out"
-                  : "transform translate-x-0 transition-transform duration-500 ease-in-out"
-              }`}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
-            >
-              {" "}
-              <h3 className="py-4 pb-8 text-xl md:text-3xl text-center font-bold transition-transform duration-500 ease-in-out transform hover:translate-x-2 font-sans">
-                {projects[currentIndex].title}
-              </h3>
-              <Image
-                src={projects[currentIndex].image}
-                alt={projects[currentIndex].title}
-                width={500}
-                height={300}
-                className="w-auto h-full md:h-96 rounded-lg shadow-2xl object-fit transition-transform duration-500 ease-in-out transform hover:scale-105 mx-auto rounded-bl-3xl rounded-br-3xl"
-              />
-              <p className="mt-8 text-gray-600 transition-transform duration-500 ease-in-out text-center">
-                {projects[currentIndex].description}
-              </p>
-              <br />
-              <div className="flex flex-wrap gap-2 items-center justify-center">
-                <a
-                  href={projects[currentIndex].viewprojectworklink}
-                  className="bg-black text-white hover:bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] hover:text-black transition-colors duration-300 ease-in-out border-2 border-black px-4 py-2 rounded-md text-center flex items-center"
-                >
-                  <PiProjectorScreenFill className="mr-2" /> View project work
-                </a>
-              </div>
-            </div>
-            <div className="flex justify-center md:justify-between items-center mt-4 flex-wrap">
-              <button
-                onClick={handlePrev}
-                className="bg-black bg-opacity-80 backdrop-blur-sm shadow-lg rounded-full p-2 hover:bg-gray-800 transition-colors duration-300 ease-in-out mb-2 sm:mb-0 hidden md:block"
-              >
-                <FaChevronLeft className="text-white transition-transform duration-300 ease-in-out transform hover:-translate-x-1" />
-              </button>
-              <div className="project-pagination flex space-x-2">
-                {projects.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-3 h-3 rounded-full transition-colors duration-300 ease-in-out ${
-                      index === currentIndex
-                        ? "bg-black scale-125"
-                        : "bg-gray-400"
-                    }`}
-                    onClick={() => setCurrentIndex(index)}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={handleNext}
-                className="bg-black bg-opacity-80 backdrop-blur-sm shadow-lg rounded-full p-2 hover:bg-gray-800 transition-colors duration-300 ease-in-out mb-2 sm:mb-0 hidden md:block"
-              >
-                <FaChevronRight className="text-white transition-transform duration-300 ease-in-out transform hover:translate-x-1" />
-              </button>
-            </div>
+    <section id="projects" className="py-20 relative">
+      {/* Background soft glowing orb */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        
+        {/* Section Title */}
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-semibold text-indigo-300 uppercase tracking-widest mb-3">
+            <PiProjectorScreenFill />
+            <span>Featured Portfolio</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight">
+            Selected Projects
+          </h2>
+          <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-xl">
+            A showcase of web applications, custom designs, and professional client solutions.
+          </p>
         </div>
-      </section>
-    </>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, idx) => (
+            <div
+              key={project.id}
+              className="glass-panel glass-panel-hover flex flex-col rounded-2xl overflow-hidden group transition-all duration-300 opacity-0 translate-y-8"
+              style={{
+                opacity: isLoaded ? 1 : 0,
+                transform: isLoaded ? "translateY(0)" : "translateY(32px)",
+                transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 150}ms, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 150}ms, border-color 0.3s, box-shadow 0.3s`,
+              }}
+            >
+              {/* Image Container */}
+              <div className="relative h-48 overflow-hidden bg-gray-900 border-b border-white/5">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/20 to-transparent" />
+                <span className="absolute top-3 right-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-indigo-300 border border-white/10">
+                  {project.category}
+                </span>
+              </div>
+
+              {/* Card Details */}
+              <div className="p-5 flex-1 flex flex-col">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors font-display">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 flex-1 text-justify">
+                  {project.description}
+                </p>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-semibold text-gray-300 bg-white/5 border border-white/5 px-2 py-0.5 rounded"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTAs */}
+                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-3.5 py-2 rounded-lg transition-colors shadow-md shadow-indigo-600/10 hover:shadow-indigo-600/30"
+                    >
+                      <FaGlobe className="text-xs" />
+                      <span>Live Site</span>
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 px-3.5 py-2 rounded-lg transition-all"
+                    >
+                      <FaGithub className="text-xs" />
+                      <span>Code</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

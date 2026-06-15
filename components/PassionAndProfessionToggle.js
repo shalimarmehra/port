@@ -22,30 +22,39 @@ const PassionAndProfessionToggle = () => {
   }, [view]);
 
   return (
-    <>
-      <div className="h-8 w-11/12 mx-auto flex justify-center items-center text-md md:text-xl font-semibold font-Pixelify uppercase rounded-full tracking-wide mt-8 bg-slate-100">
-        Want to see my Profession or Passion?
+    <div className="max-w-6xl mx-auto px-4 mt-24 mb-12">
+      {/* Title block */}
+      <div className="flex flex-col items-center justify-center text-center mb-6">
+        <h2 className="text-xs sm:text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2">
+          Interactive Portfolio
+        </h2>
+        <p className="text-xl sm:text-2xl font-bold font-display text-white tracking-tight">
+          Explore my Professional Career or Creative Passions
+        </p>
       </div>
 
-      <div className="flex justify-center my-6">
+      {/* Switcher Toggle pill */}
+      <div className="flex justify-center mb-10">
         <div
           role="tablist"
           aria-label="Choose Passion or Profession"
-          className="relative inline-flex p-1 bg-gray-200 rounded-full shadow-sm"
+          className="relative inline-flex p-1 bg-gray-900/60 border border-white/10 rounded-full shadow-lg"
         >
           {/* Sliding selection pill */}
           <div
             aria-hidden="true"
-            className={`absolute top-1/2 left-0 h-[calc(100%-0.5rem)] w-1/2 -translate-y-1/2 transform rounded-full bg-black transition-all duration-300 motion-reduce:transition-none`}
-            style={{ left: view === "profession" ? "0%" : "50%" }}
+            className="absolute top-1 left-1 h-[calc(100%-8px)] w-[calc(50%-4px)] rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 ease-out shadow-[0_2px_12px_rgba(99,102,241,0.4)]"
+            style={{
+              transform: view === "passion" ? "translateX(100%)" : "translateX(0%)",
+            }}
           />
 
           <button
             role="tab"
             aria-selected={view === "profession"}
             onClick={() => setView("profession")}
-            className={`relative z-10 w-36 md:w-44 text-center px-4 py-2 rounded-full text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${
-              view === "profession" ? "text-white" : "text-black"
+            className={`relative z-10 w-32 sm:w-40 text-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase transition-colors duration-300 focus:outline-none ${
+              view === "profession" ? "text-white" : "text-gray-400 hover:text-gray-200"
             }`}
           >
             Profession
@@ -55,8 +64,8 @@ const PassionAndProfessionToggle = () => {
             role="tab"
             aria-selected={view === "passion"}
             onClick={() => setView("passion")}
-            className={`relative z-10 w-36 md:w-44 text-center px-4 py-2 rounded-full text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 ${
-              view === "passion" ? "text-white" : "text-black"
+            className={`relative z-10 w-32 sm:w-40 text-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase transition-colors duration-300 focus:outline-none ${
+              view === "passion" ? "text-white" : "text-gray-400 hover:text-gray-200"
             }`}
           >
             Passion
@@ -64,13 +73,14 @@ const PassionAndProfessionToggle = () => {
         </div>
       </div>
 
+      {/* Content wrapper */}
       <div
         key={view}
-        className="transition-opacity duration-400 ease-out motion-reduce:transition-none"
+        className="transition-all duration-500 ease-out"
       >
         {view === "passion" ? <Passion /> : <Profession />}
       </div>
-    </>
+    </div>
   );
 };
 

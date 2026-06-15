@@ -1,310 +1,219 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CgArrowTopRight } from "react-icons/cg";
-import { IoMdDocument, IoMdMail } from "react-icons/io";
-import { AiFillHome, AiFillProject } from "react-icons/ai";
+import { IoMdMail } from "react-icons/io";
+import { AiFillProject, AiOutlineFileText } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiSkills } from "react-icons/gi";
-import { MdContacts, MdWork } from "react-icons/md";
+import { MdWork } from "react-icons/md";
 import { FaBiohazard } from "react-icons/fa";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScrollTo = (id) => {
+    setIsOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <>
-      <nav className="top-4 w-11/12 bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] px-2 xl:px-0 mx-auto z-10 shadow-2xl mb-8 rounded-lg backdrop-blur h-[64px] mt-2 border-b-2 border-gray-900 rounded-bl-xl rounded-br-xl ">
-        <div className="mx-auto px-5 xl:px-10">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <Link
-                href="/"
-                className="text-black text-sm xl:text-xl font-bold hover:text-gray-700 flex items-center"
-              >
-                <Image
-                  src="/logo.png"
-                  width={40}
-                  height={40}
-                  alt="Logo"
-                  style={{ width: "auto", height: "auto" }}
-                />
-                <span className="ml-2">• Shalimar&apos;s Portfolio</span>
-              </Link>
+      <nav
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50 rounded-full transition-all duration-300 ${
+          scrolled
+            ? "bg-gray-950/70 border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-lg"
+            : "bg-transparent border-transparent"
+        } border px-4 py-2.5 h-[64px]`}
+      >
+        <div className="flex items-center justify-between h-full mx-auto px-2 sm:px-4">
+          {/* Logo & Name */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 group transition-transform duration-300 active:scale-95"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20 group-hover:border-indigo-400 transition-colors">
+              <Image
+                src="/logo.png"
+                width={32}
+                height={32}
+                alt="Logo"
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
             </div>
+            <span className="text-white font-display text-sm sm:text-base font-bold tracking-tight">
+              Shalimar <span className="text-indigo-400 group-hover:text-teal-400 transition-colors">Mehra</span>
+            </span>
+          </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden xl:block">
-              <div className=" flex items-baseline">
-                <Link
-                  href="/#quick-bio"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("quick-bio")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                >
-                  Quick Bio <CgArrowTopRight className="ml-1" />
-                </Link>
-                <Link
-                  href="/#projects"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("projects")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                >
-                  Projects <CgArrowTopRight className="ml-1" />
-                </Link>
-                <Link
-                  href="/#experience"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("experience")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                >
-                  Experience <CgArrowTopRight className="ml-1" />
-                </Link>
-                <Link
-                  href="/#skills"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("skills")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                >
-                  Skills <CgArrowTopRight className="ml-1" />
-                </Link>
-                <Link
-                  href="/#about"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("about")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center"
-                >
-                  About <CgArrowTopRight className="ml-1" />
-                </Link>
-                <Link
-                  href="/#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .getElementById("contact")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
-                >
-                  Contact Us <IoMdMail className="h-5 w-5" />
-                </Link>
-                {/* <div className="flex justify-center">
-                    <a
-                      href="/resume.pdf"
-                      download="Shalimar-mehra.pdf"
-                      className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 mx-2"
-                    >
-                      Resume
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                        />
-                      </svg>
-                    </a>
-                    </div> */}
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="xl:hidden flex items-center">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-gray-700 transition-colors"
-                aria-label="Menu"
-              >
-                {isOpen ? (
-                  <svg
-                    className="h-6 w-6 transition-transform duration-300 rotate-90"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="h-6 w-6 transition-transform duration-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
-
-            {/* Mobile Menu */}
-            <div
-              className={`absolute top-16 mt-2 left-0 w-full xl:hidden rounded-xl bg-gradient-to-r from-[#e2e2e2] to-[#c9d6ff] shadow-2xl transform transition-all duration-300 ease-in-out ${
-                isOpen
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-2 pointer-events-none"
-              }`}
-              onClick={(e) => setIsOpen(false)}
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-1">
+            <button
+              onClick={() => handleScrollTo("quick-bio")}
+              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5 flex items-center gap-0.5"
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <Link
-                  href="/#quick-bio"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    document
-                      .getElementById("quick-bio")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-center px-2">
-                    <FaBiohazard className="mr-1" /> Quick Bio
-                  </div>
-                  <CgArrowTopRight className="mr-2" />
-                </Link>
-                <Link
-                  href="/#projects"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    document
-                      .getElementById("projects")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-center px-2">
-                    <AiFillProject className="mr-1" /> Projects
-                  </div>
-                  <CgArrowTopRight className="mr-2" />
-                </Link>
-                <Link
-                  href="/#experience"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    document
-                      .getElementById("experience")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-center px-2">
-                    <MdWork className="mr-1" /> Experience
-                  </div>
-                  <CgArrowTopRight className="mr-2" />
-                </Link>
-                <Link
-                  href="/#skills"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    const element = document.getElementById("skills");
-                    if (element) {
-                      element.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                      });
-                    }
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-center px-2">
-                    <GiSkills className="mr-1" /> Skills
-                  </div>
-                  <CgArrowTopRight className="mr-2" />
-                </Link>
-                <Link
-                  href="/#about"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    document
-                      .getElementById("about")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-black font-semibold hover:text-gray-700 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center justify-between"
-                >
-                  <div className="flex items-center px-2">
-                    <BsFillPersonFill className="mr-1" /> About
-                  </div>
-                  <CgArrowTopRight className="mr-2" />
-                </Link>
-                <Link
-                  href="/#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    document
-                      .getElementById("contact")
-                      .scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4 justify-between"
-                >
-                  Contact Us <IoMdMail className="h-5 w-5" />
-                </Link>
-                {/* <Link
-                    href="/resume.pdf" // Update with the actual path to your resume
-                    download="Shalimar-mehra.pdf" // Update with your desired resume file name
-                    className="text-white font-semibold bg-zinc-800 hover:bg-zinc-700 px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base transition-colors flex items-center gap-2 ml-4 justify-between"
-                  >
+              Bio
+            </button>
+            <button
+              onClick={() => handleScrollTo("projects")}
+              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => handleScrollTo("experience")}
+              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
+            >
+              Experience
+            </button>
+            <button
+              onClick={() => handleScrollTo("skills")}
+              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
+            >
+              Skills
+            </button>
+            <button
+              onClick={() => handleScrollTo("about")}
+              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
+            >
+              About
+            </button>
+          </div>
 
-                    Resume 
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                        />
-                      </svg>
-                  </Link> */}
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white text-xs font-semibold px-4 py-2 border border-white/15 rounded-full hover:bg-white/5 transition-all flex items-center gap-1.5"
+            >
+              <AiOutlineFileText className="text-base" /> Resume
+            </a>
+            <button
+              onClick={() => handleScrollTo("contact")}
+              className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-[0_4px_12px_rgba(99,102,241,0.3)] hover:shadow-[0_4px_16px_rgba(99,102,241,0.5)] transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              Get In Touch <IoMdMail className="text-base" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden flex items-center gap-2">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white p-2 border border-white/10 rounded-full hover:bg-white/5 transition-all"
+              aria-label="Resume"
+            >
+              <AiOutlineFileText className="text-lg" />
+            </a>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative w-10 h-10 flex flex-col justify-center items-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle Menu"
+            >
+              <div className="flex flex-col gap-1 w-5">
+                <span
+                  className={`h-[2px] w-full bg-white rounded transition-transform duration-300 ${
+                    isOpen ? "rotate-45 translate-y-[6px]" : ""
+                  }`}
+                />
+                <span
+                  className={`h-[2px] w-full bg-white rounded transition-opacity duration-300 ${
+                    isOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`h-[2px] w-full bg-white rounded transition-transform duration-300 ${
+                    isOpen ? "-rotate-45 -translate-y-[6px]" : ""
+                  }`}
+                />
               </div>
-            </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        <div
+          className={`absolute top-[76px] left-0 w-full overflow-hidden transition-all duration-300 ease-in-out lg:hidden rounded-2xl border border-white/10 bg-gray-950/95 backdrop-blur-2xl shadow-[0_12px_32px_rgba(0,0,0,0.5)] ${
+            isOpen ? "max-h-[380px] opacity-100 py-4 px-3" : "max-h-0 opacity-0 pointer-events-none"
+          }`}
+        >
+          <div className="flex flex-col gap-2">
+            <button
+              onClick={() => handleScrollTo("quick-bio")}
+              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
+            >
+              <span className="flex items-center gap-2">
+                <FaBiohazard className="text-indigo-400" /> Bio
+              </span>
+              <CgArrowTopRight className="text-gray-500" />
+            </button>
+            <button
+              onClick={() => handleScrollTo("projects")}
+              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
+            >
+              <span className="flex items-center gap-2">
+                <AiFillProject className="text-indigo-400" /> Projects
+              </span>
+              <CgArrowTopRight className="text-gray-500" />
+            </button>
+            <button
+              onClick={() => handleScrollTo("experience")}
+              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
+            >
+              <span className="flex items-center gap-2">
+                <MdWork className="text-indigo-400" /> Experience
+              </span>
+              <CgArrowTopRight className="text-gray-500" />
+            </button>
+            <button
+              onClick={() => handleScrollTo("skills")}
+              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
+            >
+              <span className="flex items-center gap-2">
+                <GiSkills className="text-indigo-400" /> Skills
+              </span>
+              <CgArrowTopRight className="text-gray-500" />
+            </button>
+            <button
+              onClick={() => handleScrollTo("about")}
+              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
+            >
+              <span className="flex items-center gap-2">
+                <BsFillPersonFill className="text-indigo-400" /> About
+              </span>
+              <CgArrowTopRight className="text-gray-500" />
+            </button>
+            <button
+              onClick={() => handleScrollTo("contact")}
+              className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-colors"
+            >
+              Contact Us <IoMdMail className="text-lg" />
+            </button>
           </div>
         </div>
       </nav>

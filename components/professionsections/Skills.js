@@ -1,343 +1,169 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { BsThreads, BsTwitterX } from "react-icons/bs";
-import { FaGithub } from "react-icons/fa";
-import { FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
-import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
+import React, { useEffect, useState, useRef } from "react";
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaFigma, FaWordpress } from "react-icons/fa";
+import { SiNextdotjs, SiExpress, SiMysql, SiPostgresql, SiMongodb } from "react-icons/si";
+import { GiSkills } from "react-icons/gi";
 
 const Skills = () => {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("slide-up");
-        }
-      });
-    });
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
-    const section = document.querySelector("#skills");
-    if (section) {
-      observer.observe(section);
+  useEffect(() => {
+    const currentSection = sectionRef.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (currentSection) {
+      observer.observe(currentSection);
     }
 
     return () => {
-      if (section) {
-        observer.unobserve(section);
+      if (currentSection) {
+        observer.unobserve(currentSection);
       }
     };
   }, []);
 
+  const skillGroups = [
+    {
+      title: "Frontend Engineering",
+      skills: [
+        { name: "HTML5 / CSS3", icon: <FaHtml5 className="text-orange-500" /> },
+        { name: "JavaScript (ES6+)", icon: <FaJs className="text-yellow-400" /> },
+        { name: "React.js", icon: <FaReact className="text-cyan-400" /> },
+        { name: "Next.js", icon: <SiNextdotjs className="text-white" /> },
+        { name: "Tailwind CSS", icon: <FaReact className="text-teal-400" /> },
+        { name: "Figma (UI/UX)", icon: <FaFigma className="text-purple-400" /> },
+      ],
+    },
+    {
+      title: "Backend & Systems",
+      skills: [
+        { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
+        { name: "Express.js", icon: <SiExpress className="text-gray-300" /> },
+        { name: "REST APIs", icon: <FaNodeJs className="text-indigo-400" /> },
+        { name: "MySQL / Postgre", icon: <SiMysql className="text-sky-500" /> },
+        { name: "MongoDB", icon: <SiMongodb className="text-emerald-500" /> },
+        { name: "JWT / OAuth", icon: <SiExpress className="text-rose-400" /> },
+      ],
+    },
+    {
+      title: "Tools & Operations",
+      skills: [
+        { name: "Git & GitHub", icon: <FaGitAlt className="text-red-500" /> },
+        { name: "WordPress / Elementor", icon: <FaWordpress className="text-blue-400" /> },
+        { name: "SEO Optimization", icon: <FaFigma className="text-yellow-500" /> },
+        { name: "VS Code / IDEs", icon: <SiNextdotjs className="text-sky-400" /> },
+        { name: "Performance Audits", icon: <FaReact className="text-emerald-400" /> },
+        { name: "Cloud Deployments", icon: <SiExpress className="text-purple-500" /> },
+      ],
+    },
+  ];
+
   return (
-    <>
-      <style jsx global>{`
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(100px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="py-20 relative overflow-hidden"
+    >
+      {/* Background glow orb */}
+      <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-600/5 rounded-full blur-[100px] pointer-events-none" />
 
-        .slide-up {
-          animation: slideUp 1s ease-out forwards;
-        }
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Section Header */}
+        <div className="mb-16 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-semibold text-indigo-300 uppercase tracking-widest mb-3">
+            <GiSkills />
+            <span>Core Competencies</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight">
+            Skills & Technologies
+          </h2>
+          <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-xl">
+            A comprehensive overview of my technical stack, system tools, and development frameworks.
+          </p>
+        </div>
 
-        #skills {
-          opacity: 0;
-          transform: translateY(100px);
-        }
-      `}</style>
+        {/* Skills Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {skillGroups.map((group, groupIdx) => (
+            <div
+              key={group.title}
+              className={`glass-panel p-6 rounded-2xl border border-white/5 transition-all duration-700 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: `${groupIdx * 150}ms` }}
+            >
+              <h3 className="text-base font-bold text-white mb-6 border-b border-white/5 pb-3 font-display">
+                {group.title}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {group.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="flex items-center gap-2.5 p-2 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/10 hover:bg-white/[0.05] transition-all"
+                  >
+                    <div className="text-xl flex-shrink-0">
+                      {skill.icon}
+                    </div>
+                    <span className="text-xs sm:text-sm text-gray-300 font-medium tracking-tight">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
-      <div className="bg-[url('/skillsbg.png')] bg-cover bg-center">
-        <section id="skills" className="py-5">
-          <span className="ml-5 font-Mitr xl:ml-24">
-            .../Skills - Skills & Proficiencies ...
-          </span>
-          <div className="container mx-auto px-4 my-5">
-            <div className="flex flex-row items-start p-2">
-              <Image
-                src="/bullet-point.png"
-                width={16}
-                height={16}
-                alt="bullet point icon"
-                className="sm:mt-1 mr-2"
-              />
-              <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
-    
-                  Showcasing a comprehensive blend of{" "}
-                  <b>front-end and back-end development expertise</b>, my{" "}
-                  <b>skill set</b> is designed to create&nbsp;
-                  <b>dynamic, robust, and user-friendly web solutions</b>. With
-                  proficiency in <b>modern technologies and frameworks</b>, I
-                  excel in building responsive, high-performance applications
-                  that meet diverse needs. I am deeply committed to{" "}
-                  <b>continuous learning</b>
-                  and staying abreast of the latest industry trends, ensuring
-                  that my work is always cutting-edge. By combining technical
-                  acumen with creative problem-solving, I bring innovative ideas
-                  to life, delivering impactful and scalable solutions.
-          
+        {/* Highlight Metrics */}
+        <div className="border-t border-white/5 pt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            
+            {/* Metric 1 */}
+            <div
+              className={`glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/30 transition-all duration-300 group ${
+                isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
+              style={{ transitionDelay: "450ms" }}
+            >
+              <h4 className="text-4xl sm:text-5xl font-black font-display text-white mb-2 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+                03+
+              </h4>
+              <p className="text-xs uppercase tracking-widest font-bold text-gray-400">
+                Years of Experience
               </p>
             </div>
-          </div>
-          <br />
-          <div className="container mt-[-15px] md:mt-[-38px] mx-auto px-4">
-            <div className="flex flex-row items-start p-2">
-              <Image
-                src="/bullet-point.png"
-                width={16}
-                height={16}
-                alt="bullet point icon"
-                className="sm:mt-2 mr-2"
-              />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
-                <b>Frontend Development →</b>
-                <br />
-                <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
-                  <li>Core Technologies: HTML, CSS, JavaScript (ES6+).</li>
-                  <li>Frameworks & Libraries: React.js & Next.js.</li>
-                  <li>
-                    Responsive Design: Mastery in media queries and CSS
-                    frameworks like Bootstrap or Tailwind CSS.
-                  </li>
-                  <li>
-                    Performance Optimization: Efficient use of lazy loading,
-                    asset compression, and caching.
-                  </li>
-                  <li>
-                    UI/UX Design: Proficient in tools like Figma to create
-                    visually appealing, user-friendly interfaces.
-                  </li>
-                  <li>
-                    SEO: Implementation of on-page SEO techniques for better
-                    search engine rankings.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div className="container mt-[-15px] md:mt-[-38px] mx-auto px-4">
-            <div className="flex flex-row items-start p-2">
-              <Image
-                src="/bullet-point.png"
-                width={16}
-                height={16}
-                alt="bullet point icon"
-                className="sm:mt-2 mr-2"
-              />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
-                <b>Backend Development →</b>
-                <br />
-                <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
-                  <li>Programming Languages: Node.js.</li>
-                  <li>Frameworks: Express.js server-side logic.</li>
-                  <li>API Development: Expertise in building RESTful APIs.</li>
-                  <li>Database Management: MySQL, PostgreSQL, MongoDB.</li>
-                  <li>
-                    Authentication: Secure user authentication systems (OAuth,
-                    JWT).
-                  </li>
-                  <li>
-                    Performance: Backend optimization for faster response times.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div className="container mt-[-15px] md:mt-[-38px] mx-auto px-4">
-            <div className="flex flex-row items-start p-2">
-              <Image
-                src="/bullet-point.png"
-                width={16}
-                height={16}
-                alt="bullet point icon"
-                className="sm:mt-2 mr-2"
-              />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
-                <b>Other Tools & Technologies →</b>
-                <br />
-                <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
-                  <li>
-                    Version Control: Mastery of Git and GitHub for version
-                    control and collaborative development.
-                  </li>
-                  <li>
-                    Build Tools: Skilled in using Webpack and Gulp for
-                    automation and optimization.
-                  </li>
-                  <li>
-                    Testing & Debugging: Experience with Jest and Mocha for unit
-                    testing and debugging.
-                  </li>
-                  <li>
-                    Content Management Systems (CMS): Proficient in WordPress
-                    for building and managing websites with dynamic content.
-                  </li>
-                  <li>
-                    Development Environments:
-                    <br />
-                    <ul>
-                      <li>
-                        • Visual Studio Code: Expertise in this versatile,
-                        powerful code editor.
-                      </li>
-                      <li>
-                        • Sublime Text: Proficiency in using this lightweight
-                        and efficient text editor.
-                      </li>
-                      <li>
-                        • IntelliJ IDEA: Skilled in using this integrated
-                        development environment for Java and other languages.
-                      </li>
-                      <li>
-                        • PyCharm: Proficient in using this powerful IDE for
-                        Python development.
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div className="container mt-[-15px] md:mt-[-38px] mx-auto px-4">
-            <div className="flex flex-row items-start p-2">
-              <Image
-                src="/bullet-point.png"
-                width={16}
-                height={16}
-                alt="bullet point icon"
-                className="sm:mt-2 mr-2"
-              />
-              <div className="text-gray-700 mb-4 text-justify text-sm sm:text-3xl max-w-full font-sans">
-                <b>Soft Skills →</b>
-                <br />
-                <br />
-                <ul className="list-disc pl-5 space-y-2 text-sm font-bold">
-                  <li>
-                    Problem Solving: Analyze challenges and implement effective,
-                    innovative solutions.
-                  </li>
-                  <li>
-                    Communication: Clearly convey technical concepts to diverse
-                    audiences.
-                  </li>
-                  <li>
-                    Team Collaboration: Work seamlessly with designers,
-                    developers, and stakeholders.
-                  </li>
-                  <li>
-                    Adaptability: Stay updated with the latest technologies and
-                    industry trends.
-                  </li>
-                  <li>
-                    Time Management: Prioritize and manage multiple tasks to
-                    meet deadlines.
-                  </li>
-                  <li>
-                    Attention to Detail: Ensure consistency and quality in all
-                    aspects of development.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row justify-center items-center text-center p-4 ml-6">
-            <div className="stats-block w-full sm:w-2/6 flex flex-col justify-center items-center">
-              <div className="flex items-center text-left">
-                <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
-                  03+
-                </h3>
-                <p className="text-sm md:text-xl font-sans">
-                  YEARS OF <br />
-                  <b>EXPERIENCE</b>
-                </p>
-              </div>
-            </div>
-            <div className="stats-block w-full sm:w-1/3 flex flex-col justify-center items-center">
-              <div className="flex items-center text-left">
-                <h3 className="font-Pixelify font-black text-5xl md:text-7xl">
-                  4+
-                </h3>
-                <p className="text-xs md:text-xl font-sans">
-                  COMPLETED WORKS<br />
-                  <b className="uppercase text-sm"> professionally</b>
-                </p>
-              </div>
-            </div>
-          </div>
 
-          <div className="flex flex-col items-center justify-center w-full mt-6 px-10">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 w-full max-w-screen-lg mx-auto">
-              <Link
-                href="https://github.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub className="mr-2" />
-                <span>GitHub</span>
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/shalimarmehra/"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <IoLogoLinkedin className="mr-2" />
-                <span>LinkedIn</span>
-              </Link>
-              <Link
-                href="https://instagram.com/shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaSquareInstagram className="mr-2" />
-                <span>Instagram</span>
-              </Link>
-              <Link
-                href="https://youtube.com/@shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <IoLogoYoutube className="mr-2" />
-                <span>YouTube</span>
-              </Link>
-              <Link
-                href="https://x.com/@shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <BsTwitterX className="mr-2" />
-                <span>X</span>
-              </Link>
-              <Link
-                href="https://threads.com/@shalimarmehra"
-                className="flex items-center px-3 py-2 sm:px-4 rounded-full border-2 border-black hover:bg-gray-900 hover:text-white transition-colors font-bold text-xs sm:text-sm justify-center w-full"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <BsThreads className="mr-2" />
-                <span>Threads</span>
-              </Link>
+            {/* Metric 2 */}
+            <div
+              className={`glass-panel p-6 rounded-2xl text-center hover:border-indigo-500/30 transition-all duration-300 group ${
+                isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
+              style={{ transitionDelay: "600ms" }}
+            >
+              <h4 className="text-4xl sm:text-5xl font-black font-display text-white mb-2 bg-gradient-to-r from-teal-400 to-indigo-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+                10+
+              </h4>
+              <p className="text-xs uppercase tracking-widest font-bold text-gray-400">
+                Completed Deliveries
+              </p>
             </div>
+
           </div>
-        </section>
+        </div>
+
       </div>
-    </>
+    </section>
   );
 };
 

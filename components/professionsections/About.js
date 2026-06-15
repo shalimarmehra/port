@@ -1,6 +1,8 @@
 "use client";
-import Image from "next/image";
+import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { FaGraduationCap, FaCertificate, FaExternalLinkAlt, FaBookOpen } from "react-icons/fa";
+import { BsYoutube, BsBriefcaseFill } from "react-icons/bs";
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -8,465 +10,268 @@ const About = () => {
     threshold: 0.1,
   });
 
+  const [activeTab, setActiveTab] = useState("story");
+
   const slideUpAnimation = {
-    transform: inView ? "translateY(0)" : "translateY(100px)",
+    transform: inView ? "translateY(0)" : "translateY(40px)",
     opacity: inView ? 1 : 0,
-    transition: "all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+    transition: "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
   };
 
+  const academics = [
+    {
+      degree: "BCA (Bachelor of Computer Applications)",
+      school: "Indira Gandhi National Open University (IGNOU)",
+      period: "June 2019 - June 2022",
+      details: "Core Computing: Problem Solving, Programming (C++, Java, PHP), Systems Analysis, Database Management, Computer Networks, and Software Engineering.",
+    },
+    {
+      degree: "Master Diploma in Computer Engineering",
+      school: "Indian Institute of Computer Sciences",
+      period: "Feb 2019 - Feb 2022",
+      link: "https://drive.google.com/file/d/1gGsIUvuMkPGVkzxDRAnze4EzM4UyzGC6/view",
+      details: "IT Tools, Web Designing & Publishing, C++ OOP, OS Fundamentals, Database Technologies, and custom PHP Web Development.",
+    },
+    {
+      degree: "Class 12th (CBSE Board)",
+      school: "Central Board of Secondary Education",
+      period: "April 2018 - March 2019",
+      details: "Commerce Specialization: Accountancy, Business Studies, Economics, Hindi, English, and Physical Education.",
+    },
+  ];
+
+  const certifications = [
+    {
+      title: "React JS - Complete Guide for Frontend",
+      issuer: "Udemy",
+      date: "Oct 2023",
+      credId: "UC-4e91caf7-c484-4e33-b412-db5185f9bfc1",
+      link: "https://www.udemy.com/certificate/UC-4e91caf7-c484-4e33-b412-db5185f9bfc1/",
+      details: "Front-end creation using React.js components, state management, hooks, ES6 standards, and responsive UI optimization.",
+    },
+    {
+      title: "MySQL Database Development Mastery",
+      issuer: "Udemy",
+      date: "Feb 2023",
+      credId: "UC-546b187e-c260-4d7a-8e07-3c5306f583cc",
+      link: "https://www.udemy.com/certificate/UC-546b187e-c260-4d7a-8e07-3c5306f583cc/",
+      details: "Relational database modeling, query writing, schema engineering, aggregates, tables relationships, and data exports.",
+    },
+    {
+      title: "Developer Virtual Experience Program",
+      issuer: "Accenture (via Forage)",
+      date: "Feb 2022",
+      credId: "XspMgC4Fw5zfHkvgy",
+      link: "https://drive.google.com/file/d/1yzrxQuVdv5Znb_Fp5R65fRlqBn2BLAdq/view",
+      details: "Technical requirement specification, cloud architecture design, code review, debugging algorithms, and UAT operations.",
+    },
+    {
+      title: "Tata Consultancy Services (TCS iON Career Edge)",
+      issuer: "Tata Consultancy Services",
+      date: "Feb 2021",
+      credId: "119854-20189486-1016",
+      link: "https://drive.google.com/file/d/1JwCmlhpVbKettWO4t0oIvG9hy0dEZ5F4/view",
+      details: "Business etiquette, soft skills, telephone etiquette, presentation skills, accounting fundamentals, and IT fundamentals.",
+    },
+  ];
+
   return (
-    <>
-      <div className="bg-[url('/about-bg.png')] bg-cover bg-center">
-        <section id="about" className="py-5" ref={ref} style={slideUpAnimation}>
-          <span className="ml-5 font-Mitr xl:ml-24">
-            .../About me - Who am i ...
-          </span>
+    <section id="about" className="py-20 relative" ref={ref} style={slideUpAnimation}>
+      {/* Background glow circle */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
 
-          {/* Rest of the code remains unchanged */}
-          <div className="container mx-auto px-4 my-5">
-            <div className="flex flex-row items-start p-2">
-              <Image
-                src="/bullet-point.png"
-                width={16}
-                height={16}
-                alt="bullet point icon"
-                className="sm:mt-1 mr-2"
-              />
-              <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
-                Hi, I&apos;m <b>Shalimar Mehra</b>. I hold a Bachelor&apos;s
-                degree in Computer Applications with a specialization in
-                Computing and Software Systems from{" "}
-                <b>IGNOU (Indira Gandhi National Open University)</b>.
-                Throughout my educational journey, I have undertaken various
-                <b> courses and certifications</b> to continually enhance my
-                skills in the{" "}
-                <b>ever-evolving fields of technology and design</b>. My
-                academic background has provided me with a strong foundation in{" "}
-                <b>
-                  software engineering, web development, and UI/UX design,
-                  enabling me to develop a versatile skill set that bridges the
-                  gap between technical proficiency and creative innovation
-                </b>
-                .
-              </p>
-            </div>
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="mb-12 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-semibold text-indigo-300 uppercase tracking-widest mb-3">
+            <FaBookOpen />
+            <span>Profile Details</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight">
+            About Me
+          </h2>
+          <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-xl">
+            My background, academic accomplishments, and credentials that drive my engineering philosophy.
+          </p>
+        </div>
 
-            <br />
-            <div className="mt-[-15px] md:mt-[-38px]">
-              <div className="flex flex-row items-start p-2">
-                <Image
-                  src="/bullet-point.png"
-                  width={16}
-                  height={16}
-                  alt="bullet point icon"
-                  className="sm:mt-1 mr-2"
-                />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
-                  <b>Professional Experience →</b>
-                  <br />
-                  <br />
-                  In addition to my academic endeavors, I have ventured into the
-                  professional world by starting my own business offering web
-                  development services. This entrepreneurial journey has allowed
-                  me to apply my theoretical knowledge in real-world scenarios,
-                  delivering customized web solutions that cater to the specific
-                  needs of my clients. My business experience has equipped me
-                  with valuable insights into the challenges and opportunities
-                  within the tech industry, further fueling my passion for
-                  continuous learning and improvement.
+        {/* Tab Switcher for Mobile */}
+        <div className="flex md:hidden justify-center bg-gray-900/60 p-1.5 rounded-full border border-white/5 mb-8">
+          <button
+            onClick={() => setActiveTab("story")}
+            className={`flex-1 text-center py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors ${
+              activeTab === "story" ? "bg-indigo-600 text-white" : "text-gray-400"
+            }`}
+          >
+            My Story
+          </button>
+          <button
+            onClick={() => setActiveTab("credentials")}
+            className={`flex-1 text-center py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors ${
+              activeTab === "credentials" ? "bg-indigo-600 text-white" : "text-gray-400"
+            }`}
+          >
+            Credentials
+          </button>
+        </div>
+
+        {/* Layout Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+          
+          {/* Column 1: Narrative Story (Visible on desktop or when active tab is story) */}
+          <div className={`md:col-span-6 space-y-6 ${activeTab === "story" ? "block" : "hidden md:block"}`}>
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-white/5">
+              
+              {/* Bio Block */}
+              <div>
+                <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 font-display">
+                  <span className="w-1.5 h-6 rounded bg-indigo-500" />
+                  Who I Am
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify">
+                  Hello, I&apos;m <strong>Shalimar Mehra</strong>. I graduated with a Bachelor&apos;s degree in Computer Applications from <strong>IGNOU</strong>. My focus has always been bridging the gap between clean code architecture and elegant visual interface designs. Over the years, I&apos;ve completed advanced certifications in modern web frameworks and systems engineering to build a robust full-stack skill pipeline.
                 </p>
               </div>
-            </div>
-            <br />
-            <div className="mt-[-15px] md:mt-[-38px]">
-              <div className="flex flex-row items-start p-2">
-                <Image
-                  src="/bullet-point.png"
-                  width={16}
-                  height={16}
-                  alt="bullet point icon"
-                  className="sm:mt-1 mr-2"
-                />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
-                  <b>Passion for Innovation →</b>
-                  <br />
-                  <br />I am deeply passionate about exploring{" "}
-                  <b>new trends and innovations in the technology sector</b>. My
-                  curiosity drives me to stay updated with the latest
-                  developments, ensuring that I remain at the forefront of
-                  industry advancements. Whether it&apos;s experimenting with
-                  emerging technologies or integrating cutting-edge design
-                  principles, I am always eager to push the boundaries of
-                  what&apos;s possible.
+
+              {/* Business Block */}
+              <div>
+                <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 font-display">
+                  <span className="w-1.5 h-6 rounded bg-purple-500" />
+                  Professional Ventures
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify">
+                  Driven by an entrepreneurial spirit, I founded <strong>Dev Dossier</strong> to deliver web design, full-stack engineering, and digital support services. Running my own operations has taught me the real-world value of clear client communications, project timeline management, and robust web performance systems.
                 </p>
               </div>
-            </div>
-            <br />
-            <div className="mt-[-15px] md:mt-[-38px]">
-              <div className="flex flex-row items-start p-2">
-                <Image
-                  src="/bullet-point.png"
-                  width={16}
-                  height={16}
-                  alt="bullet point icon"
-                  className="sm:mt-1 mr-2"
-                />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
-                  <b>Freelancing and Collaborations →</b>
-                  <br />
-                  <br />
-                  Beyond my entrepreneurial ventures, I actively seek
-                  opportunities for <b>freelancing and collaborations</b>. I
-                  believe that working with diverse teams and projects not only
-                  broadens my perspective but also allows me to contribute my
-                  unique skill set to a variety of creative and technical
-                  endeavors.{" "}
-                  <b>
-                    My goal is to build meaningful connections and work on
-                    projects that make a positive impact
-                  </b>
-                  .
+
+              {/* YouTube / Sharing Block */}
+              <div>
+                <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 font-display">
+                  <span className="w-1.5 h-6 rounded bg-rose-500" />
+                  Knowledge Sharing
+                </h3>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify">
+                  I believe teaching is the best way to master a craft. I run two active YouTube channels:
                 </p>
+                <div className="mt-4 space-y-3">
+                  <a
+                    href="https://youtube.com/@shalimarmehra"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-rose-500/30 hover:bg-rose-500/5 transition-all group"
+                  >
+                    <BsYoutube className="text-2xl text-rose-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-bold text-white">Shalimar Mehra (Personal Channel)</h4>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Vlogs, event highlights, and tech community insights.</p>
+                    </div>
+                  </a>
+                  <a
+                    href="https://youtube.com/@shalimarmehra" /* Dev Dossier link placeholder */
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-indigo-500/30 hover:bg-indigo-500/5 transition-all group"
+                  >
+                    <BsYoutube className="text-2xl text-rose-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                    <div>
+                      <h4 className="text-xs sm:text-sm font-bold text-white">Dev Dossier (Business Channel)</h4>
+                      <p className="text-[11px] text-gray-500 mt-0.5">Coding tutorials, framework reviews, and digital system walkthroughs.</p>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </div>
-            <br />
-            <div className="mt-[-15px] md:mt-[-38px]">
-              <div className="flex flex-row items-start p-2">
-                <Image
-                  src="/bullet-point.png"
-                  width={16}
-                  height={16}
-                  alt="bullet point icon"
-                  className="sm:mt-1 mr-2"
-                />
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans">
-                  <b>Sharing Knowledge →</b>
-                  <br />
-                  <br />
-                  As a proponent of continuous learning and knowledge sharing, I
-                  maintain an active and vibrant presence on my{" "}
-                  <b>YouTube channels</b>.
-                  <br />
-                  <br />
-                  Dev Dossier: My business YouTube channel, Dev Dossier, is a
-                  hub for valuable insights and practical knowledge about web
-                  development. Here, I cover everything from fundamental
-                  concepts to advanced techniques. In addition to web
-                  development tutorials, I also highlight interesting websites,
-                  review essential tools, and share resources and emerging
-                  technologies related to web development. My goal is to inspire
-                  and educate others, offering a well-rounded perspective on the
-                  latest industry trends and best practices.
-                  <br />
-                  <br />
-                  Shalimar Mehra: On my personal YouTube channel, Shalimar
-                  Mehra, I share occasional vlogs and events, offering a glimpse
-                  into my personal life and experiences. This channel allows me
-                  to connect with my audience on a more personal level, sharing
-                  my journey, my thoughts, and the moments that matter to me.
-                  It&apos;s a space where I can express myself freely and share
-                  stories that resonate with viewers.
-                  <br />
-                  <br />
-                  Both channels serve as platforms to foster a community of
-                  like-minded individuals who are equally passionate about
-                  technology and innovation. By engaging with my audience
-                  through insightful discussions and interactive content, I
-                  strive to create an enriching learning experience that
-                  empowers viewers to enhance their skills and stay ahead in the
-                  tech world. My content is designed not only to educate but
-                  also to motivate and inspire my viewers to explore new ideas
-                  and push their boundaries.
-                </p>
-              </div>
+
             </div>
           </div>
-          <div className="xl:bg-[url('/education-bg.png')] bg-[url('/education-bgm.png')] bg-cover bg-center">
-            <section id="education">
-              {/* <div className="flex items-center md:py-5 xl:py-0 sm:pl-[7rem] xl:pl-[25rem] justify-end sm:justify-start">
-                    <h2 className="text-3xl sm:text-4xl lg:text-8xl font-bold mr-20 font-italianno opacity-25  sm:w-auto">
-                      <i>Degrees, Courses & Certifications</i>
-                    </h2>
-                  </div> */}
-              <div className="container mx-auto px-4 my-5">
-                <div className="flex flex-row items-baseline p-2">
-                  <Image
-                    src="/bullet-point.png"
-                    width={16}
-                    height={16}
-                    alt="bullet point icon"
-                    className="mr-2"
-                  />
-                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
-                    <b className="font-bold">Academic Achievements →</b>
-                  </p>
-                </div>
 
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – June 2019 - June 2022
-                  </b>
-                  <b className="text-md md:text-2xl">
-                    BCA (Bachelor of Computer Application) - Indira Gandhi
-                    National Open University.
-                  </b>
-                  <br />
-                  <br />
-                  Core Computing: Problem Solving and Programming, Systems
-                  Analysis and Design, Database Management • Programming
-                  Languages: C++, Java, Web Programming • Web & Networks:
-                  Internet Concepts, Computer Networks, Network Programming •
-                  Additional Skills: Business Communication, Software
-                  Engineering, Project Work.
-                </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – April 2018 - March 2019
-                  </b>
-                  <b className="text-md md:text-2xl">
-                    Class 12th - Central Board of Secondary Education.
-                  </b>
-                  <br />
-                  <br />
-                  Commerce - Hindi • English • Accountancy • Economics •
-                  Business Studies • Physical Education.
-                </p>
+          {/* Column 2: Credentials & Education (Visible on desktop or when active tab is credentials) */}
+          <div className={`md:col-span-6 space-y-8 ${activeTab === "credentials" ? "block" : "hidden md:block"}`}>
+            
+            {/* Academics Section */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold text-white flex items-center gap-2 font-display mb-4">
+                <FaGraduationCap className="text-indigo-400 text-xl" />
+                Education Achievements
+              </h3>
+              
+              <div className="space-y-4">
+                {academics.map((acad) => (
+                  <div
+                    key={acad.degree}
+                    className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all"
+                  >
+                    <div className="flex justify-between items-start gap-2 mb-2">
+                      <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                        {acad.degree}
+                      </h4>
+                      <span className="text-[10px] font-semibold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/15 flex-shrink-0">
+                        {acad.period}
+                      </span>
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-gray-400 font-medium mb-2">{acad.school}</p>
+                    <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed text-justify">{acad.details}</p>
+                    {acad.link && (
+                      <a
+                        href={acad.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-[10px] font-bold text-indigo-400 hover:text-indigo-300 mt-3"
+                      >
+                        View Diploma <FaExternalLinkAlt className="text-[8px]" />
+                      </a>
+                    )}
+                  </div>
+                ))}
               </div>
-              <div className="container mx-auto px-4">
-                <div className="flex flex-row items-baseline p-2">
-                  <Image
-                    src="/bullet-point.png"
-                    width={16}
-                    height={16}
-                    alt="bullet point icon"
-                    className="mr-2"
-                  />
-                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
-                    <b>Courses Achievements →</b>
-                  </p>
-                </div>
+            </div>
 
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – Feb 2019 - Feb 2022
-                  </b>
-                  <b className="flex text-md md:text-2xl items-center">
-                    <a
-                      href="https://drive.google.com/file/d/1gGsIUvuMkPGVkzxDRAnze4EzM4UyzGC6/view"
-                      target="_blank"
-                      className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                    >
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 sm:hidden"
-                      />
-                      Master Diploma in Computer Engineering - Indian Institute
-                      of Computer Sciences.
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 hidden sm:block"
-                      />
-                    </a>
-                  </b>
-                  <br />
-                  IT Tools & Network Basics • Web Designing & Publishing • C++
-                  Programming & Problem Solving • Data Structures with OOP •
-                  Computer Organization & OS • Database Technologies • Web
-                  Development with PHP
-                </p>
-              </div>
-              <div className="container mx-auto px-4">
-                <div className="flex flex-row items-baseline p-2">
-                  <Image
-                    src="/bullet-point.png"
-                    width={16}
-                    height={16}
-                    alt="bullet point icon"
-                    className="mr-2"
-                  />
-                  <p className="text-gray-700 mb-4 text-justify text-xl sm:text-3xl max-w-full font-sans">
-                    <b>Certifications Achievements →</b>
-                  </p>
-                </div>
+            {/* Certifications Section */}
+            <div className="space-y-4 pt-4">
+              <h3 className="text-lg font-bold text-white flex items-center gap-2 font-display mb-4">
+                <FaCertificate className="text-purple-400 text-xl" />
+                Certifications
+              </h3>
 
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – Oct 2023
-                  </b>
-                  <b className="text-md md:text-2xl flex items-center">
+              <div className="space-y-4">
+                {certifications.map((cert) => (
+                  <div
+                    key={cert.title}
+                    className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all"
+                  >
+                    <div className="flex justify-between items-start gap-2 mb-2">
+                      <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                        {cert.title}
+                      </h4>
+                      <span className="text-[10px] font-semibold text-purple-300 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/15 flex-shrink-0">
+                        {cert.date}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 text-[10px] text-gray-400 mb-2.5">
+                      <span>{cert.issuer}</span>
+                      <span>•</span>
+                      <span>ID: <strong className="text-gray-300 font-semibold">{cert.credId}</strong></span>
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed text-justify">{cert.details}</p>
                     <a
-                      href="https://www.udemy.com/certificate/UC-4e91caf7-c484-4e33-b412-db5185f9bfc1/"
+                      href={cert.link}
                       target="_blank"
-                      className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[10px] font-bold text-indigo-400 hover:text-indigo-300 mt-3"
                     >
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 sm:hidden"
-                      />
-                      React JS- Complete Guide for Frontend Web Development -
-                      Udemy.
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 hidden sm:block"
-                      />
+                      Verify Credential <FaExternalLinkAlt className="text-[8px]" />
                     </a>
-                  </b>
-                  <br />
-                  Crede.. ID :{" "}
-                  <span className="font-bold">
-                    UC-4e91caf7-c484-4e33-b412-db5185f9bfc1
-                  </span>
-                  <br />
-                  Elevate your front-end development skills with this
-                  comprehensive course. Master the creation of basic web pages
-                  using HTML5 and bring them to life with CSS3 styling and
-                  animations. Advance your JavaScript expertise from fundamental
-                  to advanced levels, including ES6. Develop responsive and
-                  interactive web pages using JavaScript and jQuery, and create
-                  user-friendly, visually stunning, high-performance websites
-                  with React JS. Transform into an expert front-end developer
-                  equipped with cutting-edge skills.
-                </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – Feb 2023
-                  </b>
-                  <b className="text-md md:text-2xl flex items-center">
-                    <a
-                      href="https://www.udemy.com/certificate/UC-546b187e-c260-4d7a-8e07-3c5306f583cc/"
-                      target="_blank"
-                      className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                    >
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 sm:hidden"
-                      />
-                      MySQL Database Development Mastery - Udemy.
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 hidden sm:block"
-                      />
-                    </a>
-                  </b>
-                  <br />
-                  Crede.. ID :{" "}
-                  <span className="font-bold">
-                    UC-546b187e-c260-4d7a-8e07-3c5306f583cc
-                  </span>
-                  <br />
-                  Master the essentials of MySQL with hands-on experience. Learn
-                  to install MySQL Server and MySQL Workbench, establish
-                  connections, and create robust databases. Develop expertise in
-                  reverse engineering data models and forward engineering them
-                  into efficient databases. Enhance your skills by creating
-                  tables, running complex queries, and utilizing MySQL Workbench
-                  for day-to-day operations. Build and manage relationships,
-                  perform swift calculations with aggregate functions, and
-                  seamlessly export data to Excel. Gain practical insights and
-                  apply SQL effectively to solve real-world problems.
-                </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – Feb 2022
-                  </b>
-                  <b className="text-md md:text-2xl flex items-center">
-                    <a
-                      href="https://drive.google.com/file/d/1yzrxQuVdv5Znb_Fp5R65fRlqBn2BLAdq/view"
-                      target="_blank"
-                      className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                    >
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 sm:hidden"
-                      />
-                      Developer Program - Accenture by Forage.
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 hidden sm:block"
-                      />
-                    </a>
-                  </b>
-                  <br />
-                  Credential ID :{" "}
-                  <span className="font-bold">XspMgC4Fw5zfHkvgy</span>
-                  <br />
-                  Define technical requirements • Design changes to existing
-                  architecture • Scale on-premise systems to the cloud • Read
-                  and understand code • Attention to detail • Debugging
-                  algorithms • Unit testing • User Acceptance Testing (UAT) •
-                  Security maturity assessment • IAM policies and permissions •
-                  Secure the Software Development Lifecycle (SDLC) • Shape the
-                  problem • Data and privacy
-                </p>
-                <p className="text-gray-700 mb-4 text-justify text-sm sm:text-base max-w-full font-sans ml-7">
-                  <b className="text-sm md:text-xl font-MOD20 block">
-                    – Feb 2021
-                  </b>
-                  <b className="text-md md:text-2xl flex items-center">
-                    <a
-                      href="https://drive.google.com/file/d/1JwCmlhpVbKettWO4t0oIvG9hy0dEZ5F4/view"
-                      target="_blank"
-                      className="text-md md:text-2xl items-center flex hover:text-black hover:underline hover:font-bold"
-                    >
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 sm:hidden"
-                      />
-                      TCS iON Career Edge - Tata Consultancy Services.
-                      <Image
-                        src="/link.gif"
-                        alt="link"
-                        width={30}
-                        height={30}
-                        className="mr-2 hidden sm:block"
-                      />
-                    </a>
-                  </b>
-                  <br />
-                  Credential ID :{" "}
-                  <span className="font-bold">119854-20189486-1016</span>
-                  <br />
-                  Master Communication Skills • Excel in Presentation Skills •
-                  Enhance Soft Skills • Follow a Career Guidance Framework •
-                  Perfect Resume Writing • Sharpen Group Discussion Skills • Ace
-                  Interview Skills • Learn Business Etiquette • Write Effective
-                  Emails • Improve Telephone Etiquette • Grasp Accounting
-                  Fundamentals • Build IT Foundational Skills • Get an Overview
-                  of Artificial Intelligence
-                </p>
+                  </div>
+                ))}
               </div>
-            </section>
+            </div>
+
           </div>
-        </section>
+
+        </div>
+
       </div>
-    </>
+    </section>
   );
 };
 
