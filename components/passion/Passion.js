@@ -73,7 +73,7 @@ const Passion = () => {
   const filteredCards = activeFilter === "all" ? cards : cards.filter(card => card.category === activeFilter);
 
   return (
-    <div className="relative py-12 max-w-6xl mx-auto px-6">
+    <div className="relative pt-4 pb-12 max-w-6xl mx-auto px-6">
 
       {/* Filter Buttons */}
       <div className="flex flex-wrap justify-center gap-2 mb-12">

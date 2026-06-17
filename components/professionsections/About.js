@@ -76,9 +76,9 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-cream relative overflow-hidden" ref={ref} style={slideUpAnimation}>
+    <section id="about" className="py-24 bg-transparent relative overflow-hidden" ref={ref} style={slideUpAnimation}>
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-[#F0ECE6] pointer-events-none select-none z-0">
+      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
         05
       </div>
 

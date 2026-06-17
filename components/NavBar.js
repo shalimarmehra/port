@@ -25,7 +25,14 @@ const NavBar = () => {
     setIsOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const navHeight = 72;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -40,11 +47,7 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 h-[72px] ${
-          scrolled
-            ? "bg-white/80 backdrop-blur-md border-b border-warm-gray-200 shadow-sm"
-            : "bg-cream"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 h-[72px] bg-white/95 backdrop-blur-md border-b border-warm-gray-200 shadow-sm`}
       >
         <div className="flex items-center justify-between h-full max-w-7xl mx-auto px-6 sm:px-8">
           {/* Logo & Name */}
@@ -56,14 +59,8 @@ const NavBar = () => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <div className="relative w-9 h-9 flex items-center justify-center rounded-full overflow-hidden border border-warm-gray-200 bg-ink group-hover:border-crimson transition-colors duration-300">
-              <Image
-                src="/logo.png"
-                width={28}
-                height={28}
-                alt="Logo"
-                className="object-contain group-hover:scale-110 transition-transform duration-500"
-              />
+            <div className="relative w-10 h-10 flex items-center justify-center rounded-lg bg-ink text-white font-serif font-bold text-lg shadow-sm group-hover:bg-crimson transition-colors duration-300">
+              SM.
             </div>
             <span className="font-serif text-ink text-lg font-bold tracking-tight">
               Shalimar{" "}

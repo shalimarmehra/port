@@ -83,9 +83,9 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className="py-24 bg-cream relative overflow-hidden">
+    <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-[#F0ECE6] pointer-events-none select-none z-0">
+      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
         02
       </div>
 

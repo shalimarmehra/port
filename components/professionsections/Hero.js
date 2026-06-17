@@ -70,10 +70,10 @@ const Hero = () => {
   return (
     <section
       id="quick-bio"
-      className="relative min-h-screen bg-cream overflow-hidden pt-24 pb-20"
+      className="relative min-h-screen bg-transparent overflow-hidden pt-8 pb-20"
     >
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-[#F0ECE6] pointer-events-none select-none z-0">
+      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
         01
       </div>
 

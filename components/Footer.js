@@ -138,8 +138,8 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-warm-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center relative rounded-full overflow-hidden border border-warm-gray-200 bg-ink">
-              <Image src="/logo.png" alt="Logo" width={24} height={24} className="object-contain" />
+            <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-ink text-white font-serif font-bold text-sm shadow-sm">
+              SM.
             </div>
             <p className="text-xs font-semibold text-gray-500">
               &copy; {currentYear} Shalimar Mehra. All rights reserved.

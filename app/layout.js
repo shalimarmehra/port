@@ -36,8 +36,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cream relative`}
       >
+        <div 
+          className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.05]"
+          style={{ backgroundImage: 'url("/bg-texture.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+        />
         <ScrollProgress />
         <main>{children}</main>
         <Analytics />

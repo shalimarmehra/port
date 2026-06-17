@@ -21,24 +21,17 @@ const PassionAndProfessionToggle = () => {
 
   return (
     <>
-      {/* Toggle UI */}
-      <div className="max-w-6xl mx-auto px-6 mt-16 mb-12 flex flex-col items-center justify-center text-center">
+      {/* Sleek Journey Header Toggle */}
+      <div className="flex flex-col items-center justify-center pt-16 pb-4 relative z-10">
+        <h2 className="text-xs font-bold text-crimson uppercase tracking-[0.2em] mb-6">
+          Select Your Journey
+        </h2>
         
-        {/* Title Block */}
-        <div className="mb-6">
-          <p className="text-xs font-semibold text-crimson tracking-widest uppercase mb-2">
-            Explore my world
-          </p>
-          <h2 className="font-serif text-3xl font-bold text-ink">
-            {viewState === "profession" ? "Professional Engineering" : "Creative Passions"}
-          </h2>
-        </div>
-
         {/* The Toggle Pill */}
-        <div className="relative flex items-center bg-white border border-warm-gray-200 p-1.5 rounded-full shadow-sm max-w-[320px] w-full">
+        <div className="relative flex items-center bg-white/90 backdrop-blur-md border border-warm-gray-200 p-1.5 rounded-full shadow-sm w-[280px]">
           {/* Sliding indicator */}
           <div
-            className="absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-crimson rounded-full transition-transform duration-300 ease-out shadow-sm"
+            className="absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-ink rounded-full transition-transform duration-300 ease-out shadow-sm"
             style={{
               transform: viewState === "profession" ? "translateX(0)" : "translateX(100%)",
             }}
@@ -46,7 +39,7 @@ const PassionAndProfessionToggle = () => {
 
           <button
             onClick={() => toggleView("profession")}
-            className={`relative z-10 flex-1 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors duration-300 rounded-full ${
+            className={`relative z-10 flex-1 py-2 text-[11px] font-bold uppercase tracking-widest transition-colors duration-300 rounded-full ${
               viewState === "profession" ? "text-white" : "text-gray-500 hover:text-ink"
             }`}
           >
@@ -55,14 +48,13 @@ const PassionAndProfessionToggle = () => {
           
           <button
             onClick={() => toggleView("passion")}
-            className={`relative z-10 flex-1 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors duration-300 rounded-full ${
+            className={`relative z-10 flex-1 py-2 text-[11px] font-bold uppercase tracking-widest transition-colors duration-300 rounded-full ${
               viewState === "passion" ? "text-white" : "text-gray-500 hover:text-ink"
             }`}
           >
             Passion
           </button>
         </div>
-        
       </div>
 
       {/* Render the selected component */}
