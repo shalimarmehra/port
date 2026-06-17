@@ -76,32 +76,30 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 relative" ref={ref} style={slideUpAnimation}>
-      {/* Background glow circle */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="about" className="py-24 bg-cream relative overflow-hidden" ref={ref} style={slideUpAnimation}>
+      {/* Large section number */}
+      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-[#F0ECE6] pointer-events-none select-none z-0">
+        05
+      </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="mb-12 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-semibold text-indigo-300 uppercase tracking-widest mb-3">
-            <FaBookOpen />
-            <span>Profile Details</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
             About Me
           </h2>
-          <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-xl">
+          <p className="text-gray-500 font-sans mt-3 text-sm sm:text-base max-w-xl">
             My background, academic accomplishments, and credentials that drive my engineering philosophy.
           </p>
         </div>
 
         {/* Tab Switcher for Mobile */}
-        <div className="flex md:hidden justify-center bg-gray-900/60 p-1.5 rounded-full border border-white/5 mb-8">
+        <div className="flex md:hidden justify-center bg-white p-1.5 rounded-full border border-warm-gray-200 mb-8">
           <button
             onClick={() => setActiveTab("story")}
             className={`flex-1 text-center py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors ${
-              activeTab === "story" ? "bg-indigo-600 text-white" : "text-gray-400"
+              activeTab === "story" ? "bg-crimson text-white" : "text-gray-400"
             }`}
           >
             My Story
@@ -109,7 +107,7 @@ const About = () => {
           <button
             onClick={() => setActiveTab("credentials")}
             className={`flex-1 text-center py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors ${
-              activeTab === "credentials" ? "bg-indigo-600 text-white" : "text-gray-400"
+              activeTab === "credentials" ? "bg-crimson text-white" : "text-gray-400"
             }`}
           >
             Credentials
@@ -121,37 +119,37 @@ const About = () => {
           
           {/* Column 1: Narrative Story (Visible on desktop or when active tab is story) */}
           <div className={`md:col-span-6 space-y-6 ${activeTab === "story" ? "block" : "hidden md:block"}`}>
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-white/5">
+            <div className="bg-white p-6 sm:p-8 rounded-3xl space-y-6 border border-warm-gray-200">
               
               {/* Bio Block */}
               <div>
-                <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 font-display">
-                  <span className="w-1.5 h-6 rounded bg-indigo-500" />
+                <h3 className="font-serif text-lg font-bold text-ink mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 rounded bg-crimson" />
                   Who I Am
                 </h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify">
-                  Hello, I&apos;m <strong>Shalimar Mehra</strong>. I graduated with a Bachelor&apos;s degree in Computer Applications from <strong>IGNOU</strong>. My focus has always been bridging the gap between clean code architecture and elegant visual interface designs. Over the years, I&apos;ve completed advanced certifications in modern web frameworks and systems engineering to build a robust full-stack skill pipeline.
+                <p className="text-gray-500 text-sm leading-relaxed text-justify">
+                  Hello, I&apos;m <strong className="text-ink">Shalimar Mehra</strong>. I graduated with a Bachelor&apos;s degree in Computer Applications from <strong className="text-ink">IGNOU</strong>. My focus has always been bridging the gap between clean code architecture and elegant visual interface designs. Over the years, I&apos;ve completed advanced certifications in modern web frameworks and systems engineering to build a robust full-stack skill pipeline.
                 </p>
               </div>
 
               {/* Business Block */}
               <div>
-                <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 font-display">
-                  <span className="w-1.5 h-6 rounded bg-purple-500" />
+                <h3 className="font-serif text-lg font-bold text-ink mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 rounded bg-amber-500" />
                   Professional Ventures
                 </h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify">
-                  Driven by an entrepreneurial spirit, I founded <strong>Dev Dossier</strong> to deliver web design, full-stack engineering, and digital support services. Running my own operations has taught me the real-world value of clear client communications, project timeline management, and robust web performance systems.
+                <p className="text-gray-500 text-sm leading-relaxed text-justify">
+                  Driven by an entrepreneurial spirit, I founded <strong className="text-ink">Dev Dossier</strong> to deliver web design, full-stack engineering, and digital support services. Running my own operations has taught me the real-world value of clear client communications, project timeline management, and robust web performance systems.
                 </p>
               </div>
 
               {/* YouTube / Sharing Block */}
               <div>
-                <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2 font-display">
+                <h3 className="font-serif text-lg font-bold text-ink mb-3 flex items-center gap-2">
                   <span className="w-1.5 h-6 rounded bg-rose-500" />
                   Knowledge Sharing
                 </h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify">
+                <p className="text-gray-500 text-sm leading-relaxed text-justify">
                   I believe teaching is the best way to master a craft. I run two active YouTube channels:
                 </p>
                 <div className="mt-4 space-y-3">
@@ -159,24 +157,24 @@ const About = () => {
                     href="https://youtube.com/@shalimarmehra"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-rose-500/30 hover:bg-rose-500/5 transition-all group"
+                    className="flex items-start gap-3 p-3.5 rounded-xl bg-cream border border-warm-gray-200 hover:border-crimson transition-all group"
                   >
                     <BsYoutube className="text-2xl text-rose-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-white">Shalimar Mehra (Personal Channel)</h4>
-                      <p className="text-[11px] text-gray-500 mt-0.5">Vlogs, event highlights, and tech community insights.</p>
+                      <h4 className="text-sm font-bold text-ink">Shalimar Mehra (Personal Channel)</h4>
+                      <p className="text-xs text-gray-500 mt-0.5">Vlogs, event highlights, and tech community insights.</p>
                     </div>
                   </a>
                   <a
                     href="https://youtube.com/@shalimarmehra" /* Dev Dossier link placeholder */
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-indigo-500/30 hover:bg-indigo-500/5 transition-all group"
+                    className="flex items-start gap-3 p-3.5 rounded-xl bg-cream border border-warm-gray-200 hover:border-crimson transition-all group"
                   >
                     <BsYoutube className="text-2xl text-rose-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
                     <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-white">Dev Dossier (Business Channel)</h4>
-                      <p className="text-[11px] text-gray-500 mt-0.5">Coding tutorials, framework reviews, and digital system walkthroughs.</p>
+                      <h4 className="text-sm font-bold text-ink">Dev Dossier (Business Channel)</h4>
+                      <p className="text-xs text-gray-500 mt-0.5">Coding tutorials, framework reviews, and digital system walkthroughs.</p>
                     </div>
                   </a>
                 </div>
@@ -190,8 +188,8 @@ const About = () => {
             
             {/* Academics Section */}
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2 font-display mb-4">
-                <FaGraduationCap className="text-indigo-400 text-xl" />
+              <h3 className="font-serif text-lg font-bold text-ink flex items-center gap-2 mb-4">
+                <FaGraduationCap className="text-ink text-xl" />
                 Education Achievements
               </h3>
               
@@ -199,24 +197,24 @@ const About = () => {
                 {academics.map((acad) => (
                   <div
                     key={acad.degree}
-                    className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all"
+                    className="p-5 rounded-2xl bg-white border border-warm-gray-200 hover:border-crimson transition-all"
                   >
                     <div className="flex justify-between items-start gap-2 mb-2">
-                      <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                      <h4 className="font-serif text-sm font-bold text-ink">
                         {acad.degree}
                       </h4>
-                      <span className="text-[10px] font-semibold text-indigo-300 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/15 flex-shrink-0">
+                      <span className="text-[10px] font-semibold text-gray-600 bg-cream border border-warm-gray-200 px-2 py-0.5 rounded-full flex-shrink-0">
                         {acad.period}
                       </span>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-gray-400 font-medium mb-2">{acad.school}</p>
-                    <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed text-justify">{acad.details}</p>
+                    <p className="text-xs text-gray-500 font-medium mb-2">{acad.school}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed text-justify">{acad.details}</p>
                     {acad.link && (
                       <a
                         href={acad.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[10px] font-bold text-indigo-400 hover:text-indigo-300 mt-3"
+                        className="inline-flex items-center gap-1 text-[10px] font-bold text-crimson hover:text-crimson-dark mt-3 transition-colors"
                       >
                         View Diploma <FaExternalLinkAlt className="text-[8px]" />
                       </a>
@@ -228,8 +226,8 @@ const About = () => {
 
             {/* Certifications Section */}
             <div className="space-y-4 pt-4">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2 font-display mb-4">
-                <FaCertificate className="text-purple-400 text-xl" />
+              <h3 className="font-serif text-lg font-bold text-ink flex items-center gap-2 mb-4">
+                <FaCertificate className="text-ink text-xl" />
                 Certifications
               </h3>
 
@@ -237,27 +235,27 @@ const About = () => {
                 {certifications.map((cert) => (
                   <div
                     key={cert.title}
-                    className="p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all"
+                    className="p-5 rounded-2xl bg-white border border-warm-gray-200 hover:border-crimson transition-all"
                   >
                     <div className="flex justify-between items-start gap-2 mb-2">
-                      <h4 className="text-xs sm:text-sm font-bold text-white font-display">
+                      <h4 className="font-serif text-sm font-bold text-ink">
                         {cert.title}
                       </h4>
-                      <span className="text-[10px] font-semibold text-purple-300 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/15 flex-shrink-0">
+                      <span className="text-[10px] font-semibold text-gray-600 bg-cream border border-warm-gray-200 px-2.5 py-0.5 rounded-full flex-shrink-0">
                         {cert.date}
                       </span>
                     </div>
                     <div className="flex flex-wrap items-center gap-2 text-[10px] text-gray-400 mb-2.5">
                       <span>{cert.issuer}</span>
                       <span>•</span>
-                      <span>ID: <strong className="text-gray-300 font-semibold">{cert.credId}</strong></span>
+                      <span>ID: <strong className="text-gray-400 font-semibold">{cert.credId}</strong></span>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-gray-500 leading-relaxed text-justify">{cert.details}</p>
+                    <p className="text-xs text-gray-400 leading-relaxed text-justify">{cert.details}</p>
                     <a
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-[10px] font-bold text-indigo-400 hover:text-indigo-300 mt-3"
+                      className="inline-flex items-center gap-1 text-[10px] font-bold text-crimson hover:text-crimson-dark mt-3 transition-colors"
                     >
                       Verify Credential <FaExternalLinkAlt className="text-[8px]" />
                     </a>

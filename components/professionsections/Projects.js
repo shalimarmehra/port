@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaExternalLinkAlt, FaGlobe } from "react-icons/fa";
-import { PiProjectorScreenFill } from "react-icons/pi";
+import { FaGithub, FaGlobe, FaSearch } from "react-icons/fa";
 
 const Projects = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTag, setSelectedTag] = useState("all");
 
   const projects = [
     {
@@ -37,7 +38,7 @@ const Projects = () => {
       description:
         "A robust logistics corporate platform built on WordPress and customized with Elementor Pro. Implements responsive landing sections, customized quote request forms, and detailed service timelines.",
       image: "/project3.jpg",
-      tags: ["WordPress", "Elementor Pro", "SEO", "Responsive UI"],
+      tags: ["WordPress", "Elementor", "SEO", "Responsive UI"],
       link: "https://247deliveryexperts.com",
       github: "",
     },
@@ -69,104 +70,164 @@ const Projects = () => {
     setIsLoaded(true);
   }, []);
 
-  return (
-    <section id="projects" className="py-20 relative">
-      {/* Background soft glowing orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
+  // Filter tags list
+  const filterTags = ["all", "Next.js", "React", "WordPress", "PHP", "Tailwind CSS", "MySQL"];
 
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        
-        {/* Section Title */}
-        <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-semibold text-indigo-300 uppercase tracking-widest mb-3">
-            <PiProjectorScreenFill />
-            <span>Featured Portfolio</span>
+  // Filtered projects selector
+  const filteredProjects = projects.filter((project) => {
+    const matchesSearch =
+      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesTag = selectedTag === "all" || project.tags.includes(selectedTag);
+    return matchesSearch && matchesTag;
+  });
+
+  return (
+    <section id="projects" className="py-24 bg-cream relative overflow-hidden">
+      {/* Large section number */}
+      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-[#F0ECE6] pointer-events-none select-none z-0">
+        02
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+
+        {/* Section Header & Search */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
+              Selected Works
+            </h2>
+            <p className="text-gray-500 font-sans mt-3 text-sm sm:text-base max-w-xl">
+              Use search or filter tags to navigate through my web builds and client products.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-display text-white tracking-tight">
-            Selected Projects
-          </h2>
-          <p className="text-gray-400 mt-2 text-sm sm:text-base max-w-xl">
-            A showcase of web applications, custom designs, and professional client solutions.
-          </p>
+
+          {/* Search bar input */}
+          <div className="relative w-full md:max-w-xs">
+            <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2.5 bg-white border border-warm-gray-200 rounded-xl text-ink placeholder-gray-400 focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/10 text-sm transition-all font-medium"
+            />
+          </div>
+        </div>
+
+        {/* Filter Tags Row */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {filterTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`px-4 py-2 rounded-full text-xs font-bold tracking-tight uppercase border transition-all duration-200 ${
+                selectedTag === tag
+                  ? "bg-crimson text-white border-crimson shadow-sm"
+                  : "bg-white border-warm-gray-200 text-gray-500 hover:text-crimson hover:border-crimson"
+              }`}
+            >
+              {tag === "all" ? "Show All" : tag}
+            </button>
+          ))}
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
-            <div
-              key={project.id}
-              className="glass-panel glass-panel-hover flex flex-col rounded-2xl overflow-hidden group transition-all duration-300 opacity-0 translate-y-8"
-              style={{
-                opacity: isLoaded ? 1 : 0,
-                transform: isLoaded ? "translateY(0)" : "translateY(32px)",
-                transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 150}ms, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 150}ms, border-color 0.3s, box-shadow 0.3s`,
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, idx) => (
+              <div
+                key={project.id}
+                className="bg-white border border-warm-gray-200 rounded-2xl overflow-hidden group hover:border-crimson hover:shadow-lg transition-all duration-300 flex flex-col"
+                style={{
+                  opacity: isLoaded ? 1 : 0,
+                  transform: isLoaded ? "translateY(0)" : "translateY(32px)",
+                  transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, border-color 0.3s, box-shadow 0.3s`,
+                }}
+              >
+                {/* Image Container */}
+                <div className="relative h-52 overflow-hidden bg-warm-gray-50">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                  {/* Light overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/0 to-white/0" />
+                  {/* Category badge */}
+                  <span className="absolute top-3 right-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-cream text-crimson border border-warm-gray-200">
+                    {project.category}
+                  </span>
+                </div>
+
+                {/* Card Body */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="font-serif text-lg font-bold text-ink mb-2 group-hover:text-crimson transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] font-semibold text-gray-400 bg-cream border border-warm-gray-200 px-2 py-0.5 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTAs */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-warm-gray-200">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-4 py-2 rounded-lg transition-colors"
+                      >
+                        <FaGlobe className="text-xs" />
+                        <span>Live Site</span>
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-4 py-2 rounded-lg transition-all"
+                      >
+                        <FaGithub className="text-xs" />
+                        <span>Code</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="py-20 text-center bg-white border border-warm-gray-200 rounded-2xl">
+            <p className="text-gray-400 text-sm font-medium">
+              No projects match your current search queries or tag selections.
+            </p>
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedTag("all");
               }}
+              className="mt-4 px-5 py-2 bg-crimson hover:bg-crimson-dark text-white text-xs font-bold rounded-full transition-colors"
             >
-              {/* Image Container */}
-              <div className="relative h-48 overflow-hidden bg-gray-900 border-b border-white/5">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/20 to-transparent" />
-                <span className="absolute top-3 right-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-indigo-300 border border-white/10">
-                  {project.category}
-                </span>
-              </div>
-
-              {/* Card Details */}
-              <div className="p-5 flex-1 flex flex-col">
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition-colors font-display">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 flex-1 text-justify">
-                  {project.description}
-                </p>
-
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] font-semibold text-gray-300 bg-white/5 border border-white/5 px-2 py-0.5 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* CTAs */}
-                <div className="flex items-center gap-3 pt-3 border-t border-white/5">
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-3.5 py-2 rounded-lg transition-colors shadow-md shadow-indigo-600/10 hover:shadow-indigo-600/30"
-                    >
-                      <FaGlobe className="text-xs" />
-                      <span>Live Site</span>
-                    </a>
-                  )}
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 px-3.5 py-2 rounded-lg transition-all"
-                    >
-                      <FaGithub className="text-xs" />
-                      <span>Code</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              Reset Filters
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

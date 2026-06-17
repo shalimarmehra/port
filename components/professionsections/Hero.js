@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FaGithub, FaRocket } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
@@ -11,42 +11,53 @@ import { BsThreads, BsTwitterX } from "react-icons/bs";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   useEffect(() => {
     setIsLoaded(true);
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial entrance animation
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     tl.fromTo(
       ".hero-badge",
       { opacity: 0, y: 15 },
       { opacity: 1, y: 0, duration: 0.6 }
     )
-    .fromTo(
-      ".hero-title",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      "-=0.4"
-    )
-    .fromTo(
-      ".hero-desc",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      "-=0.6"
-    )
-    .fromTo(
-      ".hero-socials",
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.6 },
-      "-=0.5"
-    )
-    .fromTo(
-      ".hero-image-container",
-      { opacity: 0, scale: 0.95 },
-      { opacity: 1, scale: 1, duration: 1, ease: "power2.out" },
-      "-=0.8"
-    );
+      .fromTo(
+        ".hero-title",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 },
+        "-=0.3"
+      )
+      .fromTo(
+        ".hero-desc",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8 },
+        "-=0.5"
+      )
+      .fromTo(
+        ".hero-cta",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 },
+        "-=0.5"
+      )
+      .fromTo(
+        ".hero-image-container",
+        { opacity: 0, scale: 0.95, rotate: 2 },
+        { opacity: 1, scale: 1, rotate: 0, duration: 1, ease: "power2.out" },
+        "-=0.8"
+      )
+      .fromTo(
+        ".hero-stat",
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 },
+        "-=0.5"
+      )
+      .fromTo(
+        ".hero-socials",
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.6 },
+        "-=0.4"
+      );
   }, []);
 
   const handleScrollTo = (id) => {
@@ -57,140 +68,194 @@ const Hero = () => {
   };
 
   return (
-    <section id="quick-bio" className="relative pt-6 pb-20 overflow-hidden bg-grid-pattern">
-      {/* Background ambient glowing orbs */}
-      <div className="absolute top-10 left-1/4 w-72 h-72 bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
+    <section
+      id="quick-bio"
+      className="relative min-h-screen bg-cream overflow-hidden pt-24 pb-20"
+    >
+      {/* Large section number */}
+      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-[#F0ECE6] pointer-events-none select-none z-0">
+        01
+      </div>
 
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 pt-8">
-          
-          {/* Left Column Content */}
+      {/* Cross markers — decorative rhythm */}
+      <span className="cross-marker absolute top-32 right-16 text-warm-gray-300 text-2xl select-none pointer-events-none hidden lg:block">
+        ✦
+      </span>
+      <span className="cross-marker absolute bottom-40 left-12 text-warm-gray-300 text-lg select-none pointer-events-none hidden lg:block">
+        +
+      </span>
+      <span className="cross-marker absolute top-1/2 right-1/3 text-warm-gray-200 text-sm select-none pointer-events-none hidden lg:block">
+        +
+      </span>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        {/* Two-column layout */}
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+          {/* ─── Left Column: Text ─── */}
           <div className="flex-1 text-left order-2 lg:order-1">
-            {/* Glowing Badge */}
-            <div className="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-semibold text-indigo-300 tracking-wide mb-5 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>Available for Hire & Projects</span>
+            {/* Available badge */}
+            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide mb-8">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Available for Hire</span>
             </div>
 
-            {/* Title */}
-            <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white leading-tight mb-5">
-              Hi, I&apos;m <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent font-extrabold">Shalimar Mehra</span>
+            {/* Massive editorial headline */}
+            <h1 className="mb-6">
+              <span className="hero-title block font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-ink tracking-tight leading-[0.95]">
+                FULL-STACK
+              </span>
+              <span className="hero-title block font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-ink tracking-tight leading-[0.95] mt-1">
+                DEVELOPER
+              </span>
+              <span className="hero-title block font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black italic text-crimson tracking-tight leading-[0.95] mt-1">
+                &amp; CREATOR
+              </span>
             </h1>
 
-            {/* Tagline */}
-            <h2 className="hero-title text-lg sm:text-xl font-semibold text-gray-300 mb-6 flex flex-wrap items-center gap-2">
-              <span>Full-Stack Developer</span>
-              <span className="text-gray-600">•</span>
-              <span>UI/UX Designer</span>
-              <span className="text-gray-600">•</span>
-              <span>Entrepreneur</span>
-            </h2>
-
             {/* Description */}
-            <p className="hero-desc text-base text-gray-400 font-sans leading-relaxed mb-8 text-justify">
-              I am a web specialist with a Bachelor&apos;s in Computer Applications. I love crafting high-performance, modern, and beautiful web applications from concept to deployment. Through my business <strong className="text-indigo-300">Dev Dossier</strong> and my developer channels, I explore state-of-the-art technologies and deliver clean design systems that scale.
+            <p className="hero-desc font-sans text-gray-500 text-base leading-relaxed mb-8 max-w-lg">
+              I am a web specialist with a Bachelor&apos;s in Computer
+              Applications. I love crafting high-performance, modern, and
+              beautiful web applications from concept to deployment. Through my
+              business{" "}
+              <strong className="text-crimson font-semibold">Dev Dossier</strong>{" "}
+              and my developer channels, I explore state-of-the-art technologies
+              and deliver clean design systems that scale.
             </p>
 
-            {/* Call to Actions */}
-            <div className="hero-desc flex flex-wrap gap-4 mb-10">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4 mb-12">
               <button
                 onClick={() => handleScrollTo("projects")}
-                className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-sm font-bold rounded-full transition-all shadow-[0_4px_20px_rgba(99,102,241,0.25)] hover:shadow-[0_4px_24px_rgba(99,102,241,0.4)] flex items-center gap-2 active:scale-95"
+                className="hero-cta px-8 py-4 bg-crimson hover:bg-crimson-dark text-white text-sm font-bold rounded-full transition-all duration-300 active:scale-95"
               >
-                Explore My Work <FaRocket className="text-xs" />
+                Explore My Work →
               </button>
               <button
                 onClick={() => handleScrollTo("about")}
-                className="px-6 py-3 bg-white/[0.03] hover:bg-white/[0.08] text-white text-sm font-semibold rounded-full border border-white/10 transition-all flex items-center gap-1 active:scale-95"
+                className="hero-cta px-8 py-4 border border-ink text-ink text-sm font-semibold rounded-full hover:bg-ink hover:text-white transition-all duration-300 active:scale-95"
               >
                 More About Me
               </button>
             </div>
 
-            {/* Social Grid */}
-            <div className="hero-socials border-t border-white/5 pt-8">
-              <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-4">Connect with me</p>
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+            {/* Social Links */}
+            <div className="hero-socials border-t border-warm-gray-200 pt-6">
+              <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-4">
+                Connect with me
+              </p>
+              <div className="flex flex-wrap items-center gap-5">
                 <Link
                   href="https://github.com/shalimarmehra"
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-indigo-500/50 hover:bg-indigo-500/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaGithub className="text-sm" />
-                  <span>GitHub</span>
+                  <FaGithub className="text-base" />
+                  <span className="text-xs font-medium">GitHub</span>
                 </Link>
                 <Link
                   href="https://www.linkedin.com/in/shalimarmehra/"
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-indigo-500/50 hover:bg-indigo-500/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <IoLogoLinkedin className="text-sm text-sky-400" />
-                  <span>LinkedIn</span>
+                  <IoLogoLinkedin className="text-base" />
+                  <span className="text-xs font-medium">LinkedIn</span>
                 </Link>
                 <Link
                   href="https://www.instagram.com/shalimarmehra/"
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-indigo-500/50 hover:bg-indigo-500/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaSquareInstagram className="text-sm text-pink-400" />
-                  <span>Instagram</span>
+                  <FaSquareInstagram className="text-base" />
+                  <span className="text-xs font-medium">Instagram</span>
                 </Link>
                 <Link
                   href="https://youtube.com/@shalimarmehra"
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-indigo-500/50 hover:bg-indigo-500/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <IoLogoYoutube className="text-sm text-rose-500" />
-                  <span>YouTube</span>
+                  <IoLogoYoutube className="text-base" />
+                  <span className="text-xs font-medium">YouTube</span>
                 </Link>
                 <Link
                   href="https://x.com/shalimarmehra"
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-indigo-500/50 hover:bg-indigo-500/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <BsTwitterX className="text-sm text-white" />
-                  <span>X.com</span>
+                  <BsTwitterX className="text-base" />
+                  <span className="text-xs font-medium">X</span>
                 </Link>
                 <Link
                   href="https://threads.net/@shalimarmehra"
-                  className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-indigo-500/50 hover:bg-indigo-500/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <BsThreads className="text-sm text-gray-200" />
-                  <span>Threads</span>
+                  <BsThreads className="text-base" />
+                  <span className="text-xs font-medium">Threads</span>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* Right Column Profile Image */}
+          {/* ─── Right Column: Image ─── */}
           <div className="hero-image-container flex-1 order-1 lg:order-2 flex justify-center items-center relative">
-            {/* Glowing Backdrop Circle */}
-            <div className="absolute w-64 h-64 bg-indigo-500/20 rounded-full blur-[60px] pointer-events-none animate-pulse" />
-            
-            {/* Double Border Frame */}
-            <div className="relative w-64 sm:w-80 h-64 sm:h-80 rounded-full p-2 border-2 border-dashed border-white/10 hover:border-indigo-500/30 transition-colors duration-500 animate-float">
-              <div className="w-full h-full rounded-full p-2 border border-white/5 bg-gray-900/40 backdrop-blur-sm relative overflow-hidden">
+            {/* Editorial image frame */}
+            <div className="relative">
+              {/* Subtle background accent */}
+              <div className="absolute -inset-4 bg-[#F0ECE6] rounded-3xl -rotate-3 pointer-events-none" />
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border border-warm-gray-200 shadow-sm">
                 <Image
                   src="/hero-img.jpeg"
                   fill
-                  sizes="(max-width: 640px) 256px, 320px"
+                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
                   alt="Shalimar Mehra"
-                  className="rounded-full object-cover p-1 filter brightness-105 contrast-105 hover:scale-105 transition-transform duration-700 ease-out cursor-pointer"
+                  className="ink-mask object-cover hover:scale-105 transition-transform duration-700 ease-out cursor-pointer"
                   priority
                 />
               </div>
+              {/* Corner accent */}
+              <span className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-crimson pointer-events-none" />
+              <span className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-crimson pointer-events-none" />
             </div>
           </div>
-
         </div>
+
+        {/* ─── Bottom Stats Row ─── */}
+        <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="hero-stat border border-warm-gray-200 hover:border-crimson p-6 rounded-2xl bg-white transition-colors duration-300 text-center">
+            <p className="font-serif text-4xl font-bold text-crimson mb-1">
+              03+
+            </p>
+            <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+              Years Experience
+            </p>
+          </div>
+          <div className="hero-stat border border-warm-gray-200 hover:border-crimson p-6 rounded-2xl bg-white transition-colors duration-300 text-center">
+            <p className="font-serif text-4xl font-bold text-crimson mb-1">
+              10+
+            </p>
+            <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+              Deliveries
+            </p>
+          </div>
+          <div className="hero-stat border border-warm-gray-200 hover:border-crimson p-6 rounded-2xl bg-white transition-colors duration-300 text-center">
+            <p className="font-serif text-4xl font-bold text-crimson mb-1">
+              05+
+            </p>
+            <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
+              Technologies
+            </p>
+          </div>
+        </div>
+
+        {/* Editorial divider */}
+        <div className="editorial-divider mt-16" />
       </div>
     </section>
   );

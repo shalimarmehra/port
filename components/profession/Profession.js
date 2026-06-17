@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  PiProjectorScreenFill,
-  PiChartLineUp,
-  PiAddressBook,
-} from "react-icons/pi";
-import { GiSkills } from "react-icons/gi";
-import { MdInfoOutline } from "react-icons/md";
 import Hero from "../professionsections/Hero";
 import Projects from "../professionsections/Projects";
 import Experience from "../professionsections/Experience";
@@ -14,38 +7,26 @@ import About from "../professionsections/About";
 import ContactForm from "../ContactForm";
 
 const Profession = () => {
+  const EditorialDivider = () => (
+    <div className="flex items-center w-full my-12 opacity-60">
+      <span className="flex-grow h-[1px] bg-warm-gray-200 ml-6 md:ml-20"></span>
+      <span className="cross-marker mx-4 text-warm-gray-300"></span>
+      <span className="flex-grow h-[1px] bg-warm-gray-200 mr-6 md:mr-20"></span>
+    </div>
+  );
+
   return (
     <>
       <Hero />
-      <div className="flex items-center w-full my-6 opacity-60">
-        <span className="flex-grow bg-white/10 rounded h-[1px] ml-[20px] md:ml-[72px]"></span>
-        <PiProjectorScreenFill className="mx-3 text-indigo-400 w-5 h-5 flex-shrink-0" />
-        <span className="flex-grow bg-white/10 rounded h-[1px] mr-[20px] md:mr-[72px]"></span>
-      </div>
+      <EditorialDivider />
       <Projects />
-      <div className="flex items-center w-full my-6 opacity-60">
-        <span className="flex-grow bg-white/10 rounded h-[1px] ml-[20px] md:ml-[72px]"></span>
-        <PiChartLineUp className="mx-3 text-indigo-400 w-5 h-5 flex-shrink-0" />
-        <span className="flex-grow bg-white/10 rounded h-[1px] mr-[20px] md:mr-[72px]"></span>
-      </div>
+      <EditorialDivider />
       <Experience />
-      <div className="flex items-center w-full my-6 opacity-60">
-        <span className="flex-grow bg-white/10 rounded h-[1px] ml-[20px] md:ml-[72px]"></span>
-        <GiSkills className="mx-3 text-indigo-400 w-5 h-5 flex-shrink-0" />
-        <span className="flex-grow bg-white/10 rounded h-[1px] mr-[20px] md:mr-[72px]"></span>
-      </div>
+      <EditorialDivider />
       <Skills />
-      <div className="flex items-center w-full my-6 opacity-60">
-        <span className="flex-grow bg-white/10 rounded h-[1px] ml-[20px] md:ml-[72px]"></span>
-        <MdInfoOutline className="mx-3 text-indigo-400 w-5 h-5 flex-shrink-0" />
-        <span className="flex-grow bg-white/10 rounded h-[1px] mr-[20px] md:mr-[72px]"></span>
-      </div>
+      <EditorialDivider />
       <About />
-      <div className="flex items-center w-full my-6 opacity-60">
-        <span className="flex-grow bg-white/10 rounded h-[1px] ml-[20px] md:ml-[72px]"></span>
-        <PiAddressBook className="mx-3 text-indigo-400 w-5 h-5 flex-shrink-0" />
-        <span className="flex-grow bg-white/10 rounded h-[1px] mr-[20px] md:mr-[72px]"></span>
-      </div>
+      <EditorialDivider />
       <ContactForm />
     </>
   );

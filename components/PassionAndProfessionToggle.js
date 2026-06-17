@@ -1,86 +1,75 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Passion from "./passion/Passion";
 import Profession from "./profession/Profession";
 
 const PassionAndProfessionToggle = () => {
-  const [view, setView] = useState("profession");
+  const [viewState, setViewState] = useState("profession");
 
-  // Load saved preference from localStorage
+  // Load from localStorage on mount
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("pp-view");
-      if (saved === "passion" || saved === "profession") setView(saved);
-    } catch (e) {}
+    const saved = localStorage.getItem("portfolioViewState");
+    if (saved === "passion" || saved === "profession") {
+      setViewState(saved);
+    }
   }, []);
 
-  // Persist preference
-  useEffect(() => {
-    try {
-      localStorage.setItem("pp-view", view);
-    } catch (e) {}
-  }, [view]);
+  const toggleView = (view) => {
+    setViewState(view);
+    localStorage.setItem("portfolioViewState", view);
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 mt-24 mb-12">
-      {/* Title block */}
-      <div className="flex flex-col items-center justify-center text-center mb-6">
-        <h2 className="text-xs sm:text-sm font-semibold text-indigo-400 tracking-widest uppercase mb-2">
-          Interactive Portfolio
-        </h2>
-        <p className="text-xl sm:text-2xl font-bold font-display text-white tracking-tight">
-          Explore my Professional Career or Creative Passions
-        </p>
-      </div>
+    <>
+      {/* Toggle UI */}
+      <div className="max-w-6xl mx-auto px-6 mt-16 mb-12 flex flex-col items-center justify-center text-center">
+        
+        {/* Title Block */}
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-crimson tracking-widest uppercase mb-2">
+            Explore my world
+          </p>
+          <h2 className="font-serif text-3xl font-bold text-ink">
+            {viewState === "profession" ? "Professional Engineering" : "Creative Passions"}
+          </h2>
+        </div>
 
-      {/* Switcher Toggle pill */}
-      <div className="flex justify-center mb-10">
-        <div
-          role="tablist"
-          aria-label="Choose Passion or Profession"
-          className="relative inline-flex p-1 bg-gray-900/60 border border-white/10 rounded-full shadow-lg"
-        >
-          {/* Sliding selection pill */}
+        {/* The Toggle Pill */}
+        <div className="relative flex items-center bg-white border border-warm-gray-200 p-1.5 rounded-full shadow-sm max-w-[320px] w-full">
+          {/* Sliding indicator */}
           <div
-            aria-hidden="true"
-            className="absolute top-1 left-1 h-[calc(100%-8px)] w-[calc(50%-4px)] rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 ease-out shadow-[0_2px_12px_rgba(99,102,241,0.4)]"
+            className="absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-crimson rounded-full transition-transform duration-300 ease-out shadow-sm"
             style={{
-              transform: view === "passion" ? "translateX(100%)" : "translateX(0%)",
+              transform: viewState === "profession" ? "translateX(0)" : "translateX(100%)",
             }}
           />
 
           <button
-            role="tab"
-            aria-selected={view === "profession"}
-            onClick={() => setView("profession")}
-            className={`relative z-10 w-32 sm:w-40 text-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase transition-colors duration-300 focus:outline-none ${
-              view === "profession" ? "text-white" : "text-gray-400 hover:text-gray-200"
+            onClick={() => toggleView("profession")}
+            className={`relative z-10 flex-1 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors duration-300 rounded-full ${
+              viewState === "profession" ? "text-white" : "text-gray-500 hover:text-ink"
             }`}
           >
             Profession
           </button>
-
+          
           <button
-            role="tab"
-            aria-selected={view === "passion"}
-            onClick={() => setView("passion")}
-            className={`relative z-10 w-32 sm:w-40 text-center px-4 py-2 rounded-full text-xs sm:text-sm font-semibold tracking-wide uppercase transition-colors duration-300 focus:outline-none ${
-              view === "passion" ? "text-white" : "text-gray-400 hover:text-gray-200"
+            onClick={() => toggleView("passion")}
+            className={`relative z-10 flex-1 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors duration-300 rounded-full ${
+              viewState === "passion" ? "text-white" : "text-gray-500 hover:text-ink"
             }`}
           >
             Passion
           </button>
         </div>
+        
       </div>
 
-      {/* Content wrapper */}
-      <div
-        key={view}
-        className="transition-all duration-500 ease-out"
-      >
-        {view === "passion" ? <Passion /> : <Profession />}
+      {/* Render the selected component */}
+      <div className="w-full animate-fade-in">
+        {viewState === "passion" ? <Passion /> : <Profession />}
       </div>
-    </div>
+    </>
   );
 };
 

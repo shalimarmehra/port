@@ -2,13 +2,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { CgArrowTopRight } from "react-icons/cg";
 import { IoMdMail } from "react-icons/io";
-import { AiFillProject, AiOutlineFileText } from "react-icons/ai";
-import { BsFillPersonFill } from "react-icons/bs";
-import { GiSkills } from "react-icons/gi";
-import { MdWork } from "react-icons/md";
-import { FaBiohazard } from "react-icons/fa";
+import { AiOutlineFileText } from "react-icons/ai";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,71 +29,60 @@ const NavBar = () => {
     }
   };
 
+  const navLinks = [
+    { label: "Bio", id: "quick-bio" },
+    { label: "Projects", id: "projects" },
+    { label: "Experience", id: "experience" },
+    { label: "Skills", id: "skills" },
+    { label: "About", id: "about" },
+  ];
+
   return (
     <>
       <nav
-        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-50 rounded-full transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 h-[72px] ${
           scrolled
-            ? "bg-gray-950/70 border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-lg"
-            : "bg-transparent border-transparent"
-        } border px-4 py-2.5 h-[64px]`}
+            ? "bg-white/80 backdrop-blur-md border-b border-warm-gray-200 shadow-sm"
+            : "bg-cream"
+        }`}
       >
-        <div className="flex items-center justify-between h-full mx-auto px-2 sm:px-4">
+        <div className="flex items-center justify-between h-full max-w-7xl mx-auto px-6 sm:px-8">
           {/* Logo & Name */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 group transition-transform duration-300 active:scale-95"
+            className="flex items-center gap-3 group transition-transform duration-300 active:scale-95"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/20 group-hover:border-indigo-400 transition-colors">
+            <div className="relative w-9 h-9 flex items-center justify-center rounded-full overflow-hidden border border-warm-gray-200 bg-ink group-hover:border-crimson transition-colors duration-300">
               <Image
                 src="/logo.png"
-                width={32}
-                height={32}
+                width={28}
+                height={28}
                 alt="Logo"
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                className="object-contain group-hover:scale-110 transition-transform duration-500"
               />
             </div>
-            <span className="text-white font-display text-sm sm:text-base font-bold tracking-tight">
-              Shalimar <span className="text-indigo-400 group-hover:text-teal-400 transition-colors">Mehra</span>
+            <span className="font-serif text-ink text-lg font-bold tracking-tight">
+              Shalimar{" "}
+              <span className="text-crimson">Mehra</span>
             </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-1">
-            <button
-              onClick={() => handleScrollTo("quick-bio")}
-              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5 flex items-center gap-0.5"
-            >
-              Bio
-            </button>
-            <button
-              onClick={() => handleScrollTo("projects")}
-              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => handleScrollTo("experience")}
-              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => handleScrollTo("skills")}
-              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
-            >
-              Skills
-            </button>
-            <button
-              onClick={() => handleScrollTo("about")}
-              className="text-gray-300 hover:text-white font-medium px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:bg-white/5"
-            >
-              About
-            </button>
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => handleScrollTo(link.id)}
+                className="relative uppercase tracking-widest text-xs font-sans font-semibold text-gray-500 hover:text-crimson px-4 py-2 transition-colors duration-200 group"
+              >
+                {link.label}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-crimson transition-all duration-300 group-hover:w-3/4" />
+              </button>
+            ))}
           </div>
 
           {/* CTA Buttons */}
@@ -107,13 +91,14 @@ const NavBar = () => {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white text-xs font-semibold px-4 py-2 border border-white/15 rounded-full hover:bg-white/5 transition-all flex items-center gap-1.5"
+              className="uppercase tracking-widest text-xs font-semibold text-gray-500 hover:text-crimson px-4 py-2 border border-warm-gray-200 hover:border-crimson rounded-full transition-all duration-200 flex items-center gap-1.5"
             >
               <AiOutlineFileText className="text-base" /> Resume
             </a>
+
             <button
               onClick={() => handleScrollTo("contact")}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-[0_4px_12px_rgba(99,102,241,0.3)] hover:shadow-[0_4px_16px_rgba(99,102,241,0.5)] transition-all flex items-center gap-1.5 active:scale-95"
+              className="bg-crimson hover:bg-crimson-dark text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 active:scale-95"
             >
               Get In Touch <IoMdMail className="text-base" />
             </button>
@@ -125,29 +110,29 @@ const NavBar = () => {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white p-2 border border-white/10 rounded-full hover:bg-white/5 transition-all"
+              className="text-gray-500 hover:text-crimson p-2 border border-warm-gray-200 rounded-full hover:border-crimson transition-all"
               aria-label="Resume"
             >
               <AiOutlineFileText className="text-lg" />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative w-10 h-10 flex flex-col justify-center items-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/10 transition-colors"
+              className="relative w-10 h-10 flex flex-col justify-center items-center rounded-full border border-warm-gray-200 bg-white text-ink hover:border-crimson transition-colors"
               aria-label="Toggle Menu"
             >
               <div className="flex flex-col gap-1 w-5">
                 <span
-                  className={`h-[2px] w-full bg-white rounded transition-transform duration-300 ${
+                  className={`h-[2px] w-full bg-ink rounded transition-transform duration-300 ${
                     isOpen ? "rotate-45 translate-y-[6px]" : ""
                   }`}
                 />
                 <span
-                  className={`h-[2px] w-full bg-white rounded transition-opacity duration-300 ${
+                  className={`h-[2px] w-full bg-ink rounded transition-opacity duration-300 ${
                     isOpen ? "opacity-0" : ""
                   }`}
                 />
                 <span
-                  className={`h-[2px] w-full bg-white rounded transition-transform duration-300 ${
+                  className={`h-[2px] w-full bg-ink rounded transition-transform duration-300 ${
                     isOpen ? "-rotate-45 -translate-y-[6px]" : ""
                   }`}
                 />
@@ -158,61 +143,28 @@ const NavBar = () => {
 
         {/* Mobile Navigation Drawer */}
         <div
-          className={`absolute top-[76px] left-0 w-full overflow-hidden transition-all duration-300 ease-in-out lg:hidden rounded-2xl border border-white/10 bg-gray-950/95 backdrop-blur-2xl shadow-[0_12px_32px_rgba(0,0,0,0.5)] ${
-            isOpen ? "max-h-[380px] opacity-100 py-4 px-3" : "max-h-0 opacity-0 pointer-events-none"
+          className={`absolute top-[72px] left-0 w-full overflow-hidden transition-all duration-300 ease-in-out lg:hidden bg-white border-b border-warm-gray-200 shadow-lg ${
+            isOpen
+              ? "max-h-[420px] opacity-100 py-4 px-4"
+              : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex flex-col gap-2">
-            <button
-              onClick={() => handleScrollTo("quick-bio")}
-              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
-            >
-              <span className="flex items-center gap-2">
-                <FaBiohazard className="text-indigo-400" /> Bio
-              </span>
-              <CgArrowTopRight className="text-gray-500" />
-            </button>
-            <button
-              onClick={() => handleScrollTo("projects")}
-              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
-            >
-              <span className="flex items-center gap-2">
-                <AiFillProject className="text-indigo-400" /> Projects
-              </span>
-              <CgArrowTopRight className="text-gray-500" />
-            </button>
-            <button
-              onClick={() => handleScrollTo("experience")}
-              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
-            >
-              <span className="flex items-center gap-2">
-                <MdWork className="text-indigo-400" /> Experience
-              </span>
-              <CgArrowTopRight className="text-gray-500" />
-            </button>
-            <button
-              onClick={() => handleScrollTo("skills")}
-              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
-            >
-              <span className="flex items-center gap-2">
-                <GiSkills className="text-indigo-400" /> Skills
-              </span>
-              <CgArrowTopRight className="text-gray-500" />
-            </button>
-            <button
-              onClick={() => handleScrollTo("about")}
-              className="text-gray-300 hover:text-white text-left font-medium px-4 py-3 rounded-xl hover:bg-white/5 transition-colors flex items-center justify-between"
-            >
-              <span className="flex items-center gap-2">
-                <BsFillPersonFill className="text-indigo-400" /> About
-              </span>
-              <CgArrowTopRight className="text-gray-500" />
-            </button>
+          <div className="flex flex-col gap-1 max-w-7xl mx-auto">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => handleScrollTo(link.id)}
+                className="w-full text-ink hover:text-crimson text-left font-serif text-lg px-4 py-3 border-b border-warm-gray-100 hover:bg-cream/50 transition-colors flex items-center justify-between"
+              >
+                <span>{link.label}</span>
+                <span className="text-xs font-sans uppercase tracking-widest text-gray-400">→</span>
+              </button>
+            ))}
             <button
               onClick={() => handleScrollTo("contact")}
-              className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-colors"
+              className="w-full mt-3 bg-crimson hover:bg-crimson-dark text-white font-sans font-bold uppercase tracking-widest text-xs py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-colors"
             >
-              Contact Us <IoMdMail className="text-lg" />
+              Get In Touch <IoMdMail className="text-base" />
             </button>
           </div>
         </div>

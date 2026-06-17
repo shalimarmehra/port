@@ -24,7 +24,7 @@ const Passion = () => {
       title: "AI API Integrations",
       sub: "Creative Sandbox",
       desc: "Developing side projects exploring generative AI pipelines, custom API endpoints, and serverless architectures. Playing with automated workflows and language model scripts.",
-      icon: <FaLaptopCode className="text-teal-400" />,
+      icon: <FaLaptopCode className="text-teal-600" />,
       tag: "Experimental Tech",
       link: "https://github.com/shalimarmehra",
     },
@@ -33,8 +33,8 @@ const Passion = () => {
       category: "design",
       title: "UI/UX Sandbox",
       sub: "Figma Prototypes",
-      desc: "Crafting modern, visually premium interfaces and mockups. Designing layouts with glassmorphism, responsive wireframes, and curated color palettes before coding them.",
-      icon: <SiFigma className="text-purple-400" />,
+      desc: "Crafting modern, visually premium interfaces and mockups. Designing layouts with clean typography, responsive wireframes, and curated color palettes before coding them.",
+      icon: <SiFigma className="text-purple-600" />,
       tag: "Figma Designs",
       link: "https://www.linkedin.com/in/shalimarmehra/",
     },
@@ -54,7 +54,7 @@ const Passion = () => {
       title: "Photography & Travel",
       sub: "Capturing Perspectives",
       desc: "Exploring new cities, scaling mountain trails, and capturing cinematic frames. Finding balance in nature to fuel creativity and maintain fresh perspective for technical design.",
-      icon: <BsCameraFill className="text-yellow-400" />,
+      icon: <BsCameraFill className="text-amber-500" />,
       tag: "Life Balance",
       link: "https://instagram.com/shalimarmehra",
     },
@@ -64,7 +64,7 @@ const Passion = () => {
       title: "Indie Hacking & Startups",
       sub: "Building Digital Products",
       desc: "Brainstorming and prototyping lightweight micro-SaaS ideas. Launching mini products, running metrics analyses, and testing user retention loops.",
-      icon: <FaGlobe className="text-sky-400" />,
+      icon: <FaGlobe className="text-sky-600" />,
       tag: "Entrepreneurship",
       link: "https://devdossier.in/",
     },
@@ -73,12 +73,10 @@ const Passion = () => {
   const filteredCards = activeFilter === "all" ? cards : cards.filter(card => card.category === activeFilter);
 
   return (
-    <div className="relative py-4">
-      {/* Background ambient glowing orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-90 h-90 bg-purple-600/5 rounded-full blur-[100px] pointer-events-none" />
+    <div className="relative py-12 max-w-6xl mx-auto px-6">
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap justify-center gap-2 mb-10">
+      <div className="flex flex-wrap justify-center gap-2 mb-12">
         {[
           { id: "all", label: "Show All" },
           { id: "videos", label: "Video Channels" },
@@ -89,10 +87,10 @@ const Passion = () => {
           <button
             key={btn.id}
             onClick={() => setActiveFilter(btn.id)}
-            className={`px-4 py-2 rounded-full text-xs font-bold tracking-tight uppercase border transition-all ${
+            className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase border transition-all duration-200 ${
               activeFilter === btn.id
-                ? "bg-white text-black border-white shadow-md"
-                : "bg-white/[0.02] border-white/10 text-gray-400 hover:text-white hover:border-white/20"
+                ? "bg-crimson text-white border-crimson shadow-sm"
+                : "bg-white border-warm-gray-200 text-gray-500 hover:text-crimson hover:border-crimson"
             }`}
           >
             {btn.label}
@@ -105,29 +103,29 @@ const Passion = () => {
         {filteredCards.map((card) => (
           <div
             key={card.id}
-            className="glass-panel glass-panel-hover p-6 rounded-3xl border border-white/5 flex flex-col justify-between group transition-all duration-300"
+            className="bg-white border border-warm-gray-200 p-8 rounded-3xl flex flex-col justify-between group hover:border-crimson hover:shadow-lg transition-all duration-300"
           >
             <div>
               {/* Header block */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-xl group-hover:scale-105 transition-transform duration-300">
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-cream border border-warm-gray-200 flex items-center justify-center text-xl group-hover:scale-105 transition-transform duration-300">
                   {card.icon}
                 </div>
-                <span className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest bg-indigo-500/10 px-2.5 py-1 rounded-full border border-indigo-500/15">
+                <span className="text-[10px] font-bold text-crimson uppercase tracking-widest bg-crimson/10 px-3 py-1 rounded-full">
                   {card.tag}
                 </span>
               </div>
 
               {/* Title info */}
-              <h3 className="text-lg font-bold text-white font-display mb-1 group-hover:text-indigo-300 transition-colors">
+              <h3 className="font-serif text-xl font-bold text-ink mb-1 group-hover:text-crimson transition-colors">
                 {card.title}
               </h3>
-              <p className="text-xs text-gray-500 font-semibold mb-3">
+              <p className="text-xs text-gray-400 font-semibold mb-4 uppercase tracking-wider">
                 {card.sub}
               </p>
               
               {/* Description */}
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed text-justify mb-6">
+              <p className="text-gray-500 text-sm leading-relaxed text-justify mb-8">
                 {card.desc}
               </p>
             </div>
@@ -137,7 +135,7 @@ const Passion = () => {
               href={card.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-indigo-400 transition-colors pt-3 border-t border-white/5 w-full"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-ink group-hover:text-crimson transition-colors pt-4 border-t border-warm-gray-200 w-full uppercase tracking-wider"
             >
               <span>Explore Passion</span>
               <span className="transform group-hover:translate-x-1 transition-transform">→</span>
@@ -147,10 +145,10 @@ const Passion = () => {
       </div>
 
       {/* Passion Footer Banner */}
-      <div className="mt-16 text-center">
-        <p className="text-xs text-gray-500 font-semibold flex items-center justify-center gap-1.5">
+      <div className="mt-20 text-center">
+        <p className="text-xs text-gray-400 font-bold uppercase tracking-widest flex items-center justify-center gap-2">
           <span>Always curious</span>
-          <BsHeartFill className="text-rose-500 text-[10px] animate-pulse" />
+          <BsHeartFill className="text-rose-500 text-base animate-pulse" />
           <span>Building for the future.</span>
         </p>
       </div>
