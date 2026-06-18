@@ -85,7 +85,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
+      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         02
       </div>
 
@@ -146,7 +146,7 @@ const Projects = () => {
                 }}
               >
                 {/* Image Container */}
-                <div className="relative h-52 overflow-hidden bg-warm-gray-50">
+                <div className="relative h-52 overflow-hidden bg-warm-gray-50" data-cursor-text="VIEW">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -191,6 +191,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-4 py-2 rounded-lg transition-colors"
+                        data-cursor-text="LIVE"
                       >
                         <FaGlobe className="text-xs" />
                         <span>Live Site</span>
@@ -202,6 +203,7 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-4 py-2 rounded-lg transition-all"
+                        data-cursor-text="CODE"
                       >
                         <FaGithub className="text-xs" />
                         <span>Code</span>

@@ -78,7 +78,7 @@ const About = () => {
   return (
     <section id="about" className="py-24 bg-transparent relative overflow-hidden" ref={ref} style={slideUpAnimation}>
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
+      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         05
       </div>
 
@@ -120,7 +120,58 @@ const About = () => {
           {/* Column 1: Narrative Story (Visible on desktop or when active tab is story) */}
           <div className={`md:col-span-6 space-y-6 ${activeTab === "story" ? "block" : "hidden md:block"}`}>
             <div className="bg-white p-6 sm:p-8 rounded-3xl space-y-6 border border-warm-gray-200">
-              
+              {/* Stylized Profile Card (inspired by cyclorama cover layout) */}
+              <div className="relative font-sans border-b border-warm-gray-100 pb-8 mb-6">
+                {/* Horizontal line intersecting with lowercase 'profile' */}
+                <div className="relative flex items-center my-6">
+                  <div className="flex-grow border-t border-ink opacity-20"></div>
+                  <span className="mx-4 font-sans font-black text-2xl tracking-tighter text-ink lowercase bg-white px-2 leading-none">
+                    profile
+                  </span>
+                  <div className="flex-grow border-t border-ink opacity-20"></div>
+                </div>
+
+                {/* Typewriter-style metadata rows */}
+                <div className="space-y-2 text-xs text-gray-500 font-mono tracking-tight max-w-sm">
+                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                    <span className="font-semibold text-gray-400">First name:</span>
+                    <span className="text-ink font-bold">Shalimar</span>
+                  </div>
+                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                    <span className="font-semibold text-gray-400">Last name:</span>
+                    <span className="text-ink font-bold">Mehra</span>
+                  </div>
+                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                    <span className="font-semibold text-gray-400">Profession:</span>
+                    <span className="text-ink font-bold">Full-Stack Developer</span>
+                  </div>
+                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                    <span className="font-semibold text-gray-400">Location:</span>
+                    <span className="text-ink font-medium">New Delhi, India</span>
+                  </div>
+                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                    <span className="font-semibold text-gray-400">Email:</span>
+                    <a 
+                      href="mailto:contact@shalimarmehra.com" 
+                      className="text-crimson font-medium hover:underline transition-colors"
+                      data-cursor-text="MAIL"
+                    >
+                      contact@shalimarmehra.com
+                    </a>
+                  </div>
+                  <div className="flex justify-between pb-1">
+                    <span className="font-semibold text-gray-400">Telephone:</span>
+                    <a 
+                      href="tel:+919560362339" 
+                      className="text-ink font-medium hover:underline transition-colors"
+                      data-cursor-text="CALL"
+                    >
+                      +91 95603 62339
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* Bio Block */}
               <div>
                 <h3 className="font-serif text-lg font-bold text-ink mb-3 flex items-center gap-2">
@@ -158,6 +209,7 @@ const About = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-3 p-3.5 rounded-xl bg-cream border border-warm-gray-200 hover:border-crimson transition-all group"
+                    data-cursor-text="WATCH"
                   >
                     <BsYoutube className="text-2xl text-rose-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
                     <div>
@@ -170,6 +222,7 @@ const About = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-3 p-3.5 rounded-xl bg-cream border border-warm-gray-200 hover:border-crimson transition-all group"
+                    data-cursor-text="WATCH"
                   >
                     <BsYoutube className="text-2xl text-rose-500 flex-shrink-0 group-hover:scale-110 transition-transform" />
                     <div>
@@ -215,6 +268,7 @@ const About = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-[10px] font-bold text-crimson hover:text-crimson-dark mt-3 transition-colors"
+                        data-cursor-text="VIEW"
                       >
                         View Diploma <FaExternalLinkAlt className="text-[8px]" />
                       </a>
@@ -256,6 +310,7 @@ const About = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-[10px] font-bold text-crimson hover:text-crimson-dark mt-3 transition-colors"
+                      data-cursor-text="VERIFY"
                     >
                       Verify Credential <FaExternalLinkAlt className="text-[8px]" />
                     </a>

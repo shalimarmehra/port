@@ -5,7 +5,6 @@ import Image from "next/image";
 import { FaGithub, FaAngleUp } from "react-icons/fa";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
-import { BsTwitterX, BsThreads } from "react-icons/bs";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -103,9 +102,7 @@ const Footer = () => {
                   { icon: <FaGithub />, link: "https://github.com/shalimarmehra" },
                   { icon: <IoLogoLinkedin />, link: "https://www.linkedin.com/in/shalimarmehra/" },
                   { icon: <FaSquareInstagram />, link: "https://www.instagram.com/shalimarmehra/" },
-                  { icon: <IoLogoYoutube />, link: "https://youtube.com/@shalimarmehra" },
-                  { icon: <BsTwitterX />, link: "https://x.com/shalimarmehra" },
-                  { icon: <BsThreads />, link: "https://threads.net/@shalimarmehra" }
+                  { icon: <IoLogoYoutube />, link: "https://youtube.com/@shalimarmehra" }
                 ].map((social, idx) => (
                   <a
                     key={idx}

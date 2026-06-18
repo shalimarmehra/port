@@ -74,7 +74,7 @@ const Skills = () => {
       className="py-24 relative overflow-hidden"
     >
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
+      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         04
       </div>
 
@@ -161,6 +161,16 @@ const Skills = () => {
             </div>
 
           </div>
+        </div>
+
+        {/* Background Code Ornament */}
+        <div className="absolute right-8 bottom-6 font-mono text-[9px] text-gray-400/30 select-none pointer-events-none hidden xl:block text-left leading-relaxed font-semibold">
+          <p>const developer = &#123;</p>
+          <p className="pl-4">name: &quot;Shalimar Mehra&quot;,</p>
+          <p className="pl-4">role: &quot;Full-Stack Engineer&quot;,</p>
+          <p className="pl-4">ventures: [&quot;Dev Dossier&quot;],</p>
+          <p className="pl-4">skills: [&quot;React&quot;, &quot;Next.js&quot;, &quot;Node&quot;, &quot;SQL&quot;]</p>
+          <p>&#125;;</p>
         </div>
 
       </div>

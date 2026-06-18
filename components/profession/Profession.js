@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "../professionsections/Hero";
+import TechTicker from "../TechTicker";
 import Projects from "../professionsections/Projects";
 import Experience from "../professionsections/Experience";
 import Skills from "../professionsections/Skills";
@@ -12,6 +13,7 @@ const Profession = () => {
   return (
     <>
       <Hero />
+      <TechTicker />
       <Projects />
       <Experience />
       <Skills />

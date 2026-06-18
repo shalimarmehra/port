@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaGithub } from "react-icons/fa";
 import { IoLogoLinkedin, IoLogoYoutube, IoMdMail } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
-import { BsTwitterX, BsThreads } from "react-icons/bs";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -29,7 +28,7 @@ const ContactForm = () => {
   return (
     <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
+      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         06
       </div>
 
@@ -68,6 +67,7 @@ const ContactForm = () => {
                 <a
                   href="tel:+919560362339"
                   className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-warm-gray-200 hover:border-crimson transition-colors group"
+                  data-cursor-text="CALL"
                 >
                   <div className="w-10 h-10 rounded-full bg-crimson/10 flex items-center justify-center text-crimson group-hover:scale-105 transition-transform">
                     <FaPhoneAlt />
@@ -82,6 +82,7 @@ const ContactForm = () => {
                 <a
                   href="mailto:contact@shalimarmehra.com"
                   className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-warm-gray-200 hover:border-crimson transition-colors group"
+                  data-cursor-text="MAIL"
                 >
                   <div className="w-10 h-10 rounded-full bg-crimson/10 flex items-center justify-center text-crimson group-hover:scale-105 transition-transform">
                     <FaEnvelope />
@@ -130,22 +131,6 @@ const ContactForm = () => {
                   rel="noopener noreferrer"
                 >
                   <IoLogoYoutube className="text-base" />
-                </a>
-                <a
-                  href="https://x.com/shalimarmehra"
-                  className="p-2.5 rounded-xl bg-white border border-warm-gray-200 hover:text-crimson hover:-translate-y-1 transition-all text-ink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BsTwitterX className="text-base" />
-                </a>
-                <a
-                  href="https://threads.net/@shalimarmehra"
-                  className="p-2.5 rounded-xl bg-white border border-warm-gray-200 hover:text-crimson hover:-translate-y-1 transition-all text-ink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BsThreads className="text-base" />
                 </a>
               </div>
             </div>
@@ -220,6 +205,7 @@ const ContactForm = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full py-3.5 bg-crimson hover:bg-crimson-dark text-white font-bold text-sm tracking-wide rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50"
+                  data-cursor-text="SEND"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>

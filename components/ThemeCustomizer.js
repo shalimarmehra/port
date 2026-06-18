@@ -4,46 +4,60 @@ import { BsPaletteFill } from "react-icons/bs";
 
 const themes = [
   {
+    id: "crimson",
+    name: "Crimson Rose",
+    primary: "#C62828",
+    primaryRgb: "198, 40, 40",
+    secondary: "#8B0000",
+    secondaryRgb: "139, 0, 0",
+    light: "#E57373",
+    bg50: "#FEF2F2",
+  },
+  {
+    id: "sage",
+    name: "Forest Sage",
+    primary: "#2A5A44",
+    primaryRgb: "42, 90, 68",
+    secondary: "#1E3F2F",
+    secondaryRgb: "30, 63, 47",
+    light: "#73A98C",
+    bg50: "#EEF6F2",
+  },
+  {
     id: "indigo",
-    name: "Obsidian Indigo",
-    primary: "#6366f1",
-    primaryRgb: "99, 102, 241",
-    secondary: "#8b5cf6",
-    secondaryRgb: "139, 92, 246",
-    tertiary: "#14b8a6",
+    name: "Deep Indigo",
+    primary: "#312E81",
+    primaryRgb: "49, 46, 129",
+    secondary: "#1E1B4B",
+    secondaryRgb: "30, 27, 75",
+    light: "#6366F1",
+    bg50: "#EEF2FF",
   },
   {
-    id: "teal",
-    name: "Emerald Teal",
-    primary: "#0ea5e9",
-    primaryRgb: "14, 165, 233",
-    secondary: "#10b981",
-    secondaryRgb: "16, 185, 129",
-    tertiary: "#3b82f6",
+    id: "ochre",
+    name: "Solar Ochre",
+    primary: "#B25E00",
+    primaryRgb: "178, 94, 0",
+    secondary: "#7F4200",
+    secondaryRgb: "127, 66, 0",
+    light: "#F59E0B",
+    bg50: "#FFFBEB",
   },
   {
-    id: "rose",
-    name: "Neon Rose",
-    primary: "#f43f5e",
-    primaryRgb: "244, 63, 94",
-    secondary: "#a855f7",
-    secondaryRgb: "168, 85, 247",
-    tertiary: "#ec4899",
-  },
-  {
-    id: "amber",
-    name: "Solar Amber",
-    primary: "#f59e0b",
-    primaryRgb: "245, 158, 11",
-    secondary: "#ea580c",
-    secondaryRgb: "234, 88, 12",
-    tertiary: "#eab308",
+    id: "violet",
+    name: "Royal Violet",
+    primary: "#581C87",
+    primaryRgb: "88, 28, 135",
+    secondary: "#3B0764",
+    secondaryRgb: "59, 7, 100",
+    light: "#8B5CF6",
+    bg50: "#FAF5FF",
   },
 ];
 
 const ThemeCustomizer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTheme, setActiveTheme] = useState("indigo");
+  const [activeTheme, setActiveTheme] = useState("crimson");
   const panelRef = useRef(null);
 
   // Close when clicking outside
@@ -59,7 +73,7 @@ const ThemeCustomizer = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  // Load saved theme
+  // Load saved theme on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem("portfolio-theme");
@@ -79,70 +93,84 @@ const ThemeCustomizer = () => {
     root.style.setProperty("--accent-primary-rgb", theme.primaryRgb);
     root.style.setProperty("--accent-secondary", theme.secondary);
     root.style.setProperty("--accent-secondary-rgb", theme.secondaryRgb);
-    root.style.setProperty("--accent-tertiary", theme.tertiary);
+    root.style.setProperty("--accent-light", theme.light);
+    root.style.setProperty("--accent-50", theme.bg50);
+    
+    // For elements that styled with standard Tailwind selection fallback
+    const styleId = "custom-selection-style";
+    let styleEl = document.getElementById(styleId);
+    if (!styleEl) {
+      styleEl = document.createElement("style");
+      styleEl.id = styleId;
+      document.head.appendChild(styleEl);
+    }
+    styleEl.innerHTML = `
+      ::selection {
+        background-color: rgba(${theme.primaryRgb}, 0.15) !important;
+      }
+    `;
+
     try {
       localStorage.setItem("portfolio-theme", theme.id);
     } catch (e) {}
+    
+    // Dispatch global theme change event
+    window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: theme }));
   };
 
   return (
     <div className="fixed bottom-6 left-6 z-40" ref={panelRef}>
-      {/* Floating Gear Button */}
+      {/* Floating Theme Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900/80 backdrop-blur-md border border-white/10 hover:border-indigo-500/40 text-gray-300 hover:text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(var(--accent-primary-rgb),0.3)] active:scale-95 group"
+        className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-warm-gray-200 hover:border-crimson text-gray-500 hover:text-crimson shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 active:scale-95 group"
         aria-label="Theme Customizer"
-        style={{
-          boxShadow: `0 0 20px -5px rgba(${
-            themes.find((t) => t.id === activeTheme)?.primaryRgb
-          }, 0.25)`,
-        }}
+        data-cursor-text="THEME"
       >
-        <BsPaletteFill className={`w-5 h-5 transition-transform duration-500 group-hover:rotate-45 text-accent`} />
+        <BsPaletteFill className="w-5 h-5 transition-transform duration-500 group-hover:rotate-45" />
       </button>
 
-      {/* Slide-out Menu Panel */}
+      {/* Slide-up Panel */}
       <div
-        className={`absolute bottom-16 left-0 w-64 glass-panel p-5 rounded-2xl border border-white/10 shadow-2xl transition-all duration-300 origin-bottom-left ${
+        className={`absolute bottom-16 left-0 w-64 bg-white border border-warm-gray-200 p-5 rounded-2xl shadow-xl transition-all duration-300 origin-bottom-left ${
           isOpen
             ? "opacity-100 scale-100 translate-y-0"
             : "opacity-0 scale-75 translate-y-4 pointer-events-none"
         }`}
       >
-        <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4 font-display">
-          Customize Theme Accent
+        <h4 className="font-serif text-sm font-bold text-ink mb-1.5">
+          Editorial Accents
         </h4>
+        <p className="text-[10px] text-gray-400 font-sans tracking-wide uppercase font-semibold mb-4">
+          Select Accent Tone
+        </p>
 
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {themes.map((theme) => (
             <button
               key={theme.id}
               onClick={() => applyTheme(theme)}
               className={`w-full flex items-center justify-between p-2.5 rounded-xl border transition-all text-left ${
                 activeTheme === theme.id
-                  ? "bg-white/10 border-indigo-500/40 text-white"
-                  : "bg-white/[0.02] border-white/5 text-gray-400 hover:text-white hover:bg-white/[0.04]"
+                  ? "bg-cream border-crimson text-ink font-semibold"
+                  : "bg-transparent border-warm-gray-200 text-gray-500 hover:text-ink hover:border-ink"
               }`}
             >
-              <span className="text-xs font-semibold">{theme.name}</span>
+              <span className="text-xs tracking-tight">{theme.name}</span>
               
-              {/* Colored Circles */}
+              {/* Color Circles */}
               <div className="flex gap-1">
                 <span
-                  className="w-3.5 h-3.5 rounded-full border border-black/20"
+                  className="w-3.5 h-3.5 rounded-full border border-warm-gray-200 shadow-sm"
                   style={{ backgroundColor: theme.primary }}
-                />
-                <span
-                  className="w-3.5 h-3.5 rounded-full border border-black/20"
-                  style={{ backgroundColor: theme.secondary }}
                 />
               </div>
             </button>
           ))}
         </div>
 
-        <div className="mt-4 pt-3 border-t border-white/5 text-[10px] text-gray-500 text-center font-medium">
-          Saved to your browser profile
+        <div className="mt-4 pt-3 border-t border-warm-gray-200 text-[9px] text-gray-400 text-center font-bold tracking-wider uppercase">
+          Saved in Browser Profile
         </div>
       </div>
     </div>
@@ -150,3 +178,4 @@ const ThemeCustomizer = () => {
 };
 
 export default ThemeCustomizer;
+export { themes };

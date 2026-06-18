@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { IoMdMail } from "react-icons/io";
-import { AiOutlineFileText } from "react-icons/ai";
+import { FaSearch, FaFileDownload } from "react-icons/fa";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,18 +84,30 @@ const NavBar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("toggle-command-palette"))}
+              className="flex items-center gap-2 px-3 py-2 border border-warm-gray-200 hover:border-crimson rounded-full text-xs text-gray-500 hover:text-crimson transition-all select-none mr-1 font-sans font-semibold tracking-wider bg-white"
+              title="Open Command Palette (Cmd+K)"
+              data-cursor-text="SEARCH"
+            >
+              <FaSearch className="text-[10px]" />
+              <span className="text-[9px] bg-warm-gray-100 px-1.5 py-0.5 rounded text-gray-400 border border-warm-gray-200/50 font-bold font-mono">⌘K</span>
+            </button>
+
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="uppercase tracking-widest text-xs font-semibold text-gray-500 hover:text-crimson px-4 py-2 border border-warm-gray-200 hover:border-crimson rounded-full transition-all duration-200 flex items-center gap-1.5"
+              className="uppercase tracking-widest text-xs font-semibold text-gray-500 hover:text-crimson px-4 py-2 border border-warm-gray-200 hover:border-crimson rounded-full transition-all duration-200 flex items-center gap-1.5 bg-white"
+              data-cursor-text="PDF"
             >
-              <AiOutlineFileText className="text-base" /> Resume
+              <FaFileDownload className="text-sm" /> Resume
             </a>
 
             <button
               onClick={() => handleScrollTo("contact")}
               className="bg-crimson hover:bg-crimson-dark text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 active:scale-95"
+              data-cursor-text="SEND"
             >
               Get In Touch <IoMdMail className="text-base" />
             </button>
@@ -103,14 +115,21 @@ const NavBar = () => {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-2">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("toggle-command-palette"))}
+              className="text-gray-500 hover:text-crimson p-2 border border-warm-gray-200 rounded-full hover:border-crimson transition-all bg-white"
+              aria-label="Search Palette"
+            >
+              <FaSearch className="text-sm" />
+            </button>
             <a
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-crimson p-2 border border-warm-gray-200 rounded-full hover:border-crimson transition-all"
+              className="text-gray-500 hover:text-crimson p-2.5 border border-warm-gray-200 rounded-full hover:border-crimson transition-all bg-white"
               aria-label="Resume"
             >
-              <AiOutlineFileText className="text-lg" />
+              <FaFileDownload className="text-sm" />
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}

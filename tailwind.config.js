@@ -13,10 +13,10 @@ module.exports = {
         cream: "#FAF8F5",
         ivory: "#F5F0EB",
         crimson: {
-          DEFAULT: "#C62828",
-          dark: "#8B0000",
-          light: "#E57373",
-          50: "#FEF2F2",
+          DEFAULT: "var(--accent-primary)",
+          dark: "var(--accent-secondary)",
+          light: "var(--accent-light)",
+          50: "var(--accent-50)",
         },
         ink: "#1A1A1A",
         warm: {

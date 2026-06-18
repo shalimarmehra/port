@@ -7,7 +7,6 @@ import gsap from "gsap";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { BsThreads, BsTwitterX } from "react-icons/bs";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -70,10 +69,10 @@ const Hero = () => {
   return (
     <section
       id="quick-bio"
-      className="relative min-h-screen bg-transparent overflow-hidden pt-8 pb-20"
+      className="relative min-h-screen bg-transparent overflow-hidden pt-20 sm:pt-28 pb-20"
     >
       {/* Large section number */}
-      <div className="absolute top-4 left-4 lg:left-12 font-serif font-light text-[140px] md:text-[180px] leading-none text-warm-gray-200 pointer-events-none select-none z-0">
+      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         01
       </div>
 
@@ -128,12 +127,14 @@ const Hero = () => {
               <button
                 onClick={() => handleScrollTo("projects")}
                 className="hero-cta px-8 py-4 bg-crimson hover:bg-crimson-dark text-white text-sm font-bold rounded-full transition-all duration-300 active:scale-95"
+                data-cursor-text="EXPLORE"
               >
                 Explore My Work →
               </button>
               <button
                 onClick={() => handleScrollTo("about")}
                 className="hero-cta px-8 py-4 border border-ink text-ink text-sm font-semibold rounded-full hover:bg-ink hover:text-white transition-all duration-300 active:scale-95"
+                data-cursor-text="ABOUT"
               >
                 More About Me
               </button>
@@ -181,24 +182,6 @@ const Hero = () => {
                   <IoLogoYoutube className="text-base" />
                   <span className="text-xs font-medium">YouTube</span>
                 </Link>
-                <Link
-                  href="https://x.com/shalimarmehra"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BsTwitterX className="text-base" />
-                  <span className="text-xs font-medium">X</span>
-                </Link>
-                <Link
-                  href="https://threads.net/@shalimarmehra"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BsThreads className="text-base" />
-                  <span className="text-xs font-medium">Threads</span>
-                </Link>
               </div>
             </div>
           </div>
@@ -217,6 +200,7 @@ const Hero = () => {
                   alt="Shalimar Mehra"
                   className="ink-mask object-cover hover:scale-105 transition-transform duration-700 ease-out cursor-pointer"
                   priority
+                  data-cursor-text="HI"
                 />
               </div>
               {/* Corner accent */}

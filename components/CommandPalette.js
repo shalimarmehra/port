@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { FaSearch, FaAngleRight, FaRegFolder, FaRegIdCard, FaPalette, FaFilePdf, FaHome } from "react-icons/fa";
+import { FaSearch, FaAngleRight, FaRegFolder, FaRegIdCard, FaPalette, FaFilePdf, FaHome, FaTerminal } from "react-icons/fa";
 import { GiSkills } from "react-icons/gi";
 import { MdContacts } from "react-icons/md";
 import { IoMdMail, IoMdCheckmark } from "react-icons/io";
+import { themes } from "./ThemeCustomizer";
 
 const CommandPalette = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,49 +18,49 @@ const CommandPalette = () => {
       id: "bio",
       title: "Jump to Bio",
       category: "Navigation",
-      icon: <FaHome className="text-indigo-400" />,
+      icon: <FaHome className="text-crimson" />,
       action: () => scrollToSection("quick-bio"),
     },
     {
       id: "projects",
       title: "Jump to Projects",
       category: "Navigation",
-      icon: <FaRegFolder className="text-indigo-400" />,
+      icon: <FaRegFolder className="text-crimson" />,
       action: () => scrollToSection("projects"),
     },
     {
       id: "experience",
       title: "Jump to Experience",
       category: "Navigation",
-      icon: <FaRegIdCard className="text-indigo-400" />,
+      icon: <FaRegIdCard className="text-crimson" />,
       action: () => scrollToSection("experience"),
     },
     {
       id: "skills",
       title: "Jump to Skills",
       category: "Navigation",
-      icon: <GiSkills className="text-indigo-400" />,
+      icon: <GiSkills className="text-crimson" />,
       action: () => scrollToSection("skills"),
     },
     {
       id: "about",
       title: "Jump to About",
       category: "Navigation",
-      icon: <FaSearch className="text-indigo-400" />,
+      icon: <FaSearch className="text-crimson" />,
       action: () => scrollToSection("about"),
     },
     {
       id: "contact",
       title: "Jump to Contact",
       category: "Navigation",
-      icon: <MdContacts className="text-indigo-400" />,
+      icon: <MdContacts className="text-crimson" />,
       action: () => scrollToSection("contact"),
     },
     {
       id: "copy-email",
       title: "Copy Email Address",
       category: "Actions",
-      icon: <IoMdMail className="text-emerald-400" />,
+      icon: <IoMdMail className="text-crimson" />,
       action: () => {
         navigator.clipboard.writeText("contact@shalimarmehra.com");
         setCopied(true);
@@ -73,40 +74,57 @@ const CommandPalette = () => {
       id: "resume",
       title: "Download Resume PDF",
       category: "Actions",
-      icon: <FaFilePdf className="text-rose-400" />,
+      icon: <FaFilePdf className="text-crimson" />,
       action: () => {
         window.open("/resume.pdf", "_blank");
         setIsOpen(false);
       },
     },
     {
-      id: "theme-indigo",
-      title: "Set Theme: Obsidian Indigo",
-      category: "Themes",
-      icon: <FaPalette className="text-indigo-500" />,
-      action: () => selectTheme("indigo"),
+      id: "terminal",
+      title: "Toggle CLI Terminal Drawer",
+      category: "Actions",
+      icon: <FaTerminal className="text-crimson" />,
+      action: () => {
+        window.dispatchEvent(new CustomEvent("toggle-terminal-drawer"));
+        setIsOpen(false);
+      },
     },
-    {
-      id: "theme-teal",
-      title: "Set Theme: Emerald Teal",
-      category: "Themes",
-      icon: <FaPalette className="text-teal-400" />,
-      action: () => selectTheme("teal"),
-    },
-    {
-      id: "theme-rose",
-      title: "Set Theme: Neon Rose",
-      category: "Themes",
-      icon: <FaPalette className="text-rose-500" />,
-      action: () => selectTheme("rose"),
-    },
-    {
-      id: "theme-amber",
-      title: "Set Theme: Solar Amber",
-      category: "Themes",
-      icon: <FaPalette className="text-amber-500" />,
-      action: () => selectTheme("amber"),
-    },
+    ...themes.map((t) => ({
+      id: `theme-${t.id}`,
+      title: `Set Theme Accent: ${t.name}`,
+      category: "Accents",
+      icon: <FaPalette style={{ color: t.primary }} />,
+      action: () => {
+        const root = document.documentElement;
+        root.style.setProperty("--accent-primary", t.primary);
+        root.style.setProperty("--accent-primary-rgb", t.primaryRgb);
+        root.style.setProperty("--accent-secondary", t.secondary);
+        root.style.setProperty("--accent-secondary-rgb", t.secondaryRgb);
+        root.style.setProperty("--accent-light", t.light);
+        root.style.setProperty("--accent-50", t.bg50);
+        
+        // Dynamically override selections
+        const styleId = "custom-selection-style";
+        let styleEl = document.getElementById(styleId);
+        if (!styleEl) {
+          styleEl = document.createElement("style");
+          styleEl.id = styleId;
+          document.head.appendChild(styleEl);
+        }
+        styleEl.innerHTML = `
+          ::selection {
+            background-color: rgba(${t.primaryRgb}, 0.15) !important;
+          }
+        `;
+
+        try {
+          localStorage.setItem("portfolio-theme", t.id);
+        } catch (e) {}
+        window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: t }));
+        setIsOpen(false);
+      },
+    })),
   ];
 
   const filteredItems = commandItems.filter((item) =>
@@ -117,34 +135,20 @@ const CommandPalette = () => {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-    setIsOpen(false);
-  };
-
-  const selectTheme = (themeId) => {
-    const root = document.documentElement;
-    const themeMaps = {
-      indigo: { primary: "#6366f1", primaryRgb: "99, 102, 241", secondary: "#8b5cf6", secondaryRgb: "139, 92, 246", tertiary: "#14b8a6" },
-      teal: { primary: "#0ea5e9", primaryRgb: "14, 165, 233", secondary: "#10b981", secondaryRgb: "16, 185, 129", tertiary: "#3b82f6" },
-      rose: { primary: "#f43f5e", primaryRgb: "244, 63, 94", secondary: "#a855f7", secondaryRgb: "168, 85, 247", tertiary: "#ec4899" },
-      amber: { primary: "#f59e0b", primaryRgb: "245, 158, 11", secondary: "#ea580c", secondaryRgb: "234, 88, 12", tertiary: "#eab308" },
-    };
-    const t = themeMaps[themeId];
-    if (t) {
-      root.style.setProperty("--accent-primary", t.primary);
-      root.style.setProperty("--accent-primary-rgb", t.primaryRgb);
-      root.style.setProperty("--accent-secondary", t.secondary);
-      root.style.setProperty("--accent-secondary-rgb", t.secondaryRgb);
-      root.style.setProperty("--accent-tertiary", t.tertiary);
-      localStorage.setItem("portfolio-theme", themeId);
+      const navHeight = 72;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navHeight;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
     setIsOpen(false);
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Cmd+K or Ctrl+K
+      // Cmd+K or Ctrl+K to toggle
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setIsOpen((prev) => !prev);
@@ -157,7 +161,7 @@ const CommandPalette = () => {
 
       if (!isOpen) return;
 
-      // Arrow navigation
+      // Navigation within list
       if (e.key === "ArrowDown") {
         e.preventDefault();
         setSelectedIndex((prev) => (prev + 1) % filteredItems.length);
@@ -192,45 +196,48 @@ const CommandPalette = () => {
     if (isOpen) {
       setSearch("");
       setSelectedIndex(0);
+      document.body.style.overflow = "hidden"; // Prevent body scroll while open
       setTimeout(() => inputRef.current?.focus(), 50);
+    } else {
+      document.body.style.overflow = ""; // Restore body scroll
     }
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4">
-      {/* Dark Blur overlay backing */}
+    <div className="fixed inset-0 z-[999] flex items-start justify-center pt-[15vh] px-4 font-sans">
+      {/* Light Blur backdrop overlay */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-ink/30 backdrop-blur-sm transition-opacity"
         onClick={() => setIsOpen(false)}
       />
 
-      {/* Palette Container */}
-      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-[#090d16]/95 border border-white/10 shadow-2xl backdrop-blur-md flex flex-col max-h-[450px]">
-        {/* Search header bar */}
-        <div className="flex items-center gap-3 px-4 border-b border-white/5 h-14">
-          <FaSearch className="text-gray-500 text-sm flex-shrink-0" />
+      {/* Palette Box Container */}
+      <div className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-[#FAF8F5] border border-warm-gray-200 shadow-2xl flex flex-col max-h-[420px] theme-transition">
+        {/* Search Input Bar */}
+        <div className="flex items-center gap-3.5 px-4 border-b border-warm-gray-200 h-14">
+          <FaSearch className="text-gray-400 text-sm flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
-            placeholder="Type a command or search sections..."
+            placeholder="Type a command or navigate..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
               setSelectedIndex(0);
             }}
-            className="w-full bg-transparent text-sm text-white focus:outline-none placeholder-gray-500"
+            className="w-full bg-transparent text-sm text-ink focus:outline-none placeholder-gray-400 font-medium"
           />
-          <span className="text-[10px] bg-white/5 px-2 py-1 rounded text-gray-500 font-bold font-mono border border-white/5">
+          <span className="text-[9px] bg-warm-gray-100 px-2 py-1 rounded text-gray-500 font-bold font-mono border border-warm-gray-200 select-none">
             ESC
           </span>
         </div>
 
-        {/* Action Lists */}
-        <div className="overflow-y-auto p-2 flex-1">
+        {/* Command Items List */}
+        <div className="overflow-y-auto p-2 flex-1 scrollbar-thin">
           {filteredItems.length > 0 ? (
-            <div className="space-y-1">
+            <div className="space-y-0.5">
               {filteredItems.map((item, idx) => {
                 const isSelected = idx === selectedIndex;
                 return (
@@ -238,50 +245,50 @@ const CommandPalette = () => {
                     key={item.id}
                     onClick={item.action}
                     onMouseEnter={() => setSelectedIndex(idx)}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all ${
+                    className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl transition-all border ${
                       isSelected
-                        ? "bg-white/10 text-white shadow-md"
-                        : "text-gray-400 hover:text-white"
+                        ? "bg-white border-crimson/30 shadow-sm text-ink pl-4 border-l-4 border-l-crimson"
+                        : "text-gray-500 hover:text-ink border-transparent bg-transparent"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-sm">{item.icon}</span>
+                      <span className="text-xs">{item.icon}</span>
                       <span className="text-xs font-semibold tracking-tight">{item.title}</span>
                     </div>
                     
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] uppercase tracking-wider font-bold text-gray-500 bg-white/5 px-1.5 py-0.5 rounded">
+                      <span className="text-[8px] uppercase tracking-widest font-bold text-gray-400 bg-warm-gray-100 px-2 py-0.5 rounded border border-warm-gray-200/50">
                         {item.category}
                       </span>
-                      {isSelected && <FaAngleRight className="text-xs text-indigo-400" />}
+                      {isSelected && <FaAngleRight className="text-xs text-crimson" />}
                     </div>
                   </button>
                 );
               })}
             </div>
           ) : (
-            <div className="py-12 text-center text-xs text-gray-500 font-medium">
-              No matching commands found.
+            <div className="py-12 text-center text-xs text-gray-400 font-bold uppercase tracking-widest">
+              No results found
             </div>
           )}
         </div>
 
-        {/* Copy success notice overlay */}
+        {/* Success alert overlay */}
         {copied && (
-          <div className="absolute inset-0 bg-[#090d16]/95 backdrop-blur-md flex flex-col items-center justify-center gap-3">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 text-xl animate-bounce">
+          <div className="absolute inset-0 bg-[#FAF8F5] flex flex-col items-center justify-center gap-3">
+            <div className="w-12 h-12 rounded-full bg-crimson/10 border border-crimson/30 flex items-center justify-center text-crimson text-xl animate-bounce">
               <IoMdCheckmark />
             </div>
-            <p className="text-xs font-bold text-white uppercase tracking-wider">
+            <p className="text-xs font-bold text-ink uppercase tracking-widest">
               Email Copied to Clipboard!
             </p>
           </div>
         )}
 
-        {/* Hotkey Guide footer */}
-        <div className="h-10 border-t border-white/5 px-4 flex items-center justify-between text-[10px] text-gray-500 font-medium bg-[#05080f]">
+        {/* Navigation Hotkey Footer */}
+        <div className="h-10 border-t border-warm-gray-200 px-4 flex items-center justify-between text-[9px] text-gray-400 font-bold uppercase tracking-wider bg-white select-none">
           <span>Use arrows to navigate, Enter to select</span>
-          <span className="font-mono">⌘K to close</span>
+          <span>⌘K to close</span>
         </div>
       </div>
     </div>

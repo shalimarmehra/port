@@ -12,6 +12,8 @@
   --accent-primary-rgb: 198, 40, 40;
   --accent-secondary: #8B0000;
   --accent-secondary-rgb: 139, 0, 0;
+  --accent-light: #E57373;
+  --accent-50: #FEF2F2;
   --card-bg: #FFFFFF;
   --muted: #6B7280;
   --border: #E5E1DC;
@@ -225,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Selection highlight */
 ::selection {
-  background-color: rgba(198, 40, 40, 0.15);
+  background-color: rgba(var(--accent-primary-rgb), 0.15);
   color: var(--ink);
 }
 
@@ -248,4 +250,35 @@ h1, h2, h3, h4, h5, h6 {
 
 .link-underline:hover::after {
   width: 100%;
+}
+
+/* Blinking terminal cursor animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Hide default cursor on desktop for custom cursor */
+@media (min-width: 768px) {
+  .custom-cursor-enabled,
+  .custom-cursor-enabled * {
+    cursor: none !important;
+  }
+}
+
+/* Accent transition helper */
+.theme-transition {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, fill 0.4s ease, stroke 0.4s ease;
+}
+
+/* Infinite scrolling marquee ticker */
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
 }
