@@ -24,7 +24,7 @@ const PassionAndProfessionToggle = () => {
       {/* Sleek Journey Header Toggle */}
       <div className="flex flex-col items-center justify-center pt-16 pb-4 relative z-10">
         <h2 className="text-xs font-bold text-crimson uppercase tracking-[0.2em] mb-6">
-          Select Your Journey
+          Select Portfolio Perspective
         </h2>
         
         {/* The Toggle Pill */}
