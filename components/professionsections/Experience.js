@@ -1,31 +1,61 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const Experience = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const lineRef = useRef(null);
 
   useEffect(() => {
-    const currentSection = sectionRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    gsap.registerPlugin(ScrollTrigger);
 
-    if (currentSection) {
-      observer.observe(currentSection);
+    const cards = gsap.utils.toArray(".exp-card");
+    
+    // Animate the line
+    if (lineRef.current) {
+      gsap.fromTo(
+        lineRef.current,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".timeline-container",
+            start: "top center",
+            end: "bottom center",
+            scrub: 1.5, // Smooth scrubbing
+          },
+        }
+      );
     }
 
+    // Animate cards popping in
+    cards.forEach((card, i) => {
+      // Find the dot inside the card
+      const dot = card.querySelector('.timeline-dot');
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        }
+      });
+      
+      tl.fromTo(dot, 
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }
+      )
+      .fromTo(card.querySelector('.exp-card-body'),
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" },
+        "-=0.2"
+      );
+    });
+
     return () => {
-      if (currentSection) {
-        observer.unobserve(currentSection);
-      }
+      ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
 
@@ -60,21 +90,13 @@ const Experience = () => {
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      id="experience"
-      className="py-24 relative overflow-hidden"
-    >
+    <section ref={sectionRef} id="experience" className="py-24 relative overflow-hidden">
       {/* Large section number */}
       <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         03
       </div>
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-
-
-
-        {/* Title Block */}
         <div className="mb-16 text-center md:text-left relative z-10">
           <span className="cross-marker mb-4 block text-crimson text-lg">✦</span>
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
@@ -87,24 +109,23 @@ const Experience = () => {
         </div>
 
         {/* Timeline Layout */}
-        <div className="relative border-l-2 border-crimson/20 pl-8 ml-4 space-y-10">
+        <div className="timeline-container relative pl-8 ml-4 space-y-12 pb-10">
+          {/* Static Background Line */}
+          <div className="absolute left-[-1px] top-4 bottom-0 w-[2px] bg-crimson/10 rounded-full" />
+          
+          {/* Animated Scroll Line */}
+          <div 
+            ref={lineRef} 
+            className="absolute left-[-1px] top-4 bottom-0 w-[2px] bg-crimson origin-top rounded-full z-10" 
+          />
+
           {experiences.map((exp, idx) => (
-            <div
-              key={exp.id}
-              className={`relative transition-all duration-700 ease-out ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${idx * 200}ms` }}
-            >
+            <div key={exp.id} className="exp-card relative">
               {/* Timeline dot node */}
-              <span className="absolute -left-[37px] top-2 w-4 h-4 rounded-full bg-crimson border-4 border-cream" />
+              <span className="timeline-dot absolute -left-[41px] top-3 w-4 h-4 rounded-full bg-crimson border-4 border-cream shadow-sm z-20" />
 
               {/* Experience Card */}
-              <div
-                className={`bg-white border border-warm-gray-200 rounded-2xl p-6 hover:border-crimson transition-all duration-300 ${
-                  idx === 0 ? "border-l-4 border-l-crimson" : "border-l-4 border-l-gray-300"
-                }`}
-              >
+              <div className={`exp-card-body bg-white border border-warm-gray-200 rounded-2xl p-6 hover:border-crimson transition-colors duration-300 ${idx === 0 ? "border-l-4 border-l-crimson shadow-md" : "border-l-4 border-l-gray-300 hover:shadow-md"}`}>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                   <div>
                     <h3 className="font-serif text-lg font-bold text-ink">
