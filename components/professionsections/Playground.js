@@ -86,7 +86,7 @@ button:hover { background: #f0f0f0; transform: scale(1.05); }`
     <section id="playground" className="py-24 relative overflow-hidden bg-ink text-white">
       {/* Large section number */}
       <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-white/5 pointer-events-none select-none z-0" data-speed="-0.15">
-        04
+        08
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">

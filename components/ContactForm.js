@@ -41,7 +41,7 @@ const ContactForm = () => {
     <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
       {/* Large section number */}
       <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
-        06
+        10
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">

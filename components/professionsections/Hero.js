@@ -8,13 +8,24 @@ import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+const ROLES = ["Full-Stack Developer", "UI/UX Enthusiast", "Content Creator", "Entrepreneur", "Open Source Builder"];
+
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
   
   // Refs for 3D Tilt & Magnetic Button
   const imageRef = useRef(null);
   const btnRef = useRef(null);
   const btnTextRef = useRef(null);
+
+  // Role ticker
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((i) => (i + 1) % ROLES.length);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -161,6 +172,11 @@ const Hero = () => {
         01
       </div>
 
+      {/* Animated Gradient Orbs */}
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full pointer-events-none z-0" style={{background: 'radial-gradient(circle, rgba(198,40,40,0.08) 0%, transparent 70%)'}} />
+      <div className="absolute bottom-0 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0" style={{background: 'radial-gradient(circle, rgba(198,40,40,0.05) 0%, transparent 70%)'}} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none z-0" style={{background: 'radial-gradient(circle, rgba(250,248,245,0.6) 0%, transparent 60%)'}} />
+
       {/* Cross markers */}
       <span className="cross-marker absolute top-32 right-16 text-warm-gray-300 text-2xl select-none pointer-events-none hidden lg:block">✦</span>
       <span className="cross-marker absolute bottom-40 left-12 text-warm-gray-300 text-lg select-none pointer-events-none hidden lg:block">+</span>
@@ -172,9 +188,22 @@ const Hero = () => {
           {/* ─── Left Column: Text ─── */}
           <div className="flex-1 text-left order-2 lg:order-1 pt-12 lg:pt-0">
             {/* Available badge */}
-            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide mb-8 bg-white/50 backdrop-blur-sm">
+            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide mb-4 bg-white/50 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
               <span>Available for Hire</span>
+            </div>
+
+            {/* Animated Role Ticker */}
+            <div className="hero-badge flex items-center gap-3 mb-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">I am a</span>
+              <div className="overflow-hidden h-6 relative">
+                <span
+                  key={roleIndex}
+                  className="inline-block text-crimson font-bold text-sm animate-slide-left tracking-wide"
+                >
+                  {ROLES[roleIndex]}
+                </span>
+              </div>
             </div>
 
             {/* Massive editorial headline with dynamic split text */}

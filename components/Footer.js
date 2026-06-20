@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FaGithub, FaAngleUp } from "react-icons/fa";
+import { FaGithub, FaAngleUp, FaPinterest, FaYoutube } from "react-icons/fa";
 import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
 
@@ -76,8 +76,11 @@ const Footer = () => {
               {[
                 { label: "Bio", id: "quick-bio" },
                 { label: "Projects", id: "projects" },
+                { label: "YouTube", id: "youtube" },
                 { label: "Experience", id: "experience" },
                 { label: "Skills", id: "skills" },
+                { label: "Creative Board", id: "creative" },
+                { label: "Playground", id: "playground" },
                 { label: "About", id: "about" },
                 { label: "Contact", id: "contact" }
               ].map((link) => (
@@ -99,10 +102,11 @@ const Footer = () => {
               <h3 className="font-serif text-xl font-bold text-ink mb-6">Connect</h3>
               <div className="flex flex-wrap gap-2.5">
                 {[
-                  { icon: <FaGithub />, link: "https://github.com/shalimarmehra" },
-                  { icon: <IoLogoLinkedin />, link: "https://www.linkedin.com/in/shalimarmehra/" },
-                  { icon: <FaSquareInstagram />, link: "https://www.instagram.com/shalimarmehra/" },
-                  { icon: <IoLogoYoutube />, link: "https://youtube.com/@shalimarmehra" }
+                  { icon: <FaGithub />, link: "https://github.com/shalimarmehra", label: "GitHub" },
+                  { icon: <IoLogoLinkedin />, link: "https://www.linkedin.com/in/shalimarmehra/", label: "LinkedIn" },
+                  { icon: <FaSquareInstagram />, link: "https://www.instagram.com/shalimarmehra/", label: "Instagram" },
+                  { icon: <IoLogoYoutube />, link: "https://youtube.com/@shalimarmehra", label: "YouTube" },
+                  { icon: <FaPinterest />, link: "https://pinterest.com/shalimarmehra", label: "Pinterest" }
                 ].map((social, idx) => (
                   <a
                     key={idx}

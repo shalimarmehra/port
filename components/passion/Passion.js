@@ -16,6 +16,7 @@ import {
   FaSync
 } from "react-icons/fa";
 import { SiFigma } from "react-icons/si";
+import PersonalYouTube from "./PersonalYouTube";
 
 // ─── 3D TILT CARD COMPONENT ───
 const PassionCard = ({ card, onClick }) => {
@@ -823,6 +824,9 @@ const Passion = () => {
           </div>
         </div>
       </section>
+
+      {/* Personal YouTube Channel */}
+      <PersonalYouTube />
 
       <div className="editorial-divider max-w-6xl mx-auto" />
 

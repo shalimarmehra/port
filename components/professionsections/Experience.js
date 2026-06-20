@@ -93,7 +93,7 @@ const Experience = () => {
     <section ref={sectionRef} id="experience" className="py-24 relative overflow-hidden">
       {/* Large section number */}
       <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
-        03
+        04
       </div>
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">

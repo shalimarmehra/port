@@ -9,6 +9,7 @@ import CommandPalette from "@/components/CommandPalette";
 import ThemeCustomizer from "@/components/ThemeCustomizer";
 import TerminalConsole from "@/components/TerminalConsole";
 import AudioPlayer from "@/components/AudioPlayer";
+import SectionNavigator from "@/components/SectionNavigator";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
         <ThemeCustomizer />
         <TerminalConsole />
         <AudioPlayer />
+        <SectionNavigator />
         <main>{children}</main>
         <Analytics />
         <GoogleAnalytics gaId="G-59ZWKHYBGY" />
