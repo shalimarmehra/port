@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaGithub } from "react-icons/fa";
 import { IoLogoLinkedin, IoLogoYoutube, IoMdMail } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState("");
+  const [toast, setToast] = useState({ show: false, message: "", type: "success" });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,12 +17,23 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission
+    
+    // NOTE FOR DEPLOYMENT: To make this form fully live, integrate EmailJS here!
+    // Example: 
+    // emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_PUBLIC_KEY')
+    //   .then(() => { ...success logic })
+    //   .catch(() => { ...error logic });
+
+    // Simulating network request
     setTimeout(() => {
       setIsSubmitting(false);
-      setStatus("Thank you! Your message has been sent successfully.");
       setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus(""), 5000);
+      
+      // Trigger Toast Notification
+      setToast({ show: true, message: "Message sent! I'll get back to you soon.", type: "success" });
+      
+      // Hide Toast after 4 seconds
+      setTimeout(() => setToast({ show: false, message: "", type: "success" }), 4000);
     }, 1500);
   };
 
@@ -29,11 +41,17 @@ const ContactForm = () => {
     <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
       {/* Large section number */}
       <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
-        06
+        10
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         
+        {/* Animated Toast Notification */}
+        <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 px-6 py-4 bg-ink text-white rounded-full shadow-2xl transition-all duration-500 ease-out ${toast.show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"}`}>
+           <IoMdCheckmarkCircleOutline className="text-emerald-400 text-xl" />
+           <span className="text-sm font-semibold tracking-wide whitespace-nowrap">{toast.message}</span>
+        </div>
+
         {/* Layout Grid */}
         <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16">
           
@@ -193,12 +211,7 @@ const ContactForm = () => {
                   />
                 </div>
 
-                {/* Status Notice */}
-                {status && (
-                  <div className="p-3 text-sm font-semibold text-green-700 bg-green-50 border border-green-200 rounded-xl">
-                    {status}
-                  </div>
-                )}
+                {/* Status Notice is replaced by global Toast Notification */}
 
                 {/* Submit Button */}
                 <button

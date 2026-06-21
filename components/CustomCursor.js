@@ -2,154 +2,114 @@
 import { useEffect, useState, useRef } from "react";
 
 const CustomCursor = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [cursorText, setCursorText] = useState("");
-  const [isHidden, setIsHidden] = useState(true);
+  const cursorRef = useRef(null);
+  const ringRef = useRef(null);
+  const textRef = useRef(null);
+  const requestRef = useRef(null);
   
-  const mouseRef = useRef({ x: -100, y: -100 });
-  const ringRef = useRef({ x: -100, y: -100 });
-  const dotRef = useRef(null);
-  const outerRingRef = useRef(null);
-  const rafId = useRef(null);
+  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [ringPosition, setRingPosition] = useState({ x: -100, y: -100 });
+  
+  const [isHovering, setIsHovering] = useState(false);
+  const [cursorText, setCursorText] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Hide native cursor by adding class to body
-    document.body.classList.add("custom-cursor-enabled");
+    // Hide native cursor on devices that support hover
+    const mediaQuery = window.matchMedia("(pointer: fine)");
+    if (!mediaQuery.matches) return;
 
-    const handleMouseMove = (e) => {
-      mouseRef.current.x = e.clientX;
-      mouseRef.current.y = e.clientY;
-      
-      // Instantly position the inner dot
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate3d(-50%, -50%, 0)`;
-      }
+    setIsVisible(true);
+    document.body.classList.add("cursor-none");
 
-      if (isHidden) {
-        setIsHidden(false);
-        // Sync ring position on first movement
-        ringRef.current.x = e.clientX;
-        ringRef.current.y = e.clientY;
-      }
+    const onMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleMouseLeave = () => setIsHidden(true);
-    const handleMouseEnter = () => setIsHidden(false);
+    const updateRingPosition = () => {
+      setRingPosition((prev) => {
+        // Lerp for smooth trailing effect
+        const dx = position.x - prev.x;
+        const dy = position.y - prev.y;
+        return {
+          x: prev.x + dx * 0.15,
+          y: prev.y + dy * 0.15,
+        };
+      });
+      requestRef.current = requestAnimationFrame(updateRingPosition);
+    };
 
-    // Dynamic hover listeners for links, buttons, and items with data-cursor-text
-    const handleHoverStart = (e) => {
-      setIsHovered(true);
-      const target = e.currentTarget;
-      const text = target.getAttribute("data-cursor-text");
+    const onMouseOver = (e) => {
+      const target = e.target;
+      // Search up the DOM tree for a cursor-text attribute or a clickable element
+      const cursorElement = target.closest('[data-cursor-text]');
+      const cursorTextAttr = cursorElement ? cursorElement.getAttribute("data-cursor-text") : null;
       
-      if (text) {
-        setCursorText(text);
-      } else if (
-        target.tagName === "A" || 
-        target.getAttribute("role") === "link"
-      ) {
-        // If it's a social link in a row, or a simple navigation item
-        setCursorText("LINK");
-      } else if (
-        target.tagName === "BUTTON" || 
-        target.getAttribute("role") === "button"
-      ) {
-        setCursorText("TAP");
+      const isClickable = 
+        target.tagName?.toLowerCase() === 'a' || 
+        target.tagName?.toLowerCase() === 'button' ||
+        target.closest('a') ||
+        target.closest('button') ||
+        target.getAttribute("role") === "button";
+
+      if (cursorTextAttr) {
+        setIsHovering(true);
+        setCursorText(cursorTextAttr);
+      } else if (isClickable) {
+        setIsHovering(true);
+        setCursorText("");
       } else {
-        setCursorText("GO");
+        setIsHovering(false);
+        setCursorText("");
       }
     };
 
-    const handleHoverEnd = () => {
-      setIsHovered(false);
+    const onMouseOut = () => {
+      setIsHovering(false);
       setCursorText("");
     };
 
-    const attachHoverListeners = () => {
-      const interactives = document.querySelectorAll(
-        "a, button, [role='button'], [data-cursor-text], input, textarea, select, [role='tab']"
-      );
-      interactives.forEach((el) => {
-        // Remove existing to prevent duplication
-        el.removeEventListener("mouseenter", handleHoverStart);
-        el.removeEventListener("mouseleave", handleHoverEnd);
-        
-        el.addEventListener("mouseenter", handleHoverStart);
-        el.addEventListener("mouseleave", handleHoverEnd);
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
-
-    attachHoverListeners();
-
-    // Re-check periodically to bind dynamically added elements
-    const interval = setInterval(attachHoverListeners, 1000);
-
-    // Animation loop for smooth trailing lag on the outer ring (lerp)
-    const updateRingPosition = () => {
-      const ease = 0.15; // interpolation factor
-      
-      // Calculate target differences
-      const dx = mouseRef.current.x - ringRef.current.x;
-      const dy = mouseRef.current.y - ringRef.current.y;
-
-      ringRef.current.x += dx * ease;
-      ringRef.current.y += dy * ease;
-
-      if (outerRingRef.current) {
-        outerRingRef.current.style.transform = `translate3d(${ringRef.current.x}px, ${ringRef.current.y}px, 0) translate3d(-50%, -50%, 0)`;
-      }
-
-      rafId.current = requestAnimationFrame(updateRingPosition);
-    };
-
-    rafId.current = requestAnimationFrame(updateRingPosition);
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseover", onMouseOver);
+    document.addEventListener("mouseout", onMouseOut);
+    
+    requestRef.current = requestAnimationFrame(updateRingPosition);
 
     return () => {
-      document.body.classList.remove("custom-cursor-enabled");
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      clearInterval(interval);
-      cancelAnimationFrame(rafId.current);
+      document.body.classList.remove("cursor-none");
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseover", onMouseOver);
+      document.removeEventListener("mouseout", onMouseOut);
+      cancelAnimationFrame(requestRef.current);
     };
-  }, [isHidden]);
+  }, [position.x, position.y]);
 
-  if (isHidden) return null;
+  if (!isVisible) return null;
 
   return (
-    <>
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden mix-blend-difference">
       {/* Inner Dot */}
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full pointer-events-none z-[9999] bg-crimson hidden md:block"
-        style={{
-          willChange: "transform",
-        }}
+      <div 
+        ref={cursorRef}
+        className={`fixed left-0 top-0 w-2 h-2 bg-white rounded-full transition-transform duration-100 ease-out -translate-x-1/2 -translate-y-1/2 ${isHovering ? 'scale-0' : 'scale-100'}`}
+        style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%) scale(${isHovering ? 0 : 1})` }}
       />
       
-      {/* Outer Ring */}
-      <div
-        ref={outerRingRef}
-        className={`fixed top-0 left-0 rounded-full pointer-events-none z-[9998] hidden md:flex items-center justify-center text-center transition-all duration-300 ${
-          isHovered
-            ? "w-14 h-14 bg-crimson border border-crimson text-white scale-100"
-            : "w-8 h-8 bg-transparent border border-crimson/40 scale-100"
-        }`}
-        style={{
-          willChange: "transform, width, height, background-color, border-color",
-        }}
+      {/* Outer Ring / Text Container */}
+      <div 
+        ref={ringRef}
+        className={`fixed left-0 top-0 rounded-full border border-white flex items-center justify-center transition-all duration-300 ease-out -translate-x-1/2 -translate-y-1/2 
+          ${isHovering ? (cursorText ? 'w-24 h-24 bg-white border-transparent' : 'w-12 h-12 bg-white/20') : 'w-8 h-8'}`}
+        style={{ transform: `translate3d(${ringPosition.x}px, ${ringPosition.y}px, 0) translate(-50%, -50%)` }}
       >
-        {isHovered && cursorText && (
-          <span className="font-serif text-[9px] font-bold tracking-[0.15em] leading-none select-none text-white animate-fade-in">
-            {cursorText}
-          </span>
-        )}
+        <span 
+          ref={textRef}
+          className={`text-black text-[10px] font-bold tracking-[0.2em] uppercase transition-opacity duration-300 whitespace-nowrap ${cursorText ? 'opacity-100' : 'opacity-0'}`}
+        >
+          {cursorText}
+        </span>
       </div>
-    </>
+    </div>
   );
 };
 

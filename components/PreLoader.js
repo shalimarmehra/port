@@ -1,42 +1,80 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 
-const PreLoader = () => {
+const PreLoader = ({ onComplete }) => {
+  const containerRef = useRef(null);
+  const counterRef = useRef(null);
+  const progressRef = useRef(null);
+
+  useEffect(() => {
+    // Lock body scroll
+    document.body.style.overflow = "hidden";
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        document.body.style.overflow = "";
+        if (onComplete) onComplete();
+      }
+    });
+
+    // Animate counter from 0 to 100
+    const counterObj = { value: 0 };
+    tl.to(counterObj, {
+      value: 100,
+      duration: 1.5,
+      ease: "power3.inOut",
+      onUpdate: () => {
+        if (counterRef.current) {
+          counterRef.current.innerText = Math.round(counterObj.value) + "%";
+        }
+        if (progressRef.current) {
+          progressRef.current.style.width = `${counterObj.value}%`;
+        }
+      }
+    })
+    .to(".preloader-text", {
+      opacity: 0,
+      y: -20,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: "power2.in"
+    })
+    .to(containerRef.current, {
+      yPercent: -100,
+      duration: 0.8,
+      ease: "power4.inOut"
+    });
+
+    return () => {
+      document.body.style.overflow = "";
+      tl.kill();
+    };
+  }, [onComplete]);
+
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-cream z-50">
-      <div className="relative flex flex-col items-center gap-8">
-        {/* SM Monogram */}
-        <div className="font-serif text-6xl font-bold text-ink animate-pulse">
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 w-full h-screen flex flex-col items-center justify-center bg-ink z-[99999] overflow-hidden"
+    >
+      <div className="relative flex flex-col items-center gap-6 w-full max-w-xs px-8">
+        
+        {/* Loading text */}
+        <div className="preloader-text text-[10px] uppercase tracking-[0.3em] text-gray-400 font-sans font-bold flex justify-between w-full">
+          <span>Loading</span>
+          <span ref={counterRef} className="text-white">0%</span>
+        </div>
+
+        {/* Progress bar */}
+        <div className="preloader-text w-full h-[2px] bg-white/10 rounded-full overflow-hidden">
+          <div ref={progressRef} className="h-full bg-crimson rounded-full w-0" />
+        </div>
+        
+        {/* Monogram */}
+        <div className="preloader-text absolute top-12 font-serif text-8xl font-black text-white/5 select-none pointer-events-none tracking-tighter">
           SM
         </div>
-
-        {/* Crimson loading bar */}
-        <div className="w-48 h-[2px] bg-warm-gray-200 rounded-full overflow-hidden">
-          <div className="h-full bg-crimson rounded-full animate-[loading_1.5s_ease-in-out_infinite]" />
-        </div>
-
-        {/* Loading text */}
-        <div className="text-xs uppercase tracking-widest text-gray-400 font-sans">
-          Loading Portfolio
-        </div>
       </div>
-
-      {/* Loading bar animation */}
-      <style jsx>{`
-        @keyframes loading {
-          0% {
-            width: 0%;
-            margin-left: 0%;
-          }
-          50% {
-            width: 60%;
-            margin-left: 20%;
-          }
-          100% {
-            width: 0%;
-            margin-left: 100%;
-          }
-        }
-      `}</style>
     </div>
   );
 };

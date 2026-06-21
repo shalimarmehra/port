@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import {
   FaGithub,
   FaAngleUp,
@@ -9,6 +8,7 @@ import {
   FaCamera,
   FaGamepad,
   FaTicketAlt,
+  FaChurch,
 } from "react-icons/fa";
 import {
   IoLogoLinkedin,
@@ -16,7 +16,6 @@ import {
   IoMdMail,
 } from "react-icons/io";
 import { FaSquareInstagram, FaCode } from "react-icons/fa6";
-import { FaChurch } from "react-icons/fa";
 
 const Footer = ({ viewState = "profession" }) => {
   const currentYear = new Date().getFullYear();
@@ -63,20 +62,20 @@ const Footer = ({ viewState = "profession" }) => {
   ];
 
   const professionLinks = [
-    { label: "Bio", id: "quick-bio" },
-    { label: "Projects", id: "projects" },
-    { label: "Experience", id: "experience" },
-    { label: "Skills", id: "skills" },
-    { label: "About", id: "about" },
-    { label: "Contact", id: "contact" },
+    { label: "Bio",        id: "quick-bio",  icon: null },
+    { label: "Projects",   id: "projects",   icon: null },
+    { label: "Experience", id: "experience", icon: null },
+    { label: "Skills",     id: "skills",     icon: null },
+    { label: "About",      id: "about",      icon: null },
+    { label: "Contact",    id: "contact",    icon: null },
   ];
 
   const passionLinks = [
-    { label: "Content & Video", id: "passion-content", icon: <FaCamera className="text-[10px]" /> },
-    { label: "Church Media", id: "passion-church", icon: <FaChurch className="text-[10px]" /> },
-    { label: "Gaming", id: "passion-gaming", icon: <FaGamepad className="text-[10px]" /> },
-    { label: "Creative Dev", id: "passion-creative", icon: <FaCode className="text-[10px]" /> },
-    { label: "Events", id: "passion-events", icon: <FaTicketAlt className="text-[10px]" /> },
+    { label: "Content & Video", id: "passion-content",  icon: <FaCamera    className="text-[10px]" /> },
+    { label: "Church Media",    id: "passion-church",   icon: <FaChurch    className="text-[10px]" /> },
+    { label: "Gaming",          id: "passion-gaming",   icon: <FaGamepad   className="text-[10px]" /> },
+    { label: "Creative Dev",    id: "passion-creative", icon: <FaCode      className="text-[10px]" /> },
+    { label: "Events",          id: "passion-events",   icon: <FaTicketAlt className="text-[10px]" /> },
   ];
 
   const navLinks = viewState === "passion" ? passionLinks : professionLinks;
@@ -84,10 +83,10 @@ const Footer = ({ viewState = "profession" }) => {
   return (
     <footer className="bg-ink text-white relative overflow-hidden">
 
-      {/* Decorative top rule */}
+      {/* Decorative crimson gradient top rule */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-crimson to-transparent opacity-60" />
 
-      {/* Watermark */}
+      {/* Large background watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span className="font-serif font-bold text-[12vw] text-white/[0.03] whitespace-nowrap tracking-tight">
           SHALIMAR MEHRA
@@ -96,14 +95,13 @@ const Footer = ({ viewState = "profession" }) => {
 
       <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-10">
 
-        {/* ── Top Grid ─────────────────────────────────────────── */}
+        {/* ── Main Grid ───────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
-          {/* Col 1 — Brand */}
+          {/* Col 1+2 — Brand block */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Logo mark */}
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-crimson text-white font-serif font-bold text-lg shadow-lg">
+              <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-crimson text-white font-serif font-bold text-lg shadow-lg shadow-crimson/20">
                 SM.
               </div>
               <div>
@@ -111,7 +109,9 @@ const Footer = ({ viewState = "profession" }) => {
                   Shalimar Mehra
                 </p>
                 <p className="text-[10px] text-white/40 uppercase tracking-widest font-medium mt-0.5">
-                  {viewState === "passion" ? "Creator · Camera Op · Gamer" : "Full-Stack Developer · Designer"}
+                  {viewState === "passion"
+                    ? "Creator · Camera Op · Gamer"
+                    : "Full-Stack Developer · Designer"}
                 </p>
               </div>
             </div>
@@ -122,14 +122,13 @@ const Footer = ({ viewState = "profession" }) => {
                 : "Building premium digital experiences at the intersection of design and engineering. Available for freelance and collaboration."}
             </p>
 
-            {/* Location */}
             <div className="flex items-center gap-2 text-white/40 text-xs font-medium">
-              <FaMapMarkerAlt className="text-crimson" />
+              <FaMapMarkerAlt className="text-crimson shrink-0" />
               <span>New Delhi, India</span>
             </div>
 
-            {/* Socials */}
-            <div className="flex items-center gap-2 pt-1">
+            {/* Social icon row */}
+            <div className="flex items-center gap-2">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -145,7 +144,7 @@ const Footer = ({ viewState = "profession" }) => {
             </div>
           </div>
 
-          {/* Col 2 — Navigation */}
+          {/* Col 3 — Quick links */}
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
               {viewState === "passion" ? "Explore Passions" : "Navigate"}
@@ -169,7 +168,7 @@ const Footer = ({ viewState = "profession" }) => {
             </ul>
           </div>
 
-          {/* Col 3 — Contact (profession only) or Vibe (passion) */}
+          {/* Col 4 — Contact / Connect */}
           <div>
             {viewState === "profession" ? (
               <>
@@ -179,7 +178,7 @@ const Footer = ({ viewState = "profession" }) => {
                 <div className="space-y-4">
                   <button
                     onClick={copyEmail}
-                    title="Click to copy"
+                    title="Click to copy email"
                     className="flex items-start gap-2.5 group text-left"
                   >
                     <IoMdMail className="text-crimson mt-0.5 shrink-0" />
@@ -215,7 +214,7 @@ const Footer = ({ viewState = "profession" }) => {
                 </p>
                 <div className="space-y-3">
                   <p className="text-sm text-white/50 leading-relaxed">
-                    Want to collaborate on a video project, discuss an event, or just chat?
+                    Want to collaborate on a video project, attend an event together, or just say hey?
                   </p>
                   <button
                     onClick={copyEmail}
@@ -242,22 +241,19 @@ const Footer = ({ viewState = "profession" }) => {
 
         </div>
 
-        {/* ── Divider ──────────────────────────────────────────── */}
+        {/* ── Divider ─────────────────────────────────────────────── */}
         <div className="h-px bg-white/[0.06] mb-8" />
 
-        {/* ── Bottom Bar ───────────────────────────────────────── */}
+        {/* ── Bottom Bar ──────────────────────────────────────────── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <p className="text-[11px] text-white/30 font-medium">
-              © {currentYear} Shalimar Mehra — All rights reserved.
-            </p>
-          </div>
+          <p className="text-[11px] text-white/30 font-medium">
+            © {currentYear} Shalimar Mehra — All rights reserved.
+          </p>
 
           <p className="text-[10px] text-white/20 uppercase tracking-widest font-medium flex items-center gap-1.5">
             Crafted with <FaHeart className="text-crimson animate-pulse" /> using Next.js & Tailwind
           </p>
 
-          {/* Back to top */}
           <button
             onClick={() => handleScrollTo("top")}
             className="flex items-center gap-2 text-white/30 hover:text-white text-xs font-medium transition-colors group"

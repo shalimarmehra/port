@@ -47,10 +47,10 @@ const NavBar = () => {
   ];
 
   const passionLinks = [
-    { label: "Content",  id: "passion-content",  icon: <FaCamera  className="text-[10px]" /> },
-    { label: "Church",   id: "passion-church",   icon: <FaChurch  className="text-[10px]" /> },
-    { label: "Gaming",   id: "passion-gaming",   icon: <FaGamepad className="text-[10px]" /> },
-    { label: "Creative", id: "passion-creative", icon: <FaCode    className="text-[10px]" /> },
+    { label: "Content",  id: "passion-content",  icon: <FaCamera    className="text-[10px]" /> },
+    { label: "Church",   id: "passion-church",   icon: <FaChurch    className="text-[10px]" /> },
+    { label: "Gaming",   id: "passion-gaming",   icon: <FaGamepad   className="text-[10px]" /> },
+    { label: "Creative", id: "passion-creative", icon: <FaCode      className="text-[10px]" /> },
     { label: "Events",   id: "passion-events",   icon: <FaTicketAlt className="text-[10px]" /> },
   ];
 
@@ -60,7 +60,7 @@ const NavBar = () => {
     <>
       <nav className="fixed top-0 left-0 w-full z-50 h-[72px] bg-white/95 backdrop-blur-md border-b border-warm-gray-200 shadow-sm">
 
-        {/* ── 3-column grid: [logo] [center links] [cta/hamburger] ── */}
+        {/* 3-column grid: [logo] [center links] [cta/hamburger] */}
         <div className="grid grid-cols-[auto_1fr_auto] items-center h-full max-w-7xl mx-auto px-6 sm:px-8 gap-4">
 
           {/* COL 1 — Logo */}
@@ -77,7 +77,7 @@ const NavBar = () => {
             </span>
           </Link>
 
-          {/* COL 2 — Center nav links (desktop only, hidden on mobile) */}
+          {/* COL 2 — Center nav links (desktop only) */}
           <div className="hidden lg:flex items-center justify-center gap-0">
             {navLinks.map((link) => (
               <button
@@ -92,7 +92,7 @@ const NavBar = () => {
             ))}
           </div>
 
-          {/* COL 3 — Right side: CTAs (desktop) + hamburger (mobile) */}
+          {/* COL 3 — CTAs (desktop) + hamburger (mobile) */}
           <div className="flex items-center justify-end gap-2">
 
             {/* Desktop CTAs */}
@@ -144,7 +144,6 @@ const NavBar = () => {
               >
                 <FaFileDownload className="text-sm" />
               </a>
-              {/* Hamburger */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-10 h-10 flex flex-col justify-center items-center rounded-full border border-warm-gray-200 bg-white text-ink hover:border-crimson transition-colors"
@@ -161,7 +160,7 @@ const NavBar = () => {
           </div>
         </div>
 
-        {/* ── Mobile Drawer ── */}
+        {/* Mobile Drawer */}
         <div
           className={`absolute top-[72px] left-0 w-full overflow-hidden transition-all duration-300 ease-in-out lg:hidden bg-white border-b border-warm-gray-200 shadow-lg ${
             isOpen ? "max-h-[520px] opacity-100 py-4 px-4" : "max-h-0 opacity-0 pointer-events-none"

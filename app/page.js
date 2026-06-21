@@ -15,7 +15,7 @@ export default function Home() {
     }, 1000);
   }, []);
 
-  // Keep footer in sync with the toggle
+  // Keep footer in sync with the passion/profession toggle
   useEffect(() => {
     const saved = localStorage.getItem("portfolioViewState");
     if (saved === "passion" || saved === "profession") {
