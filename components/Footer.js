@@ -173,7 +173,7 @@ const Footer = ({ viewState = "profession" }) => {
             {viewState === "profession" ? (
               <>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
-                  Let's Talk
+                  Let&apos;s Talk
                 </p>
                 <div className="space-y-4">
                   <button

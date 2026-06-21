@@ -44,6 +44,7 @@ const NavBar = () => {
     { label: "Experience", id: "experience", icon: null },
     { label: "Skills",     id: "skills",     icon: null },
     { label: "About",      id: "about",      icon: null },
+    { label: "Contact",    id: "contact",    icon: null },
   ];
 
   const passionLinks = [
