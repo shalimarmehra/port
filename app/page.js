@@ -7,11 +7,25 @@ import PassionAndProfessionToggle from "@/components/PassionAndProfessionToggle"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [viewState, setViewState] = useState("profession");
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+  }, []);
+
+  // Keep footer in sync with the toggle
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolioViewState");
+    if (saved === "passion" || saved === "profession") {
+      setViewState(saved);
+    }
+    const handleViewChange = (e) => {
+      setViewState(e.detail.view);
+    };
+    window.addEventListener("portfolio-view-change", handleViewChange);
+    return () => window.removeEventListener("portfolio-view-change", handleViewChange);
   }, []);
 
   useEffect(() => {
@@ -70,7 +84,7 @@ export default function Home() {
             <NavBar />
             <div className="pt-[72px]">
               <PassionAndProfessionToggle />
-              <Footer />
+              <Footer viewState={viewState} />
             </div>
           </>
         )}

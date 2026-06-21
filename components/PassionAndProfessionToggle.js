@@ -11,12 +11,16 @@ const PassionAndProfessionToggle = () => {
     const saved = localStorage.getItem("portfolioViewState");
     if (saved === "passion" || saved === "profession") {
       setViewState(saved);
+      // Notify NavBar of initial state
+      window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: { view: saved } }));
     }
   }, []);
 
   const toggleView = (view) => {
     setViewState(view);
     localStorage.setItem("portfolioViewState", view);
+    // Notify NavBar of the new state
+    window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: { view } }));
   };
 
   return (

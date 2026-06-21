@@ -1,12 +1,24 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { FaGithub, FaAngleUp } from "react-icons/fa";
-import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
-import { FaSquareInstagram } from "react-icons/fa6";
+import {
+  FaGithub,
+  FaAngleUp,
+  FaMapMarkerAlt,
+  FaHeart,
+  FaCamera,
+  FaGamepad,
+  FaTicketAlt,
+} from "react-icons/fa";
+import {
+  IoLogoLinkedin,
+  IoLogoYoutube,
+  IoMdMail,
+} from "react-icons/io";
+import { FaSquareInstagram, FaCode } from "react-icons/fa6";
+import { FaChurch } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({ viewState = "profession" }) => {
   const currentYear = new Date().getFullYear();
 
   const handleScrollTo = (id) => {
@@ -16,136 +28,245 @@ const Footer = () => {
     }
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+      const navHeight = 80;
+      const offsetPosition =
+        element.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
 
   const copyEmail = () => {
     navigator.clipboard.writeText("contact@shalimarmehra.com");
-    // Could add toast here
   };
 
+  const socials = [
+    {
+      icon: <FaGithub className="text-base" />,
+      link: "https://github.com/shalimarmehra",
+      label: "GitHub",
+    },
+    {
+      icon: <IoLogoLinkedin className="text-base" />,
+      link: "https://www.linkedin.com/in/shalimarmehra/",
+      label: "LinkedIn",
+    },
+    {
+      icon: <FaSquareInstagram className="text-base" />,
+      link: "https://www.instagram.com/shalimarmehra/",
+      label: "Instagram",
+    },
+    {
+      icon: <IoLogoYoutube className="text-base" />,
+      link: "https://youtube.com/@shalimarmehra",
+      label: "YouTube",
+    },
+  ];
+
+  const professionLinks = [
+    { label: "Bio", id: "quick-bio" },
+    { label: "Projects", id: "projects" },
+    { label: "Experience", id: "experience" },
+    { label: "Skills", id: "skills" },
+    { label: "About", id: "about" },
+    { label: "Contact", id: "contact" },
+  ];
+
+  const passionLinks = [
+    { label: "Content & Video", id: "passion-content", icon: <FaCamera className="text-[10px]" /> },
+    { label: "Church Media", id: "passion-church", icon: <FaChurch className="text-[10px]" /> },
+    { label: "Gaming", id: "passion-gaming", icon: <FaGamepad className="text-[10px]" /> },
+    { label: "Creative Dev", id: "passion-creative", icon: <FaCode className="text-[10px]" /> },
+    { label: "Events", id: "passion-events", icon: <FaTicketAlt className="text-[10px]" /> },
+  ];
+
+  const navLinks = viewState === "passion" ? passionLinks : professionLinks;
+
   return (
-    <footer className="bg-white border-t border-warm-gray-200">
-      <div className="max-w-6xl mx-auto px-6 py-12 lg:py-16">
-        
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          
-          {/* Column 1: Contact / Brand */}
-          <div className="space-y-6">
-            <h3 className="font-serif text-xl font-bold text-ink">Get In Touch</h3>
-            <div className="space-y-3">
-              <p className="text-sm text-gray-500 font-medium">New Delhi, India</p>
-              <button 
-                onClick={copyEmail}
-                className="block text-crimson hover:text-crimson-dark bg-crimson/5 px-3 py-1.5 rounded-full border border-crimson/20 text-xs font-bold uppercase tracking-wider transition-colors"
-                title="Click to copy email"
-              >
-                contact@shalimarmehra.com
-              </button>
-              <a href="tel:+919560362339" className="block text-sm text-gray-500 hover:text-ink font-medium">
-                +91 95603 62339
-              </a>
+    <footer className="bg-ink text-white relative overflow-hidden">
+
+      {/* Decorative top rule */}
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-crimson to-transparent opacity-60" />
+
+      {/* Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <span className="font-serif font-bold text-[12vw] text-white/[0.03] whitespace-nowrap tracking-tight">
+          SHALIMAR MEHRA
+        </span>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-10">
+
+        {/* ── Top Grid ─────────────────────────────────────────── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+          {/* Col 1 — Brand */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Logo mark */}
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-crimson text-white font-serif font-bold text-lg shadow-lg">
+                SM.
+              </div>
+              <div>
+                <p className="font-serif font-bold text-lg text-white leading-none">
+                  Shalimar Mehra
+                </p>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest font-medium mt-0.5">
+                  {viewState === "passion" ? "Creator · Camera Op · Gamer" : "Full-Stack Developer · Designer"}
+                </p>
+              </div>
             </div>
-            <div className="pt-2">
-              <a 
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-ink hover:bg-crimson text-white font-bold px-5 py-2 rounded-full text-xs transition-colors shadow-sm"
-              >
-                Download CV
-              </a>
+
+            <p className="text-sm text-white/50 leading-relaxed max-w-sm">
+              {viewState === "passion"
+                ? "Beyond the code — exploring creativity through videography, faith, gaming, and community. Always showing up, always curious."
+                : "Building premium digital experiences at the intersection of design and engineering. Available for freelance and collaboration."}
+            </p>
+
+            {/* Location */}
+            <div className="flex items-center gap-2 text-white/40 text-xs font-medium">
+              <FaMapMarkerAlt className="text-crimson" />
+              <span>New Delhi, India</span>
+            </div>
+
+            {/* Socials */}
+            <div className="flex items-center gap-2 pt-1">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-crimson hover:border-crimson transition-all duration-200"
+                >
+                  {s.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Col 2 — Navigation */}
           <div>
-            <h3 className="font-serif text-xl font-bold text-ink mb-6">Explore</h3>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+              {viewState === "passion" ? "Explore Passions" : "Navigate"}
+            </p>
             <ul className="space-y-3">
-              {[
-                { label: "Bio", id: "quick-bio" },
-                { label: "Projects", id: "projects" },
-                { label: "Experience", id: "experience" },
-                { label: "Skills", id: "skills" },
-                { label: "About", id: "about" },
-                { label: "Contact", id: "contact" }
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => handleScrollTo(link.id)}
-                    className="text-gray-500 hover:text-crimson font-medium text-sm transition-colors link-underline"
+                    className="flex items-center gap-2 text-white/50 hover:text-white text-sm font-medium transition-colors duration-200 group"
                   >
-                    {link.label}
+                    {link.icon && (
+                      <span className="text-crimson">{link.icon}</span>
+                    )}
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                      {link.label}
+                    </span>
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Social & Go to Top */}
-          <div className="flex flex-col justify-between">
-            <div>
-              <h3 className="font-serif text-xl font-bold text-ink mb-6">Connect</h3>
-              <div className="flex flex-wrap gap-2.5">
-                {[
-                  { icon: <FaGithub />, link: "https://github.com/shalimarmehra" },
-                  { icon: <IoLogoLinkedin />, link: "https://www.linkedin.com/in/shalimarmehra/" },
-                  { icon: <FaSquareInstagram />, link: "https://www.instagram.com/shalimarmehra/" },
-                  { icon: <IoLogoYoutube />, link: "https://youtube.com/@shalimarmehra" }
-                ].map((social, idx) => (
-                  <a
-                    key={idx}
-                    href={social.link}
-                    className="bg-cream border border-warm-gray-200 p-2.5 rounded-full hover:border-crimson hover:text-crimson hover:-translate-y-1 transition-all text-ink flex items-center justify-center"
-                    target="_blank"
-                    rel="noopener noreferrer"
+          {/* Col 3 — Contact (profession only) or Vibe (passion) */}
+          <div>
+            {viewState === "profession" ? (
+              <>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                  Let's Talk
+                </p>
+                <div className="space-y-4">
+                  <button
+                    onClick={copyEmail}
+                    title="Click to copy"
+                    className="flex items-start gap-2.5 group text-left"
                   >
-                    {social.icon}
+                    <IoMdMail className="text-crimson mt-0.5 shrink-0" />
+                    <span className="text-sm text-white/50 group-hover:text-white transition-colors break-all">
+                      contact@shalimarmehra.com
+                    </span>
+                  </button>
+                  <a
+                    href="tel:+919560362339"
+                    className="flex items-start gap-2.5 group"
+                  >
+                    <span className="text-crimson mt-0.5 shrink-0 text-sm">📞</span>
+                    <span className="text-sm text-white/50 group-hover:text-white transition-colors">
+                      +91 95603 62339
+                    </span>
                   </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 lg:mt-0 flex lg:justify-end">
-              <button
-                onClick={() => handleScrollTo("top")}
-                className="flex items-center gap-2 text-gray-400 hover:text-crimson font-medium text-sm transition-colors group"
-              >
-                <span>Back to top</span>
-                <span className="bg-cream border border-warm-gray-200 p-1.5 rounded-full group-hover:border-crimson group-hover:bg-crimson group-hover:text-white transition-all">
-                  <FaAngleUp className="text-xs" />
-                </span>
-              </button>
-            </div>
+                  <div className="pt-2">
+                    <a
+                      href="/resume.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-crimson hover:bg-crimson/80 text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200 shadow-md shadow-crimson/20"
+                    >
+                      Download CV
+                    </a>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-5">
+                  Connect With Me
+                </p>
+                <div className="space-y-3">
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    Want to collaborate on a video project, discuss an event, or just chat?
+                  </p>
+                  <button
+                    onClick={copyEmail}
+                    title="Click to copy"
+                    className="flex items-center gap-2 text-crimson hover:text-white text-sm font-medium transition-colors"
+                  >
+                    <IoMdMail />
+                    <span>contact@shalimarmehra.com</span>
+                  </button>
+                  <div className="pt-1">
+                    <a
+                      href="https://www.linkedin.com/in/shalimarmehra/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 border border-white/10 hover:border-crimson text-white/50 hover:text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200"
+                    >
+                      Say Hello →
+                    </a>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-warm-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 flex items-center justify-center rounded-lg bg-ink text-white font-serif font-bold text-sm shadow-sm">
-              SM.
-            </div>
-            <p className="text-xs font-semibold text-gray-500">
-              &copy; {currentYear} Shalimar Mehra. All rights reserved.
+        {/* ── Divider ──────────────────────────────────────────── */}
+        <div className="h-px bg-white/[0.06] mb-8" />
+
+        {/* ── Bottom Bar ───────────────────────────────────────── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <p className="text-[11px] text-white/30 font-medium">
+              © {currentYear} Shalimar Mehra — All rights reserved.
             </p>
           </div>
-          
-          <p className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
-            Engineered with <span className="text-rose-500">♥</span> using Next.js & Tailwind
+
+          <p className="text-[10px] text-white/20 uppercase tracking-widest font-medium flex items-center gap-1.5">
+            Crafted with <FaHeart className="text-crimson animate-pulse" /> using Next.js & Tailwind
           </p>
+
+          {/* Back to top */}
+          <button
+            onClick={() => handleScrollTo("top")}
+            className="flex items-center gap-2 text-white/30 hover:text-white text-xs font-medium transition-colors group"
+          >
+            <span>Back to top</span>
+            <span className="w-7 h-7 bg-white/5 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-crimson group-hover:border-crimson transition-all">
+              <FaAngleUp className="text-xs" />
+            </span>
+          </button>
         </div>
 
       </div>
