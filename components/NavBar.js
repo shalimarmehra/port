@@ -99,11 +99,15 @@ const NavBar = () => {
             className="flex items-center gap-3 group transition-transform duration-300 active:scale-95"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
           >
-            <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-ink text-white font-serif font-bold text-lg shadow-sm group-hover:bg-crimson transition-colors duration-300">
+            <div className={`w-10 h-10 flex items-center justify-center rounded-lg font-serif font-bold text-lg shadow-sm transition-all duration-500 ${
+              viewState === "profession" 
+                ? "bg-ink text-white group-hover:bg-crimson" 
+                : "bg-gradient-to-r from-rose-600 to-amber-500 text-white"
+            }`}>
               SM.
             </div>
             <span className="font-serif text-ink text-lg font-bold tracking-tight">
-              Shalimar <span className="text-crimson">Mehra</span>
+              Shalimar <span className={`transition-colors duration-500 ${viewState === "profession" ? "text-crimson" : "text-rose-600"}`}>Mehra</span>
             </span>
           </Link>
 
@@ -115,14 +119,18 @@ const NavBar = () => {
                 <button
                   key={link.id}
                   onClick={() => handleScrollTo(link.id)}
-                  className={`relative uppercase tracking-widest text-xs font-sans font-semibold px-3 py-2 transition-colors duration-200 group flex items-center gap-1.5 ${
-                    isActive ? "text-crimson" : "text-gray-500 hover:text-crimson"
+                  className={`relative uppercase tracking-widest text-xs font-sans font-semibold px-3 py-2 transition-colors duration-300 group flex items-center gap-1.5 ${
+                    isActive 
+                      ? viewState === "profession" ? "text-crimson" : "text-rose-600"
+                      : viewState === "profession" ? "text-gray-500 hover:text-crimson" : "text-gray-500 hover:text-rose-600"
                   }`}
                 >
                   {link.icon}
                   {link.label}
-                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-crimson transition-all duration-300 ${
-                    isActive ? "w-3/4" : "w-0 group-hover:w-3/4"
+                  <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] transition-all duration-300 ${
+                    isActive 
+                      ? "w-3/4 " + (viewState === "profession" ? "bg-crimson" : "bg-rose-600") 
+                      : "w-0 group-hover:w-3/4 " + (viewState === "profession" ? "bg-crimson" : "bg-rose-600")
                   }`} />
                 </button>
               );
@@ -156,7 +164,11 @@ const NavBar = () => {
 
               <button
                 onClick={() => handleScrollTo("contact")}
-                className="bg-crimson hover:bg-crimson-dark text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-1.5 active:scale-95"
+                className={`text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-500 flex items-center gap-1.5 active:scale-95 ${
+                  viewState === "profession"
+                    ? "bg-crimson hover:bg-crimson-dark"
+                    : "bg-gradient-to-r from-rose-600 to-amber-500 hover:brightness-110"
+                }`}
                 data-cursor-text="SEND"
               >
                 Get In Touch <IoMdMail className="text-base" />
@@ -222,11 +234,13 @@ const NavBar = () => {
                   key={link.id}
                   onClick={() => handleScrollTo(link.id)}
                   className={`w-full text-left font-serif text-lg px-4 py-3 border-b border-warm-gray-100 hover:bg-cream/50 transition-colors flex items-center justify-between ${
-                    isActive ? "text-crimson bg-cream/30" : "text-ink hover:text-crimson"
+                    isActive 
+                      ? viewState === "profession" ? "text-crimson bg-cream/30" : "text-rose-600 bg-rose-50/30" 
+                      : viewState === "profession" ? "text-ink hover:text-crimson" : "text-ink hover:text-rose-600"
                   }`}
                 >
                   <span className="flex items-center gap-2">
-                    {link.icon && <span className="text-crimson text-base">{link.icon}</span>}
+                    {link.icon && <span className={`text-base transition-colors duration-500 ${viewState === "profession" ? "text-crimson" : "text-rose-600"}`}>{link.icon}</span>}
                     {link.label}
                   </span>
                   <span className={`text-xs font-sans uppercase tracking-widest transition-transform ${
@@ -238,7 +252,11 @@ const NavBar = () => {
 
             <button
               onClick={() => handleScrollTo("contact")}
-              className="w-full mt-3 bg-crimson hover:bg-crimson-dark text-white font-sans font-bold uppercase tracking-widest text-xs py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-colors"
+              className={`w-full mt-3 text-white font-sans font-bold uppercase tracking-widest text-xs py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-all duration-300 ${
+                viewState === "profession"
+                  ? "bg-crimson hover:bg-crimson-dark"
+                  : "bg-gradient-to-r from-rose-600 to-amber-500 hover:brightness-110"
+              }`}
             >
               Get In Touch <IoMdMail className="text-base" />
             </button>
