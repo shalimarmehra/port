@@ -14,7 +14,7 @@ const PassionAndProfessionToggle = () => {
       // Dispatch immediately to let the navigation bar and dots adapt on load
       setTimeout(() => {
         if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: saved }));
+          window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: { view: saved } }));
         }
       }, 50);
     }
@@ -24,7 +24,7 @@ const PassionAndProfessionToggle = () => {
     setViewState(view);
     localStorage.setItem("portfolioViewState", view);
     if (typeof window !== "undefined") {
-      window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: view }));
+      window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: { view } }));
     }
   };
 

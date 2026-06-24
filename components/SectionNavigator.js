@@ -35,7 +35,10 @@ const SectionNavigator = () => {
     }
 
     const handleViewChange = (e) => {
-      setViewState(e.detail);
+      const nextView = e.detail && e.detail.view ? e.detail.view : e.detail;
+      if (nextView === "passion" || nextView === "profession") {
+        setViewState(nextView);
+      }
       setActive("");
     };
 
@@ -43,7 +46,7 @@ const SectionNavigator = () => {
     return () => window.removeEventListener("portfolio-view-change", handleViewChange);
   }, []);
 
-  const currentSections = viewState === "profession" ? PROFESSION_SECTIONS : PASSION_SECTIONS;
+  const currentSections = PROFESSION_SECTIONS;
 
   useEffect(() => {
     // Show navigator after scrolling past hero
@@ -71,6 +74,8 @@ const SectionNavigator = () => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  if (viewState !== "profession") return null;
 
   return (
     <div

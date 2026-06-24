@@ -7,12 +7,30 @@ import PassionAndProfessionToggle from "@/components/PassionAndProfessionToggle"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [viewState, setViewState] = useState("profession");
 
   useEffect(() => {
-    // Keep loading true initially, it will be set to false by PreLoader's onComplete.
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  // Keep footer in sync with the passion/profession toggle
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolioViewState");
+    if (saved === "passion" || saved === "profession") {
+      setViewState(saved);
+    }
+    const handleViewChange = (e) => {
+      setViewState(e.detail.view);
+    };
+    window.addEventListener("portfolio-view-change", handleViewChange);
+    return () => window.removeEventListener("portfolio-view-change", handleViewChange);
   }, []);
 
   useEffect(() => {
+    if (isLoading) return;
+
     let scrollTriggerInstance;
 
     const initParallax = async () => {
@@ -58,18 +76,18 @@ export default function Home() {
 
   return (
     <>
-      <div className="z-0 relative">
-        {isLoading && <PreLoader onComplete={() => setIsLoading(false)} />}
-        
-        {/* Always render main content so GSAP and ScrollTriggers can bind to the DOM.
-            We can add a subtle fade-in when preloader finishes. */}
-        <div className={`transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-          <NavBar />
-          <div className="pt-[72px]">
-            <PassionAndProfessionToggle />
-            <Footer />
-          </div>
-        </div>
+      <div className="z-0">
+        {isLoading ? (
+          <PreLoader />
+        ) : (
+          <>
+            <NavBar />
+            <div className="pt-[72px]">
+              <PassionAndProfessionToggle />
+              <Footer viewState={viewState} />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
