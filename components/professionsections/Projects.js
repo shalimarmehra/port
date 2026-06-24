@@ -132,51 +132,56 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Layout */}
         {filteredProjects.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, idx) => (
+          <div className="space-y-12">
+            {/* Featured Project (First Item) */}
+            {filteredProjects.slice(0, 1).map((project) => (
               <div
                 key={project.id}
-                className="bg-white border border-warm-gray-200 rounded-2xl overflow-hidden group hover:border-crimson hover:shadow-lg transition-all duration-300 flex flex-col"
+                className="bg-white border border-warm-gray-200 rounded-3xl overflow-hidden group hover:border-crimson hover:shadow-2xl transition-all duration-500 flex flex-col lg:flex-row relative"
                 style={{
                   opacity: isLoaded ? 1 : 0,
                   transform: isLoaded ? "translateY(0)" : "translateY(32px)",
-                  transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, border-color 0.3s, box-shadow 0.3s`,
+                  transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s`,
                 }}
               >
-                {/* Image Container */}
-                <div className="relative h-52 overflow-hidden bg-warm-gray-50" data-cursor-text="VIEW">
+                {/* Large Featured Tag */}
+                <div className="absolute top-4 left-4 z-20 bg-crimson text-white text-[9px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-sm">
+                  Featured Project
+                </div>
+
+                {/* Left Side: Image */}
+                <div className="relative w-full lg:w-[55%] h-64 sm:h-80 lg:h-auto min-h-[320px] overflow-hidden bg-warm-gray-50" data-cursor-text="VIEW">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                    priority
                   />
-                  {/* Light overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/0 to-white/0" />
-                  {/* Category badge */}
-                  <span className="absolute top-3 right-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-cream text-crimson border border-warm-gray-200">
+                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-white/20 via-transparent to-transparent" />
+                  <span className="absolute top-4 right-4 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-cream text-crimson border border-warm-gray-200 z-10">
                     {project.category}
                   </span>
                 </div>
 
-                {/* Card Body */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="font-serif text-lg font-bold text-ink mb-2 group-hover:text-crimson transition-colors">
+                {/* Right Side: Details */}
+                <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-black text-ink mb-4 group-hover:text-crimson transition-colors leading-tight">
                     {project.title}
                   </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+                  <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6">
                     {project.description}
                   </p>
 
                   {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] font-semibold text-gray-400 bg-cream border border-warm-gray-200 px-2 py-0.5 rounded"
+                        className="text-[10px] sm:text-xs font-semibold text-gray-500 bg-cream border border-warm-gray-200 px-3 py-1 rounded-lg"
                       >
                         {tag}
                       </span>
@@ -184,13 +189,13 @@ const Projects = () => {
                   </div>
 
                   {/* CTAs */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-warm-gray-200">
+                  <div className="flex items-center gap-4 pt-6 border-t border-warm-gray-200">
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-4 py-2 rounded-lg transition-colors"
+                        className="flex-1 max-w-[200px] flex items-center justify-center gap-2 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-5 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
                         data-cursor-text="LIVE"
                       >
                         <FaGlobe className="text-xs" />
@@ -202,7 +207,7 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-4 py-2 rounded-lg transition-all"
+                        className="flex-1 max-w-[200px] flex items-center justify-center gap-2 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-5 py-3 rounded-xl transition-all duration-300 active:scale-95"
                         data-cursor-text="CODE"
                       >
                         <FaGithub className="text-xs" />
@@ -213,6 +218,90 @@ const Projects = () => {
                 </div>
               </div>
             ))}
+
+            {/* Remaining Projects Grid */}
+            {filteredProjects.length > 1 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {filteredProjects.slice(1).map((project, idx) => (
+                  <div
+                    key={project.id}
+                    className="bg-white border border-warm-gray-200 rounded-2xl overflow-hidden group hover:border-crimson hover:shadow-lg transition-all duration-300 flex flex-col"
+                    style={{
+                      opacity: isLoaded ? 1 : 0,
+                      transform: isLoaded ? "translateY(0)" : "translateY(32px)",
+                      transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, border-color 0.3s, box-shadow 0.3s`,
+                    }}
+                  >
+                    {/* Image Container */}
+                    <div className="relative h-56 overflow-hidden bg-warm-gray-50" data-cursor-text="VIEW">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                      {/* Light overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/0 to-white/0" />
+                      {/* Category badge */}
+                      <span className="absolute top-3 right-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-cream text-crimson border border-warm-gray-200">
+                        {project.category}
+                      </span>
+                    </div>
+
+                    {/* Card Body */}
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h3 className="font-serif text-lg font-bold text-ink mb-2 group-hover:text-crimson transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+                        {project.description}
+                      </p>
+
+                      {/* Tech Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-semibold text-gray-400 bg-cream border border-warm-gray-200 px-2 py-0.5 rounded"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* CTAs */}
+                      <div className="flex items-center gap-3 pt-4 border-t border-warm-gray-200">
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-4 py-2 rounded-lg transition-colors"
+                            data-cursor-text="LIVE"
+                          >
+                            <FaGlobe className="text-xs" />
+                            <span>Live Site</span>
+                          </a>
+                        )}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-4 py-2 rounded-lg transition-all"
+                            data-cursor-text="CODE"
+                          >
+                            <FaGithub className="text-xs" />
+                            <span>Code</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ) : (
           <div className="py-20 text-center bg-white border border-warm-gray-200 rounded-2xl">

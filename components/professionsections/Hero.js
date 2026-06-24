@@ -13,11 +13,23 @@ const ROLES = ["Full-Stack Developer", "UI/UX Enthusiast", "Content Creator", "E
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [roleIndex, setRoleIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   
-  // Refs for 3D Tilt & Magnetic Button
+  // Refs for 3D Tilt & Magnetic Button & Container
+  const heroRef = useRef(null);
   const imageRef = useRef(null);
   const btnRef = useRef(null);
   const btnTextRef = useRef(null);
+
+  // Mouse move handler for spotlight glow
+  const handleHeroMouseMove = (e) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   // Role ticker
   useEffect(() => {
@@ -155,7 +167,22 @@ const Hero = () => {
   };
 
   return (
-    <section id="quick-bio" className="relative min-h-[110vh] bg-transparent overflow-hidden pt-20 sm:pt-28 pb-20 perspective-1000">
+    <section 
+      ref={heroRef}
+      onMouseMove={handleHeroMouseMove}
+      id="quick-bio" 
+      className="relative min-h-[110vh] bg-transparent overflow-hidden pt-20 sm:pt-28 pb-20 perspective-1000"
+    >
+      {/* Interactive spotlight glow that follows the cursor */}
+      <div 
+        className="absolute pointer-events-none z-0 w-[600px] h-[600px] rounded-full blur-[120px] transition-opacity duration-300 opacity-0 md:opacity-100"
+        style={{
+          left: `${mousePos.x - 300}px`,
+          top: `${mousePos.y - 300}px`,
+          background: 'radial-gradient(circle, rgba(198,40,40,0.05) 0%, rgba(198,40,40,0.01) 60%, transparent 100%)',
+          transform: 'translate3d(0, 0, 0)',
+        }}
+      />
       
       {/* Infinite Scrolling Background Marquee */}
       <div className="bg-marquee absolute top-[25%] left-0 w-max whitespace-nowrap opacity-0 pointer-events-none select-none z-0 transform -rotate-2 mix-blend-multiply">

@@ -70,6 +70,42 @@ const SkillBar = ({ name, icon, level, accent, visible, delay }) => (
   </div>
 );
 
+const AnimatedCount = ({ value, suffix = "", isVisible }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    const target = parseInt(value, 10);
+    if (isNaN(target)) {
+      setCount(value);
+      return;
+    }
+
+    let start = 0;
+    const duration = 1500; // milliseconds
+    const stepTime = 30;
+    const totalSteps = duration / stepTime;
+    const increment = target / totalSteps;
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isVisible, value]);
+
+  // Format to ensure double digits if it's a small number
+  const formattedCount = typeof count === "number" && count < 10 ? `0${count}` : count;
+  return <>{formattedCount}{suffix}</>;
+};
+
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -146,10 +182,10 @@ const Skills = () => {
         <div className="border-t border-warm-gray-200 pt-12 relative z-10">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             {[
-              { value: "03+", label: "Years Experience" },
-              { value: "10+", label: "Deliveries" },
-              { value: "18+", label: "Technologies" },
-              { value: "100%", label: "Passion" },
+              { value: "3", suffix: "+", label: "Years Experience" },
+              { value: "10", suffix: "+", label: "Deliveries" },
+              { value: "18", suffix: "+", label: "Technologies" },
+              { value: "100", suffix: "%", label: "Passion" },
             ].map((metric, i) => (
               <div
                 key={metric.label}
@@ -159,7 +195,11 @@ const Skills = () => {
                 style={{ transitionDelay: `${450 + i * 100}ms` }}
               >
                 <h4 className="font-serif text-4xl font-black text-crimson mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {metric.value}
+                  <AnimatedCount 
+                    value={metric.value} 
+                    suffix={metric.suffix} 
+                    isVisible={isVisible} 
+                  />
                 </h4>
                 <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold">
                   {metric.label}

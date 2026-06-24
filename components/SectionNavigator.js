@@ -13,9 +13,37 @@ const PROFESSION_SECTIONS = [
   { id: "contact",    label: "Contact" },
 ];
 
+const PASSION_SECTIONS = [
+  { id: "creative-overview", label: "Overview" },
+  { id: "creative-videos",   label: "Videos" },
+  { id: "creative-coding",   label: "Code Labs" },
+  { id: "creative-design",   label: "Design" },
+  { id: "creative-hobbies",  label: "Travel" },
+  { id: "contact",           label: "Contact" },
+];
+
 const SectionNavigator = () => {
   const [active, setActive] = useState("");
   const [visible, setVisible] = useState(false);
+  const [viewState, setViewState] = useState("profession");
+
+  // Load view state and listen to changes
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolioViewState");
+    if (saved === "passion" || saved === "profession") {
+      setViewState(saved);
+    }
+
+    const handleViewChange = (e) => {
+      setViewState(e.detail);
+      setActive("");
+    };
+
+    window.addEventListener("portfolio-view-change", handleViewChange);
+    return () => window.removeEventListener("portfolio-view-change", handleViewChange);
+  }, []);
+
+  const currentSections = viewState === "profession" ? PROFESSION_SECTIONS : PASSION_SECTIONS;
 
   useEffect(() => {
     // Show navigator after scrolling past hero
@@ -23,7 +51,7 @@ const SectionNavigator = () => {
       setVisible(window.scrollY > 300);
 
       // Find the currently visible section
-      const ids = PROFESSION_SECTIONS.map((s) => s.id);
+      const ids = currentSections.map((s) => s.id);
       for (let i = ids.length - 1; i >= 0; i--) {
         const el = document.getElementById(ids[i]);
         if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.5) {
@@ -34,8 +62,10 @@ const SectionNavigator = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    // Trigger scroll immediately to calculate active section on load or perspective shift
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [currentSections]);
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -48,7 +78,7 @@ const SectionNavigator = () => {
         visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"
       }`}
     >
-      {PROFESSION_SECTIONS.map((section) => (
+      {currentSections.map((section) => (
         <button
           key={section.id}
           onClick={() => scrollTo(section.id)}

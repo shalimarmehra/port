@@ -11,12 +11,21 @@ const PassionAndProfessionToggle = () => {
     const saved = localStorage.getItem("portfolioViewState");
     if (saved === "passion" || saved === "profession") {
       setViewState(saved);
+      // Dispatch immediately to let the navigation bar and dots adapt on load
+      setTimeout(() => {
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: saved }));
+        }
+      }, 50);
     }
   }, []);
 
   const toggleView = (view) => {
     setViewState(view);
     localStorage.setItem("portfolioViewState", view);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: view }));
+    }
   };
 
   return (

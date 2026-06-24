@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IoMdMail } from "react-icons/io";
 import { FaSearch, FaFileDownload, FaYoutube, FaPinterest } from "react-icons/fa";
 
-const navLinks = [
+const PROFESSION_LINKS = [
   { label: "Bio",        id: "quick-bio",  num: "01" },
   { label: "Projects",  id: "projects",   num: "02" },
   { label: "YouTube",   id: "youtube",    num: "03" },
@@ -14,10 +14,39 @@ const navLinks = [
   { label: "About",     id: "about",      num: "09" },
 ];
 
+const PASSION_LINKS = [
+  { label: "Overview",  id: "creative-overview", num: "01" },
+  { label: "Videos",    id: "creative-videos",   num: "02" },
+  { label: "Code Labs", id: "creative-coding",   num: "03" },
+  { label: "Design",    id: "creative-design",   num: "04" },
+  { label: "Travel",    id: "creative-hobbies",  num: "05" },
+  { label: "Contact",   id: "contact",           num: "06" },
+];
+
 const NavBar = () => {
   const [isOpen,    setIsOpen]    = useState(false);
   const [scrolled,  setScrolled]  = useState(false);
   const [activeId,  setActiveId]  = useState("");
+  const [viewState, setViewState] = useState("profession");
+
+  // Load view state and listen to changes
+  useEffect(() => {
+    const saved = localStorage.getItem("portfolioViewState");
+    if (saved === "passion" || saved === "profession") {
+      setViewState(saved);
+    }
+
+    const handleViewChange = (e) => {
+      setViewState(e.detail);
+      // Reset active section tracker state on view change
+      setActiveId("");
+    };
+
+    window.addEventListener("portfolio-view-change", handleViewChange);
+    return () => window.removeEventListener("portfolio-view-change", handleViewChange);
+  }, []);
+
+  const navLinks = viewState === "profession" ? PROFESSION_LINKS : PASSION_LINKS;
 
   // Collapse drawer on resize to desktop
   useEffect(() => {
@@ -33,7 +62,7 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Active section tracker
+  // Active section tracker (depends on active navLinks)
   useEffect(() => {
     const ids = navLinks.map((l) => l.id);
     const onScroll = () => {
@@ -47,8 +76,10 @@ const NavBar = () => {
       setActiveId("");
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    // Trigger on scroll immediately to set state on mount/change
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [navLinks]);
 
   // Lock body scroll when drawer is open
   useEffect(() => {
