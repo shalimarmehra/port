@@ -16,29 +16,17 @@ import { SiFigma } from "react-icons/si";
 
 // ─── WIDGET 1: YOUTUBE EMBED & AUDIENCE STATS ───
 const YoutubeShowcase = ({ isPersonal }) => {
-  const videoId = isPersonal ? "2b9txcAt4e0" : "Ke90Tje7VS0";
-
   return (
-    <div className="space-y-6 w-full max-w-lg mx-auto">
-      <div className="relative aspect-video rounded-2xl overflow-hidden border border-warm-gray-200 shadow-md">
-        <iframe
-          className="absolute inset-0 w-full h-full border-none"
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0`}
-          title="YouTube Video Embed"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </div>
-
+    <div className="w-full bg-white border border-warm-gray-200 rounded-3xl p-6 shadow-md text-left max-w-lg mx-auto">
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-white border border-warm-gray-200 rounded-2xl p-4 text-center shadow-sm">
-          <p className="font-serif text-2xl font-black text-rose-600">
+        <div className="bg-cream border border-warm-gray-200/60 rounded-2xl p-6 text-center">
+          <p className="font-serif text-2xl font-black text-rose-600 mb-1">
             {isPersonal ? "3.2K+" : "15.4K+"}
           </p>
           <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Subscribers</p>
         </div>
-        <div className="bg-white border border-warm-gray-200 rounded-2xl p-4 text-center shadow-sm">
-          <p className="font-serif text-2xl font-black text-rose-600">
+        <div className="bg-cream border border-warm-gray-200/60 rounded-2xl p-6 text-center">
+          <p className="font-serif text-2xl font-black text-rose-600 mb-1">
             {isPersonal ? "25K+" : "120K+"}
           </p>
           <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Total Views</p>
@@ -82,28 +70,41 @@ const MockTerminalShowcase = () => {
   };
 
   return (
-    <div className="bg-ink text-emerald-400 font-mono text-[11px] rounded-2xl border border-white/10 p-5 shadow-2xl h-[340px] flex flex-col justify-between text-left w-full max-w-lg mx-auto">
-      <div className="overflow-y-auto space-y-2 flex-1 scrollbar-thin scrollbar-thumb-white/10 pr-2">
+    <div className="bg-[#0A0A0C] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[360px] w-full max-w-lg mx-auto text-left">
+      {/* Terminal Header */}
+      <div className="bg-white/[0.03] px-4 py-3 flex items-center justify-between border-b border-white/5 flex-shrink-0 select-none">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
+        </div>
+        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">query-model.sh</span>
+        <span className="w-10" />
+      </div>
+
+      {/* Terminal Logs */}
+      <div className="p-5 flex-1 overflow-y-auto space-y-2 text-left font-mono text-[11px] text-emerald-400 leading-relaxed scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
         {logs.map((log, i) => (
-          <p key={i} className="leading-relaxed whitespace-pre-wrap">{log}</p>
+          <p key={i} className="whitespace-pre-wrap">{log}</p>
         ))}
       </div>
       
-      <div className="flex items-center gap-2 border-t border-white/10 pt-4 mt-2">
-        <span className="text-emerald-500 font-bold">❯</span>
+      {/* Terminal Input */}
+      <div className="px-5 py-4 border-t border-white/5 bg-white/[0.01] flex items-center gap-2 flex-shrink-0 text-left">
+        <span className="text-emerald-500 font-bold font-mono">❯</span>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask AI sandbox... (e.g. generate DB schema)"
-          className="bg-transparent text-emerald-400 focus:outline-none flex-1 font-mono placeholder-emerald-950/50"
+          className="bg-transparent text-emerald-400 focus:outline-none flex-1 font-mono placeholder-emerald-950/50 text-[11px]"
           onKeyDown={(e) => e.key === "Enter" && runCommand()}
           disabled={isRunning}
         />
         <button
           onClick={runCommand}
           disabled={isRunning || !input.trim()}
-          className="px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50"
+          className="px-3.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50 flex items-center justify-center"
         >
           {isRunning ? <FaSync className="animate-spin" /> : "Run"}
         </button>
@@ -122,45 +123,64 @@ const DesignShowcase = () => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   return (
-    <div className="space-y-4 text-left w-full max-w-lg mx-auto">
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-warm-gray-200 shadow-md bg-warm-gray-50">
-        <Image
-          src={images[activeIdx]}
-          alt={`Figma Artboard ${activeIdx + 1}`}
-          fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover"
-        />
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full z-10">
+    <div className="w-full max-w-lg mx-auto bg-white border border-warm-gray-200 rounded-3xl p-4 shadow-md flex flex-col gap-4 text-left">
+      {/* Browser Mock Frame */}
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-warm-gray-100 bg-warm-gray-50 flex flex-col">
+        {/* Browser bar */}
+        <div className="h-8 bg-warm-gray-100 border-b border-warm-gray-200/50 px-4 flex items-center justify-between flex-shrink-0 select-none">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-warm-gray-300 inline-block" />
+            <span className="w-2 h-2 rounded-full bg-warm-gray-300 inline-block" />
+            <span className="w-2 h-2 rounded-full bg-warm-gray-300 inline-block" />
+          </div>
+          <span className="text-[9px] text-gray-400 font-sans tracking-wide">figma.com/file/sandbox-prototype</span>
+          <span className="w-10" />
+        </div>
+        
+        {/* Slide Image */}
+        <div className="flex-1 relative">
+          <Image
+            src={images[activeIdx]}
+            alt={`Figma Artboard ${activeIdx + 1}`}
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+          />
+          
+          {/* Navigation Controls Overlay */}
+          <button
+            onClick={() => setActiveIdx((prev) => (prev - 1 + images.length) % images.length)}
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white border border-warm-gray-200/50 flex items-center justify-center text-[10px] text-ink shadow-sm hover:scale-105 transition-all z-10"
+            aria-label="Previous Design"
+          >
+            <FaChevronLeft />
+          </button>
+          
+          <button
+            onClick={() => setActiveIdx((prev) => (prev + 1) % images.length)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white border border-warm-gray-200/50 flex items-center justify-center text-[10px] text-ink shadow-sm hover:scale-105 transition-all z-10"
+            aria-label="Next Design"
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+      </div>
+      
+      {/* Indicator Dots and Stats Footer */}
+      <div className="flex items-center justify-between px-1">
+        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+          Artboard {activeIdx + 1} of {images.length}
+        </span>
+        <div className="flex gap-1.5">
           {images.map((_, i) => (
             <button
               key={i}
               onClick={() => setActiveIdx(i)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                activeIdx === i ? "bg-white scale-125" : "bg-white/40"
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                activeIdx === i ? "bg-purple-500 w-3" : "bg-warm-gray-300"
               }`}
             />
           ))}
-        </div>
-      </div>
-      
-      <div className="flex items-center justify-between px-2">
-        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-          Wireframe Board {activeIdx + 1} of {images.length}
-        </span>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setActiveIdx((prev) => (prev - 1 + images.length) % images.length)}
-            className="w-8 h-8 rounded-full border border-warm-gray-200 flex items-center justify-center text-xs hover:border-crimson hover:text-crimson bg-white transition-colors"
-          >
-            <FaChevronLeft />
-          </button>
-          <button
-            onClick={() => setActiveIdx((prev) => (prev + 1) % images.length)}
-            className="w-8 h-8 rounded-full border border-warm-gray-200 flex items-center justify-center text-xs hover:border-crimson hover:text-crimson bg-white transition-colors"
-          >
-            <FaChevronRight />
-          </button>
         </div>
       </div>
     </div>
@@ -178,25 +198,66 @@ const PhotographyShowcase = () => {
 
   return (
     <div className="grid grid-cols-2 gap-4 text-left w-full max-w-lg mx-auto">
-      {photos.map((photo, i) => (
-        <div 
-          key={i} 
-          className="relative aspect-square rounded-2xl overflow-hidden group border border-warm-gray-200/50 shadow-sm"
-        >
+      <div className="flex flex-col gap-4">
+        <div className="relative h-44 sm:h-64 rounded-3xl overflow-hidden group border border-warm-gray-200/50 shadow-sm">
           <Image
-            src={photo.src}
-            alt={photo.caption}
+            src={photos[0].src}
+            alt={photos[0].caption}
             fill
             sizes="(max-width: 1024px) 50vw, 25vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
-            <span className="text-white font-serif text-sm font-bold text-center leading-relaxed">
-              {photo.caption}
+            <span className="text-white font-serif text-xs font-bold text-center leading-relaxed">
+              {photos[0].caption}
             </span>
           </div>
         </div>
-      ))}
+        <div className="relative h-56 sm:h-72 rounded-3xl overflow-hidden group border border-warm-gray-200/50 shadow-sm">
+          <Image
+            src={photos[1].src}
+            alt={photos[1].caption}
+            fill
+            sizes="(max-width: 1024px) 50vw, 25vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+            <span className="text-white font-serif text-xs font-bold text-center leading-relaxed">
+              {photos[1].caption}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 pt-8">
+        <div className="relative h-60 sm:h-80 rounded-3xl overflow-hidden group border border-warm-gray-200/50 shadow-sm">
+          <Image
+            src={photos[2].src}
+            alt={photos[2].caption}
+            fill
+            sizes="(max-width: 1024px) 50vw, 25vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+            <span className="text-white font-serif text-xs font-bold text-center leading-relaxed">
+              {photos[2].caption}
+            </span>
+          </div>
+        </div>
+        <div className="relative h-40 sm:h-56 rounded-3xl overflow-hidden group border border-warm-gray-200/50 shadow-sm">
+          <Image
+            src={photos[3].src}
+            alt={photos[3].caption}
+            fill
+            sizes="(max-width: 1024px) 50vw, 25vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+          />
+          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
+            <span className="text-white font-serif text-xs font-bold text-center leading-relaxed">
+              {photos[3].caption}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -340,7 +401,7 @@ const Passion = () => {
         <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(20,184,166,0.06)_0%,_transparent_70%)]" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
             <div className="flex-1 text-left">
               <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
@@ -402,7 +463,7 @@ const Passion = () => {
         <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(245,158,11,0.06)_0%,_transparent_70%)]" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
             <div className="flex-1 text-left">
               <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">

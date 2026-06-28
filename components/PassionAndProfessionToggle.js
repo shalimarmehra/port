@@ -5,6 +5,8 @@ import Profession from "./profession/Profession";
 
 const PassionAndProfessionToggle = () => {
   const [viewState, setViewState] = useState("profession");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [opacity, setOpacity] = useState(1);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -21,17 +23,28 @@ const PassionAndProfessionToggle = () => {
   }, []);
 
   const toggleView = (view) => {
-    setViewState(view);
-    localStorage.setItem("portfolioViewState", view);
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: view }));
-    }
+    if (view === viewState || isTransitioning) return;
+    setIsTransitioning(true);
+    setOpacity(0);
+
+    setTimeout(() => {
+      setViewState(view);
+      localStorage.setItem("portfolioViewState", view);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: view }));
+      }
+      
+      setOpacity(1);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 300);
+    }, 300);
   };
 
   return (
     <>
       {/* Sleek Journey Header Toggle */}
-      <div className="flex flex-col items-center justify-center pt-16 pb-4 relative z-10">
+      <div id="portfolio-toggle-container" className="flex flex-col items-center justify-center pt-16 pb-4 relative z-10">
         <h2 className={`text-xs font-bold uppercase tracking-[0.2em] mb-6 transition-colors duration-500 ${
           viewState === "profession" ? "text-crimson" : "text-rose-600"
         }`}>
@@ -71,7 +84,7 @@ const PassionAndProfessionToggle = () => {
       </div>
 
       {/* Render the selected component */}
-      <div className="w-full animate-fade-in">
+      <div className="w-full transition-opacity duration-300 ease-in-out" style={{ opacity }}>
         {viewState === "passion" ? <Passion /> : <Profession />}
       </div>
     </>
