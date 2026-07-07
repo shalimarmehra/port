@@ -133,37 +133,37 @@ const About = () => {
 
                 {/* Typewriter-style metadata rows */}
                 <div className="space-y-2 text-xs text-gray-500 font-mono tracking-tight max-w-sm">
-                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">First name:</span>
                     <span className="text-ink font-bold">Shalimar</span>
                   </div>
-                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Last name:</span>
                     <span className="text-ink font-bold">Mehra</span>
                   </div>
-                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Profession:</span>
                     <span className="text-ink font-bold">Full-Stack Developer</span>
                   </div>
-                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Location:</span>
                     <span className="text-ink font-medium">New Delhi, India</span>
                   </div>
-                  <div className="flex justify-between border-b border-warm-gray-100 pb-1">
+                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Email:</span>
                     <a 
                       href="mailto:contact@shalimarmehra.com" 
-                      className="text-crimson font-medium hover:underline transition-colors"
+                      className="text-crimson font-medium hover:underline transition-colors break-all text-left"
                       data-cursor-text="MAIL"
                     >
                       contact@shalimarmehra.com
                     </a>
                   </div>
-                  <div className="flex justify-between pb-1">
+                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Telephone:</span>
                     <a 
                       href="tel:+919560362339" 
-                      className="text-ink font-medium hover:underline transition-colors"
+                      className="text-ink font-medium hover:underline transition-colors break-all text-left"
                       data-cursor-text="CALL"
                     >
                       +91 95603 62339

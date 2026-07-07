@@ -106,8 +106,8 @@ const NavBar = () => {
             }`}>
               SM.
             </div>
-            <span className="font-serif text-ink text-lg font-bold tracking-tight">
-              Shalimar <span className={`transition-colors duration-500 ${viewState === "profession" ? "text-crimson" : "text-rose-600"}`}>Mehra</span>
+            <span className="font-serif text-ink text-lg font-bold tracking-tight hidden xs:inline">
+              Shalimar <span className={`transition-colors duration-500 hidden sm:inline ${viewState === "profession" ? "text-crimson" : "text-rose-600"}`}>Mehra</span>
             </span>
           </Link>
 
@@ -153,7 +153,7 @@ const NavBar = () => {
               </button>
 
               <a
-                href="/resume.pdf"
+                href="/resume-protected.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="uppercase tracking-widest text-xs font-semibold text-gray-500 hover:text-crimson px-4 py-2 border border-warm-gray-200 hover:border-crimson rounded-full transition-all duration-200 flex items-center gap-1.5 bg-white"
@@ -179,16 +179,16 @@ const NavBar = () => {
             <div className="lg:hidden flex items-center gap-2">
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent("toggle-command-palette"))}
-                className="text-gray-500 hover:text-crimson p-2 border border-warm-gray-200 rounded-full hover:border-crimson transition-all bg-white"
+                className="hidden sm:inline-block text-gray-500 hover:text-crimson p-2 border border-warm-gray-200 rounded-full hover:border-crimson transition-all bg-white"
                 aria-label="Search"
               >
                 <FaSearch className="text-sm" />
               </button>
               <a
-                href="/resume.pdf"
+                href="/resume-protected.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-crimson p-2.5 border border-warm-gray-200 rounded-full hover:border-crimson transition-all bg-white"
+                className="hidden sm:inline-block text-gray-500 hover:text-crimson p-2.5 border border-warm-gray-200 rounded-full hover:border-crimson transition-all bg-white"
                 aria-label="Resume"
               >
                 <FaFileDownload className="text-sm" />
@@ -212,7 +212,7 @@ const NavBar = () => {
         {/* Mobile Drawer */}
         <div
           className={`absolute top-[72px] left-0 w-full overflow-hidden transition-all duration-300 ease-in-out lg:hidden bg-white border-b border-warm-gray-200 shadow-lg ${
-            isOpen ? "max-h-[520px] opacity-100 py-4 px-4" : "max-h-0 opacity-0 pointer-events-none"
+            isOpen ? "max-h-[580px] opacity-100 py-4 px-4" : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
           <div className="flex flex-col gap-1 max-w-7xl mx-auto">
@@ -260,6 +260,27 @@ const NavBar = () => {
             >
               Get In Touch <IoMdMail className="text-base" />
             </button>
+
+            {/* Mobile-only Search and Resume buttons inside drawer */}
+            <div className="flex sm:hidden items-center gap-3 mt-3">
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  window.dispatchEvent(new CustomEvent("toggle-command-palette"));
+                }}
+                className="flex-1 flex items-center justify-center gap-2 py-3 border border-warm-gray-200 rounded-full text-xs font-semibold text-gray-600 hover:text-crimson hover:border-crimson bg-white transition-all uppercase tracking-wider shadow-sm"
+              >
+                <FaSearch className="text-[10px]" /> Search
+              </button>
+              <a
+                href="/resume-protected.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 py-3 border border-warm-gray-200 rounded-full text-xs font-semibold text-gray-600 hover:text-crimson hover:border-crimson bg-white transition-all uppercase tracking-wider shadow-sm"
+              >
+                <FaFileDownload className="text-[10px]" /> Resume
+              </a>
+            </div>
           </div>
         </div>
 

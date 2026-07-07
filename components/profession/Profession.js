@@ -7,7 +7,6 @@ import Experience from "../professionsections/Experience";
 import Skills from "../professionsections/Skills";
 import PinterestSection from "../professionsections/PinterestSection";
 import Testimonials from "../professionsections/Testimonials";
-import Playground from "../professionsections/Playground";
 import About from "../professionsections/About";
 import ContactForm from "../ContactForm";
 
@@ -38,8 +37,7 @@ const Profession = () => {
       {/* Client Testimonials */}
       <Testimonials />
 
-      {/* 07 — Live Code Playground */}
-      <Playground />
+
 
       {/* 08 — About Me */}
       <About />

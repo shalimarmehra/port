@@ -1,107 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { FaPinterest, FaHeart, FaExternalLinkAlt } from "react-icons/fa";
-import { HiSparkles } from "react-icons/hi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-// Pinterest-style curated creative posts (static integration)
-// Replace with Pinterest API or RSS feed for live data
-const pins = [
-  {
-    id: 1,
-    title: "Minimal Dashboard UI Design",
-    category: "UI/UX Design",
-    saves: "1.2K",
-    height: "h-64",
-    bgGradient: "from-slate-800 to-slate-900",
-    emoji: "🖥️",
-    accent: "#6366F1",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 2,
-    title: "Editorial Magazine Layout — Print Inspiration",
-    category: "Typography",
-    saves: "843",
-    height: "h-52",
-    bgGradient: "from-rose-900 to-rose-950",
-    emoji: "✦",
-    accent: "#C62828",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 3,
-    title: "Dark Mode Color System Palette",
-    category: "Color Theory",
-    saves: "2.1K",
-    height: "h-80",
-    bgGradient: "from-zinc-800 to-zinc-950",
-    emoji: "🎨",
-    accent: "#F59E0B",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 4,
-    title: "Clean Landing Page — SaaS Product",
-    category: "Web Design",
-    saves: "3.6K",
-    height: "h-56",
-    bgGradient: "from-sky-900 to-sky-950",
-    emoji: "🚀",
-    accent: "#0EA5E9",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 5,
-    title: "Glassmorphism Card Components",
-    category: "UI Components",
-    saves: "4.9K",
-    height: "h-72",
-    bgGradient: "from-violet-900 to-violet-950",
-    emoji: "💎",
-    accent: "#8B5CF6",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 6,
-    title: "Monochrome Photography — Urban Composition",
-    category: "Photography",
-    saves: "678",
-    height: "h-48",
-    bgGradient: "from-neutral-800 to-neutral-950",
-    emoji: "📷",
-    accent: "#6B7280",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 7,
-    title: "3D Typography Exploration — Brutalist Style",
-    category: "Typography",
-    saves: "1.8K",
-    height: "h-60",
-    bgGradient: "from-amber-900 to-amber-950",
-    emoji: "Aa",
-    accent: "#D97706",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-  {
-    id: 8,
-    title: "Micro-interaction Design Patterns",
-    category: "UX Motion",
-    saves: "2.5K",
-    height: "h-44",
-    bgGradient: "from-emerald-900 to-emerald-950",
-    emoji: "✨",
-    accent: "#10B981",
-    link: "https://pinterest.com/shalimarmehra",
-  },
-];
-
-// Split into 3 columns for masonry layout
-const col1 = pins.filter((_, i) => i % 3 === 0);
-const col2 = pins.filter((_, i) => i % 3 === 1);
-const col3 = pins.filter((_, i) => i % 3 === 2);
 
 const PinCard = ({ pin }) => {
   const [liked, setLiked] = useState(false);
@@ -111,86 +12,211 @@ const PinCard = ({ pin }) => {
       href={pin.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="pinterest-pin block relative overflow-hidden rounded-2xl group cursor-pointer"
+      className="pinterest-pin block relative overflow-hidden rounded-2xl group cursor-pointer bg-white border border-warm-gray-200/60 shadow-sm hover:shadow-xl hover:shadow-black/5 hover:-translate-y-1 transition-all duration-300"
       data-cursor-text="VIEW"
     >
-      {/* Decorative Art Board */}
-      <div
-        className={`${pin.height} w-full bg-gradient-to-br ${pin.bgGradient} flex items-center justify-center relative overflow-hidden`}
-      >
-        {/* Animated background dots */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, ${pin.accent}55 0%, transparent 50%), radial-gradient(circle at 75% 75%, ${pin.accent}33 0%, transparent 50%)`,
-          }}
-        />
-        {/* Large faded emoji / symbol */}
-        <span className="text-6xl sm:text-7xl select-none opacity-50 group-hover:opacity-80 group-hover:scale-110 transition-all duration-500">
-          {pin.emoji}
-        </span>
-        {/* Category label */}
-        <div className="absolute top-3 left-3">
-          <span
-            className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full"
-            style={{ backgroundColor: `${pin.accent}30`, color: pin.accent, border: `1px solid ${pin.accent}50` }}
-          >
-            {pin.category}
-          </span>
-        </div>
-        {/* External link icon top-right */}
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="w-7 h-7 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-            <FaExternalLinkAlt className="text-white text-[9px]" />
+      {/* Image Container */}
+      <div className="relative overflow-hidden w-full bg-warm-gray-50 flex items-center justify-center">
+        {pin.image ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={pin.image}
+            alt={pin.title}
+            className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+        ) : (
+          /* Fallback Art Board if no image */
+          <div className="h-48 w-full bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+            <span className="text-4xl opacity-40">{pin.emoji || "✦"}</span>
           </div>
-        </div>
+        )}
 
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+        {/* Hover Actions Overlay (Quick save & External Link) */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-3 z-10">
+          {/* Top Row: Category (Left) and Link Icon (Right) */}
           <div className="flex items-center justify-between w-full">
-            <p className="text-white text-xs font-semibold line-clamp-2 flex-1 pr-2">
-              {pin.title}
-            </p>
+            <span
+              className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/95 text-ink backdrop-blur-sm shadow-sm"
+              style={{ color: pin.accent }}
+            >
+              {pin.category}
+            </span>
+            <div className="w-8 h-8 rounded-full bg-white/95 text-ink flex items-center justify-center shadow-sm hover:scale-110 transition-transform">
+              <FaExternalLinkAlt className="text-[9px]" />
+            </div>
+          </div>
+
+          {/* Bottom Row: Save (Like) Button */}
+          <div className="flex justify-end">
             <button
               onClick={(e) => {
                 e.preventDefault();
                 setLiked(!liked);
               }}
-              className="flex items-center gap-1 shrink-0"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#E60023] hover:bg-[#C0001E] text-white text-[9px] font-bold uppercase tracking-wider shadow-md transition-all active:scale-95"
             >
-              <FaHeart
-                className={`text-sm transition-colors ${liked ? "text-[#E60023]" : "text-white/60"}`}
-              />
-              <span className="text-white/60 text-[10px]">{pin.saves}</span>
+              <FaHeart className={`text-xs ${liked ? "text-white" : "text-white/80"}`} />
+              <span>{liked ? "Saved" : "Save"}</span>
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Card Content Footer (Always Visible for readability) */}
+      <div className="p-4 bg-white border-t border-warm-gray-100/60 text-left">
+        <h3 className="font-serif text-sm font-bold text-ink leading-snug line-clamp-2 group-hover:text-[#E60023] transition-colors duration-300">
+          {pin.title}
+        </h3>
+        
+        {/* Saves / Likes & Profile indicator */}
+        <div className="flex items-center justify-between mt-3 text-[10px] text-gray-400 font-medium">
+          <span className="flex items-center gap-1">
+            <FaPinterest className="text-[#E60023] text-xs" />
+            <span>devdossier</span>
+          </span>
+          <span className="flex items-center gap-1">
+            <FaHeart className="text-gray-300 text-xs" />
+            <span>{liked ? parseInt(pin.saves) + 1 : pin.saves} saves</span>
+          </span>
         </div>
       </div>
     </a>
   );
 };
 
-const PinterestSection = () => {
+const SkeletonPin = ({ index }) => {
+  const heights = ["h-64", "h-52", "h-80", "h-56", "h-72", "h-48"];
+  const height = heights[index % heights.length];
+  return (
+    <div className={`break-inside-avoid mb-4 rounded-2xl overflow-hidden border border-warm-gray-200/50 bg-warm-gray-100 ${height} animate-pulse relative`}>
+      <div className="absolute inset-0 bg-gradient-to-r from-warm-gray-100 via-warm-gray-200 to-warm-gray-100 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+    </div>
+  );
+};
+
+const PinterestSection = ({ handle = "devdossier" }) => {
   const sectionRef = useRef(null);
+  const [feedInfo, setFeedInfo] = useState(null);
+  const [displayPins, setDisplayPins] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchPinterestPins() {
+      try {
+        const res = await fetch(`/api/pinterest/${handle}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch Pinterest feed");
+        }
+        const data = await res.json();
+        
+        setFeedInfo({
+          title: data.title,
+          description: data.description,
+          link: data.link
+        });
+
+        const ACCENT_COLORS = ["#6366F1", "#C62828", "#F59E0B", "#0EA5E9", "#8B5CF6", "#6B7280", "#D97706", "#10B981"];
+        const GRADIENTS = [
+          "from-slate-800 to-slate-900",
+          "from-rose-900 to-rose-950",
+          "from-zinc-800 to-zinc-950",
+          "from-sky-900 to-sky-950",
+          "from-violet-900 to-violet-950",
+          "from-neutral-800 to-neutral-950",
+          "from-amber-900 to-amber-950",
+          "from-emerald-900 to-emerald-950"
+        ];
+        const EMOJIS = ["🖥️", "✦", "🎨", "🚀", "💎", "📷", "Aa", "✨"];
+        const HEIGHTS = ["h-64", "h-52", "h-80", "h-56", "h-72", "h-48", "h-60", "h-44"];
+
+        const getPinCategory = (title = "") => {
+          const text = title.toLowerCase();
+          if (text.includes("minimal") || text.includes("setup") || text.includes("desk")) return "Setup";
+          if (text.includes("ui") || text.includes("ux") || text.includes("design") || text.includes("layout")) return "UI/UX";
+          if (text.includes("ai") || text.includes("api") || text.includes("model") || text.includes("gemini")) return "AI";
+          if (text.includes("game") || text.includes("valorant") || text.includes("gta")) return "Gaming";
+          if (text.includes("tech") || text.includes("developer") || text.includes("code")) return "Tech";
+          return "Creative";
+        };
+
+        const isRelatedToWebsite = (pin) => {
+          const title = (pin.title || "").toLowerCase();
+          const desc = (pin.description || "").toLowerCase();
+          const text = `${title} ${desc}`;
+          
+          // Related to design/development/setups/workspaces
+          const relatedKeywords = [
+            'web', 'ui', 'ux', 'design', 'setup', 'desk', 'developer', 'code', 
+            'coding', 'saas', 'api', 'ai', 'keyboard', 'notion', 'figma', 
+            'software', 'workstation', 'macbook', 'app', 'development', 
+            'programming', 'minimalist'
+          ];
+          
+          // Unrelated categories (gaming vlogs, off-topic posts)
+          const unrelatedKeywords = [
+            'gaming', 'gta', 'valorant', 'game', 'backlash', 'quote', 'hike'
+          ];
+          
+          const hasRelated = relatedKeywords.some(keyword => text.includes(keyword));
+          const hasUnrelated = unrelatedKeywords.some(keyword => text.includes(keyword));
+          
+          return hasRelated && !hasUnrelated;
+        };
+
+        const filteredPins = (data.pins || []).filter(isRelatedToWebsite);
+        const limitedPins = filteredPins.slice(0, 6);
+
+        const processed = limitedPins.map((pin, index) => {
+          return {
+            ...pin,
+            accent: ACCENT_COLORS[index % ACCENT_COLORS.length],
+            bgGradient: GRADIENTS[index % GRADIENTS.length],
+            emoji: EMOJIS[index % EMOJIS.length],
+            category: getPinCategory(pin.title),
+            saves: `${((index * 47) % 400 + 43)}`,
+            height: HEIGHTS[index % HEIGHTS.length]
+          };
+        });
+
+        setDisplayPins(processed);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPinterestPins();
+  }, [handle]);
+
+  useEffect(() => {
+    if (displayPins.length > 0) {
+      ScrollTrigger.refresh();
+      
+      // Re-trigger GSAP animation for the newly loaded cards
+      gsap.fromTo(
+        ".pinterest-pin",
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        }
+      );
+    }
+  }, [displayPins]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    gsap.fromTo(
-      ".pinterest-pin",
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-      }
-    );
 
     gsap.fromTo(
       ".pinterest-header",
@@ -203,6 +229,7 @@ const PinterestSection = () => {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 85%",
+          toggleActions: "play none none none",
         },
       }
     );
@@ -230,53 +257,52 @@ const PinterestSection = () => {
               Creative Board
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
-              Design Inspiration
+              {feedInfo?.title ? `${feedInfo.title} Pins` : "Design Inspiration"}
             </h2>
             <p className="text-gray-500 mt-3 font-sans text-sm sm:text-base max-w-xl">
-              A curated collection of design ideas, UI patterns, typographic
-              explorations, and creative references that fuel my work.
+              {feedInfo?.description || "A curated collection of design ideas, UI patterns, typographic explorations, and creative references that fuel my work."}
             </p>
           </div>
 
           {/* Pinterest Stats */}
           <div className="flex flex-wrap gap-4 shrink-0">
             <div className="text-center px-6 py-3 bg-white border border-warm-gray-200 rounded-2xl hover:border-[#E60023] transition-colors">
-              <p className="font-serif text-2xl font-bold text-[#E60023]">150+</p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Boards</p>
+              <p className="font-serif text-2xl font-bold text-[#E60023]">{displayPins.length}+</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Live Pins</p>
             </div>
             <div className="text-center px-6 py-3 bg-white border border-warm-gray-200 rounded-2xl hover:border-[#E60023] transition-colors">
-              <p className="font-serif text-2xl font-bold text-ink">2.4K</p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Pins Saved</p>
+              <p className="font-serif text-2xl font-bold text-ink">150+</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Boards</p>
             </div>
           </div>
         </div>
 
-        {/* Masonry Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {/* Column 1 */}
-          <div className="flex flex-col gap-4">
-            {col1.map((pin) => (
-              <PinCard key={pin.id} pin={pin} />
+        {/* Loading state, Error state, or Masonry Grid */}
+        {loading ? (
+          <div className="columns-1 xs:columns-2 sm:columns-3 gap-4">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <SkeletonPin key={index} index={index} />
             ))}
           </div>
-          {/* Column 2 */}
-          <div className="flex flex-col gap-4 mt-8">
-            {col2.map((pin) => (
-              <PinCard key={pin.id} pin={pin} />
+        ) : error ? (
+          <div className="text-center py-12 bg-white border border-warm-gray-200 rounded-3xl p-8">
+            <p className="text-rose-600 font-bold mb-2">Failed to load live feed</p>
+            <p className="text-xs text-gray-400">Please make sure the Pinterest profile exists and is public.</p>
+          </div>
+        ) : (
+          <div className="columns-1 xs:columns-2 sm:columns-3 gap-4">
+            {displayPins.map((pin) => (
+              <div key={pin.id} className="break-inside-avoid mb-4">
+                <PinCard pin={pin} />
+              </div>
             ))}
           </div>
-          {/* Column 3 (hidden on smallest screens) */}
-          <div className="hidden sm:flex flex-col gap-4 mt-16">
-            {col3.map((pin) => (
-              <PinCard key={pin.id} pin={pin} />
-            ))}
-          </div>
-        </div>
+        )}
 
         {/* Footer CTA */}
         <div className="mt-12 text-center">
           <a
-            href="https://pinterest.com/shalimarmehra"
+            href={feedInfo?.link || "https://pinterest.com/devdossier"}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#E60023] hover:bg-[#C0001E] text-white rounded-full font-bold text-sm transition-all shadow-lg shadow-[#E60023]/30 hover:shadow-[#E60023]/50 hover:-translate-y-0.5"

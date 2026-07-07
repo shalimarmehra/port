@@ -214,7 +214,7 @@ const TerminalConsole = () => {
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="terminal-toggle-btn fixed bottom-6 right-6 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-white border border-warm-gray-200 hover:border-crimson text-gray-500 hover:text-crimson shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 active:scale-95 group"
+        className="terminal-toggle-btn fixed bottom-24 right-6 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-white border border-warm-gray-200 hover:border-crimson text-gray-500 hover:text-crimson shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 active:scale-95 group"
         aria-label="Toggle Developer Terminal"
         data-cursor-text="CLI"
       >
@@ -288,7 +288,7 @@ const TerminalConsole = () => {
             
             {/* Command Input Form */}
             <form onSubmit={handleCommandSubmit} className="flex items-center gap-2 pt-2 border-t border-white/5 mt-4">
-              <span className="text-sky-400 flex-shrink-0">visitor@shalimar:~$</span>
+              <span className="text-sky-400 flex-shrink-0"><span className="hidden xs:inline">visitor@shalimar:</span>~$</span>
               <input
                 type="text"
                 value={input}

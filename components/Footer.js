@@ -197,7 +197,7 @@ const Footer = ({ viewState = "profession" }) => {
                   </a>
                   <div className="pt-2">
                     <a
-                      href="/resume.pdf"
+                      href="/resume-protected.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-crimson hover:bg-crimson/80 text-white text-xs font-bold uppercase tracking-widest px-5 py-2.5 rounded-full transition-all duration-200 shadow-md shadow-crimson/20"

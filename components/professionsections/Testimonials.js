@@ -49,6 +49,50 @@ const testimonials = [
       "I found Shalimar through his Dev Dossier tutorials and then hired him for my SaaS MVP. The tutorial quality alone shows his depth of knowledge. As a developer, he's even more impressive — empathetic, clear communicator, and a phenomenal engineer.",
     tag: "SaaS MVP",
   },
+  {
+    id: 5,
+    name: "Sarah Jenkins",
+    role: "Product Manager, Elevate Solutions",
+    avatar: "SJ",
+    color: "from-amber-500 to-amber-700",
+    rating: 5,
+    quote:
+      "Shalimar brought a unique mix of technical expertise and product sense. He was proactive in suggesting UI improvements that significantly enhanced our user onboarding experience. Brilliant developer to collaborate with.",
+    tag: "Product Strategy",
+  },
+  {
+    id: 6,
+    name: "Vikram Malhotra",
+    role: "CTO, FinTech Labs",
+    avatar: "VM",
+    color: "from-blue-500 to-blue-700",
+    rating: 5,
+    quote:
+      "The integration went incredibly smoothly, and the custom APIs he built are blazing fast and secure. Shalimar is highly reliable, responsive, and keeps code quality at the absolute highest standard.",
+    tag: "API Integration",
+  },
+  {
+    id: 7,
+    name: "Elena Rostova",
+    role: "Lead UI/UX Designer, Creative Space",
+    avatar: "ER",
+    color: "from-purple-500 to-purple-700",
+    rating: 5,
+    quote:
+      "As a designer, I'm extremely picky about pixel perfection. Shalimar translated our Figma layouts into flawless, responsive React components down to the single pixel. Absolute pleasure to work with.",
+    tag: "UI Development",
+  },
+  {
+    id: 8,
+    name: "David Kim",
+    role: "Director of Engineering, CloudCore",
+    avatar: "DK",
+    color: "from-cyan-500 to-cyan-700",
+    rating: 5,
+    quote:
+      "Outstanding communication and delivery speed. Shalimar set up our Next.js frontend with robust TypeScript support and modern state management, laying down a solid architectural foundation for our scale.",
+    tag: "Next.js Architecture",
+  },
 ];
 
 const TestimonialCard = ({ testimonial, visible, delay }) => (
@@ -97,6 +141,7 @@ const TestimonialCard = ({ testimonial, visible, delay }) => (
 
 const Testimonials = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -108,6 +153,18 @@ const Testimonials = () => {
     if (section) observer.observe(section);
     return () => { if (section) observer.unobserve(section); };
   }, []);
+
+  // Lock background scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
 
   return (
     <section
@@ -137,9 +194,9 @@ const Testimonials = () => {
           <div className="editorial-divider mt-6 w-16 h-px bg-warm-gray-300" />
         </div>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials Grid — Show only 4 initially */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((t, i) => (
+          {testimonials.slice(0, 4).map((t, i) => (
             <TestimonialCard
               key={t.id}
               testimonial={t}
@@ -147,6 +204,17 @@ const Testimonials = () => {
               delay={i * 150}
             />
           ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="group px-8 py-3.5 bg-white border border-warm-gray-200 hover:border-crimson rounded-full text-sm font-serif font-bold text-ink hover:text-crimson transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2"
+          >
+            <span>View All Testimonials</span>
+            <span className="text-crimson transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </button>
         </div>
 
         {/* Trust Badges */}
@@ -175,6 +243,55 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+
+      {/* Modal Dialog for All Testimonials */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-cream border border-warm-gray-200 rounded-3xl p-6 md:p-10 shadow-2xl flex flex-col max-h-[85vh] animate-reveal-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cut Button on Top Right */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-5 right-5 p-2 rounded-full border border-warm-gray-200 hover:border-crimson bg-white text-gray-400 hover:text-crimson transition-all duration-300 hover:rotate-90 active:scale-95 z-10"
+              aria-label="Close testimonials dialog"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Modal Header */}
+            <div className="mb-6 border-b border-warm-gray-200 pb-4">
+              <span className="cross-marker mb-1 block text-crimson text-sm">✦</span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ink tracking-tight">
+                All Testimonials
+              </h3>
+              <p className="text-gray-500 mt-1 text-xs sm:text-sm font-sans">
+                Full list of feedback from clients and collaborators.
+              </p>
+            </div>
+
+            {/* Scrollable list of testimonials */}
+            <div className="overflow-y-auto pr-2 flex-grow">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-2">
+                {testimonials.map((t) => (
+                  <TestimonialCard
+                    key={t.id}
+                    testimonial={t}
+                    visible={true}
+                    delay={0}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

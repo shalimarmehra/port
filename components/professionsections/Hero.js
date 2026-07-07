@@ -235,13 +235,13 @@ const Hero = () => {
 
             {/* Massive editorial headline with dynamic split text */}
             <h1 className="mb-6 perspective-1000">
-              <span className="block font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95]">
+              <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95]">
                 {splitText("FULL-STACK")}
               </span>
-              <span className="block font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95] mt-1">
+              <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95] mt-1">
                 {splitText("DEVELOPER")}
               </span>
-              <span className="block font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black italic text-crimson tracking-tight leading-[0.95] mt-1">
+              <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black italic text-crimson tracking-tight leading-[0.95] mt-1">
                 {splitText("& CREATOR")}
               </span>
             </h1>

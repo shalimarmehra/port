@@ -76,7 +76,7 @@ const CommandPalette = () => {
       category: "Actions",
       icon: <FaFilePdf className="text-crimson" />,
       action: () => {
-        window.open("/resume.pdf", "_blank");
+        window.open("/resume-protected.pdf", "_blank");
         setIsOpen(false);
       },
     },

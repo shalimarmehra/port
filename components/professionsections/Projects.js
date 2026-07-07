@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaGlobe, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 const Projects = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -70,10 +70,8 @@ const Projects = () => {
     setIsLoaded(true);
   }, []);
 
-  // Filter tags list
   const filterTags = ["all", "Next.js", "React", "WordPress", "PHP", "Tailwind CSS", "MySQL"];
 
-  // Filtered projects selector
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -84,122 +82,116 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
-      {/* Large section number */}
+      {/* Large section watermark */}
       <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
         02
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
 
-        {/* Section Header & Search */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        {/* Header Block & Search */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
               Selected Works
             </h2>
             <p className="text-gray-500 font-sans mt-3 text-sm sm:text-base max-w-xl">
-              Use search or filter tags to navigate through my web builds and client products.
+              Typographic showcase of web systems, client products, and custom builds.
             </p>
           </div>
 
-          {/* Search bar input */}
-          <div className="relative w-full md:max-w-xs">
-            <FaSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+          {/* Minimal Search Bar */}
+          <div className="relative w-full md:max-w-xs flex items-center border-b border-warm-gray-200 focus-within:border-crimson transition-colors py-1">
+            <FaSearch className="text-gray-400 text-xs mr-2 shrink-0" />
             <input
               type="text"
-              placeholder="Search projects..."
+              placeholder="Search builds..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-white border border-warm-gray-200 rounded-xl text-ink placeholder-gray-400 focus:outline-none focus:border-crimson focus:ring-2 focus:ring-crimson/10 text-sm transition-all font-medium"
+              className="w-full bg-transparent text-ink placeholder-gray-400 focus:outline-none text-sm font-medium"
             />
           </div>
         </div>
 
-        {/* Filter Tags Row */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        {/* Minimal Underline Filter Tags */}
+        <div className="flex flex-wrap gap-x-6 gap-y-3 mb-16 border-b border-warm-gray-100 pb-4">
           {filterTags.map((tag) => (
             <button
               key={tag}
               onClick={() => setSelectedTag(tag)}
-              className={`px-4 py-2 rounded-full text-xs font-bold tracking-tight uppercase border transition-all duration-200 ${
+              className={`text-[10px] tracking-[0.25em] font-bold uppercase transition-all duration-300 relative py-1 ${
                 selectedTag === tag
-                  ? "bg-crimson text-white border-crimson shadow-sm"
-                  : "bg-white border-warm-gray-200 text-gray-500 hover:text-crimson hover:border-crimson"
+                  ? "text-crimson font-black"
+                  : "text-gray-400 hover:text-ink"
               }`}
             >
               {tag === "all" ? "Show All" : tag}
+              {selectedTag === tag && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-crimson" />
+              )}
             </button>
           ))}
         </div>
 
-        {/* Projects Layout */}
+        {/* Minimal Project Grid */}
         {filteredProjects.length > 0 ? (
-          <div className="space-y-12">
-            {/* Featured Project (First Item) */}
-            {filteredProjects.slice(0, 1).map((project) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+            {filteredProjects.map((project, idx) => (
               <div
                 key={project.id}
-                className="bg-white border border-warm-gray-200 rounded-3xl overflow-hidden group hover:border-crimson hover:shadow-2xl transition-all duration-500 flex flex-col lg:flex-row relative"
+                className="group flex flex-col transition-all duration-500"
                 style={{
                   opacity: isLoaded ? 1 : 0,
-                  transform: isLoaded ? "translateY(0)" : "translateY(32px)",
-                  transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s`,
+                  transform: isLoaded ? "translateY(0)" : "translateY(24px)",
+                  transition: `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms`,
                 }}
               >
-                {/* Large Featured Tag */}
-                <div className="absolute top-4 left-4 z-20 bg-crimson text-white text-[9px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-sm">
-                  Featured Project
-                </div>
-
-                {/* Left Side: Image */}
-                <div className="relative w-full lg:w-[55%] h-64 sm:h-80 lg:h-auto min-h-[320px] overflow-hidden bg-warm-gray-50" data-cursor-text="VIEW">
+                {/* Image Frame */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-warm-gray-50 mb-6 shadow-sm group-hover:shadow-md transition-shadow duration-500">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                    priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-white/20 via-transparent to-transparent" />
-                  <span className="absolute top-4 right-4 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-cream text-crimson border border-warm-gray-200 z-10">
+                  {/* Category Label */}
+                  <span className="absolute top-4 right-4 text-[9px] uppercase font-bold tracking-[0.15em] px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm text-ink shadow-sm">
                     {project.category}
                   </span>
                 </div>
 
-                {/* Right Side: Details */}
-                <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-black text-ink mb-4 group-hover:text-crimson transition-colors leading-tight">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6">
+                {/* Metadata */}
+                <div className="flex flex-col flex-grow">
+                  <div className="flex items-center justify-between gap-4 mb-3">
+                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-ink group-hover:text-crimson transition-colors leading-tight">
+                      {project.title}
+                    </h3>
+                    <span className="text-xs font-mono font-semibold text-gray-300">
+                      0{project.id}
+                    </span>
+                  </div>
+
+                  <p className="text-gray-500 text-xs sm:text-sm leading-relaxed mb-5 flex-grow">
                     {project.description}
                   </p>
 
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] sm:text-xs font-semibold text-gray-500 bg-cream border border-warm-gray-200 px-3 py-1 rounded-lg"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Tech stack dot list */}
+                  <div className="flex flex-wrap items-center gap-2 mb-6 text-[10px] sm:text-xs font-semibold text-gray-400 font-mono">
+                    {project.tags.join("  •  ")}
                   </div>
 
-                  {/* CTAs */}
-                  <div className="flex items-center gap-4 pt-6 border-t border-warm-gray-200">
+                  {/* Premium Action Links */}
+                  <div className="flex items-center gap-6 pt-4 border-t border-warm-gray-100">
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 max-w-[200px] flex items-center justify-center gap-2 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-5 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg active:scale-95"
-                        data-cursor-text="LIVE"
+                        className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink hover:text-crimson transition-colors group/link"
                       >
-                        <FaGlobe className="text-xs" />
                         <span>Live Site</span>
+                        <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
                       </a>
                     )}
                     {project.github && (
@@ -207,106 +199,21 @@ const Projects = () => {
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 max-w-[200px] flex items-center justify-center gap-2 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-5 py-3 rounded-xl transition-all duration-300 active:scale-95"
-                        data-cursor-text="CODE"
+                        className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-ink transition-colors group/link"
                       >
-                        <FaGithub className="text-xs" />
                         <span>Code</span>
+                        <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
                       </a>
                     )}
                   </div>
                 </div>
               </div>
             ))}
-
-            {/* Remaining Projects Grid */}
-            {filteredProjects.length > 1 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {filteredProjects.slice(1).map((project, idx) => (
-                  <div
-                    key={project.id}
-                    className="bg-white border border-warm-gray-200 rounded-2xl overflow-hidden group hover:border-crimson hover:shadow-lg transition-all duration-300 flex flex-col"
-                    style={{
-                      opacity: isLoaded ? 1 : 0,
-                      transform: isLoaded ? "translateY(0)" : "translateY(32px)",
-                      transition: `opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 100}ms, border-color 0.3s, box-shadow 0.3s`,
-                    }}
-                  >
-                    {/* Image Container */}
-                    <div className="relative h-56 overflow-hidden bg-warm-gray-50" data-cursor-text="VIEW">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                      />
-                      {/* Light overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/0 to-white/0" />
-                      {/* Category badge */}
-                      <span className="absolute top-3 right-3 text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full bg-cream text-crimson border border-warm-gray-200">
-                        {project.category}
-                      </span>
-                    </div>
-
-                    {/* Card Body */}
-                    <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="font-serif text-lg font-bold text-ink mb-2 group-hover:text-crimson transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
-                        {project.description}
-                      </p>
-
-                      {/* Tech Tags */}
-                      <div className="flex flex-wrap gap-1.5 mb-5">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[10px] font-semibold text-gray-400 bg-cream border border-warm-gray-200 px-2 py-0.5 rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* CTAs */}
-                      <div className="flex items-center gap-3 pt-4 border-t border-warm-gray-200">
-                        {project.link && (
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-crimson hover:bg-crimson-dark px-4 py-2 rounded-lg transition-colors"
-                            data-cursor-text="LIVE"
-                          >
-                            <FaGlobe className="text-xs" />
-                            <span>Live Site</span>
-                          </a>
-                        )}
-                        {project.github && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-1 flex items-center justify-center gap-1.5 text-xs font-bold text-ink bg-cream border border-warm-gray-200 hover:border-crimson hover:text-crimson px-4 py-2 rounded-lg transition-all"
-                            data-cursor-text="CODE"
-                          >
-                            <FaGithub className="text-xs" />
-                            <span>Code</span>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         ) : (
-          <div className="py-20 text-center bg-white border border-warm-gray-200 rounded-2xl">
+          <div className="py-20 text-center bg-white border border-warm-gray-200/60 rounded-2xl">
             <p className="text-gray-400 text-sm font-medium">
-              No projects match your current search queries or tag selections.
+              No builds found matching your search.
             </p>
             <button
               onClick={() => {
