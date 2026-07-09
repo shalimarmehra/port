@@ -16,8 +16,7 @@ const PROFESSION_SECTIONS = [
 const PASSION_SECTIONS = [
   { id: "creative-overview", label: "Overview" },
   { id: "creative-videos",   label: "Videos" },
-  { id: "creative-coding",   label: "Code Labs" },
-  { id: "creative-design",   label: "Design" },
+  { id: "creative-gaming",   label: "Gaming" },
   { id: "creative-hobbies",  label: "Travel" },
   { id: "contact",           label: "Contact" },
 ];
@@ -46,7 +45,7 @@ const SectionNavigator = () => {
     return () => window.removeEventListener("portfolio-view-change", handleViewChange);
   }, []);
 
-  const currentSections = PROFESSION_SECTIONS;
+  const currentSections = viewState === "passion" ? PASSION_SECTIONS : PROFESSION_SECTIONS;
 
   useEffect(() => {
     // Show navigator after scrolling past hero
@@ -72,10 +71,12 @@ const SectionNavigator = () => {
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) {
+      const navHeight = 72;
+      const offsetPosition = el.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
   };
-
-  if (viewState !== "profession") return null;
 
   return (
     <div
@@ -99,8 +100,13 @@ const SectionNavigator = () => {
           <span
             className={`block rounded-full transition-all duration-300 ${
               active === section.id
-                ? "w-3 h-3 bg-crimson shadow-[0_0_8px_rgba(198,40,40,0.6)]"
-                : "w-1.5 h-1.5 bg-warm-gray-300 group-hover:bg-crimson/60 group-hover:scale-125"
+                ? viewState === "profession"
+                  ? "w-3 h-3 bg-crimson shadow-[0_0_8px_rgba(198,40,40,0.6)]"
+                  : "w-3 h-3 bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]"
+                : "w-1.5 h-1.5 bg-warm-gray-300 " +
+                  (viewState === "profession"
+                    ? "group-hover:bg-crimson/60 group-hover:scale-125"
+                    : "group-hover:bg-rose-500/60 group-hover:scale-125")
             }`}
           />
         </button>

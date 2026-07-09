@@ -5,14 +5,10 @@ import ContactForm from "../ContactForm";
 import PersonalYouTube from "./PersonalYouTube";
 import { BsYoutube, BsCameraFill, BsHeartFill } from "react-icons/bs";
 import { 
-  FaLaptopCode, 
   FaGlobe, 
   FaYoutube, 
-  FaSync,
-  FaChevronLeft,
-  FaChevronRight
+  FaGamepad 
 } from "react-icons/fa";
-import { SiFigma } from "react-icons/si";
 
 // ─── WIDGET 1: YOUTUBE EMBED & AUDIENCE STATS ───
 const YoutubeShowcase = ({ isPersonal }) => {
@@ -36,164 +32,86 @@ const YoutubeShowcase = ({ isPersonal }) => {
   );
 };
 
-// ─── WIDGET 2: MOCK API CODE TERMINAL ───
-const MockTerminalShowcase = () => {
-  const [input, setInput] = useState("");
-  const [logs, setLogs] = useState([
-    "System initialized. Ready for API query...",
-    "Type a prompt below and click Run to execute simulated sandbox.",
-  ]);
-  const [isRunning, setIsRunning] = useState(false);
+// ─── WIDGET 2: GAMING SHOWCASE (DIGITAL & PHYSICAL) ───
+const GamingShowcase = () => {
+  const [activeTab, setActiveTab] = useState("digital");
 
-  const runCommand = () => {
-    if (!input.trim() || isRunning) return;
-    setIsRunning(true);
-    setLogs((prev) => [...prev, `> user@sandbox:~$ query-model --prompt "${input}"`]);
+  const digitalGames = [
+    { title: "The Witcher 3: Wild Hunt", genre: "Open-World RPG", hours: "200+ hrs", image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" },
+    { title: "Elden Ring", genre: "Action RPG", hours: "150+ hrs", image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" },
+    { title: "Hades II", genre: "Rogue-like Action", hours: "60+ hrs", image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" },
+    { title: "Cyberpunk 2077", genre: "Sci-Fi RPG", hours: "100+ hrs", image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=600&q=80" }
+  ];
 
-    const steps = [
-      "Connecting to local model pipeline...",
-      "Status: 200 OK. Parsing prompt token parameters...",
-      "Generating serverless endpoints...",
-      "Exporting code module: export const handler = async (event) => { ... }",
-      "API Sandbox successfully compiled. Route registered: /api/sandbox/v1/generate",
-    ];
+  const physicalGames = [
+    { title: "Catan", genre: "Resource Strategy", players: "3-4 Players", image: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=600&q=80" },
+    { title: "Dungeons & Dragons", genre: "Tabletop RPG", players: "4-6 Players", image: "https://images.unsplash.com/photo-1608889175123-8ec330b86f84?auto=format&fit=crop&w=600&q=80" },
+    { title: "Chess", genre: "Classic Strategy", players: "2 Players", image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=600&q=80" },
+    { title: "Ticket to Ride", genre: "Tactical Route Building", players: "2-5 Players", image: "https://images.unsplash.com/photo-1606500549045-36272b0aa4f6?auto=format&fit=crop&w=600&q=80" }
+  ];
 
-    steps.forEach((step, idx) => {
-      setTimeout(() => {
-        setLogs((prev) => [...prev, `[system] ${step}`]);
-        if (idx === steps.length - 1) {
-          setIsRunning(false);
-        }
-      }, (idx + 1) * 800);
-    });
-    setInput("");
-  };
+  const games = activeTab === "digital" ? digitalGames : physicalGames;
 
   return (
-    <div className="bg-[#0A0A0C] border border-white/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[360px] w-full max-w-lg mx-auto text-left">
-      {/* Terminal Header */}
-      <div className="bg-white/[0.03] px-4 py-3 flex items-center justify-between border-b border-white/5 flex-shrink-0 select-none">
-        <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] inline-block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] inline-block" />
-        </div>
-        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">query-model.sh</span>
-        <span className="w-10" />
-      </div>
-
-      {/* Terminal Logs */}
-      <div className="p-5 flex-1 overflow-y-auto space-y-2 text-left font-mono text-[11px] text-emerald-400 leading-relaxed scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-        {logs.map((log, i) => (
-          <p key={i} className="whitespace-pre-wrap">{log}</p>
-        ))}
-      </div>
-      
-      {/* Terminal Input */}
-      <div className="px-5 py-4 border-t border-white/5 bg-white/[0.01] flex items-center gap-2 flex-shrink-0 text-left">
-        <span className="text-emerald-500 font-bold font-mono">❯</span>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask AI sandbox... (e.g. generate DB schema)"
-          className="bg-transparent text-emerald-400 focus:outline-none flex-1 font-mono placeholder-emerald-950/50 text-[11px]"
-          onKeyDown={(e) => e.key === "Enter" && runCommand()}
-          disabled={isRunning}
-        />
+    <div className="w-full max-w-lg mx-auto bg-white border border-warm-gray-200 rounded-3xl p-6 shadow-md flex flex-col gap-6 text-left">
+      <div className="flex bg-warm-gray-100 p-1 rounded-2xl border border-warm-gray-200/50">
         <button
-          onClick={runCommand}
-          disabled={isRunning || !input.trim()}
-          className="px-3.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase tracking-wider transition-all disabled:opacity-50 flex items-center justify-center"
+          onClick={() => setActiveTab("digital")}
+          className={`flex-1 py-2.5 text-center text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 ${
+            activeTab === "digital"
+              ? "bg-rose-500 text-white shadow-sm"
+              : "text-gray-500 hover:text-ink"
+          }`}
         >
-          {isRunning ? <FaSync className="animate-spin" /> : "Run"}
+          Digital Realm
+        </button>
+        <button
+          onClick={() => setActiveTab("physical")}
+          className={`flex-1 py-2.5 text-center text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 ${
+            activeTab === "physical"
+              ? "bg-rose-500 text-white shadow-sm"
+              : "text-gray-500 hover:text-ink"
+          }`}
+        >
+          Physical Tabletop
         </button>
       </div>
-    </div>
-  );
-};
 
-// ─── WIDGET 3: FIGMA CAROUSEL SLIDER ───
-const DesignShowcase = () => {
-  const images = [
-    "/project2.jpg",
-    "/project3.jpg",
-    "/project4.jpg",
-  ];
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  return (
-    <div className="w-full max-w-lg mx-auto bg-white border border-warm-gray-200 rounded-3xl p-4 shadow-md flex flex-col gap-4 text-left">
-      {/* Browser Mock Frame */}
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-warm-gray-100 bg-warm-gray-50 flex flex-col">
-        {/* Browser bar */}
-        <div className="h-8 bg-warm-gray-100 border-b border-warm-gray-200/50 px-4 flex items-center justify-between flex-shrink-0 select-none">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-warm-gray-300 inline-block" />
-            <span className="w-2 h-2 rounded-full bg-warm-gray-300 inline-block" />
-            <span className="w-2 h-2 rounded-full bg-warm-gray-300 inline-block" />
-          </div>
-          <span className="text-[9px] text-gray-400 font-sans tracking-wide">figma.com/file/sandbox-prototype</span>
-          <span className="w-10" />
-        </div>
-        
-        {/* Slide Image */}
-        <div className="flex-1 relative">
-          <Image
-            src={images[activeIdx]}
-            alt={`Figma Artboard ${activeIdx + 1}`}
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover"
-          />
-          
-          {/* Navigation Controls Overlay */}
-          <button
-            onClick={() => setActiveIdx((prev) => (prev - 1 + images.length) % images.length)}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white border border-warm-gray-200/50 flex items-center justify-center text-[10px] text-ink shadow-sm hover:scale-105 transition-all z-10"
-            aria-label="Previous Design"
-          >
-            <FaChevronLeft />
-          </button>
-          
-          <button
-            onClick={() => setActiveIdx((prev) => (prev + 1) % images.length)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white border border-warm-gray-200/50 flex items-center justify-center text-[10px] text-ink shadow-sm hover:scale-105 transition-all z-10"
-            aria-label="Next Design"
-          >
-            <FaChevronRight />
-          </button>
-        </div>
-      </div>
-      
-      {/* Indicator Dots and Stats Footer */}
-      <div className="flex items-center justify-between px-1">
-        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-          Artboard {activeIdx + 1} of {images.length}
-        </span>
-        <div className="flex gap-1.5">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIdx(i)}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                activeIdx === i ? "bg-purple-500 w-3" : "bg-warm-gray-300"
-              }`}
+      <div className="grid grid-cols-2 gap-4">
+        {games.map((game, idx) => (
+          <div key={idx} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-warm-gray-200 shadow-sm bg-warm-gray-50">
+            <Image
+              src={game.image}
+              alt={game.title}
+              fill
+              sizes="(max-width: 1024px) 50vw, 25vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
             />
-          ))}
-        </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-4 text-left">
+              <span className="text-[9px] uppercase tracking-widest text-rose-400 font-bold mb-1">
+                {activeTab === "digital" ? game.hours : game.players}
+              </span>
+              <h4 className="text-white text-xs font-serif font-bold leading-tight group-hover:text-rose-100 transition-colors">
+                {game.title}
+              </h4>
+              <p className="text-white/60 text-[9px] mt-0.5 font-mono">
+                {game.genre}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-// ─── WIDGET 4: PHOTO GALLERY MASONRY SWATCH ───
+// ─── WIDGET 3: PHOTO GALLERY MASONRY SWATCH ───
 const PhotographyShowcase = () => {
   const photos = [
-    { src: "/project1.jpg", caption: "Mountain telemetries" },
-    { src: "/project1b.jpg", caption: "Visual structures" },
-    { src: "/project6.jpg", caption: "High contrast frames" },
-    { src: "/project3.jpg", caption: "Urban paths" },
+    { src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80", caption: "Mountain telemetries" },
+    { src: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80", caption: "Scenic shorelines" },
+    { src: "https://images.unsplash.com/photo-1472214222541-d510753a4707?auto=format&fit=crop&w=800&q=80", caption: "Lush valley fields" },
+    { src: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80", caption: "Forest pathways" },
   ];
 
   return (
@@ -262,22 +180,22 @@ const PhotographyShowcase = () => {
   );
 };
 
-// ─── WIDGET 5: DYNAMIC BIDIRECTIONAL MARQUEE BAND ───
+// ─── WIDGET 4: DYNAMIC BIDIRECTIONAL MARQUEE BAND ───
 const CreativeTicker = () => {
   const row1Items = [
     "VISUAL STORYTELLER",
     "OUTDOOR EXPLORER",
-    "INDIE HACKER",
-    "INTERFACE DESIGNER",
+    "GAMER & COLLECTOR",
     "CINEMATIC VLOGGER",
+    "TRAVEL PHOTOGRAPHER",
   ];
 
   const row2Items = [
-    "CREATIVE SANDBOX",
-    "API PIPELINES",
-    "FIGMA ARTBOARDS",
-    "MOUNTAIN TELEMETRY",
+    "DIGITAL & PHYSICAL GAMES",
+    "BOARD GAME STRATEGIST",
+    "CINEMATIC LANDSCAPES",
     "SIDE QUESTS & BALANCE",
+    "TRAVEL DIARIES",
   ];
 
   return (
@@ -305,8 +223,6 @@ const CreativeTicker = () => {
   );
 };
 
-// ─── 5. MAIN PRESENTATION PAGE RESTYLING ───
-
 const Passion = () => {
   return (
     <div className="relative pb-12 w-full overflow-hidden">
@@ -328,7 +244,7 @@ const Passion = () => {
                 Creative Mind, Balance & Side Quests
               </h1>
               <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-                Beyond my core client work and enterprise systems engineering, I believe in maintaining a creative sandbox. Exploring visual storytelling on YouTube, building automated AI pipelines, designing prototypes, and capturing cinematic travel frames helps me bring a unique perspective to full-stack architecture.
+                Beyond my core client work and enterprise systems engineering, I believe in maintaining a creative sandbox. Sharing travel vlogs on YouTube, immersing myself in digital and physical gaming, and capturing cinematic travel landscapes helps me bring a fresh, creative perspective to everything I do.
               </p>
               <div className="editorial-divider w-16 h-px bg-warm-gray-300" />
             </div>
@@ -339,12 +255,12 @@ const Passion = () => {
                 <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Total Video Audience</p>
               </div>
               <div className="bg-white border border-warm-gray-200 rounded-3xl p-6 hover:border-teal-500 transition-colors group text-center shadow-sm">
-                <h3 className="font-serif text-3xl font-black text-teal-500 mb-1 group-hover:scale-105 transition-transform duration-300">5+</h3>
-                <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">SaaS & API Sandboxes</p>
+                <h3 className="font-serif text-3xl font-black text-teal-500 mb-1 group-hover:scale-105 transition-transform duration-300">120+</h3>
+                <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Digital Games Played</p>
               </div>
               <div className="bg-white border border-warm-gray-200 rounded-3xl p-6 hover:border-purple-500 transition-colors group text-center shadow-sm">
-                <h3 className="font-serif text-3xl font-black text-purple-500 mb-1 group-hover:scale-105 transition-transform duration-300">20+</h3>
-                <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Figma Artboards</p>
+                <h3 className="font-serif text-3xl font-black text-purple-500 mb-1 group-hover:scale-105 transition-transform duration-300">40+</h3>
+                <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Physical & Tabletop</p>
               </div>
               <div className="bg-white border border-warm-gray-200 rounded-3xl p-6 hover:border-amber-500 transition-colors group text-center shadow-sm">
                 <h3 className="font-serif text-3xl font-black text-amber-500 mb-1 group-hover:scale-105 transition-transform duration-300">45+</h3>
@@ -369,10 +285,10 @@ const Passion = () => {
             <div className="flex-1 text-left">
               <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
-                Video Channels & Education
+                Video Channels & Travelling
               </h2>
               <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-                I share my technical engineering workflows, structured system patterns, and lifestyle vlogs across my video channels. Through Dev Dossier, I teach Next.js and frontend scaling layouts to help developers level up. My personal channel hosts visual diaries capturing travel experiences and daily entrepreneurial insights.
+                I capture my journeys, global explorations, and cultural encounters across my video channels. Through cinematic travel vlogs and life diaries, I share the beauty of different destinations, local cuisines, and travel stories to inspire others to step out and explore the world.
               </p>
               <div className="editorial-divider w-16 h-px bg-warm-gray-300" />
             </div>
@@ -391,30 +307,30 @@ const Passion = () => {
 
       <div className="editorial-divider max-w-6xl mx-auto" />
 
-      {/* SECTION 03: Creative Dev */}
-      <section id="creative-coding" className="py-24 relative overflow-hidden bg-transparent">
+      {/* SECTION 03: Gaming (Digital & Physical) */}
+      <section id="creative-gaming" className="py-24 relative overflow-hidden bg-transparent">
         <div className="scroll-watermark passion-scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
           03
         </div>
 
         {/* Dynamic decorative backdrop highlight */}
-        <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(20,184,166,0.06)_0%,_transparent_70%)]" />
+        <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(244,63,94,0.06)_0%,_transparent_70%)]" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
             <div className="flex-1 text-left">
               <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
-                Experimental Code & API Labs
+                Digital & Physical Gaming
               </h2>
               <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-                My software sandbox contains custom generative AI orchestration layers, lightweight microservices, and serverless product backbones. I build and test automated command-line frameworks, developer tool bundles, and metric analysis hooks. Test out a live model prompt response in the terminal window.
+                Gaming is my ultimate creative sandbox and escape. I play and analyze both digital video games and physical tabletop board games. Whether strategizing routes in physical tabletop games or exploring lore-rich open-world RPGs on PC, gaming provides both entertainment and deep system design inspiration.
               </p>
               <div className="editorial-divider w-16 h-px bg-warm-gray-300" />
             </div>
             
             <div className="flex-1 w-full">
-              <MockTerminalShowcase />
+              <GamingShowcase />
             </div>
           </div>
         </div>
@@ -422,48 +338,17 @@ const Passion = () => {
 
       <div className="editorial-divider max-w-6xl mx-auto" />
 
-      {/* SECTION 04: UI/UX Prototyping */}
-      <section id="creative-design" className="py-24 relative overflow-hidden bg-transparent">
-        <div className="scroll-watermark passion-scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
-          04
-        </div>
-
-        {/* Dynamic decorative backdrop highlight */}
-        <div className="absolute top-1/3 -right-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(168,85,247,0.06)_0%,_transparent_70%)]" />
-
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            <div className="flex-1 text-left">
-              <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
-              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
-                Interface Prototyping Boards
-              </h2>
-              <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-                Every project I build starts with pixel-perfect layouts, interactive components, and comprehensive design grids in Figma. I prototype wireframes, experiment with design tokens, and draft typography systems before writing a single line of React. Cycle through some of my favorite recent prototype interfaces.
-              </p>
-              <div className="editorial-divider w-16 h-px bg-warm-gray-300" />
-            </div>
-            
-            <div className="flex-1 w-full">
-              <DesignShowcase />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="editorial-divider max-w-6xl mx-auto" />
-
-      {/* SECTION 05: Hobbies & Balance */}
+      {/* SECTION 04: Cinematic Landscapes */}
       <section id="creative-hobbies" className="py-24 relative overflow-hidden bg-transparent">
         <div className="scroll-watermark passion-scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
-          05
+          04
         </div>
 
         {/* Dynamic decorative backdrop highlight */}
         <div className="absolute top-1/3 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(245,158,11,0.06)_0%,_transparent_70%)]" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="flex-1 text-left">
               <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
@@ -484,7 +369,7 @@ const Passion = () => {
 
       <div className="editorial-divider max-w-6xl mx-auto" />
 
-      {/* SECTION 06: Let's Connect */}
+      {/* SECTION 05: Let's Connect */}
       <ContactForm />
 
       {/* Passion Footer Banner */}

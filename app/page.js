@@ -22,7 +22,10 @@ export default function Home() {
       setViewState(saved);
     }
     const handleViewChange = (e) => {
-      setViewState(e.detail.view);
+      const nextView = e.detail && e.detail.view ? e.detail.view : e.detail;
+      if (nextView === "passion" || nextView === "profession") {
+        setViewState(nextView);
+      }
     };
     window.addEventListener("portfolio-view-change", handleViewChange);
     return () => window.removeEventListener("portfolio-view-change", handleViewChange);

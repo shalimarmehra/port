@@ -5,10 +5,10 @@ import {
   FaAngleUp,
   FaMapMarkerAlt,
   FaHeart,
-  FaCamera,
+  FaGlobe,
+  FaYoutube,
   FaGamepad,
-  FaTicketAlt,
-  FaChurch,
+  FaCompass,
 } from "react-icons/fa";
 import {
   IoLogoLinkedin,
@@ -71,11 +71,11 @@ const Footer = ({ viewState = "profession" }) => {
   ];
 
   const passionLinks = [
-    { label: "Content & Video", id: "passion-content",  icon: <FaCamera    className="text-[10px]" /> },
-    { label: "Church Media",    id: "passion-church",   icon: <FaChurch    className="text-[10px]" /> },
-    { label: "Gaming",          id: "passion-gaming",   icon: <FaGamepad   className="text-[10px]" /> },
-    { label: "Creative Dev",    id: "passion-creative", icon: <FaCode      className="text-[10px]" /> },
-    { label: "Events",          id: "passion-events",   icon: <FaTicketAlt className="text-[10px]" /> },
+    { label: "Overview",  id: "creative-overview",  icon: <FaGlobe className="text-[10px]" /> },
+    { label: "Videos",    id: "creative-videos",    icon: <FaYoutube className="text-[10px]" /> },
+    { label: "Gaming",    id: "creative-gaming",    icon: <FaGamepad className="text-[10px]" /> },
+    { label: "Travel",    id: "creative-hobbies",   icon: <FaCompass className="text-[10px]" /> },
+    { label: "Contact",   id: "contact",            icon: <IoMdMail className="text-[10px]" /> },
   ];
 
   const navLinks = viewState === "passion" ? passionLinks : professionLinks;
