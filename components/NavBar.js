@@ -9,7 +9,8 @@ import {
   FaGlobe, 
   FaYoutube, 
   FaGamepad, 
-  FaCompass 
+  FaCompass,
+  FaChurch
 } from "react-icons/fa";
 
 const NavBar = () => {
@@ -73,6 +74,7 @@ const NavBar = () => {
     { label: "Videos",    id: "creative-videos",    icon: <FaYoutube className="text-[10px]" /> },
     { label: "Gaming",    id: "creative-gaming",    icon: <FaGamepad className="text-[10px]" /> },
     { label: "Travel",    id: "creative-hobbies",   icon: <FaCompass className="text-[10px]" /> },
+    { label: "Church Media", id: "church-media",     icon: <FaChurch className="text-[10px]" /> },
     { label: "Contact",   id: "contact",            icon: <IoMdMail className="text-[10px]" /> },
   ];
 

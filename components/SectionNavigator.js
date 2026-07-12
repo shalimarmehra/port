@@ -18,6 +18,7 @@ const PASSION_SECTIONS = [
   { id: "creative-videos",   label: "Videos" },
   { id: "creative-gaming",   label: "Gaming" },
   { id: "creative-hobbies",  label: "Travel" },
+  { id: "church-media",      label: "Church Media" },
   { id: "contact",           label: "Contact" },
 ];
 

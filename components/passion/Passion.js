@@ -7,7 +7,11 @@ import { BsYoutube, BsCameraFill, BsHeartFill } from "react-icons/bs";
 import { 
   FaGlobe, 
   FaYoutube, 
-  FaGamepad 
+  FaGamepad,
+  FaChurch,
+  FaVideo,
+  FaSlidersH,
+  FaTv
 } from "react-icons/fa";
 
 // ─── WIDGET 1: YOUTUBE EMBED & AUDIENCE STATS ───
@@ -180,7 +184,72 @@ const PhotographyShowcase = () => {
   );
 };
 
-// ─── WIDGET 4: DYNAMIC BIDIRECTIONAL MARQUEE BAND ───
+// ─── WIDGET 4: CHURCH MEDIA SHOWCASE ───
+const ChurchMediaShowcase = () => {
+  const mediaRoles = [
+    {
+      icon: <FaVideo className="text-xl text-rose-500" />,
+      title: "Camera Operations & Setup",
+      desc: "Handling, operating, and setting up professional video cameras and equipment rigs to capture weekly services."
+    },
+    {
+      icon: <FaTv className="text-xl text-teal-500" />,
+      title: "Lyrics Presentation",
+      desc: "Coordinating and running live lyric screens in real time, keeping in perfect sync with the worship team and congregation."
+    },
+    {
+      icon: <FaSlidersH className="text-xl text-purple-500" />,
+      title: "Console Handling",
+      desc: "Managing the video switcher and control console to transition between camera feeds, monitor streams, and direct live output."
+    }
+  ];
+
+  return (
+    <div className="w-full max-w-lg mx-auto bg-white border border-warm-gray-200 rounded-3xl p-6 shadow-md flex flex-col gap-6 text-left relative overflow-hidden group">
+      {/* Background print glow */}
+      <div className="absolute -right-24 -bottom-24 w-52 h-52 rounded-full bg-rose-500/5 blur-[80px] pointer-events-none group-hover:bg-rose-500/10 transition-colors duration-500" />
+      
+      {/* Upper header card banner */}
+      <div className="relative rounded-2xl overflow-hidden aspect-[16/9] border border-warm-gray-100 bg-warm-gray-100 flex-shrink-0 select-none">
+        <Image
+          src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=800&q=80"
+          alt="Church Media Control Booth"
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-5">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-rose-500/90 text-white rounded-full text-[9px] font-bold uppercase tracking-widest w-fit mb-2">
+            <FaChurch /> Active Media Ministry
+          </span>
+          <h4 className="text-white text-base font-serif font-black tracking-tight leading-tight">
+            Production Booth & Broadcaster Control
+          </h4>
+        </div>
+      </div>
+
+      {/* Role list */}
+      <div className="flex flex-col gap-5">
+        {mediaRoles.map((role, idx) => (
+          <div key={idx} className="flex gap-4 items-start">
+            <div className="p-3 bg-cream border border-warm-gray-200/50 rounded-2xl flex-shrink-0">
+              {role.icon}
+            </div>
+            <div>
+              <h5 className="font-serif text-sm font-bold text-ink mb-1">
+                {role.title}
+              </h5>
+              <p className="text-gray-500 text-xs leading-relaxed font-sans">
+                {role.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ─── WIDGET 5: DYNAMIC BIDIRECTIONAL MARQUEE BAND ───
 const CreativeTicker = () => {
   const row1Items = [
     "VISUAL STORYTELLER",
@@ -369,7 +438,38 @@ const Passion = () => {
 
       <div className="editorial-divider max-w-6xl mx-auto" />
 
-      {/* SECTION 05: Let's Connect */}
+      {/* SECTION 05: Church Media (Faith & Production Service) */}
+      <section id="church-media" className="py-24 relative overflow-hidden bg-transparent">
+        <div className="scroll-watermark passion-scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
+          05
+        </div>
+
+        {/* Dynamic decorative backdrop highlight */}
+        <div className="absolute top-1/3 -right-20 w-[400px] h-[400px] rounded-full pointer-events-none z-0 opacity-40 bg-[radial-gradient(circle,_rgba(244,63,94,0.06)_0%,_transparent_70%)]" />
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
+            <div className="flex-1 text-left">
+              <span className="cross-marker mb-4 block text-rose-600 text-lg">✦</span>
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight mb-4">
+                Media Ministry & Service
+              </h2>
+              <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                I am proud to serve as an active media team member for the Full Gospel Pentecostal Church of God. Handling and operating video cameras, setting up equipment rigs, running lyrics presentations, and managing switcher consoles lets me combine my technological experience with community service. Supporting spiritual worship through live media is a passion that gives deep purpose and balance to my life.
+              </p>
+              <div className="editorial-divider w-16 h-px bg-warm-gray-300" />
+            </div>
+            
+            <div className="flex-1 w-full">
+              <ChurchMediaShowcase />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="editorial-divider max-w-6xl mx-auto" />
+
+      {/* SECTION 06: Let's Connect */}
       <ContactForm />
 
       {/* Passion Footer Banner */}
