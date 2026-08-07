@@ -5,9 +5,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from "@vercel/analytics/react";
 import ScrollProgress from "@/components/ScrollProgress";
 import CustomCursor from "@/components/CustomCursor";
-import CommandPalette from "@/components/CommandPalette";
 import ThemeCustomizer from "@/components/ThemeCustomizer";
-import TerminalConsole from "@/components/TerminalConsole";
 import SectionNavigator from "@/components/SectionNavigator";
 
 const geistSans = localFont({
@@ -22,8 +20,8 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Shalimar Mehra • Full-Stack Developer • Content Creator • Entrepreneur",
-  description: "Shalimar Mehra is a full-stack developer, content creator, and entrepreneur. He specializes in building web applications and creating engaging content.",
+  title: "Shalimar Mehra • Full-Stack Developer • AI Enthusiast • Content Creator",
+  description: "Shalimar Mehra is a full-stack developer and AI enthusiast, currently pursuing further studies in artificial intelligence. He specializes in building high-performance web applications, exploring machine learning, and creating engaging developer content.",
   image: "/hero-img.jpeg",
   url: "https://www.shalimarmehra.tech",
   type: "website",
@@ -84,9 +82,7 @@ export default function RootLayout({ children }) {
         />
         <ScrollProgress />
         <CustomCursor />
-        <CommandPalette />
         <ThemeCustomizer />
-        <TerminalConsole />
         <SectionNavigator />
         <main>{children}</main>
         <Analytics />

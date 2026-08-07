@@ -7,6 +7,7 @@ import Experience from "../professionsections/Experience";
 import Skills from "../professionsections/Skills";
 import PinterestSection from "../professionsections/PinterestSection";
 import Testimonials from "../professionsections/Testimonials";
+import Playground from "../professionsections/Playground";
 import About from "../professionsections/About";
 import ContactForm from "../ContactForm";
 
@@ -34,15 +35,16 @@ const Profession = () => {
       {/* 06 — Design Inspiration (Pinterest) */}
       <PinterestSection />
 
-      {/* Client Testimonials */}
+      {/* 07 — Client Testimonials */}
       <Testimonials />
 
+      {/* 08 — Live Code Playground */}
+      <Playground />
 
-
-      {/* 08 — About Me */}
+      {/* 09 — About Me */}
       <About />
 
-      {/* 09 — Contact */}
+      {/* 10 — Contact */}
       <ContactForm />
     </>
   );

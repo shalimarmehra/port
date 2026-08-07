@@ -2,15 +2,16 @@
 import { useEffect, useState } from "react";
 
 const PROFESSION_SECTIONS = [
-  { id: "quick-bio",   label: "Bio" },
-  { id: "projects",   label: "Projects" },
-  { id: "youtube",    label: "YouTube" },
-  { id: "experience", label: "Experience" },
-  { id: "skills",     label: "Skills" },
-  { id: "creative",   label: "Creative" },
-  { id: "playground", label: "Playground" },
-  { id: "about",      label: "About" },
-  { id: "contact",    label: "Contact" },
+  { id: "quick-bio",    label: "Bio" },
+  { id: "projects",     label: "Projects" },
+  { id: "youtube",      label: "YouTube" },
+  { id: "experience",   label: "Experience" },
+  { id: "skills",       label: "Skills" },
+  { id: "creative",     label: "Creative" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "playground",   label: "Playground" },
+  { id: "about",        label: "About" },
+  { id: "contact",      label: "Contact" },
 ];
 
 const PASSION_SECTIONS = [

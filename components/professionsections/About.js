@@ -143,7 +143,7 @@ const About = () => {
                   </div>
                   <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Profession:</span>
-                    <span className="text-ink font-bold">Full-Stack Developer</span>
+                    <span className="text-ink font-bold">Full-Stack Developer & AI Learner</span>
                   </div>
                   <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center border-b border-warm-gray-100 pb-1 gap-0.5 xs:gap-2">
                     <span className="font-semibold text-gray-400">Location:</span>
@@ -179,7 +179,7 @@ const About = () => {
                   Who I Am
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed text-justify">
-                  Hello, I&apos;m <strong className="text-ink">Shalimar Mehra</strong>. I graduated with a Bachelor&apos;s degree in Computer Applications from <strong className="text-ink">IGNOU</strong>. My focus has always been bridging the gap between clean code architecture and elegant visual interface designs. Over the years, I&apos;ve completed advanced certifications in modern web frameworks and systems engineering to build a robust full-stack skill pipeline.
+                  Hello, I&apos;m <strong className="text-ink">Shalimar Mehra</strong>. I graduated with a Bachelor&apos;s degree in Computer Applications from <strong className="text-ink">IGNOU</strong> and am currently pursuing further studies in Artificial Intelligence and Machine Learning. My focus has always been bridging the gap between clean code architecture and elegant visual interface designs. Over the years, I&apos;ve completed advanced certifications in modern web frameworks and systems engineering to build a robust full-stack skill pipeline — now extending into AI-powered solutions.
                 </p>
               </div>
 
@@ -231,6 +231,17 @@ const About = () => {
                     </div>
                   </a>
                 </div>
+              </div>
+
+              {/* AI & Continued Education Block */}
+              <div>
+                <h3 className="font-serif text-lg font-bold text-ink mb-3 flex items-center gap-2">
+                  <span className="w-1.5 h-6 rounded bg-violet-500" />
+                  AI & Continued Education
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed text-justify">
+                  Currently deepening my expertise in Artificial Intelligence and Machine Learning. Exploring neural networks, natural language processing, and building intelligent web applications. I believe the intersection of full-stack development and AI is where the next generation of transformative products will emerge — and I&apos;m all in.
+                </p>
               </div>
 
             </div>

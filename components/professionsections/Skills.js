@@ -2,9 +2,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
-  FaGitAlt, FaFigma, FaWordpress,
+  FaGitAlt, FaFigma, FaWordpress, FaPython, FaBrain,
 } from "react-icons/fa";
-import { SiNextdotjs, SiExpress, SiMysql, SiMongodb } from "react-icons/si";
+import { SiNextdotjs, SiExpress, SiMysql, SiMongodb, SiTensorflow, SiOpenai } from "react-icons/si";
 
 const skillGroups = [
   {
@@ -41,6 +41,18 @@ const skillGroups = [
       { name: "VS Code / IDEs",         icon: <SiNextdotjs className="text-sky-400" />,     level: 95 },
       { name: "Performance Audits",     icon: <FaReact className="text-emerald-400" />,     level: 78 },
       { name: "Cloud Deployments",      icon: <SiExpress className="text-purple-500" />,    level: 74 },
+    ],
+  },
+  {
+    title: "AI & Emerging Tech",
+    accent: "#7C3AED",
+    skills: [
+      { name: "Python",              icon: <FaPython className="text-yellow-500" />,      level: 75 },
+      { name: "TensorFlow / PyTorch", icon: <SiTensorflow className="text-orange-500" />,  level: 60 },
+      { name: "Machine Learning",     icon: <FaBrain className="text-violet-500" />,       level: 58 },
+      { name: "Data Science",         icon: <FaPython className="text-sky-500" />,          level: 62 },
+      { name: "NLP / LLMs",           icon: <SiOpenai className="text-emerald-500" />,     level: 55 },
+      { name: "AI Integration",       icon: <SiOpenai className="text-purple-400" />,      level: 65 },
     ],
   },
 ];
@@ -145,7 +157,7 @@ const Skills = () => {
         </div>
 
         {/* Skills Cards Grid — each with animated progress bars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16 relative z-10">
           {skillGroups.map((group, groupIdx) => (
             <div
               key={group.title}
@@ -184,7 +196,7 @@ const Skills = () => {
             {[
               { value: "3", suffix: "+", label: "Years Experience" },
               { value: "10", suffix: "+", label: "Deliveries" },
-              { value: "18", suffix: "+", label: "Technologies" },
+              { value: "24", suffix: "+", label: "Technologies" },
               { value: "100", suffix: "%", label: "Passion" },
             ].map((metric, i) => (
               <div

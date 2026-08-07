@@ -8,7 +8,44 @@ import { IoLogoLinkedin, IoLogoYoutube } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-const ROLES = ["Full-Stack Developer", "UI/UX Enthusiast", "Content Creator", "Entrepreneur", "Open Source Builder"];
+const ROLES = ["Full-Stack Developer", "AI Enthusiast", "Content Creator", "Entrepreneur", "Open Source Builder"];
+
+// Animated counter component for hero stats
+const HeroAnimatedCount = ({ value, suffix = "" }) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const currentRef = ref.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold: 0.3 }
+    );
+    if (currentRef) observer.observe(currentRef);
+    return () => { if (currentRef) observer.unobserve(currentRef); };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    const target = parseInt(value, 10);
+    if (isNaN(target)) { setCount(value); return; }
+    let start = 0;
+    const duration = 1500;
+    const stepTime = 30;
+    const totalSteps = duration / stepTime;
+    const increment = target / totalSteps;
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) { setCount(target); clearInterval(timer); }
+      else setCount(Math.floor(start));
+    }, stepTime);
+    return () => clearInterval(timer);
+  }, [isVisible, value]);
+
+  const formatted = typeof count === "number" && count < 10 ? `0${count}` : count;
+  return <span ref={ref}>{formatted}{suffix}</span>;
+};
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -215,9 +252,15 @@ const Hero = () => {
           {/* ─── Left Column: Text ─── */}
           <div className="flex-1 text-left order-2 lg:order-1 pt-12 lg:pt-0">
             {/* Available badge */}
-            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide mb-4 bg-white/50 backdrop-blur-sm">
+            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide mb-3 bg-white/50 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
               <span>Available for Hire</span>
+            </div>
+
+            {/* Pursuing AI Badge */}
+            <div className="hero-badge inline-flex items-center gap-2 border border-violet-200 rounded-full px-3 py-1.5 text-xs font-semibold text-violet-600 tracking-wide mb-4 bg-violet-50/50 backdrop-blur-sm ml-2">
+              <span className="text-sm">📚</span>
+              <span>Pursuing AI / ML</span>
             </div>
 
             {/* Animated Role Ticker */}
@@ -242,13 +285,13 @@ const Hero = () => {
                 {splitText("DEVELOPER")}
               </span>
               <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black italic text-crimson tracking-tight leading-[0.95] mt-1">
-                {splitText("& CREATOR")}
+                {splitText("& AI EXPLORER")}
               </span>
             </h1>
 
             {/* Description */}
             <p className="hero-desc font-sans text-gray-500 text-base leading-relaxed mb-8 max-w-lg bg-white/30 backdrop-blur-sm p-4 rounded-xl border border-white/50">
-              I am a web specialist with a Bachelor&apos;s in Computer Applications. I love crafting high-performance, modern, and beautiful web applications from concept to deployment. Through my business <strong className="text-crimson font-semibold">Dev Dossier</strong> and my developer channels, I explore state-of-the-art technologies and deliver clean design systems that scale.
+              I am a full-stack developer with a Bachelor&apos;s in Computer Applications, currently pursuing AI and furthering my studies. I craft high-performance, modern web applications from concept to deployment. Through my business <strong className="text-crimson font-semibold">Dev Dossier</strong> and my developer channels, I explore state-of-the-art technologies — from React and Next.js to machine learning — and deliver clean design systems that scale.
             </p>
 
             {/* CTA Buttons */}
@@ -331,7 +374,7 @@ const Hero = () => {
         <div className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 relative z-10">
            <div className="hero-stat border border-warm-gray-200 hover:border-crimson p-6 rounded-2xl bg-white/70 backdrop-blur-md transition-colors duration-300 text-center hover:shadow-lg group">
             <p className="font-serif text-4xl font-bold text-crimson mb-1 group-hover:scale-110 transition-transform">
-              03+
+              <HeroAnimatedCount value="3" suffix="+" />
             </p>
             <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
               Years Experience
@@ -339,7 +382,7 @@ const Hero = () => {
           </div>
           <div className="hero-stat border border-warm-gray-200 hover:border-crimson p-6 rounded-2xl bg-white/70 backdrop-blur-md transition-colors duration-300 text-center hover:shadow-lg group">
             <p className="font-serif text-4xl font-bold text-crimson mb-1 group-hover:scale-110 transition-transform">
-              10+
+              <HeroAnimatedCount value="10" suffix="+" />
             </p>
             <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
               Deliveries
@@ -347,7 +390,7 @@ const Hero = () => {
           </div>
           <div className="hero-stat border border-warm-gray-200 hover:border-crimson p-6 rounded-2xl bg-white/70 backdrop-blur-md transition-colors duration-300 text-center hover:shadow-lg group">
             <p className="font-serif text-4xl font-bold text-crimson mb-1 group-hover:scale-110 transition-transform">
-              05+
+              <HeroAnimatedCount value="18" suffix="+" />
             </p>
             <p className="text-xs uppercase tracking-widest text-gray-500 font-medium">
               Technologies

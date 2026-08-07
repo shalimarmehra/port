@@ -7,8 +7,10 @@ const page = () => {
   return (
     <>
     <NavBar />
-    <ContactForm />
-    <Footer />
+    <div className="pt-[72px]">
+      <ContactForm />
+      <Footer />
+    </div>
     </>
   )
 }

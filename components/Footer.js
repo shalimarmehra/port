@@ -21,6 +21,16 @@ import { FaSquareInstagram, FaCode } from "react-icons/fa6";
 const Footer = ({ viewState = "profession" }) => {
   const currentYear = new Date().getFullYear();
 
+  // Time-of-day greeting
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 6) return "Burning the midnight oil? 🌙";
+    if (hour < 12) return "Good morning! ☕";
+    if (hour < 17) return "Good afternoon! ☀️";
+    if (hour < 21) return "Good evening! 🌆";
+    return "Night owl mode! 🦉";
+  };
+
   const handleScrollTo = (id) => {
     if (id === "top") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -28,7 +38,7 @@ const Footer = ({ viewState = "profession" }) => {
     }
     const element = document.getElementById(id);
     if (element) {
-      const navHeight = 80;
+      const navHeight = 72;
       const offsetPosition =
         element.getBoundingClientRect().top + window.scrollY - navHeight;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -113,7 +123,7 @@ const Footer = ({ viewState = "profession" }) => {
                 <p className="text-[10px] text-white/40 uppercase tracking-widest font-medium mt-0.5">
                   {viewState === "passion"
                     ? "Creator · Camera Op · Gamer"
-                    : "Full-Stack Developer · Designer"}
+                    : "Full-Stack Developer · AI Enthusiast"}
                 </p>
               </div>
             </div>
@@ -128,6 +138,17 @@ const Footer = ({ viewState = "profession" }) => {
               <FaMapMarkerAlt className="text-crimson shrink-0" />
               <span>New Delhi, India</span>
             </div>
+
+            {/* Availability Status */}
+            <div className="flex items-center gap-2 text-xs font-medium">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
+              <span className="text-emerald-400/80">Available for Projects</span>
+            </div>
+
+            {/* Time Greeting */}
+            <p className="text-white/25 text-xs font-medium">
+              {getGreeting()}
+            </p>
 
             {/* Social icon row */}
             <div className="flex items-center gap-2">

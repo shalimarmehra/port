@@ -46,7 +46,8 @@ const PassionAndProfessionToggle = () => {
       localStorage.setItem("portfolioViewState", view);
       if (typeof window !== "undefined") {
         window.dispatchEvent(new CustomEvent("portfolio-view-change", { detail: view }));
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // Scroll to top instantly so new content opens from the top
+        window.scrollTo({ top: 0, behavior: "instant" });
       }
       
       setOpacity(1);

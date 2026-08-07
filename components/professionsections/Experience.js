@@ -10,11 +10,12 @@ const Experience = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const ownTriggers = [];
     const cards = gsap.utils.toArray(".exp-card");
     
     // Animate the line
     if (lineRef.current) {
-      gsap.fromTo(
+      const lineTween = gsap.fromTo(
         lineRef.current,
         { scaleY: 0 },
         {
@@ -24,15 +25,15 @@ const Experience = () => {
             trigger: ".timeline-container",
             start: "top center",
             end: "bottom center",
-            scrub: 1.5, // Smooth scrubbing
+            scrub: 1.5,
           },
         }
       );
+      if (lineTween.scrollTrigger) ownTriggers.push(lineTween.scrollTrigger);
     }
 
     // Animate cards popping in
     cards.forEach((card, i) => {
-      // Find the dot inside the card
       const dot = card.querySelector('.timeline-dot');
       
       const tl = gsap.timeline({
@@ -42,6 +43,7 @@ const Experience = () => {
           toggleActions: "play none none reverse",
         }
       });
+      if (tl.scrollTrigger) ownTriggers.push(tl.scrollTrigger);
       
       tl.fromTo(dot, 
         { scale: 0, opacity: 0 },
@@ -55,7 +57,7 @@ const Experience = () => {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ownTriggers.forEach(t => t.kill());
     };
   }, []);
 

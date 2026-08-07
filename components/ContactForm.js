@@ -156,7 +156,10 @@ const ContactForm = () => {
 
           {/* Column 2: The Contact Form */}
           <div className="flex-1 order-1 lg:order-2">
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border border-warm-gray-200 relative overflow-hidden shadow-sm">
+            <div className="bg-white/80 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-warm-gray-200 relative overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 group/form">
+              {/* Premium gradient glow accent */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-gradient-to-br from-crimson/10 to-violet-500/10 blur-3xl pointer-events-none group-hover/form:from-crimson/15 group-hover/form:to-violet-500/15 transition-all duration-700" />
+              <div className="absolute -bottom-16 -left-16 w-32 h-32 rounded-full bg-gradient-to-tr from-amber-500/5 to-crimson/10 blur-3xl pointer-events-none" />
               <h3 className="font-serif text-2xl font-bold text-ink mb-6">
                 Send a Message
               </h3>
