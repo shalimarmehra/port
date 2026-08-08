@@ -2,25 +2,26 @@
 import { useEffect, useState } from "react";
 
 const PROFESSION_SECTIONS = [
-  { id: "quick-bio",    label: "Bio" },
-  { id: "projects",     label: "Projects" },
-  { id: "youtube",      label: "YouTube" },
-  { id: "experience",   label: "Experience" },
-  { id: "skills",       label: "Skills" },
-  { id: "creative",     label: "Creative" },
+  { id: "quick-bio", label: "Bio" },
+  { id: "projects", label: "Projects" },
+  { id: "devdossier", label: "DevDossier" },
+  { id: "youtube", label: "YouTube" },
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "creative", label: "Creative" },
   { id: "testimonials", label: "Testimonials" },
-  { id: "playground",   label: "Playground" },
-  { id: "about",        label: "About" },
-  { id: "contact",      label: "Contact" },
+  { id: "playground", label: "Playground" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
 ];
 
 const PASSION_SECTIONS = [
   { id: "creative-overview", label: "Overview" },
-  { id: "creative-videos",   label: "Videos" },
-  { id: "creative-gaming",   label: "Gaming" },
-  { id: "creative-hobbies",  label: "Travel" },
-  { id: "church-media",      label: "Church Media" },
-  { id: "contact",           label: "Contact" },
+  { id: "creative-videos", label: "Videos" },
+  { id: "creative-gaming", label: "Gaming" },
+  { id: "creative-hobbies", label: "Travel" },
+  { id: "church-media", label: "Church Media" },
+  { id: "contact", label: "Contact" },
 ];
 
 const SectionNavigator = () => {
@@ -44,10 +45,12 @@ const SectionNavigator = () => {
     };
 
     window.addEventListener("portfolio-view-change", handleViewChange);
-    return () => window.removeEventListener("portfolio-view-change", handleViewChange);
+    return () =>
+      window.removeEventListener("portfolio-view-change", handleViewChange);
   }, []);
 
-  const currentSections = viewState === "passion" ? PASSION_SECTIONS : PROFESSION_SECTIONS;
+  const currentSections =
+    viewState === "passion" ? PASSION_SECTIONS : PROFESSION_SECTIONS;
 
   useEffect(() => {
     // Show navigator after scrolling past hero
@@ -75,7 +78,8 @@ const SectionNavigator = () => {
     const el = document.getElementById(id);
     if (el) {
       const navHeight = 72;
-      const offsetPosition = el.getBoundingClientRect().top + window.scrollY - navHeight;
+      const offsetPosition =
+        el.getBoundingClientRect().top + window.scrollY - navHeight;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
@@ -83,7 +87,9 @@ const SectionNavigator = () => {
   return (
     <div
       className={`fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-3 transition-all duration-500 ${
-        visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"
+        visible
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 translate-x-8 pointer-events-none"
       }`}
     >
       {currentSections.map((section) => (

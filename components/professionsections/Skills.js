@@ -1,58 +1,169 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import {
-  FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
-  FaGitAlt, FaFigma, FaWordpress, FaPython, FaBrain,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaFigma,
+  FaWordpress,
+  FaPython,
+  FaBrain,
 } from "react-icons/fa";
-import { SiNextdotjs, SiExpress, SiMysql, SiMongodb, SiTensorflow, SiOpenai } from "react-icons/si";
+import {
+  SiNextdotjs,
+  SiExpress,
+  SiMysql,
+  SiMongodb,
+  SiTensorflow,
+  SiOpenai,
+} from "react-icons/si";
 
 const skillGroups = [
   {
     title: "Frontend Engineering",
     accent: "#C62828",
     skills: [
-      { name: "HTML5 / CSS3",      icon: <FaHtml5 className="text-orange-500" />,  level: 95 },
-      { name: "JavaScript (ES6+)", icon: <FaJs className="text-yellow-400" />,      level: 90 },
-      { name: "React.js",          icon: <FaReact className="text-cyan-400" />,     level: 88 },
-      { name: "Next.js",           icon: <SiNextdotjs className="text-ink" />,      level: 85 },
-      { name: "Tailwind CSS",      icon: <FaReact className="text-teal-400" />,     level: 90 },
-      { name: "Figma (UI/UX)",     icon: <FaFigma className="text-purple-400" />,   level: 75 },
+      {
+        name: "HTML5 / CSS3",
+        icon: <FaHtml5 className="text-orange-500" />,
+        level: 95,
+      },
+      {
+        name: "JavaScript (ES6+)",
+        icon: <FaJs className="text-yellow-400" />,
+        level: 90,
+      },
+      {
+        name: "React.js",
+        icon: <FaReact className="text-cyan-400" />,
+        level: 88,
+      },
+      {
+        name: "Next.js",
+        icon: <SiNextdotjs className="text-ink" />,
+        level: 85,
+      },
+      {
+        name: "Tailwind CSS",
+        icon: <FaReact className="text-teal-400" />,
+        level: 90,
+      },
+      {
+        name: "Figma (UI/UX)",
+        icon: <FaFigma className="text-purple-400" />,
+        level: 75,
+      },
     ],
   },
   {
     title: "Backend & Systems",
     accent: "#0EA5E9",
     skills: [
-      { name: "Node.js",          icon: <FaNodeJs className="text-green-500" />,   level: 80 },
-      { name: "Express.js",       icon: <SiExpress className="text-gray-600" />,   level: 78 },
-      { name: "REST APIs",        icon: <FaNodeJs className="text-indigo-400" />,  level: 85 },
-      { name: "MySQL / Postgre",  icon: <SiMysql className="text-sky-500" />,      level: 75 },
-      { name: "MongoDB",          icon: <SiMongodb className="text-emerald-500" />,level: 70 },
-      { name: "JWT / OAuth",      icon: <SiExpress className="text-rose-400" />,   level: 72 },
+      {
+        name: "Node.js",
+        icon: <FaNodeJs className="text-green-500" />,
+        level: 80,
+      },
+      {
+        name: "Express.js",
+        icon: <SiExpress className="text-gray-600" />,
+        level: 78,
+      },
+      {
+        name: "REST APIs",
+        icon: <FaNodeJs className="text-indigo-400" />,
+        level: 85,
+      },
+      {
+        name: "MySQL / Postgre",
+        icon: <SiMysql className="text-sky-500" />,
+        level: 75,
+      },
+      {
+        name: "MongoDB",
+        icon: <SiMongodb className="text-emerald-500" />,
+        level: 70,
+      },
+      {
+        name: "JWT / OAuth",
+        icon: <SiExpress className="text-rose-400" />,
+        level: 72,
+      },
     ],
   },
   {
     title: "Tools & Operations",
     accent: "#8B5CF6",
     skills: [
-      { name: "Git & GitHub",           icon: <FaGitAlt className="text-red-500" />,        level: 92 },
-      { name: "WordPress / Elementor",  icon: <FaWordpress className="text-blue-400" />,    level: 88 },
-      { name: "SEO Optimization",       icon: <FaFigma className="text-yellow-500" />,       level: 80 },
-      { name: "VS Code / IDEs",         icon: <SiNextdotjs className="text-sky-400" />,     level: 95 },
-      { name: "Performance Audits",     icon: <FaReact className="text-emerald-400" />,     level: 78 },
-      { name: "Cloud Deployments",      icon: <SiExpress className="text-purple-500" />,    level: 74 },
+      {
+        name: "Git & GitHub",
+        icon: <FaGitAlt className="text-red-500" />,
+        level: 92,
+      },
+      {
+        name: "WordPress / Elementor",
+        icon: <FaWordpress className="text-blue-400" />,
+        level: 88,
+      },
+      {
+        name: "SEO Optimization",
+        icon: <FaFigma className="text-yellow-500" />,
+        level: 80,
+      },
+      {
+        name: "VS Code / IDEs",
+        icon: <SiNextdotjs className="text-sky-400" />,
+        level: 95,
+      },
+      {
+        name: "Performance Audits",
+        icon: <FaReact className="text-emerald-400" />,
+        level: 78,
+      },
+      {
+        name: "Cloud Deployments",
+        icon: <SiExpress className="text-purple-500" />,
+        level: 74,
+      },
     ],
   },
   {
     title: "AI & Emerging Tech",
     accent: "#7C3AED",
     skills: [
-      { name: "Python",              icon: <FaPython className="text-yellow-500" />,      level: 75 },
-      { name: "TensorFlow / PyTorch", icon: <SiTensorflow className="text-orange-500" />,  level: 60 },
-      { name: "Machine Learning",     icon: <FaBrain className="text-violet-500" />,       level: 58 },
-      { name: "Data Science",         icon: <FaPython className="text-sky-500" />,          level: 62 },
-      { name: "NLP / LLMs",           icon: <SiOpenai className="text-emerald-500" />,     level: 55 },
-      { name: "AI Integration",       icon: <SiOpenai className="text-purple-400" />,      level: 65 },
+      {
+        name: "Python",
+        icon: <FaPython className="text-yellow-500" />,
+        level: 75,
+      },
+      {
+        name: "TensorFlow / PyTorch",
+        icon: <SiTensorflow className="text-orange-500" />,
+        level: 60,
+      },
+      {
+        name: "Machine Learning",
+        icon: <FaBrain className="text-violet-500" />,
+        level: 58,
+      },
+      {
+        name: "Data Science",
+        icon: <FaPython className="text-sky-500" />,
+        level: 62,
+      },
+      {
+        name: "NLP / LLMs",
+        icon: <SiOpenai className="text-emerald-500" />,
+        level: 55,
+      },
+      {
+        name: "AI Integration",
+        icon: <SiOpenai className="text-purple-400" />,
+        level: 65,
+      },
     ],
   },
 ];
@@ -87,7 +198,7 @@ const AnimatedCount = ({ value, suffix = "", isVisible }) => {
 
   useEffect(() => {
     if (!isVisible) return;
-    
+
     const target = parseInt(value, 10);
     if (isNaN(target)) {
       setCount(value);
@@ -114,8 +225,14 @@ const AnimatedCount = ({ value, suffix = "", isVisible }) => {
   }, [isVisible, value]);
 
   // Format to ensure double digits if it's a small number
-  const formattedCount = typeof count === "number" && count < 10 ? `0${count}` : count;
-  return <>{formattedCount}{suffix}</>;
+  const formattedCount =
+    typeof count === "number" && count < 10 ? `0${count}` : count;
+  return (
+    <>
+      {formattedCount}
+      {suffix}
+    </>
+  );
 };
 
 const Skills = () => {
@@ -130,28 +247,40 @@ const Skills = () => {
           if (entry.isIntersecting) setIsVisible(true);
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (currentSection) observer.observe(currentSection);
-    return () => { if (currentSection) observer.unobserve(currentSection); };
+    return () => {
+      if (currentSection) observer.unobserve(currentSection);
+    };
   }, []);
 
   return (
-    <section ref={sectionRef} id="skills" className="py-24 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="py-24 relative overflow-hidden"
+    >
       {/* Large section number (updated to 05) */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         05
       </div>
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="mb-16 text-center md:text-left relative z-10">
-          <span className="cross-marker mb-4 block text-crimson text-lg">✦</span>
+          <span className="cross-marker mb-4 block text-crimson text-lg">
+            ✦
+          </span>
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
             Technical Expertise
           </h2>
           <p className="text-gray-500 mt-3 text-sm sm:text-base max-w-xl font-sans">
-            A comprehensive overview of my technical stack, system tools, and development frameworks.
+            A comprehensive overview of my technical stack, system tools, and
+            development frameworks.
           </p>
           <div className="editorial-divider mt-6 w-16 h-px bg-warm-gray-300" />
         </div>
@@ -162,7 +291,9 @@ const Skills = () => {
             <div
               key={group.title}
               className={`bg-white border border-warm-gray-200 rounded-2xl p-6 hover:border-crimson hover:shadow-lg transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${groupIdx * 150}ms` }}
             >
@@ -172,7 +303,9 @@ const Skills = () => {
                   className="w-1 h-5 rounded-full"
                   style={{ backgroundColor: group.accent }}
                 />
-                <h3 className="font-serif text-base font-bold text-ink">{group.title}</h3>
+                <h3 className="font-serif text-base font-bold text-ink">
+                  {group.title}
+                </h3>
               </div>
 
               <div className="space-y-4">
@@ -207,10 +340,10 @@ const Skills = () => {
                 style={{ transitionDelay: `${450 + i * 100}ms` }}
               >
                 <h4 className="font-serif text-4xl font-black text-crimson mb-2 group-hover:scale-110 transition-transform duration-300">
-                  <AnimatedCount 
-                    value={metric.value} 
-                    suffix={metric.suffix} 
-                    isVisible={isVisible} 
+                  <AnimatedCount
+                    value={metric.value}
+                    suffix={metric.suffix}
+                    isVisible={isVisible}
                   />
                 </h4>
                 <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold">
@@ -227,7 +360,10 @@ const Skills = () => {
           <p className="pl-4">name: &quot;Shalimar Mehra&quot;,</p>
           <p className="pl-4">role: &quot;Full-Stack Engineer&quot;,</p>
           <p className="pl-4">ventures: [&quot;Dev Dossier&quot;],</p>
-          <p className="pl-4">skills: [&quot;React&quot;, &quot;Next.js&quot;, &quot;Node&quot;, &quot;SQL&quot;]</p>
+          <p className="pl-4">
+            skills: [&quot;React&quot;, &quot;Next.js&quot;, &quot;Node&quot;,
+            &quot;SQL&quot;]
+          </p>
           <p>&#125;;</p>
         </div>
       </div>

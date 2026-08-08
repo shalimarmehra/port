@@ -95,7 +95,7 @@ const ThemeCustomizer = () => {
     root.style.setProperty("--accent-secondary-rgb", theme.secondaryRgb);
     root.style.setProperty("--accent-light", theme.light);
     root.style.setProperty("--accent-50", theme.bg50);
-    
+
     // For elements that styled with standard Tailwind selection fallback
     const styleId = "custom-selection-style";
     let styleEl = document.getElementById(styleId);
@@ -113,9 +113,11 @@ const ThemeCustomizer = () => {
     try {
       localStorage.setItem("portfolio-theme", theme.id);
     } catch (e) {}
-    
+
     // Dispatch global theme change event
-    window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: theme }));
+    window.dispatchEvent(
+      new CustomEvent("portfolio-theme-change", { detail: theme }),
+    );
   };
 
   return (
@@ -157,7 +159,7 @@ const ThemeCustomizer = () => {
               }`}
             >
               <span className="text-xs tracking-tight">{theme.name}</span>
-              
+
               {/* Color Circles */}
               <div className="flex gap-1">
                 <span

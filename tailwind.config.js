@@ -42,7 +42,8 @@ module.exports = {
         "reveal-up": "revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "fade-in": "fadeIn 0.6s ease forwards",
         "slide-left": "slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "slide-right": "slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "slide-right":
+          "slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
       keyframes: {
         revealUp: {

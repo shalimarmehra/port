@@ -28,7 +28,8 @@ export default function Home() {
       }
     };
     window.addEventListener("portfolio-view-change", handleViewChange);
-    return () => window.removeEventListener("portfolio-view-change", handleViewChange);
+    return () =>
+      window.removeEventListener("portfolio-view-change", handleViewChange);
   }, []);
 
   useEffect(() => {
@@ -47,9 +48,12 @@ export default function Home() {
         const watermarks = gsap.utils.toArray(".scroll-watermark");
 
         watermarks.forEach((watermark) => {
-          const speed = parseFloat(watermark.getAttribute("data-speed") || "-0.15");
+          const speed = parseFloat(
+            watermark.getAttribute("data-speed") || "-0.15",
+          );
 
-          gsap.fromTo(watermark,
+          gsap.fromTo(
+            watermark,
             { y: 0 },
             {
               yPercent: speed * 100,
@@ -59,8 +63,8 @@ export default function Home() {
                 start: "top bottom",
                 end: "bottom top",
                 scrub: true,
-              }
-            }
+              },
+            },
           );
         });
       } catch (err) {

@@ -25,7 +25,9 @@ const TechTicker = () => {
         {[...row1Items, ...row1Items, ...row1Items].map((item, idx) => (
           <div key={`row1-${idx}`} className="flex items-center gap-16">
             <span className="theme-transition">{item}</span>
-            <span className="text-crimson text-sm sm:text-base animate-pulse">✦</span>
+            <span className="text-crimson text-sm sm:text-base animate-pulse">
+              ✦
+            </span>
           </div>
         ))}
       </div>

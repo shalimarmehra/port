@@ -1,14 +1,27 @@
 "use client";
 import React, { useState } from "react";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaGithub } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaGithub,
+} from "react-icons/fa";
 import { IoLogoLinkedin, IoLogoYoutube, IoMdMail } from "react-icons/io";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [toast, setToast] = useState({ show: false, message: "", type: "success" });
+  const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,9 +30,9 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // NOTE FOR DEPLOYMENT: To make this form fully live, integrate EmailJS here!
-    // Example: 
+    // Example:
     // emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_PUBLIC_KEY')
     //   .then(() => { ...success logic })
     //   .catch(() => { ...error logic });
@@ -28,33 +41,48 @@ const ContactForm = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setFormData({ name: "", email: "", message: "" });
-      
+
       // Trigger Toast Notification
-      setToast({ show: true, message: "Message sent! I'll get back to you soon.", type: "success" });
-      
+      setToast({
+        show: true,
+        message: "Message sent! I'll get back to you soon.",
+        type: "success",
+      });
+
       // Hide Toast after 4 seconds
-      setTimeout(() => setToast({ show: false, message: "", type: "success" }), 4000);
+      setTimeout(
+        () => setToast({ show: false, message: "", type: "success" }),
+        4000,
+      );
     }, 1500);
   };
 
   return (
-    <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-24 bg-transparent relative overflow-hidden"
+    >
       {/* Large section number */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         10
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-        
         {/* Animated Toast Notification */}
-        <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 px-6 py-4 bg-ink text-white rounded-full shadow-2xl transition-all duration-500 ease-out ${toast.show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"}`}>
-           <IoMdCheckmarkCircleOutline className="text-emerald-400 text-xl" />
-           <span className="text-sm font-semibold tracking-wide whitespace-nowrap">{toast.message}</span>
+        <div
+          className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 px-6 py-4 bg-ink text-white rounded-full shadow-2xl transition-all duration-500 ease-out ${toast.show ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95 pointer-events-none"}`}
+        >
+          <IoMdCheckmarkCircleOutline className="text-emerald-400 text-xl" />
+          <span className="text-sm font-semibold tracking-wide whitespace-nowrap">
+            {toast.message}
+          </span>
         </div>
 
         {/* Layout Grid */}
         <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-16">
-          
           {/* Column 1: Contact details */}
           <div className="flex-1 flex flex-col justify-between order-2 lg:order-1">
             <div className="space-y-6">
@@ -63,21 +91,26 @@ const ContactForm = () => {
                   Let&apos;s Connect
                 </h2>
                 <p className="text-gray-500 font-sans text-sm sm:text-base leading-relaxed text-justify max-w-lg">
-                  Whether you have an upcoming project, want to hire me, or just want to chat about new technologies, feel free to reach out. I would love to hear from you.
+                  Whether you have an upcoming project, want to hire me, or just
+                  want to chat about new technologies, feel free to reach out. I
+                  would love to hear from you.
                 </p>
               </div>
 
               {/* Detail Cards */}
               <div className="space-y-4 pt-4">
-                
                 {/* Location */}
                 <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-warm-gray-200 hover:border-crimson transition-colors group">
                   <div className="w-10 h-10 rounded-full bg-crimson/10 flex items-center justify-center text-crimson group-hover:scale-105 transition-transform">
                     <FaMapMarkerAlt />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Location</p>
-                    <p className="text-sm text-ink font-medium">New Delhi, India</p>
+                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                      Location
+                    </p>
+                    <p className="text-sm text-ink font-medium">
+                      New Delhi, India
+                    </p>
                   </div>
                 </div>
 
@@ -91,8 +124,12 @@ const ContactForm = () => {
                     <FaPhoneAlt />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Phone</p>
-                    <p className="text-sm text-ink font-medium">+91 95603 62339</p>
+                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                      Phone
+                    </p>
+                    <p className="text-sm text-ink font-medium">
+                      +91 95603 62339
+                    </p>
                   </div>
                 </a>
 
@@ -106,17 +143,22 @@ const ContactForm = () => {
                     <FaEnvelope />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Email</p>
-                    <p className="text-sm text-ink font-medium">contact@shalimarmehra.com</p>
+                    <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
+                      Email
+                    </p>
+                    <p className="text-sm text-ink font-medium">
+                      contact@shalimarmehra.com
+                    </p>
                   </div>
                 </a>
-
               </div>
             </div>
 
             {/* Social handles */}
             <div className="border-t border-warm-gray-200 pt-8 mt-8">
-              <p className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-4">Follow my social profiles</p>
+              <p className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-4">
+                Follow my social profiles
+              </p>
               <div className="flex flex-wrap gap-2.5">
                 <a
                   href="https://github.com/shalimarmehra"
@@ -165,7 +207,6 @@ const ContactForm = () => {
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                
                 {/* Name */}
                 <div>
                   <label className="block mb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
@@ -225,13 +266,10 @@ const ContactForm = () => {
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
-
               </form>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );

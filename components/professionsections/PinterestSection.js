@@ -56,7 +56,9 @@ const PinCard = ({ pin }) => {
               }}
               className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#E60023] hover:bg-[#C0001E] text-white text-[9px] font-bold uppercase tracking-wider shadow-md transition-all active:scale-95"
             >
-              <FaHeart className={`text-xs ${liked ? "text-white" : "text-white/80"}`} />
+              <FaHeart
+                className={`text-xs ${liked ? "text-white" : "text-white/80"}`}
+              />
               <span>{liked ? "Saved" : "Save"}</span>
             </button>
           </div>
@@ -68,7 +70,7 @@ const PinCard = ({ pin }) => {
         <h3 className="font-serif text-sm font-bold text-ink leading-snug line-clamp-2 group-hover:text-[#E60023] transition-colors duration-300">
           {pin.title}
         </h3>
-        
+
         {/* Saves / Likes & Profile indicator */}
         <div className="flex items-center justify-between mt-3 text-[10px] text-gray-400 font-medium">
           <span className="flex items-center gap-1">
@@ -89,8 +91,13 @@ const SkeletonPin = ({ index }) => {
   const heights = ["h-64", "h-52", "h-80", "h-56", "h-72", "h-48"];
   const height = heights[index % heights.length];
   return (
-    <div className={`break-inside-avoid mb-4 rounded-2xl overflow-hidden border border-warm-gray-200/50 bg-warm-gray-100 ${height} animate-pulse relative`}>
-      <div className="absolute inset-0 bg-gradient-to-r from-warm-gray-100 via-warm-gray-200 to-warm-gray-100 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
+    <div
+      className={`break-inside-avoid mb-4 rounded-2xl overflow-hidden border border-warm-gray-200/50 bg-warm-gray-100 ${height} animate-pulse relative`}
+    >
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-warm-gray-100 via-warm-gray-200 to-warm-gray-100 animate-shimmer"
+        style={{ backgroundSize: "200% 100%" }}
+      />
     </div>
   );
 };
@@ -110,14 +117,23 @@ const PinterestSection = ({ handle = "devdossier" }) => {
           throw new Error("Failed to fetch Pinterest feed");
         }
         const data = await res.json();
-        
+
         setFeedInfo({
           title: data.title,
           description: data.description,
-          link: data.link
+          link: data.link,
         });
 
-        const ACCENT_COLORS = ["#6366F1", "#C62828", "#F59E0B", "#0EA5E9", "#8B5CF6", "#6B7280", "#D97706", "#10B981"];
+        const ACCENT_COLORS = [
+          "#6366F1",
+          "#C62828",
+          "#F59E0B",
+          "#0EA5E9",
+          "#8B5CF6",
+          "#6B7280",
+          "#D97706",
+          "#10B981",
+        ];
         const GRADIENTS = [
           "from-slate-800 to-slate-900",
           "from-rose-900 to-rose-950",
@@ -126,18 +142,54 @@ const PinterestSection = ({ handle = "devdossier" }) => {
           "from-violet-900 to-violet-950",
           "from-neutral-800 to-neutral-950",
           "from-amber-900 to-amber-950",
-          "from-emerald-900 to-emerald-950"
+          "from-emerald-900 to-emerald-950",
         ];
         const EMOJIS = ["🖥️", "✦", "🎨", "🚀", "💎", "📷", "Aa", "✨"];
-        const HEIGHTS = ["h-64", "h-52", "h-80", "h-56", "h-72", "h-48", "h-60", "h-44"];
+        const HEIGHTS = [
+          "h-64",
+          "h-52",
+          "h-80",
+          "h-56",
+          "h-72",
+          "h-48",
+          "h-60",
+          "h-44",
+        ];
 
         const getPinCategory = (title = "") => {
           const text = title.toLowerCase();
-          if (text.includes("minimal") || text.includes("setup") || text.includes("desk")) return "Setup";
-          if (text.includes("ui") || text.includes("ux") || text.includes("design") || text.includes("layout")) return "UI/UX";
-          if (text.includes("ai") || text.includes("api") || text.includes("model") || text.includes("gemini")) return "AI";
-          if (text.includes("game") || text.includes("valorant") || text.includes("gta")) return "Gaming";
-          if (text.includes("tech") || text.includes("developer") || text.includes("code")) return "Tech";
+          if (
+            text.includes("minimal") ||
+            text.includes("setup") ||
+            text.includes("desk")
+          )
+            return "Setup";
+          if (
+            text.includes("ui") ||
+            text.includes("ux") ||
+            text.includes("design") ||
+            text.includes("layout")
+          )
+            return "UI/UX";
+          if (
+            text.includes("ai") ||
+            text.includes("api") ||
+            text.includes("model") ||
+            text.includes("gemini")
+          )
+            return "AI";
+          if (
+            text.includes("game") ||
+            text.includes("valorant") ||
+            text.includes("gta")
+          )
+            return "Gaming";
+          if (
+            text.includes("tech") ||
+            text.includes("developer") ||
+            text.includes("code")
+          )
+            return "Tech";
           return "Creative";
         };
 
@@ -145,23 +197,51 @@ const PinterestSection = ({ handle = "devdossier" }) => {
           const title = (pin.title || "").toLowerCase();
           const desc = (pin.description || "").toLowerCase();
           const text = `${title} ${desc}`;
-          
+
           // Related to design/development/setups/workspaces
           const relatedKeywords = [
-            'web', 'ui', 'ux', 'design', 'setup', 'desk', 'developer', 'code', 
-            'coding', 'saas', 'api', 'ai', 'keyboard', 'notion', 'figma', 
-            'software', 'workstation', 'macbook', 'app', 'development', 
-            'programming', 'minimalist'
+            "web",
+            "ui",
+            "ux",
+            "design",
+            "setup",
+            "desk",
+            "developer",
+            "code",
+            "coding",
+            "saas",
+            "api",
+            "ai",
+            "keyboard",
+            "notion",
+            "figma",
+            "software",
+            "workstation",
+            "macbook",
+            "app",
+            "development",
+            "programming",
+            "minimalist",
           ];
-          
+
           // Unrelated categories (gaming vlogs, off-topic posts)
           const unrelatedKeywords = [
-            'gaming', 'gta', 'valorant', 'game', 'backlash', 'quote', 'hike'
+            "gaming",
+            "gta",
+            "valorant",
+            "game",
+            "backlash",
+            "quote",
+            "hike",
           ];
-          
-          const hasRelated = relatedKeywords.some(keyword => text.includes(keyword));
-          const hasUnrelated = unrelatedKeywords.some(keyword => text.includes(keyword));
-          
+
+          const hasRelated = relatedKeywords.some((keyword) =>
+            text.includes(keyword),
+          );
+          const hasUnrelated = unrelatedKeywords.some((keyword) =>
+            text.includes(keyword),
+          );
+
           return hasRelated && !hasUnrelated;
         };
 
@@ -175,8 +255,8 @@ const PinterestSection = ({ handle = "devdossier" }) => {
             bgGradient: GRADIENTS[index % GRADIENTS.length],
             emoji: EMOJIS[index % EMOJIS.length],
             category: getPinCategory(pin.title),
-            saves: `${((index * 47) % 400 + 43)}`,
-            height: HEIGHTS[index % HEIGHTS.length]
+            saves: `${((index * 47) % 400) + 43}`,
+            height: HEIGHTS[index % HEIGHTS.length],
           };
         });
 
@@ -195,7 +275,7 @@ const PinterestSection = ({ handle = "devdossier" }) => {
   useEffect(() => {
     if (displayPins.length > 0) {
       ScrollTrigger.refresh();
-      
+
       // Re-trigger GSAP animation for the newly loaded cards
       gsap.fromTo(
         ".pinterest-pin",
@@ -210,7 +290,7 @@ const PinterestSection = ({ handle = "devdossier" }) => {
             trigger: sectionRef.current,
             start: "top 80%",
           },
-        }
+        },
       );
     }
   }, [displayPins]);
@@ -231,7 +311,7 @@ const PinterestSection = ({ handle = "devdossier" }) => {
           start: "top 85%",
           toggleActions: "play none none none",
         },
-      }
+      },
     );
 
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -244,7 +324,10 @@ const PinterestSection = ({ handle = "devdossier" }) => {
       className="py-24 relative overflow-hidden bg-cream"
     >
       {/* Watermark */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         06
       </div>
 
@@ -257,22 +340,31 @@ const PinterestSection = ({ handle = "devdossier" }) => {
               Creative Board
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
-              {feedInfo?.title ? `${feedInfo.title} Pins` : "Design Inspiration"}
+              {feedInfo?.title
+                ? `${feedInfo.title} Pins`
+                : "Design Inspiration"}
             </h2>
             <p className="text-gray-500 mt-3 font-sans text-sm sm:text-base max-w-xl">
-              {feedInfo?.description || "A curated collection of design ideas, UI patterns, typographic explorations, and creative references that fuel my work."}
+              {feedInfo?.description ||
+                "A curated collection of design ideas, UI patterns, typographic explorations, and creative references that fuel my work."}
             </p>
           </div>
 
           {/* Pinterest Stats */}
           <div className="flex flex-wrap gap-4 shrink-0">
             <div className="text-center px-6 py-3 bg-white border border-warm-gray-200 rounded-2xl hover:border-[#E60023] transition-colors">
-              <p className="font-serif text-2xl font-bold text-[#E60023]">{displayPins.length}+</p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Live Pins</p>
+              <p className="font-serif text-2xl font-bold text-[#E60023]">
+                {displayPins.length}+
+              </p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Live Pins
+              </p>
             </div>
             <div className="text-center px-6 py-3 bg-white border border-warm-gray-200 rounded-2xl hover:border-[#E60023] transition-colors">
               <p className="font-serif text-2xl font-bold text-ink">150+</p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Boards</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Boards
+              </p>
             </div>
           </div>
         </div>
@@ -286,8 +378,12 @@ const PinterestSection = ({ handle = "devdossier" }) => {
           </div>
         ) : error ? (
           <div className="text-center py-12 bg-white border border-warm-gray-200 rounded-3xl p-8">
-            <p className="text-rose-600 font-bold mb-2">Failed to load live feed</p>
-            <p className="text-xs text-gray-400">Please make sure the Pinterest profile exists and is public.</p>
+            <p className="text-rose-600 font-bold mb-2">
+              Failed to load live feed
+            </p>
+            <p className="text-xs text-gray-400">
+              Please make sure the Pinterest profile exists and is public.
+            </p>
           </div>
         ) : (
           <div className="columns-1 xs:columns-2 sm:columns-3 gap-4">

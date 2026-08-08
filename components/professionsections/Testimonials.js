@@ -132,7 +132,9 @@ const TestimonialCard = ({ testimonial, visible, delay }) => (
         {testimonial.avatar}
       </div>
       <div>
-        <p className="font-serif text-sm font-bold text-ink">{testimonial.name}</p>
+        <p className="font-serif text-sm font-bold text-ink">
+          {testimonial.name}
+        </p>
         <p className="text-xs text-gray-400 font-medium">{testimonial.role}</p>
       </div>
     </div>
@@ -147,11 +149,15 @@ const Testimonials = () => {
   useEffect(() => {
     const section = sectionRef.current;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.1 },
     );
     if (section) observer.observe(section);
-    return () => { if (section) observer.unobserve(section); };
+    return () => {
+      if (section) observer.unobserve(section);
+    };
   }, []);
 
   // Lock background scroll when modal is open
@@ -173,7 +179,10 @@ const Testimonials = () => {
       className="py-24 relative overflow-hidden bg-cream"
     >
       {/* Watermark — between Pinterest (06) and Playground (07) this is 06.5 so use subtle star */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         07
       </div>
 
@@ -184,12 +193,15 @@ const Testimonials = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="cross-marker mb-4 block text-crimson text-lg">✦</span>
+          <span className="cross-marker mb-4 block text-crimson text-lg">
+            ✦
+          </span>
           <h2 className="font-serif text-4xl sm:text-5xl font-bold text-ink tracking-tight">
             Client Testimonials
           </h2>
           <p className="text-gray-500 mt-3 text-sm sm:text-base max-w-xl font-sans">
-            What clients and collaborators say about working with me and the quality of work I deliver.
+            What clients and collaborators say about working with me and the
+            quality of work I deliver.
           </p>
           <div className="editorial-divider mt-6 w-16 h-px bg-warm-gray-300" />
         </div>
@@ -213,7 +225,9 @@ const Testimonials = () => {
             className="group px-8 py-3.5 bg-white border border-warm-gray-200 hover:border-crimson rounded-full text-sm font-serif font-bold text-ink hover:text-crimson transition-all duration-300 shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2"
           >
             <span>View All Testimonials</span>
-            <span className="text-crimson transition-transform duration-300 group-hover:translate-x-1">→</span>
+            <span className="text-crimson transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
           </button>
         </div>
 
@@ -260,14 +274,26 @@ const Testimonials = () => {
               className="absolute top-5 right-5 p-2 rounded-full border border-warm-gray-200 hover:border-crimson bg-white text-gray-400 hover:text-crimson transition-all duration-300 hover:rotate-90 active:scale-95 z-10"
               aria-label="Close testimonials dialog"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
 
             {/* Modal Header */}
             <div className="mb-6 border-b border-warm-gray-200 pb-4">
-              <span className="cross-marker mb-1 block text-crimson text-sm">✦</span>
+              <span className="cross-marker mb-1 block text-crimson text-sm">
+                ✦
+              </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-ink tracking-tight">
                 All Testimonials
               </h3>

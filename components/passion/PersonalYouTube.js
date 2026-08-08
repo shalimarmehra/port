@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const formatNumber = (num) => {
   if (!num) return "0";
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat("en-US", {
     notation: "compact",
     compactDisplay: "short",
   }).format(num);
@@ -38,9 +38,12 @@ const PersonalYouTube = () => {
       ".personal-yt-header",
       { opacity: 0, y: 40 },
       {
-        opacity: 1, y: 0, duration: 1, ease: "power3.out",
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-      }
+      },
     );
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
@@ -60,7 +63,6 @@ const PersonalYouTube = () => {
       </div>
 
       <div className="relative z-10 w-full">
-
         {/* Header */}
         <div className="personal-yt-header flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
@@ -72,7 +74,8 @@ const PersonalYouTube = () => {
               My Personal Channel
             </h2>
             <p className="text-gray-500 mt-3 font-sans text-sm sm:text-base max-w-xl">
-              Vlogs, life stories, workspace tours, and personal perspectives. A genuine look at the person behind the code.
+              Vlogs, life stories, workspace tours, and personal perspectives. A
+              genuine look at the person behind the code.
             </p>
           </div>
 
@@ -82,24 +85,28 @@ const PersonalYouTube = () => {
               <p className="font-serif text-2xl font-bold text-rose-600">
                 {stats ? formatNumber(stats.subscriberCount) : "3.2K+"}
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Subscribers</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Subscribers
+              </p>
             </div>
             <div className="text-center px-6 py-3 bg-cream border border-warm-gray-200/60 rounded-2xl">
               <p className="font-serif text-2xl font-bold text-ink">
                 {stats ? formatNumber(stats.viewCount) : "25K+"}
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Total Views</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Total Views
+              </p>
             </div>
             <div className="text-center px-6 py-3 bg-cream border border-warm-gray-200/60 rounded-2xl">
               <p className="font-serif text-2xl font-bold text-ink">
                 {stats ? formatNumber(stats.videoCount) : "15+"}
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Videos</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Videos
+              </p>
             </div>
           </div>
         </div>
-
-
 
         {/* CTA */}
         <div className="mt-10 flex justify-center">

@@ -4,16 +4,16 @@ import { FaCode, FaPlay } from "react-icons/fa";
 
 const Playground = () => {
   const [htmlCode, setHtmlCode] = useState(
-`<div class="card">
+    `<div class="card">
   <div class="logo">✦</div>
   <h2>Interactive Element</h2>
   <p>Edit this code in real-time. Change colors, layouts, or text instantly!</p>
   <button>Click Me</button>
-</div>`
+</div>`,
   );
 
   const [cssCode, setCssCode] = useState(
-`.card {
+    `.card {
   background: var(--accent-primary, #C62828);
   color: white;
   padding: 2.5rem;
@@ -50,7 +50,7 @@ button {
   transition: 0.2s;
 }
 
-button:hover { background: #f0f0f0; transform: scale(1.05); }`
+button:hover { background: #f0f0f0; transform: scale(1.05); }`,
   );
 
   const [srcDoc, setSrcDoc] = useState("");
@@ -78,14 +78,20 @@ button:hover { background: #f0f0f0; transform: scale(1.05); }`
           </body>
         </html>
       `);
-    }, 250); 
+    }, 250);
     return () => clearTimeout(timeout);
   }, [htmlCode, cssCode]);
 
   return (
-    <section id="playground" className="py-24 relative overflow-hidden bg-ink text-white">
+    <section
+      id="playground"
+      className="py-24 relative overflow-hidden bg-ink text-white"
+    >
       {/* Large section number */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-white/5 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-white/5 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         08
       </div>
 
@@ -99,19 +105,21 @@ button:hover { background: #f0f0f0; transform: scale(1.05); }`
             Live Code Playground
           </h2>
           <p className="text-gray-400 text-sm sm:text-base max-w-xl font-sans">
-            A real-time IDE built directly into my portfolio. Edit the HTML and CSS below to see your changes render instantly.
+            A real-time IDE built directly into my portfolio. Edit the HTML and
+            CSS below to see your changes render instantly.
           </p>
         </div>
 
         {/* Playground Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-black/40 border border-white/10 rounded-2xl p-2 backdrop-blur-sm shadow-2xl">
-          
           {/* Editors Container */}
           <div className="flex flex-col gap-2">
             {/* HTML Editor */}
             <div className="flex-1 bg-[#0c0f15] rounded-xl overflow-hidden border border-white/10 flex flex-col min-h-[200px]">
               <div className="bg-[#151a23] px-4 py-2 border-b border-white/5 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">HTML</span>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                  HTML
+                </span>
               </div>
               <textarea
                 value={htmlCode}
@@ -121,11 +129,13 @@ button:hover { background: #f0f0f0; transform: scale(1.05); }`
                 data-cursor-text="EDIT"
               />
             </div>
-            
+
             {/* CSS Editor */}
             <div className="flex-1 bg-[#0c0f15] rounded-xl overflow-hidden border border-white/10 flex flex-col min-h-[250px]">
               <div className="bg-[#151a23] px-4 py-2 border-b border-white/5 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">CSS</span>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                  CSS
+                </span>
               </div>
               <textarea
                 value={cssCode}
@@ -146,11 +156,15 @@ button:hover { background: #f0f0f0; transform: scale(1.05); }`
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
               </span>
               <span className="ml-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
-                <FaPlay className="text-[8px] text-crimson animate-pulse" /> Live Preview
+                <FaPlay className="text-[8px] text-crimson animate-pulse" />{" "}
+                Live Preview
               </span>
             </div>
-            <div className="flex-1 w-full h-full relative" data-cursor-text="OUTPUT">
-               <iframe
+            <div
+              className="flex-1 w-full h-full relative"
+              data-cursor-text="OUTPUT"
+            >
+              <iframe
                 srcDoc={srcDoc}
                 title="Live Sandbox"
                 sandbox="allow-scripts allow-same-origin"
@@ -159,7 +173,6 @@ button:hover { background: #f0f0f0; transform: scale(1.05); }`
               />
             </div>
           </div>
-          
         </div>
       </div>
     </section>

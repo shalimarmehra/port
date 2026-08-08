@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../professionsections/Hero";
 import TechTicker from "../TechTicker";
 import Projects from "../professionsections/Projects";
+import DevDossierSection from "../professionsections/DevDossierSection";
 import YouTubeSection from "../professionsections/YouTubeSection";
 import Experience from "../professionsections/Experience";
 import Skills from "../professionsections/Skills";
@@ -23,13 +24,16 @@ const Profession = () => {
       {/* 02 — Selected Works */}
       <Projects />
 
-      {/* 03 — Dev Dossier YouTube */}
+      {/* 03 — DevDossier Digital Studio & Business */}
+      <DevDossierSection />
+
+      {/* 04 — Dev Dossier YouTube */}
       <YouTubeSection />
 
-      {/* 04 — Professional Journey */}
+      {/* 05 — Professional Journey */}
       <Experience />
 
-      {/* 05 — Technical Expertise */}
+      {/* 06 — Technical Expertise */}
       <Skills />
 
       {/* 06 — Design Inspiration (Pinterest) */}

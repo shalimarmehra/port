@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const formatNumber = (num) => {
   if (!num) return "0";
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat("en-US", {
     notation: "compact",
     compactDisplay: "short",
   }).format(num);
@@ -63,7 +63,10 @@ const YouTubeSection = ({ handle = "devdossier" }) => {
       </div>
 
       {/* Large section watermark */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-white/5 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-white/5 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         03
       </div>
 
@@ -82,13 +85,18 @@ const YouTubeSection = ({ handle = "devdossier" }) => {
               ) : (
                 <FaYoutube className="text-sm" />
               )}
-              {stats?.title ? `${stats.title} · YouTube Channel` : "Dev Dossier · YouTube Channel"}
+              {stats?.title
+                ? `${stats.title} · YouTube Channel`
+                : "Dev Dossier · YouTube Channel"}
             </div>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white tracking-tight">
-              {stats?.title ? `${stats.title} Tutorials` : "Dev Dossier Tutorials"}
+              {stats?.title
+                ? `${stats.title} Tutorials`
+                : "Dev Dossier Tutorials"}
             </h2>
             <p className="text-gray-400 mt-3 font-sans text-sm sm:text-base max-w-xl line-clamp-3">
-              {stats?.description || "High-fidelity engineering tutorials on React, Next.js, Node.js, and scalable web architectures — built for working developers."}
+              {stats?.description ||
+                "High-fidelity engineering tutorials on React, Next.js, Node.js, and scalable web architectures — built for working developers."}
             </p>
           </div>
 
@@ -98,34 +106,48 @@ const YouTubeSection = ({ handle = "devdossier" }) => {
               <p className="font-serif text-2xl font-bold text-[#FF0000]">
                 {stats ? formatNumber(stats.subscriberCount) : "15.4K+"}
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Subscribers</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Subscribers
+              </p>
             </div>
             <div className="text-center px-6 py-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm">
               <p className="font-serif text-2xl font-bold text-white">
                 {stats ? formatNumber(stats.viewCount) : "120K+"}
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Total Views</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Total Views
+              </p>
             </div>
             <div className="text-center px-6 py-3 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm">
               <p className="font-serif text-2xl font-bold text-white">
                 {stats ? formatNumber(stats.videoCount) : "40+"}
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Tutorials</p>
+              <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">
+                Tutorials
+              </p>
             </div>
           </div>
         </div>
 
-
         <div className="mt-10 flex flex-wrap gap-4 items-center justify-center">
           <a
-            href={stats?.customUrl ? `https://youtube.com/${stats.customUrl.startsWith('@') ? stats.customUrl : '@' + stats.customUrl}` : `https://youtube.com/@${handle}`}
+            href={
+              stats?.customUrl
+                ? `https://youtube.com/${stats.customUrl.startsWith("@") ? stats.customUrl : "@" + stats.customUrl}`
+                : `https://youtube.com/@${handle}`
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF0000] hover:bg-[#CC0000] text-white rounded-full text-sm font-bold transition-all shadow-lg shadow-[#FF0000]/30 hover:shadow-[#FF0000]/50 hover:-translate-y-0.5"
             data-cursor-text="SUBSCRIBE"
           >
             <FaYoutube className="text-base" />
-            Subscribe to {stats?.customUrl ? (stats.customUrl.startsWith('@') ? stats.customUrl : `@${stats.customUrl}`) : `@${handle}`}
+            Subscribe to{" "}
+            {stats?.customUrl
+              ? stats.customUrl.startsWith("@")
+                ? stats.customUrl
+                : `@${stats.customUrl}`
+              : `@${handle}`}
           </a>
           <a
             href="https://devdossier.in"

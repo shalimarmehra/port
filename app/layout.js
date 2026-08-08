@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import BottomToUpButton from "@/components/BottomToUpButton";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import ScrollProgress from "@/components/ScrollProgress";
 import CustomCursor from "@/components/CustomCursor";
@@ -20,8 +20,10 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Shalimar Mehra • Full-Stack Developer • AI Enthusiast • Content Creator",
-  description: "Shalimar Mehra is a full-stack developer and AI enthusiast, currently pursuing further studies in artificial intelligence. He specializes in building high-performance web applications, exploring machine learning, and creating engaging developer content.",
+  title:
+    "Shalimar Mehra • Full-Stack Developer • AI Enthusiast • Content Creator",
+  description:
+    "Shalimar Mehra is a full-stack developer and AI enthusiast, currently pursuing further studies in artificial intelligence. He specializes in building high-performance web applications, exploring machine learning, and creating engaging developer content.",
   image: "/hero-img.jpeg",
   url: "https://www.shalimarmehra.tech",
   type: "website",
@@ -32,7 +34,7 @@ export const metadata = {
     card: "summary_large_image",
     site: "@shalimarmehra",
     creator: "@shalimarmehra",
-  }
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -69,16 +71,20 @@ export default function RootLayout({ children }) {
                   }
                 } catch (e) {}
               })();
-            `
+            `,
           }}
         />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cream relative theme-transition`}
       >
-        <div 
+        <div
           className="fixed inset-0 z-[-1] pointer-events-none opacity-[0.05]"
-          style={{ backgroundImage: 'url("/bg-texture.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+          style={{
+            backgroundImage: 'url("/bg-texture.png")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         />
         <ScrollProgress />
         <CustomCursor />

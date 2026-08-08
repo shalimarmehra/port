@@ -11,11 +11,7 @@ import {
   FaCompass,
   FaChurch,
 } from "react-icons/fa";
-import {
-  IoLogoLinkedin,
-  IoLogoYoutube,
-  IoMdMail,
-} from "react-icons/io";
+import { IoLogoLinkedin, IoLogoYoutube, IoMdMail } from "react-icons/io";
 import { FaSquareInstagram, FaCode } from "react-icons/fa6";
 
 const Footer = ({ viewState = "profession" }) => {
@@ -73,28 +69,51 @@ const Footer = ({ viewState = "profession" }) => {
   ];
 
   const professionLinks = [
-    { label: "Bio",        id: "quick-bio",  icon: null },
-    { label: "Projects",   id: "projects",   icon: null },
+    { label: "Bio", id: "quick-bio", icon: null },
+    { label: "Projects", id: "projects", icon: null },
     { label: "Experience", id: "experience", icon: null },
-    { label: "Skills",     id: "skills",     icon: null },
-    { label: "About",      id: "about",      icon: null },
-    { label: "Contact",    id: "contact",    icon: null },
+    { label: "Skills", id: "skills", icon: null },
+    { label: "About", id: "about", icon: null },
+    { label: "Contact", id: "contact", icon: null },
   ];
 
   const passionLinks = [
-    { label: "Overview",  id: "creative-overview",  icon: <FaGlobe className="text-[10px]" /> },
-    { label: "Videos",    id: "creative-videos",    icon: <FaYoutube className="text-[10px]" /> },
-    { label: "Gaming",    id: "creative-gaming",    icon: <FaGamepad className="text-[10px]" /> },
-    { label: "Travel",    id: "creative-hobbies",   icon: <FaCompass className="text-[10px]" /> },
-    { label: "Church Media", id: "church-media",     icon: <FaChurch className="text-[10px]" /> },
-    { label: "Contact",   id: "contact",            icon: <IoMdMail className="text-[10px]" /> },
+    {
+      label: "Overview",
+      id: "creative-overview",
+      icon: <FaGlobe className="text-[10px]" />,
+    },
+    {
+      label: "Videos",
+      id: "creative-videos",
+      icon: <FaYoutube className="text-[10px]" />,
+    },
+    {
+      label: "Gaming",
+      id: "creative-gaming",
+      icon: <FaGamepad className="text-[10px]" />,
+    },
+    {
+      label: "Travel",
+      id: "creative-hobbies",
+      icon: <FaCompass className="text-[10px]" />,
+    },
+    {
+      label: "Church Media",
+      id: "church-media",
+      icon: <FaChurch className="text-[10px]" />,
+    },
+    {
+      label: "Contact",
+      id: "contact",
+      icon: <IoMdMail className="text-[10px]" />,
+    },
   ];
 
   const navLinks = viewState === "passion" ? passionLinks : professionLinks;
 
   return (
     <footer className="bg-ink text-white relative overflow-hidden">
-
       {/* Decorative crimson gradient top rule */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-crimson to-transparent opacity-60" />
 
@@ -106,10 +125,8 @@ const Footer = ({ viewState = "profession" }) => {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-10">
-
         {/* ── Main Grid ───────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
           {/* Col 1+2 — Brand block */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex items-center gap-3">
@@ -142,13 +159,13 @@ const Footer = ({ viewState = "profession" }) => {
             {/* Availability Status */}
             <div className="flex items-center gap-2 text-xs font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.6)]" />
-              <span className="text-emerald-400/80">Available for Projects</span>
+              <span className="text-emerald-400/80">
+                Available for Projects
+              </span>
             </div>
 
             {/* Time Greeting */}
-            <p className="text-white/25 text-xs font-medium">
-              {getGreeting()}
-            </p>
+            <p className="text-white/25 text-xs font-medium">{getGreeting()}</p>
 
             {/* Social icon row */}
             <div className="flex items-center gap-2">
@@ -213,7 +230,9 @@ const Footer = ({ viewState = "profession" }) => {
                     href="tel:+919560362339"
                     className="flex items-start gap-2.5 group"
                   >
-                    <span className="text-crimson mt-0.5 shrink-0 text-sm">📞</span>
+                    <span className="text-crimson mt-0.5 shrink-0 text-sm">
+                      📞
+                    </span>
                     <span className="text-sm text-white/50 group-hover:text-white transition-colors">
                       +91 95603 62339
                     </span>
@@ -237,7 +256,8 @@ const Footer = ({ viewState = "profession" }) => {
                 </p>
                 <div className="space-y-3">
                   <p className="text-sm text-white/50 leading-relaxed">
-                    Want to collaborate on a video project, attend an event together, or just say hey?
+                    Want to collaborate on a video project, attend an event
+                    together, or just say hey?
                   </p>
                   <button
                     onClick={copyEmail}
@@ -261,7 +281,6 @@ const Footer = ({ viewState = "profession" }) => {
               </>
             )}
           </div>
-
         </div>
 
         {/* ── Divider ─────────────────────────────────────────────── */}
@@ -274,7 +293,8 @@ const Footer = ({ viewState = "profession" }) => {
           </p>
 
           <p className="text-[10px] text-white/20 uppercase tracking-widest font-medium flex items-center gap-1.5">
-            Crafted with <FaHeart className="text-crimson animate-pulse" /> using Next.js & Tailwind
+            Crafted with <FaHeart className="text-crimson animate-pulse" />{" "}
+            using Next.js & Tailwind
           </p>
 
           <button
@@ -287,7 +307,6 @@ const Footer = ({ viewState = "profession" }) => {
             </span>
           </button>
         </div>
-
       </div>
     </footer>
   );

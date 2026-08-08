@@ -70,25 +70,39 @@ const Projects = () => {
     setIsLoaded(true);
   }, []);
 
-  const filterTags = ["all", "Next.js", "React", "WordPress", "PHP", "Tailwind CSS", "MySQL"];
+  const filterTags = [
+    "all",
+    "Next.js",
+    "React",
+    "WordPress",
+    "PHP",
+    "Tailwind CSS",
+    "MySQL",
+  ];
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesTag = selectedTag === "all" || project.tags.includes(selectedTag);
+    const matchesTag =
+      selectedTag === "all" || project.tags.includes(selectedTag);
     return matchesSearch && matchesTag;
   });
 
   return (
-    <section id="projects" className="py-24 bg-transparent relative overflow-hidden">
+    <section
+      id="projects"
+      className="py-24 bg-transparent relative overflow-hidden"
+    >
       {/* Large section watermark */}
-      <div className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0" data-speed="-0.15">
+      <div
+        className="scroll-watermark absolute top-2 left-4 lg:top-4 lg:left-12 font-serif font-light text-[100px] sm:text-[140px] md:text-[180px] leading-none text-warm-gray-300 pointer-events-none select-none z-0"
+        data-speed="-0.15"
+      >
         02
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-
         {/* Header Block & Search */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
@@ -96,7 +110,8 @@ const Projects = () => {
               Selected Works
             </h2>
             <p className="text-gray-500 font-sans mt-3 text-sm sm:text-base max-w-xl">
-              Typographic showcase of web systems, client products, and custom builds.
+              Typographic showcase of web systems, client products, and custom
+              builds.
             </p>
           </div>
 
@@ -191,7 +206,9 @@ const Projects = () => {
                         className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink hover:text-crimson transition-colors group/link"
                       >
                         <span>Live Site</span>
-                        <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">→</span>
+                        <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-1">
+                          →
+                        </span>
                       </a>
                     )}
                     {project.github && (
@@ -202,7 +219,9 @@ const Projects = () => {
                         className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-ink transition-colors group/link"
                       >
                         <span>Code</span>
-                        <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">↗</span>
+                        <span className="inline-block transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5">
+                          ↗
+                        </span>
                       </a>
                     )}
                   </div>

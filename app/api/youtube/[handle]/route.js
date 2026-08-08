@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET(request, { params }) {
   const { handle } = await params;
-  
+
   let apiKey, channelId;
 
   if (handle === "devdossier") {
@@ -17,7 +17,10 @@ export async function GET(request, { params }) {
 
   if (!apiKey || !channelId) {
     console.error(`Missing API Key or Channel ID for handle: ${handle}`);
-    return NextResponse.json({ error: 'API configuration missing for this handle' }, { status: 500 });
+    return NextResponse.json(
+      { error: "API configuration missing for this handle" },
+      { status: 500 },
+    );
   }
 
   try {
@@ -25,16 +28,19 @@ export async function GET(request, { params }) {
       `https://youtube.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelId}&key=${apiKey}`,
       {
         next: { revalidate: 3600 }, // Cache the response for 1 hour
-      }
+      },
     );
 
     if (!response.ok) {
       console.error("Failed to fetch YouTube stats:", response.statusText);
-      return NextResponse.json({ error: 'Failed to fetch from YouTube API' }, { status: 500 });
+      return NextResponse.json(
+        { error: "Failed to fetch from YouTube API" },
+        { status: 500 },
+      );
     }
 
     const data = await response.json();
-    
+
     if (data.items && data.items.length > 0) {
       const channel = data.items[0];
       return NextResponse.json({
@@ -49,10 +55,13 @@ export async function GET(request, { params }) {
         videoCount: channel.statistics.videoCount,
       });
     }
-    
-    return NextResponse.json({ error: 'Channel not found' }, { status: 404 });
+
+    return NextResponse.json({ error: "Channel not found" }, { status: 404 });
   } catch (error) {
     console.error("Error fetching YouTube stats:", error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }

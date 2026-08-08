@@ -58,7 +58,7 @@ export default function YouTubeStats({ handle = "devdossier" }) {
   }
 
   const formatNumber = (num) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat("en-US", {
       notation: "compact",
       compactDisplay: "short",
     }).format(num);
@@ -68,22 +68,22 @@ export default function YouTubeStats({ handle = "devdossier" }) {
     <div className="w-full max-w-4xl mx-auto relative group">
       {/* Background glowing effect */}
       <div className="absolute -inset-0.5 bg-gradient-to-r from-red-600 to-orange-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-      
+
       <div className="relative p-8 rounded-3xl bg-black border border-white/10 backdrop-blur-xl overflow-hidden">
         {/* Decorative background element */}
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        
+
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10">
           {/* Channel Logo & Subscribe Button */}
           <div className="flex flex-col items-center gap-4 shrink-0">
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-red-500/30 shadow-2xl shadow-red-500/20">
-              <img 
-                src={stats.thumbnailUrl} 
-                alt={`${stats.title} profile`} 
+              <img
+                src={stats.thumbnailUrl}
+                alt={`${stats.title} profile`}
                 className="w-full h-full object-cover"
               />
             </div>
-            <a 
+            <a
               href={`https://youtube.com/${stats.customUrl}?sub_confirmation=1`}
               target="_blank"
               rel="noopener noreferrer"
@@ -99,7 +99,7 @@ export default function YouTubeStats({ handle = "devdossier" }) {
             <h3 className="text-3xl font-bold text-white mb-2 flex items-center justify-center md:justify-start gap-3">
               {stats.title}
             </h3>
-            
+
             <p className="text-gray-400 text-sm mb-6 line-clamp-2 max-w-2xl leading-relaxed">
               {stats.description}
             </p>
@@ -110,7 +110,9 @@ export default function YouTubeStats({ handle = "devdossier" }) {
               <div className="flex flex-col items-center md:items-start gap-1 p-2 xs:p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
                 <div className="flex items-center gap-2 text-red-400 mb-1">
                   <FaUsers />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Subs</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider">
+                    Subs
+                  </span>
                 </div>
                 <span className="text-xl xs:text-2xl font-bold text-white tracking-tight">
                   {formatNumber(stats.subscriberCount)}
@@ -121,7 +123,9 @@ export default function YouTubeStats({ handle = "devdossier" }) {
               <div className="flex flex-col items-center md:items-start gap-1 p-2 xs:p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
                 <div className="flex items-center gap-2 text-blue-400 mb-1">
                   <FaEye />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Views</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider">
+                    Views
+                  </span>
                 </div>
                 <span className="text-xl xs:text-2xl font-bold text-white tracking-tight">
                   {formatNumber(stats.viewCount)}
@@ -132,7 +136,9 @@ export default function YouTubeStats({ handle = "devdossier" }) {
               <div className="flex flex-col items-center md:items-start gap-1 p-2 xs:p-3 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
                 <div className="flex items-center gap-2 text-purple-400 mb-1">
                   <FaVideo />
-                  <span className="text-xs font-semibold uppercase tracking-wider">Videos</span>
+                  <span className="text-xs font-semibold uppercase tracking-wider">
+                    Videos
+                  </span>
                 </div>
                 <span className="text-xl xs:text-2xl font-bold text-white tracking-tight">
                   {formatNumber(stats.videoCount)}

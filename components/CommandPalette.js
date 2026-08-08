@@ -1,6 +1,16 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { FaSearch, FaAngleRight, FaRegFolder, FaRegIdCard, FaPalette, FaFilePdf, FaHome, FaTerminal } from "react-icons/fa";
+import {
+  FaSearch,
+  FaAngleRight,
+  FaRegFolder,
+  FaRegIdCard,
+  FaPalette,
+  FaFilePdf,
+  FaHome,
+  FaTerminal,
+  FaLaptopCode,
+} from "react-icons/fa";
 import { GiSkills } from "react-icons/gi";
 import { MdContacts } from "react-icons/md";
 import { IoMdMail, IoMdCheckmark } from "react-icons/io";
@@ -27,6 +37,13 @@ const CommandPalette = () => {
       category: "Navigation",
       icon: <FaRegFolder className="text-crimson" />,
       action: () => scrollToSection("projects"),
+    },
+    {
+      id: "devdossier",
+      title: "Jump to DevDossier Studio",
+      category: "Navigation",
+      icon: <FaLaptopCode className="text-crimson" />,
+      action: () => scrollToSection("devdossier"),
     },
     {
       id: "experience",
@@ -103,7 +120,7 @@ const CommandPalette = () => {
         root.style.setProperty("--accent-secondary-rgb", t.secondaryRgb);
         root.style.setProperty("--accent-light", t.light);
         root.style.setProperty("--accent-50", t.bg50);
-        
+
         // Dynamically override selections
         const styleId = "custom-selection-style";
         let styleEl = document.getElementById(styleId);
@@ -121,15 +138,18 @@ const CommandPalette = () => {
         try {
           localStorage.setItem("portfolio-theme", t.id);
         } catch (e) {}
-        window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: t }));
+        window.dispatchEvent(
+          new CustomEvent("portfolio-theme-change", { detail: t }),
+        );
         setIsOpen(false);
       },
     })),
   ];
 
-  const filteredItems = commandItems.filter((item) =>
-    item.title.toLowerCase().includes(search.toLowerCase()) ||
-    item.category.toLowerCase().includes(search.toLowerCase())
+  const filteredItems = commandItems.filter(
+    (item) =>
+      item.title.toLowerCase().includes(search.toLowerCase()) ||
+      item.category.toLowerCase().includes(search.toLowerCase()),
   );
 
   const scrollToSection = (id) => {
@@ -153,7 +173,7 @@ const CommandPalette = () => {
         e.preventDefault();
         setIsOpen((prev) => !prev);
       }
-      
+
       // Escape to close
       if (e.key === "Escape") {
         setIsOpen(false);
@@ -168,7 +188,9 @@ const CommandPalette = () => {
       }
       if (e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
+        setSelectedIndex(
+          (prev) => (prev - 1 + filteredItems.length) % filteredItems.length,
+        );
       }
       if (e.key === "Enter") {
         e.preventDefault();
@@ -253,14 +275,18 @@ const CommandPalette = () => {
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-xs">{item.icon}</span>
-                      <span className="text-xs font-semibold tracking-tight">{item.title}</span>
+                      <span className="text-xs font-semibold tracking-tight">
+                        {item.title}
+                      </span>
                     </div>
-                    
+
                     <div className="flex items-center gap-2">
                       <span className="text-[8px] uppercase tracking-widest font-bold text-gray-400 bg-warm-gray-100 px-2 py-0.5 rounded border border-warm-gray-200/50">
                         {item.category}
                       </span>
-                      {isSelected && <FaAngleRight className="text-xs text-crimson" />}
+                      {isSelected && (
+                        <FaAngleRight className="text-xs text-crimson" />
+                      )}
                     </div>
                   </button>
                 );
