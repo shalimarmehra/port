@@ -205,12 +205,20 @@ const CommandPalette = () => {
   }, [isOpen, filteredItems, selectedIndex]);
 
   useEffect(() => {
-    const handleCustomTrigger = () => {
+    const handleCustomToggle = () => {
       setIsOpen((prev) => !prev);
     };
-    window.addEventListener("toggle-command-palette", handleCustomTrigger);
+    const handleCustomOpen = (e) => {
+      setIsOpen(true);
+      if (e.detail && typeof e.detail === "string") {
+        setSearch(e.detail);
+      }
+    };
+    window.addEventListener("toggle-command-palette", handleCustomToggle);
+    window.addEventListener("open-command-palette", handleCustomOpen);
     return () => {
-      window.removeEventListener("toggle-command-palette", handleCustomTrigger);
+      window.removeEventListener("toggle-command-palette", handleCustomToggle);
+      window.removeEventListener("open-command-palette", handleCustomOpen);
     };
   }, []);
 
