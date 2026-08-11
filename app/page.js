@@ -9,11 +9,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [viewState, setViewState] = useState("profession");
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
+  // PreLoader controls loading state via onComplete callback
 
   // Keep footer in sync with the passion/profession toggle
   useEffect(() => {
@@ -85,7 +81,7 @@ export default function Home() {
     <>
       <div className="z-0">
         {isLoading ? (
-          <PreLoader />
+          <PreLoader onComplete={() => setIsLoading(false)} />
         ) : (
           <>
             <NavBar />

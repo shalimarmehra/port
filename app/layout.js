@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 import ScrollProgress from "@/components/ScrollProgress";
 import CustomCursor from "@/components/CustomCursor";
 import ThemeCustomizer from "@/components/ThemeCustomizer";
+import CommandPalette from "@/components/CommandPalette";
 import SectionNavigator from "@/components/SectionNavigator";
 
 const geistSans = localFont({
@@ -90,6 +91,7 @@ export default function RootLayout({ children }) {
         <CustomCursor />
         <ThemeCustomizer />
         <SectionNavigator />
+        <CommandPalette />
         <main>{children}</main>
         <Analytics />
         <GoogleAnalytics gaId="G-59ZWKHYBGY" />
