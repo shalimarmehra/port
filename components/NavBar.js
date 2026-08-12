@@ -12,12 +12,24 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { FiCommand } from "react-icons/fi";
+import { BsBriefcaseFill, BsHeartFill } from "react-icons/bs";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [viewState, setViewState] = useState("profession");
   const [activeId, setActiveId] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleSwitchView = (view) => {
+    if (view === viewState) return;
+    setViewState(view);
+    localStorage.setItem("portfolioViewState", view);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("portfolio-view-change", { detail: view })
+      );
+    }
+  };
 
   // Sync with toggle, listen to view changes and scroll position
   useEffect(() => {
@@ -263,10 +275,10 @@ const NavBar = () => {
             {/* Compact Search Button (Mobile & Small Tablet) */}
             <button
               onClick={() => handleOpenSearch()}
-              className="md:hidden flex items-center gap-1.5 px-2.5 py-1.5 border border-warm-gray-200/80 rounded-full text-gray-600 hover:text-crimson bg-white/90 shadow-xs active:scale-95 transition-all text-xs font-sans font-medium"
+              className="md:hidden flex items-center gap-1.5 px-3 py-1.5 border border-warm-gray-200/80 rounded-full text-gray-600 hover:text-crimson bg-white/90 backdrop-blur-md shadow-xs active:scale-95 transition-all text-xs font-sans font-medium"
               aria-label="Search"
             >
-              <FaSearch className="text-xs text-gray-400" />
+              <FaSearch className="text-xs text-crimson" />
               <span className="text-[10px] uppercase font-bold tracking-wider hidden xs:inline">Search</span>
             </button>
 
@@ -293,26 +305,36 @@ const NavBar = () => {
               Contact <IoMdMail className="text-sm" />
             </button>
 
-            {/* Mobile Hamburger Toggle (Visible under lg breakpoint) */}
+            {/* Premium Animated Mobile Hamburger Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex flex-col justify-center items-center rounded-full border border-warm-gray-200/80 bg-white/90 text-ink hover:border-crimson/50 shadow-xs transition-colors active:scale-95"
+              className={`lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex flex-col justify-center items-center rounded-full border transition-all duration-300 shadow-xs active:scale-95 ${
+                isOpen
+                  ? viewState === "profession"
+                    ? "bg-crimson text-white border-crimson shadow-crimson/25"
+                    : "bg-gradient-to-r from-rose-600 to-amber-500 text-white border-rose-500 shadow-rose-500/25"
+                  : "bg-white/90 border-warm-gray-200/90 text-ink hover:border-crimson/50 backdrop-blur-md"
+              }`}
               aria-label="Toggle Menu"
             >
-              <div className="flex flex-col gap-1 w-4 sm:w-5">
+              <div className="flex flex-col justify-between w-4 h-3.5 relative">
                 <span
-                  className={`h-[2px] w-full bg-ink rounded transition-transform duration-300 ${
-                    isOpen ? "rotate-45 translate-y-[5px] sm:translate-y-[6px]" : ""
+                  className={`h-[2px] w-full rounded-full transition-all duration-300 transform origin-center ${
+                    isOpen
+                      ? "bg-white rotate-45 translate-y-[6px]"
+                      : "bg-current"
                   }`}
                 />
                 <span
-                  className={`h-[2px] w-full bg-ink rounded transition-opacity duration-300 ${
-                    isOpen ? "opacity-0" : ""
+                  className={`h-[2px] w-full rounded-full transition-all duration-300 ${
+                    isOpen ? "opacity-0 scale-x-0" : "bg-current"
                   }`}
                 />
                 <span
-                  className={`h-[2px] w-full bg-ink rounded transition-transform duration-300 ${
-                    isOpen ? "-rotate-45 -translate-y-[5px] sm:-translate-y-[6px]" : ""
+                  className={`h-[2px] w-full rounded-full transition-all duration-300 transform origin-center ${
+                    isOpen
+                      ? "bg-white -rotate-45 -translate-y-[6px]"
+                      : "bg-current"
                   }`}
                 />
               </div>
@@ -320,43 +342,62 @@ const NavBar = () => {
           </div>
         </div>
 
-        {/* MOBILE & TABLET DRAWER */}
+        {/* MOBILE & TABLET DRAWER OVERLAY BACKDROP */}
+        {isOpen && (
+          <div
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 top-[64px] sm:top-[68px] bg-black/20 backdrop-blur-xs transition-opacity duration-300 z-30 lg:hidden"
+          />
+        )}
+
+        {/* PREMIUM MOBILE & TABLET DRAWER */}
         <div
-          className={`absolute left-0 w-full overflow-hidden transition-all duration-500 ease-in-out lg:hidden border-b shadow-2xl ${
+          className={`absolute left-0 w-full overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:hidden border-b shadow-2xl z-40 ${
             isScrolled
-              ? "top-[64px] sm:top-[68px] border-warm-gray-200/60"
-              : "top-[76px] sm:top-[80px] border-transparent"
+              ? "top-[64px] sm:top-[68px] border-warm-gray-200/80"
+              : "top-[76px] sm:top-[80px] border-warm-gray-200/50"
           } ${
             viewState === "profession"
-              ? "bg-white/95 border-warm-gray-200/60 backdrop-blur-2xl"
-              : "bg-white/90 border-rose-100/60 backdrop-blur-2xl"
+              ? "bg-white/95 border-warm-gray-200/80 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-b-3xl"
+              : "bg-white/95 border-rose-100/80 backdrop-blur-3xl shadow-[0_20px_50px_rgba(244,63,94,0.12)] rounded-b-3xl"
           } ${
             isOpen
-              ? "max-h-[640px] opacity-100 py-5 px-5 sm:px-8"
+              ? "max-h-[660px] opacity-100 py-6 px-5 sm:px-8"
               : "max-h-0 opacity-0 pointer-events-none"
           }`}
         >
-          <div className="flex flex-col gap-2 max-w-7xl mx-auto">
-            {/* View badge & availability status */}
-            <div className="flex items-center justify-between px-1 py-1 mb-1">
-              <span
-                className={`text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full border ${
-                  viewState === "passion"
-                    ? "bg-rose-50 border-rose-200/60 text-rose-600"
-                    : "bg-neutral-100 border-warm-gray-200 text-gray-500"
-                }`}
-              >
-                {viewState === "passion"
-                  ? "❤ Passion View"
-                  : "💼 Profession View"}
-              </span>
+          <div className="flex flex-col gap-3 max-w-7xl mx-auto">
+            {/* Interactive View Toggle Switcher & Availability Status */}
+            <div className="flex items-center justify-between px-1 py-1 mb-1 bg-neutral-100/80 rounded-2xl p-2 border border-neutral-200/60 shadow-xs">
+              <div className="flex items-center gap-1 bg-white/90 p-1 rounded-xl border border-neutral-200/70 relative shadow-inner">
+                <button
+                  onClick={() => handleSwitchView("profession")}
+                  className={`px-3 py-1.5 rounded-lg text-[9px] font-sans font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-300 ${
+                    viewState === "profession"
+                      ? "bg-crimson text-white shadow-xs scale-[1.02]"
+                      : "text-gray-500 hover:text-ink"
+                  }`}
+                >
+                  <BsBriefcaseFill className="text-[10px]" /> Profession
+                </button>
+                <button
+                  onClick={() => handleSwitchView("passion")}
+                  className={`px-3 py-1.5 rounded-lg text-[9px] font-sans font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-300 ${
+                    viewState === "passion"
+                      ? "bg-gradient-to-r from-rose-600 to-amber-500 text-white shadow-xs scale-[1.02]"
+                      : "text-gray-500 hover:text-ink"
+                  }`}
+                >
+                  <BsHeartFill className="text-[10px]" /> Passion
+                </button>
+              </div>
 
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-200/60 rounded-full">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span className="text-[9px] font-sans font-semibold text-emerald-700 uppercase tracking-wider">
+                <span className="text-[9px] font-sans font-bold text-emerald-700 uppercase tracking-wider">
                   Available
                 </span>
               </div>
@@ -365,39 +406,42 @@ const NavBar = () => {
             {/* WORKABLE SEARCH INPUT IN DRAWER */}
             <div
               onClick={() => handleOpenSearch()}
-              className="w-full flex items-center justify-between px-4 py-3 bg-neutral-100/90 border border-neutral-200/80 rounded-xl text-gray-600 text-xs font-sans font-medium transition-colors hover:bg-neutral-200/60 cursor-pointer mb-1 active:scale-[0.99]"
+              className="w-full flex items-center justify-between px-4 py-3 bg-neutral-100/90 border border-neutral-200/80 rounded-2xl text-gray-600 text-xs font-sans font-medium transition-all hover:bg-white hover:border-gray-300 cursor-pointer shadow-2xs active:scale-[0.99] group"
             >
               <span className="flex items-center gap-2.5">
-                <FaSearch className="text-crimson text-xs" />
-                <span>Search sections, projects & skills...</span>
+                <FaSearch className="text-crimson text-xs group-hover:scale-110 transition-transform" />
+                <span className="text-gray-600 font-medium">Search sections, projects & skills...</span>
               </span>
-              <kbd className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-mono font-semibold text-gray-500 bg-white border border-neutral-200 rounded">
+              <kbd className="inline-flex items-center gap-0.5 px-2 py-0.5 text-[9px] font-mono font-bold text-gray-500 bg-white border border-neutral-200 rounded-lg shadow-2xs">
                 <FiCommand className="text-[9px]" /> K
               </kbd>
             </div>
 
-            {/* Section links */}
+            {/* Navigation Links Grid / List */}
             <div className="flex flex-col gap-1 my-1">
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 px-3 py-1">
+                Navigation Sections
+              </span>
               {navLinks.map((link) => {
                 const isActive = activeId === link.id;
                 return (
                   <button
                     key={link.id}
                     onClick={() => handleScrollTo(link.id)}
-                    className={`w-full text-left font-serif text-base px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
+                    className={`w-full text-left font-serif text-base px-4 py-2.5 rounded-xl transition-all flex items-center justify-between group ${
                       isActive
                         ? viewState === "profession"
-                          ? "text-crimson bg-crimson/5 border-l-4 border-l-crimson font-bold pl-3"
-                          : "text-rose-600 bg-rose-500/5 border-l-4 border-l-rose-500 font-bold pl-3"
+                          ? "text-crimson bg-crimson/5 border-l-4 border-l-crimson font-bold pl-3.5 shadow-2xs"
+                          : "text-rose-600 bg-rose-500/5 border-l-4 border-l-rose-500 font-bold pl-3.5 shadow-2xs"
                         : viewState === "profession"
-                          ? "text-ink hover:text-crimson hover:bg-neutral-100/50"
-                          : "text-ink hover:text-rose-600 hover:bg-rose-50/50"
+                          ? "text-ink hover:text-crimson hover:bg-neutral-100/60"
+                          : "text-ink hover:text-rose-600 hover:bg-rose-50/60"
                     }`}
                   >
-                    <span className="flex items-center gap-2.5">
-                      {link.icon && (
+                    <span className="flex items-center gap-3">
+                      {link.icon ? (
                         <span
-                          className={`text-sm transition-colors duration-500 ${
+                          className={`text-sm transition-transform duration-300 group-hover:scale-110 ${
                             isActive
                               ? viewState === "profession"
                                 ? "text-crimson"
@@ -407,16 +451,26 @@ const NavBar = () => {
                         >
                           {link.icon}
                         </span>
+                      ) : (
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full transition-all ${
+                            isActive
+                              ? viewState === "profession"
+                                ? "bg-crimson scale-125"
+                                : "bg-rose-500 scale-125"
+                              : "bg-gray-300 group-hover:bg-gray-400"
+                          }`}
+                        />
                       )}
-                      {link.label}
+                      <span className="font-medium text-sm sm:text-base">{link.label}</span>
                     </span>
                     <span
-                      className={`text-xs font-sans uppercase tracking-widest transition-transform ${
+                      className={`text-xs font-sans font-bold transition-transform duration-300 ${
                         isActive
                           ? viewState === "profession"
                             ? "text-crimson translate-x-1"
                             : "text-rose-600 translate-x-1"
-                          : "text-gray-400"
+                          : "text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5"
                       }`}
                     >
                       →
@@ -426,14 +480,14 @@ const NavBar = () => {
               })}
             </div>
 
-            {/* Action buttons inside drawer */}
-            <div className="flex flex-col gap-2 mt-2">
+            {/* Action Buttons inside Drawer */}
+            <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-neutral-200/60">
               <button
                 onClick={() => handleScrollTo("contact")}
-                className={`w-full text-white font-sans font-bold uppercase tracking-widest text-xs py-3 rounded-full flex items-center justify-center gap-2 shadow-md transition-all duration-300 active:scale-95 ${
+                className={`w-full text-white font-sans font-bold uppercase tracking-widest text-xs py-3.5 rounded-full flex items-center justify-center gap-2 shadow-md transition-all duration-300 active:scale-95 ${
                   viewState === "profession"
-                    ? "bg-crimson hover:bg-crimson-dark shadow-crimson/15"
-                    : "bg-gradient-to-r from-rose-600 to-amber-500 hover:brightness-110 shadow-rose-500/15"
+                    ? "bg-crimson hover:bg-crimson-dark shadow-crimson/20"
+                    : "bg-gradient-to-r from-rose-600 to-amber-500 hover:brightness-110 shadow-rose-500/20"
                 }`}
               >
                 Get In Touch <IoMdMail className="text-base" />
@@ -443,9 +497,9 @@ const NavBar = () => {
                 href="/resume-protected.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex sm:hidden items-center justify-center gap-2 py-3 border border-warm-gray-200/80 rounded-full text-[10px] font-bold text-gray-600 hover:text-crimson hover:border-crimson bg-white/90 transition-all uppercase tracking-wider shadow-xs active:scale-95"
+                className="flex sm:hidden items-center justify-center gap-2 py-3 border border-warm-gray-200/90 rounded-full text-[10px] font-bold text-gray-700 hover:text-crimson hover:border-crimson/50 bg-white shadow-2xs transition-all uppercase tracking-wider active:scale-95"
               >
-                <FaFileDownload className="text-xs" /> Resume PDF
+                <FaFileDownload className="text-xs text-gray-400" /> Resume PDF
               </a>
             </div>
           </div>

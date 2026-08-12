@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
@@ -73,9 +72,8 @@ const Hero = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Refs for 3D Tilt & Magnetic Button & Container
+  // Refs for Magnetic Button & Container
   const heroRef = useRef(null);
-  const imageRef = useRef(null);
   const btnRef = useRef(null);
   const btnTextRef = useRef(null);
 
@@ -134,12 +132,6 @@ const Hero = () => {
         "-=0.8",
       )
       .fromTo(
-        ".hero-image-container",
-        { opacity: 0, scale: 0.8, rotate: -5 },
-        { opacity: 1, scale: 1, rotate: 0, duration: 1.2, ease: "power3.out" },
-        "-=1",
-      )
-      .fromTo(
         ".hero-stat",
         { opacity: 0, y: 25 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 },
@@ -166,33 +158,6 @@ const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  // 3D Tilt Effect
-  const handleImageMouseMove = (e) => {
-    if (!imageRef.current) return;
-    const { left, top, width, height } =
-      imageRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5;
-    const y = (e.clientY - top) / height - 0.5;
-
-    gsap.to(imageRef.current, {
-      rotationY: x * 20,
-      rotationX: -y * 20,
-      transformPerspective: 900,
-      ease: "power2.out",
-      duration: 0.5,
-    });
-  };
-
-  const handleImageMouseLeave = () => {
-    if (!imageRef.current) return;
-    gsap.to(imageRef.current, {
-      rotationY: 0,
-      rotationX: 0,
-      ease: "power3.out",
-      duration: 1,
-    });
   };
 
   // Magnetic Button Effect
@@ -251,7 +216,7 @@ const Hero = () => {
       ref={heroRef}
       onMouseMove={handleHeroMouseMove}
       id="quick-bio"
-      className="relative min-h-[110vh] bg-transparent overflow-hidden pt-20 sm:pt-28 pb-20 perspective-1000"
+      className="relative min-h-[100vh] bg-transparent overflow-hidden pt-16 sm:pt-24 pb-16 perspective-1000"
     >
       {/* Interactive spotlight glow that follows the cursor */}
       <div
@@ -317,163 +282,132 @@ const Hero = () => {
         +
       </span>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-          {/* ─── Left Column: Text ─── */}
-          <div className="flex-1 text-left order-2 lg:order-1 pt-12 lg:pt-0">
-            {/* Available badge */}
-            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide mb-3 bg-white/50 backdrop-blur-sm">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col text-left">
+          {/* Available badge */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <div className="hero-badge inline-flex items-center gap-2 border border-warm-gray-200 rounded-full px-3 py-1.5 text-xs font-semibold text-gray-500 tracking-wide bg-white/50 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
               <span>Available for Hire</span>
             </div>
 
             {/* Pursuing AI Badge */}
-            <div className="hero-badge inline-flex items-center gap-2 border border-violet-200 rounded-full px-3 py-1.5 text-xs font-semibold text-violet-600 tracking-wide mb-4 bg-violet-50/50 backdrop-blur-sm ml-2">
+            <div className="hero-badge inline-flex items-center gap-2 border border-violet-200 rounded-full px-3 py-1.5 text-xs font-semibold text-violet-600 tracking-wide bg-violet-50/50 backdrop-blur-sm">
               <span className="text-sm">📚</span>
               <span>Pursuing AI / ML</span>
             </div>
+          </div>
 
-            {/* Animated Role Ticker */}
-            <div className="hero-badge flex items-center gap-3 mb-6">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                I am a
-              </span>
-              <div className="overflow-hidden h-6 relative">
-                <span
-                  key={roleIndex}
-                  className="inline-block text-crimson font-bold text-sm animate-slide-left tracking-wide"
-                >
-                  {ROLES[roleIndex]}
-                </span>
-              </div>
-            </div>
-
-            {/* Massive editorial headline with dynamic split text */}
-            <h1 className="mb-6 perspective-1000">
-              <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95]">
-                {splitText("FULL-STACK")}
-              </span>
-              <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95] mt-1">
-                {splitText("DEVELOPER")}
-              </span>
-              <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black italic text-crimson tracking-tight leading-[0.95] mt-1">
-                {splitText("& AI EXPLORER")}
-              </span>
-            </h1>
-
-            {/* Description */}
-            <p className="hero-desc font-sans text-gray-500 text-base leading-relaxed mb-8 max-w-lg bg-white/30 backdrop-blur-sm p-4 rounded-xl border border-white/50">
-              I am a full-stack developer with a Bachelor&apos;s in Computer
-              Applications, currently pursuing AI and furthering my studies. I
-              craft high-performance, modern web applications from concept to
-              deployment. Through my business{" "}
-              <strong className="text-crimson font-semibold">
-                Dev Dossier
-              </strong>{" "}
-              and my developer channels, I explore state-of-the-art technologies
-              — from React and Next.js to machine learning — and deliver clean
-              design systems that scale.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-12">
-              <button
-                ref={btnRef}
-                onMouseMove={handleBtnMouseMove}
-                onMouseLeave={handleBtnMouseLeave}
-                onClick={() => handleScrollTo("projects")}
-                className="hero-cta px-8 py-4 bg-crimson text-white text-sm font-bold rounded-full transition-shadow duration-300 shadow-[0_4px_14px_0_rgba(198,40,40,0.39)] hover:shadow-[0_6px_20px_rgba(198,40,40,0.23)] hover:bg-crimson/90 relative"
-                data-cursor-text="EXPLORE"
+          {/* Animated Role Ticker */}
+          <div className="hero-badge flex items-center gap-3 mb-6">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+              I am a
+            </span>
+            <div className="overflow-hidden h-6 relative">
+              <span
+                key={roleIndex}
+                className="inline-block text-crimson font-bold text-sm animate-slide-left tracking-wide"
               >
-                <span
-                  ref={btnTextRef}
-                  className="block relative z-10 pointer-events-none"
-                >
-                  Explore My Work →
-                </span>
-              </button>
-              <button
-                onClick={() => handleScrollTo("about")}
-                className="hero-cta px-8 py-4 border border-ink text-ink text-sm font-semibold rounded-full hover:bg-ink hover:text-white transition-all duration-300 active:scale-95"
-                data-cursor-text="ABOUT"
-              >
-                More About Me
-              </button>
-            </div>
-
-            {/* Social Links */}
-            <div className="hero-socials border-t border-warm-gray-200 pt-6">
-              <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-4">
-                Connect with me
-              </p>
-              <div className="flex flex-wrap items-center gap-5">
-                <Link
-                  href="https://github.com/shalimarmehra"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaGithub className="text-base group-hover:scale-110 transition-transform" />
-                  <span className="text-xs font-medium">GitHub</span>
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/in/shalimarmehra/"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <IoLogoLinkedin className="text-base group-hover:scale-110 transition-transform" />
-                  <span className="text-xs font-medium">LinkedIn</span>
-                </Link>
-                <Link
-                  href="https://www.instagram.com/shalimarmehra/"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaSquareInstagram className="text-base group-hover:scale-110 transition-transform" />
-                  <span className="text-xs font-medium">Instagram</span>
-                </Link>
-                <Link
-                  href="https://youtube.com/@shalimarmehra"
-                  className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <IoLogoYoutube className="text-base group-hover:scale-110 transition-transform" />
-                  <span className="text-xs font-medium">YouTube</span>
-                </Link>
-              </div>
+                {ROLES[roleIndex]}
+              </span>
             </div>
           </div>
 
-          {/* ─── Right Column: Image ─── */}
-          <div className="hero-image-container flex-1 order-1 lg:order-2 flex justify-center items-center relative perspective-[1200px]">
-            {/* Editorial image frame with 3D Mouse Tracking */}
-            <div
-              ref={imageRef}
-              onMouseMove={handleImageMouseMove}
-              onMouseLeave={handleImageMouseLeave}
-              className="relative preserve-3d"
+          {/* Massive editorial headline with dynamic split text */}
+          <h1 className="mb-6 perspective-1000 max-w-4xl">
+            <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95]">
+              {splitText("FULL-STACK")}
+            </span>
+            <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black text-ink tracking-tight leading-[0.95] mt-1">
+              {splitText("DEVELOPER")}
+            </span>
+            <span className="block font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-black italic text-crimson tracking-tight leading-[0.95] mt-1">
+              {splitText("& AI EXPLORER")}
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p className="hero-desc font-sans text-gray-500 text-base leading-relaxed mb-8 max-w-2xl bg-white/30 backdrop-blur-sm p-5 rounded-2xl border border-white/50 shadow-xs">
+            I am a full-stack developer with a Bachelor&apos;s in Computer
+            Applications, currently pursuing AI and furthering my studies. I
+            craft high-performance, modern web applications from concept to
+            deployment. Through my business{" "}
+            <strong className="text-crimson font-semibold">
+              Dev Dossier
+            </strong>{" "}
+            and my developer channels, I explore state-of-the-art technologies
+            — from React and Next.js to machine learning — and deliver clean
+            design systems that scale.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4 mb-12">
+            <button
+              ref={btnRef}
+              onMouseMove={handleBtnMouseMove}
+              onMouseLeave={handleBtnMouseLeave}
+              onClick={() => handleScrollTo("projects")}
+              className="hero-cta px-8 py-4 bg-crimson text-white text-sm font-bold rounded-full transition-shadow duration-300 shadow-[0_4px_14px_0_rgba(198,40,40,0.39)] hover:shadow-[0_6px_20px_rgba(198,40,40,0.23)] hover:bg-crimson/90 relative"
+              data-cursor-text="EXPLORE"
             >
-              {/* Subtle background accent */}
-              <div className="absolute -inset-4 bg-[#F0ECE6] rounded-3xl -rotate-3 pointer-events-none translate-z-[-20px]" />
+              <span
+                ref={btnTextRef}
+                className="block relative z-10 pointer-events-none"
+              >
+                Explore My Work →
+              </span>
+            </button>
+            <button
+              onClick={() => handleScrollTo("about")}
+              className="hero-cta px-8 py-4 border border-ink text-ink text-sm font-semibold rounded-full hover:bg-ink hover:text-white transition-all duration-300 active:scale-95"
+              data-cursor-text="ABOUT"
+            >
+              More About Me
+            </button>
+          </div>
 
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border border-warm-gray-200 shadow-xl translate-z-[20px]">
-                <Image
-                  src="/hero-img.jpeg"
-                  fill
-                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
-                  alt="Shalimar Mehra"
-                  className="ink-mask object-cover hover:scale-[1.02] transition-transform duration-700 ease-out cursor-pointer"
-                  priority
-                  data-cursor-text="HI"
-                />
-              </div>
-
-              {/* Corner accent */}
-              <span className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-crimson pointer-events-none translate-z-[40px]" />
-              <span className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-crimson pointer-events-none translate-z-[40px]" />
+          {/* Social Links */}
+          <div className="hero-socials border-t border-warm-gray-200 pt-6 max-w-2xl">
+            <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-4">
+              Connect with me
+            </p>
+            <div className="flex flex-wrap items-center gap-5">
+              <Link
+                href="https://github.com/shalimarmehra"
+                className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className="text-base group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-medium">GitHub</span>
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/shalimarmehra/"
+                className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoLinkedin className="text-base group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-medium">LinkedIn</span>
+              </Link>
+              <Link
+                href="https://www.instagram.com/shalimarmehra/"
+                className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaSquareInstagram className="text-base group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-medium">Instagram</span>
+              </Link>
+              <Link
+                href="https://youtube.com/@shalimarmehra"
+                className="flex items-center gap-1.5 text-gray-400 hover:text-crimson transition-colors text-sm group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <IoLogoYoutube className="text-base group-hover:scale-110 transition-transform" />
+                <span className="text-xs font-medium">YouTube</span>
+              </Link>
             </div>
           </div>
         </div>
