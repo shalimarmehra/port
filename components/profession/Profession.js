@@ -27,7 +27,7 @@ const Profession = () => {
       {/* 03 — DevDossier Digital Studio & Business */}
       <DevDossierSection />
 
-      {/* 04 — Dev Dossier YouTube */}
+      {/* 04 — Dev Dossier YouTube Channel */}
       <YouTubeSection />
 
       {/* 05 — Professional Journey */}
@@ -36,19 +36,19 @@ const Profession = () => {
       {/* 06 — Technical Expertise */}
       <Skills />
 
-      {/* 06 — Design Inspiration (Pinterest) */}
+      {/* 07 — Design Inspiration (Pinterest) */}
       <PinterestSection />
 
-      {/* 07 — Client Testimonials */}
+      {/* 08 — Client Testimonials */}
       <Testimonials />
 
-      {/* 08 — Live Code Playground */}
+      {/* 09 — Live Code Playground */}
       <Playground />
 
-      {/* 09 — About Me */}
+      {/* 10 — About Me */}
       <About />
 
-      {/* 10 — Contact */}
+      {/* 11 — Contact */}
       <ContactForm />
     </>
   );

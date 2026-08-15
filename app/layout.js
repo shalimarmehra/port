@@ -25,17 +25,60 @@ export const metadata = {
     "Shalimar Mehra • Full-Stack Developer • AI Enthusiast • Content Creator",
   description:
     "Shalimar Mehra is a full-stack developer and AI enthusiast, currently pursuing further studies in artificial intelligence. He specializes in building high-performance web applications, exploring machine learning, and creating engaging developer content.",
-  image: "/hero-img.jpeg",
-  url: "https://www.shalimarmehra.tech",
-  type: "website",
-  siteName: "Shalimar Mehra",
-  creator: "Shalimar Mehra",
-  keywords: "Shalimar Mehra, Portfolio, Web Developer, Designer",
+  metadataBase: new URL("https://www.shalimarmehra.tech"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title:
+      "Shalimar Mehra • Full-Stack Developer • AI Enthusiast • Content Creator",
+    description:
+      "Building premium digital experiences at the intersection of design and engineering. Full-Stack Developer, AI Student, and Content Creator based in New Delhi.",
+    url: "https://www.shalimarmehra.tech",
+    siteName: "Shalimar Mehra",
+    images: [
+      {
+        url: "/hero-img.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Shalimar Mehra — Developer Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
   twitter: {
     card: "summary_large_image",
     site: "@shalimarmehra",
     creator: "@shalimarmehra",
+    title: "Shalimar Mehra • Full-Stack Developer",
+    description:
+      "Building premium digital experiences at the intersection of design and engineering.",
+    images: ["/hero-img.jpeg"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  keywords: [
+    "Shalimar Mehra",
+    "Full-Stack Developer",
+    "Portfolio",
+    "Web Developer",
+    "AI Enthusiast",
+    "React Developer",
+    "Next.js",
+    "Content Creator",
+    "New Delhi",
+  ],
+  creator: "Shalimar Mehra",
 };
 
 export default function RootLayout({ children }) {

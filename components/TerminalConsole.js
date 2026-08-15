@@ -407,4 +407,3 @@ const TerminalConsole = () => {
 };
 
 export default TerminalConsole;
-export { TerminalConsole };

@@ -14,7 +14,6 @@ import {
   FaYoutube,
   FaGamepad,
   FaCompass,
-  FaCheck,
   FaCode,
   FaLayerGroup,
   FaExchangeAlt,
@@ -616,5 +615,3 @@ const CommandPalette = () => {
 };
 
 export default CommandPalette;
-export { CommandPalette };
-
