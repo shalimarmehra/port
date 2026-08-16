@@ -352,7 +352,7 @@ const CommandPalette = () => {
 
         try {
           localStorage.setItem("portfolio-theme", t.id);
-        } catch (e) {}
+        } catch (e) { }
         window.dispatchEvent(
           new CustomEvent("portfolio-theme-change", { detail: t })
         );
@@ -524,11 +524,10 @@ const CommandPalette = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 py-1 rounded-full text-[11px] font-medium tracking-tight whitespace-nowrap transition-all ${
-                activeCategory === cat
-                  ? "bg-crimson text-white shadow-xs font-semibold"
-                  : "bg-white border border-warm-gray-200 text-gray-600 hover:text-ink hover:border-gray-300"
-              }`}
+              className={`px-3 py-1 rounded-full text-[11px] font-medium tracking-tight whitespace-nowrap transition-all ${activeCategory === cat
+                ? "bg-crimson text-white shadow-xs font-semibold"
+                : "bg-white border border-warm-gray-200 text-gray-600 hover:text-ink hover:border-gray-300"
+                }`}
             >
               {cat}
             </button>
@@ -545,11 +544,10 @@ const CommandPalette = () => {
                   key={item.id}
                   onClick={item.action}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all border text-left ${
-                    isSelected
-                      ? "bg-white border-crimson/40 shadow-sm text-ink pl-4 border-l-4 border-l-crimson"
-                      : "text-gray-600 hover:text-ink border-transparent bg-transparent"
-                  }`}
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all border text-left ${isSelected
+                    ? "bg-white border-crimson/40 shadow-sm text-ink pl-4 border-l-4 border-l-crimson"
+                    : "text-gray-600 hover:text-ink border-transparent bg-transparent"
+                    }`}
                 >
                   <div className="flex items-center gap-3 overflow-hidden">
                     <span className="text-sm shrink-0">{item.icon}</span>
