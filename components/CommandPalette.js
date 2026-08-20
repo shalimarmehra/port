@@ -376,7 +376,7 @@ const CommandPalette = () => {
     setIsOpen(false);
   };
 
-  // Filter items based on search query and active category chip
+  // Filter items based on search query and active category
   const filteredItems = commandItems.filter((item) => {
     const matchesCategory =
       activeCategory === "All" ||
