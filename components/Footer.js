@@ -17,7 +17,6 @@ import { FaSquareInstagram, FaCode } from "react-icons/fa6";
 const Footer = ({ viewState = "profession" }) => {
   const currentYear = new Date().getFullYear();
 
-  // Time-of-day greeting
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour < 6) return "Burning the midnight oil? 🌙";
