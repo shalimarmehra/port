@@ -128,7 +128,6 @@ const BottomToUpButton = () => {
           />
         </svg>
 
-        {/* Arrow icon */}
         <FaAngleUp className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
       </button>
     </div>
