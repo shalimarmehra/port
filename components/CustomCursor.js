@@ -15,7 +15,6 @@ const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Hide native cursor on devices that support hover
     const mediaQuery = window.matchMedia("(pointer: fine)");
     if (!mediaQuery.matches) return;
 
