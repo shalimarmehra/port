@@ -27,7 +27,6 @@ const CustomCursor = () => {
 
     const updateRingPosition = () => {
       setRingPosition((prev) => {
-        // Lerp for smooth trailing effect
         const dx = position.x - prev.x;
         const dy = position.y - prev.y;
         return {
